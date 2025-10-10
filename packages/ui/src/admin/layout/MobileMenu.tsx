@@ -4,10 +4,10 @@ import { ChevronDown, Search, Settings, Wand2, X } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { Badge } from "../../ai/ui/badge";
-import { Button } from "../../ai/ui/button";
-import { Input } from "../../ai/ui/input";
-import { ScrollArea } from "../../ai/ui/scroll-area";
+import { Badge } from "../../shadcn/ui/badge";
+import { Button } from "../../shadcn/ui/button";
+import { Input } from "../../shadcn/ui/input";
+import { ScrollArea } from "../../shadcn/ui/scroll-area";
 import { sidebarItems } from "./AdminLayout";
 
 interface MobileMenuProps {

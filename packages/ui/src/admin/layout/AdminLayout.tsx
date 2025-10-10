@@ -2,7 +2,7 @@
 import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
 import NotificationWrap from "@/ui/common/components/notification/NotificationWrap";
 import { cn } from "@/utils/cn";
-import { FileText, Grid, Home, Layers } from "lucide-react";
+import { FileText, Grid, Home } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
 import BookmarkModalActivator from "../bookmark/BookmarkModalActivator";
@@ -35,15 +35,7 @@ export const sidebarItems: SidebarItem[] = [
       { title: "Marketing Planner", url: "#", badge: "2" },
     ],
   },
-  {
-    title: "Tools",
-    icon: <Layers />,
-    items: [
-      { title: "AI Tools", url: "/ai_tools", badge: "4" },
-      { title: "Categories", url: "/categories" },
-      { title: "Tags", url: "/tags" },
-    ],
-  },
+
   {
     title: "Accounts",
     icon: <FileText />,
