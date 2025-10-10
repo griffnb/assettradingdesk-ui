@@ -1,11 +1,6 @@
-import { getSageURL } from "@/sage/SageInitialize";
-import { SageLibrary } from "@/sage/SageLibrary";
-import { idDecode, idEncode } from "@/utils/encode";
 import { getTimezoneOffsets } from "@/utils/time";
 import { defineMiddleware } from "astro:middleware";
 
-import { getDomain, storeUrlParams } from "./middleware/helpers";
-import { getAdID, loadCvars, loadSage, loadSite } from "./middleware/sage";
 import type { Geo } from "./types/base";
 
 /**
@@ -13,31 +8,10 @@ import type { Geo } from "./types/base";
   const { env } = locals.runtime; // requires @astrojs/cloudflare adapter
 **/
 
-const validDomains = ["localhost", "pages.dev"];
-const specialPages = ["thankyou"];
-
-const redirects: Record<string, string> = {};
-
 export const onRequest = defineMiddleware(async (context, next) => {
   const { url, cookies, params, locals, request } = context;
   if (url.pathname === "/health") {
     // Health check endpoint
-    return next();
-  }
-
-  if (redirects[url.pathname]) {
-    return new Response(null, {
-      status: 301,
-      headers: { Location: redirects[url.pathname] },
-    });
-  }
-
-  if (url.pathname.startsWith("/c")) {
-    return next();
-  }
-
-  if (url.pathname.startsWith("/checkout")) {
-    // checkout bounce
     return next();
   }
 
@@ -85,61 +59,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  if (!validDomains.includes(getDomain(url.hostname))) {
-    return new Response("Invalid domain", { status: 403 });
-  }
-
-  // Split URL pieces
-  const paramMetas: string[] = params.metas ? params.metas.split("/") : [];
-
-  if (paramMetas.length > 0) {
-    if (specialPages.includes(paramMetas[0])) {
-      locals.pageType = paramMetas[0];
-      locals.urlVariation = paramMetas.slice(1).join("/");
-    } else {
-      locals.urlVariation = paramMetas.join("/");
-    }
-  }
-
-  const testMode = url.searchParams.get("testMode") === "true";
-
-  // ------ Load Product/Site -------------------
-  const product = await loadSite(url, testMode, "");
-  // ---------------------------------------------
-
-  // ------ Initialize Sage -------------------
-
-  const adId = getAdID(product, url.searchParams);
-  const encAdID = idEncode(adId || 0);
-  const sageTrackingValues = await loadSage(encAdID, url, cookies, testMode);
-  console.log("Sage Tracking Values", sageTrackingValues);
-  // ---------------------------------------------
-
-  // ------ Load Cvars ----------------
-
-  let encodedLPID = sageTrackingValues.lp;
-
-  let lpID = encodedLPID ? idDecode(encodedLPID) : 0;
-  if (!encodedLPID) {
-    if (product.settings && product.settings.default_lp_id) {
-      encodedLPID = idEncode(product.settings.default_lp_id);
-      lpID = product.settings.default_lp_id;
-    } else {
-      encodedLPID = "";
-    }
-  }
-
-  const cvars = await loadCvars(url, encodedLPID, testMode);
-
-  // ---------------------------------------------
-  locals.ad_id = adId;
-  locals.lp_id = lpID;
-  locals.cvars = cvars;
-  locals.sageURL = getSageURL(url.hostname);
-  locals.trackingValues = sageTrackingValues;
-  locals.testMode = testMode;
-  locals.debugMode = url.searchParams.get("debug") === "true";
-
   const geo: Geo = {
     city: request.headers.get("cf-ipcity"),
     country: request.headers.get("cf-ipcountry"),
@@ -164,13 +83,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (continent) geo.continent = continent;
 
   locals.geo = geo;
-
-  SageLibrary.callEvent(sageTrackingValues, `pageview`, {
-    [SageLibrary.PARAM_PAGE]: locals.pageType || "landing",
-  });
-
-  // Store URL parameters in a cookie
-  storeUrlParams(url.hostname, url.searchParams, cookies);
 
   // Dont cache the response since its dynamic
   const response = await next();

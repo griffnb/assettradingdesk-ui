@@ -15,17 +15,14 @@ help: ## Show this help message
 # Development targets
 
 
-.PHONY: techboss
-techboss: ## Run development server
-	pnpm -F techboss-ai dev --host 0.0.0.0 && open http://local-techboss:5432
-
-.PHONY: ai-dev
-ai-dev: ## Run development server
-	pnpm -F ai_app dev --host 0.0.0.0 && open http://techboss.localhost:5173
+.PHONY: assettradingdesk
+assettradingdesk: ## Run development server
+	@open -a "Google Chrome" http://assets-site.localhost:4321
+	pnpm -F assettradingdesk-com dev --host 0.0.0.0
 
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://local-techboss:5433
+	@open -a "Google Chrome" http://assets-admin.localhost:5433
 	pnpm -F admin dev --host 0.0.0.0
 
 

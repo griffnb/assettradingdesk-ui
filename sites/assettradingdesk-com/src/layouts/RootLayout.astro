@@ -3,11 +3,9 @@ import { getPublicEnvVar } from "@/utils/env";
 
 interface Props {
   title: string;
-  pageType?: string;
-  email?: string;
 }
 
-const { title, pageType, email } = Astro.props;
+const { title } = Astro.props;
 const isDevelopment = getPublicEnvVar("PUBLIC_ENVIRONMENT") === "development";
 ---
 

@@ -1,60 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "@/ui/theme_styles/base.css";
+@import "@/ui/styles/loading.css";
+@import "@/ui/styles/form-select.css";
+@import "@/ui/styles/datepicker.css";
+@import "@/ui/styles/table.css";
+@import "@/ui/styles/code.css";
+@import "@/ui/styles/globals.css";
+@import "@/ui/styles/scrollbar.css";
 
-/* Ripple effect with Tailwind's dynamic background color */
-@layer utilities {
-  .ripple {
-    background-position: center;
-    transition: background 0.6s;
-  }
-
-  .ripple:hover {
-    /* Use Tailwind's dynamic background color and opacity */
-    background: radial-gradient(
-        circle,
-        transparent 1%,
-        rgba(255, 255, 255, 0.2) 1%
-      )
-      center/15000%;
-  }
-
-  .ripple:active {
-    background-size: 100%;
-    transition: background 0s;
-  }
-
-  .long-gradient-logos {
-    background: linear-gradient(89.98deg, #016F92 -2.19%, #127E84 32.95%, #198580 45.02%, #0A6940 107.61%);
-  }
-
-  .long-gradient-decision {
-    background: linear-gradient(101.03deg, #00A79D -13.17%, #2C829B 20.78%, #595E99 59.58%, #744798 89.89%, #7F3F98 108.08%);
-  }
-
-  .skeleton-loading {
-    animation: skeleton-loading 1.5s ease-in-out infinite alternate;
-  }
-  @keyframes skeleton-loading {
-    0% {
-      background-color: hsla(0, 0%, 50%, 0.6);
-    }
-    100% {
-      background-color: hsla(0, 0%, 60%, 0.6);
-    }
-  }
-}
-
-@layer components {
-  .slide {
-    @apply min-w-full pb-16 text-center text-white;
-  }
-  .bullet {
-    @apply absolute bottom-4 left-0 right-0 mx-auto flex h-10 w-10 transform cursor-pointer items-center justify-center rounded-full text-xs text-gray-500 hover:scale-110;
-    /* @apply absolute bottom-4 cursor-pointer text-xs transform hover:scale-105 bg-white text-gray-500 shadow-lg w-6 h-6 flex items-center justify-center rounded-full; */
-  }
-  .bullet > span {
-    @apply flex h-full w-full select-none items-center justify-center rounded-full text-gray-400;
-    /* @apply absolute bottom-4 cursor-pointer text-xs transform hover:scale-105 bg-white text-gray-500 shadow-lg w-6 h-6 flex items-center justify-center rounded-full; */
-  }
-}
+@import "@/ui/styles/icons.css";

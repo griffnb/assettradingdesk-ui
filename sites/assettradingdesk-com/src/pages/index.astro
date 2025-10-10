@@ -1,0 +1,26 @@
+---
+import { Slider } from "@/ui/shadcn/ui/Slider";
+import Loader from "../components/Loader.astro";
+import Layout from "../layouts/Layout.astro";
+
+interface Props {}
+
+const props = Astro.props;
+---
+
+<Layout title="Home">
+  <Fragment slot="body">
+    <div class="flex flex-row justify-center items-center"></div>
+    <Loader>
+      <div
+        class="flex flex-col justify-center text-text-neutral-primary items-center w-full max-w-3xl px-4"
+      >
+        Hi
+      </div>
+    </Loader>
+    <div class="flex flex-col size-64 p-5">
+      I should have stuff here
+      <Slider client:only defaultValue={[50]} max={100} step={1} />
+    </div>
+  </Fragment>
+</Layout>
