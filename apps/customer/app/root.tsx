@@ -7,13 +7,14 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
+import { SessionService } from "@/common_lib/services/sessionService";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
-import { ClerkProvider } from "@clerk/react-router";
+import { ClerkProvider, useAuth } from "@clerk/react-router";
 import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
 import type { Route } from "../.react-router/types/app/+types/root";
 
+import { useEffect } from "react";
 import "./app.css";
 
 export const middleware: Route.MiddlewareFunction[] = [clerkMiddleware()];
@@ -43,7 +44,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -66,39 +66,13 @@ export default function App({ loaderData }: Route.ComponentProps) {
 }
 
 function Auth() {
-  /*
+  // Only need this if we need bearer tokens for our API
   const { getToken } = useAuth();
-  const { isSignedIn, isLoaded } = useUser();
-  let navigate = useNavigate();
-  const location = useLocation();
-
   useEffect(() => {
     SessionService.tokenFetch = getToken;
   }, [getToken]);
 
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/signup";
-
-  if (!isLoaded && !isAuthPage) {
-    return <Skeleton />;
-  }
-
-  if (!isSignedIn && !isAuthPage) {
-    navigate("/login");
-    return null;
-  }
-
-  if (isAuthPage) {
-    // no app shell, just render outlet
-    return <Outlet />;
-  }
-    */
-
-  return (
-    <InAppLayout>
-      <Outlet />
-    </InAppLayout>
-  );
+  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

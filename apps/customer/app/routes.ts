@@ -1,7 +1,7 @@
 //import { type RouteConfig } from "@react-router/dev/routes";
 import { remixRoutesOptionAdapter } from "@react-router/remix-routes-option-adapter";
 import { flatRoutes } from "remix-flat-routes";
-// TODO
+
 //https://github.com/kiliman/remix-flat-routes?tab=readme-ov-file#nested-folders-with-flat-files-convention--new-in-v051
 //export default flatRoutes() satisfies RouteConfig;
 
