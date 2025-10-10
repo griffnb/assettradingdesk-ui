@@ -22,9 +22,13 @@ assettradingdesk: ## Run development server
 
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://assets-admin.localhost:5433
+	@open -a "Google Chrome" http://assets-admin.localhost:5174
 	pnpm -F admin dev --host 0.0.0.0
 
+.PHONY: customer
+customer: ## Run development server
+	@open -a "Google Chrome" http://assets-customer.localhost:5173
+	pnpm -F customer dev --host 0.0.0.0
 
 # Docker targets
 .PHONY: docker-up

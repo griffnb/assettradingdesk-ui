@@ -6,7 +6,7 @@
     "moduleResolution": "bundler",
     "rootDirs": [".", "./.react-router/types"],
     "paths": {
-      "@/ai_app/*": ["apps/ai_app/app/*"],
+      "@/customer/*": ["apps/customer/app/*"],
       "@/utils/*": ["packages/utils/src/*"],
       "@/models/*": ["packages/models/src/*"],
       "@/ui/*": ["packages/ui/src/*"],

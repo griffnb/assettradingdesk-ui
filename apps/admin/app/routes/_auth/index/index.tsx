@@ -1,24 +1,10 @@
-import { Route } from "./+types";
+import { useAdmin } from "@/common_lib/authentication/useAdmin";
+import { Home } from "../../../pods/home/Home";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Home Page" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
-}
-
-export async function loader() {
-  return {
-    message: "This message came from the server!",
-  };
-}
-
-export default function RootIndex({ loaderData }: Route.ComponentProps) {
-  /*
+export default function RootIndex() {
   const { admin, adminLoading } = useAdmin();
   if (adminLoading || !admin) {
     return null;
   }
-    */
-  return <div>Im the root index here? {loaderData.message}</div>;
+  return <Home />;
 }

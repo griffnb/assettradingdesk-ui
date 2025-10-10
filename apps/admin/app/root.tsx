@@ -6,11 +6,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
+  useNavigate,
 } from "react-router";
 
+import { SessionService } from "@/common_lib/services/SessionService";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
 import type { Route } from "../.react-router/types/app/+types/root";
 import "./app.css";
 
@@ -69,7 +73,7 @@ export default function App() {
 }
 
 function Auth() {
-  /*const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false);
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
   let navigate = useNavigate();
@@ -79,7 +83,7 @@ function Auth() {
   }, [getToken]);
 
   useEffect(() => {
-    console.log("in use effect here", isLoaded, isSignedIn);
+    console.log(isLoaded, isSignedIn);
 
     if (isLoaded && isSignedIn && getToken) {
       getToken().then((token) => {
@@ -106,11 +110,10 @@ function Auth() {
   }
 
   if (!isSignedIn && !isAuthPage) {
-    //navigate("/login");
-    //console.log("Navigating to login");
-    //return null;
+    navigate("/login");
+    console.log("Navigating to login");
+    return null;
   }
-    */
   console.log("Rendering outlet");
   return <Outlet />;
 }

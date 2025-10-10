@@ -5,20 +5,19 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
-  useNavigate,
 } from "react-router";
 
-import { SessionService } from "@/common_lib/services/SessionService";
-import { ThemeProvider } from "@/ui/ai/theme-provider";
-import { Skeleton } from "@/ui/ai/ui/skeleton";
 import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
+import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
-import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react";
-import { useEffect } from "react";
+import { ClerkProvider } from "@clerk/react-router";
+import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
 import type { Route } from "../.react-router/types/app/+types/root";
+
 import "./app.css";
 
+export const middleware: Route.MiddlewareFunction[] = [clerkMiddleware()];
+export const loader = (args: Route.LoaderArgs) => rootAuthLoader(args);
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -52,7 +51,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+export default function App({ loaderData }: Route.ComponentProps) {
   // Import your Publishable Key
   const PUBLISHABLE_KEY = getPublicEnvVar("PUBLIC_CLERK_PUBLISHABLE_KEY");
 
@@ -60,15 +59,14 @@ export default function App() {
     throw new Error("Add your Clerk Publishable Key to the .env file");
   }
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <ThemeProvider>
-        <Auth />
-      </ThemeProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} loaderData={loaderData}>
+      <Auth />
     </ClerkProvider>
   );
 }
 
 function Auth() {
+  /*
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
   let navigate = useNavigate();
@@ -94,6 +92,7 @@ function Auth() {
     // no app shell, just render outlet
     return <Outlet />;
   }
+    */
 
   return (
     <InAppLayout>

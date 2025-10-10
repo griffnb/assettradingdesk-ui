@@ -3,8 +3,8 @@ import { ChevronDown, Settings, Wand2 } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { Badge } from "../../ai/ui/badge";
-import { ScrollArea } from "../../ai/ui/scroll-area";
+import { Badge } from "../../shadcn/ui/badge";
+import { ScrollArea } from "../../shadcn/ui/scroll-area";
 import { sidebarItems } from "./InAppLayout";
 
 interface DesktopSidebarProps {
