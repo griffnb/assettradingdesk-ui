@@ -1,0 +1,138 @@
+.datepicker {
+  .view-switch,
+  .datepicker-cell,
+  .next-btn,
+  .prev-btn,
+  .clear-btn {
+    @apply text-gray-700;
+  }
+  .next-btn,
+  .prev-btn {
+    @apply hover:text-gray-700;
+  }
+  .dow {
+    @apply text-gray-600;
+  }
+}
+.datepicker-view.flex {
+  @apply grid;
+}
+.datepicker-cell {
+  @apply py-2;
+  @apply leading-4;
+  &.range {
+    @apply bg-gray-50;
+  }
+  &.selected,
+  &.range-end {
+    @apply bg-blue-500;
+    @apply text-white;
+  }
+}
+.today-btn {
+  @apply bg-blue-500;
+  @apply hover:bg-blue-600;
+}
+
+/* flatpickr */
+
+.flatpickr-calendar {
+  @apply p-4;
+  @apply text-xs;
+  @apply font-inter;
+  @apply text-gray-700;
+}
+.flatpickr-day {
+  @apply font-bold;
+  @apply rounded-lg;
+  @apply hover:bg-gray-100;
+  @apply border-none;
+  @apply h-8;
+  @apply leading-8;
+}
+span.flatpickr-weekday {
+  @apply text-gray-600;
+}
+
+.flatpickr-day.today {
+  @apply bg-gray-100;
+  @apply rounded-lg;
+  @apply border-none;
+}
+.flatpickr-day.selected.startRange,
+.flatpickr-day.startRange.startRange,
+.flatpickr-day.endRange.startRange {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.flatpickr-day.selected.endRange,
+.flatpickr-day.startRange.endRange,
+.flatpickr-day.endRange.endRange {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.prevMonthDay.selected {
+  @apply bg-blue-500;
+  @apply hover:bg-blue-500;
+  @apply focus:bg-blue-500;
+  @apply text-white;
+}
+.flatpickr-day.inRange {
+  @apply bg-gray-50;
+  box-shadow:
+    -5px 0 0 #f6f8f9,
+    5px 0 0 #f6f8f9;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  @apply text-xs;
+  @apply font-bold;
+  @apply text-gray-700;
+  @apply rounded;
+  @apply p-1;
+  @apply hover:bg-gray-50;
+  @apply active:ring-1;
+  @apply ring-blue-500;
+}
+.flatpickr-current-month .numInput.cur-year {
+  @apply text-xs;
+  @apply font-bold;
+  @apply text-gray-700;
+  @apply rounded;
+  @apply p-1;
+  @apply hover:bg-gray-50;
+  @apply active:ring-1;
+  @apply ring-blue-500;
+}
+.flatpickr-prev-month,
+.flatpickr-next-month {
+  @apply !top-4;
+  @apply hover:text-gray-700;
+}
+.flatpickr-prev-month {
+  @apply !left-4;
+}
+.flatpickr-next-month {
+  @apply !right-4;
+}
+
+.flatpickr-months .flatpickr-prev-month svg path {
+  d: path(
+    "M8.5105 15.6063C8.32297 15.7938 8.06866 15.8991 7.8035 15.8991C7.53833 15.8991 7.28403 15.7938 7.0965 15.6063L3.0965 11.6063C2.90903 11.4188 2.80371 11.1645 2.80371 10.8993C2.80371 10.6342 2.90903 10.3799 3.0965 10.1923L7.0965 6.19233C7.2851 6.01018 7.5377 5.90938 7.7999 5.91166C8.0621 5.91394 8.31291 6.01911 8.49832 6.20451C8.68372 6.38992 8.78889 6.64074 8.79117 6.90293C8.79345 7.16513 8.69266 7.41773 8.5105 7.60633L6.2175 9.89933H17.8035C18.0687 9.89933 18.3231 10.0047 18.5106 10.1922C18.6981 10.3798 18.8035 10.6341 18.8035 10.8993C18.8035 11.1645 18.6981 11.4189 18.5106 11.6064C18.3231 11.794 18.0687 11.8993 17.8035 11.8993H6.2175L8.5105 14.1923C8.69797 14.3799 8.80328 14.6342 8.80328 14.8993C8.80328 15.1645 8.69797 15.4188 8.5105 15.6063Z"
+  );
+}
+.flatpickr-months .flatpickr-next-month svg path {
+  d: path(
+    "M13.0967 6.19244C13.2842 6.00497 13.5385 5.89966 13.8037 5.89966C14.0689 5.89966 14.3232 6.00497 14.5107 6.19244L18.5107 10.1924C18.6982 10.38 18.8035 10.6343 18.8035 10.8994C18.8035 11.1646 18.6982 11.4189 18.5107 11.6064L14.5107 15.6064C14.3221 15.7886 14.0695 15.8894 13.8073 15.8871C13.5451 15.8848 13.2943 15.7797 13.1089 15.5943C12.9235 15.4089 12.8183 15.158 12.816 14.8958C12.8138 14.6336 12.9146 14.381 13.0967 14.1924L15.3897 11.8994H3.80371C3.53849 11.8994 3.28414 11.7941 3.0966 11.6066C2.90907 11.419 2.80371 11.1647 2.80371 10.8994C2.80371 10.6342 2.90907 10.3799 3.0966 10.1923C3.28414 10.0048 3.53849 9.89944 3.80371 9.89944H15.3897L13.0967 7.60644C12.9092 7.41892 12.8039 7.16461 12.8039 6.89944C12.8039 6.63428 12.9092 6.37997 13.0967 6.19244Z"
+  );
+}
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+  @apply fill-gray-700;
+  @apply w-5;
+  @apply h-4;
+}
+.flatpickr-months .flatpickr-prev-month:hover svg path,
+.flatpickr-months .flatpickr-next-month:hover svg path {
+  @apply fill-gray-700;
+}

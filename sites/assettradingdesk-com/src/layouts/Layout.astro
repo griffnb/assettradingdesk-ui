@@ -1,0 +1,51 @@
+---
+import GoogleTagManager from "@/astro_ui/components/ads/GoogleTagManager.astro";
+import Debug from "@/astro_ui/components/Debug.astro";
+import type { BaseProps } from "@/models/types/base";
+import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
+import { getPublicEnvVar } from "@/utils/env";
+import type {
+  LongRegistrationPageCvars,
+  MultipleButtonsCvars,
+  MultiStepWebclassCvars,
+  WebclassCvars,
+} from "../types/cvars";
+import RootLayout from "./RootLayout.astro";
+
+import "../styles/app.css";
+
+interface Props
+  extends BaseProps<
+    | WebclassCvars
+    | MultiStepWebclassCvars
+    | LongRegistrationPageCvars
+    | MultipleButtonsCvars
+  > {}
+const props = Astro.props;
+const title = props.product.title || "";
+const isDevelopment = getPublicEnvVar("PUBLIC_ENVIRONMENT") === "development";
+const email =
+  (props.pageType === "thankyou" &&
+    props.registration &&
+    props.registration.email) ||
+  "";
+---
+
+<Fragment slot={"header"}>
+  <GoogleTagManager
+    gtmID={props.productSettings?.google_gtm_id}
+    customURL="st.webclass.ai"
+  />
+</Fragment>
+
+<RootLayout title={title} pageType={props.pageType} email={email}>
+  <div
+    class="w-full min-h-svh font-poppins bg-[url('https://botbuilders.nyc3.cdn.digitaloceanspaces.com/webclassai/bg.webp')] bg-center bg-cover bg-no-repeat"
+  >
+    <slot name="body" />
+  </div>
+
+  <LayerDisplay client:only="react" />
+
+  {(isDevelopment || props.debugMode) && <Debug {...props} />}
+</RootLayout>

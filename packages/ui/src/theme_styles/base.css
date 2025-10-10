@@ -1,0 +1,31 @@
+@import "./primitives.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  label {
+    cursor: inherit;
+  }
+
+  :root {
+    --bottom-nav-height: 64px;
+    --top-nav-height: 64px;
+    --titlebar-height: 54px;
+  }
+
+  /* hides the input spinner on number types */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+}
+
+/* Need to hide pactsafe title, it's loaded by the pactsafe script */
+#tos-container .ps-contract-title {
+  display: none !important;
+}

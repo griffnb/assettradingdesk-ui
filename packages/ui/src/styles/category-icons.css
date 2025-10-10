@@ -1,0 +1,40 @@
+/* custom ones*/
+.u-category-data {
+  mask-image: url("/icons/categories/data.svg");
+}
+.u-category-ai {
+  mask-image: url("/icons/categories/ai.svg");
+}
+.u-category-background-check {
+  mask-image: url("/icons/categories/background_check.svg");
+}
+.u-category-business-software {
+  mask-image: url("/icons/categories/business_software.svg");
+}
+.u-category-cra {
+  mask-image: url("/icons/categories/cra.svg");
+}
+.u-category-cyber-security {
+  mask-image: url("/icons/categories/cyber_security.svg");
+}
+.u-category-financial {
+  mask-image: url("/icons/categories/financial.svg");
+}
+.u-category-gis {
+  mask-image: url("/icons/categories/gis.svg");
+}
+.u-category-marketing {
+  mask-image: url("/icons/categories/marketing.svg");
+}
+.u-category-people-search {
+  mask-image: url("/icons/categories/people_search.svg");
+}
+.u-category-real-estate {
+  mask-image: url("/icons/categories/real_estate.svg");
+}
+.u-category-recruitment {
+  mask-image: url("/icons/categories/recruitment.svg");
+}
+.u-category-telco {
+  mask-image: url("/icons/categories/telco.svg");
+}

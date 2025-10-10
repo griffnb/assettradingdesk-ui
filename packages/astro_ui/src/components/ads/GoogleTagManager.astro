@@ -1,0 +1,46 @@
+---
+import { custom } from "astro:schema";
+
+interface Props {
+  gtmID: string | null;
+  customURL?: string;
+}
+
+const { gtmID, customURL } = Astro.props;
+
+if (!gtmID) {
+  return null;
+}
+const trackingDomain =
+  customURL || "st.webclass.ai" || "www.googletagmanager.com";
+---
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+</script>
+
+<!-- Google Tag Manager -->
+<script is:inline define:vars={{ gtmID, trackingDomain }}>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = `https://${trackingDomain}/gtm.js?id=` + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, "script", "dataLayer", gtmID);
+</script>
+
+<noscript>
+  <iframe
+    src={`https://${trackingDomain}/ns.html?id=${gtmID}`}
+    height="0"
+    width="0"
+    style="display:none;visibility:hidden"
+  >
+  </iframe>
+</noscript>
+
+<!-- End Google Tag Manager -->

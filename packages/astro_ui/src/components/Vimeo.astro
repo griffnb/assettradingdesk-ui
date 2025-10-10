@@ -1,0 +1,15 @@
+---
+
+---
+
+<script is:inline src=`https://player.vimeo.com/api/player.js`></script>
+<script is:inline>
+  const iframe = document.getElementById("video-player");
+  const vimeoPlayer = new Vimeo.Player(iframe);
+
+  try {
+    vimeoPlayer.play();
+  } catch (e) {
+    console.error(e);
+  }
+</script>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  analyticsID: string;
+  adwordsID: string;
+}
+
+const { analyticsID, adwordsID } = Astro.props;
+
+if (!analyticsID || !adwordsID) {
+  return null;
+}
+---
+
+<!-- Google tag (gtag.js) -->
+<script
+  define:vars={{ analyticsID }}
+  is:inline
+  async
+  src=`https://www.googletagmanager.com/gtag/js?id=${analyticsID}`></script>
+<script is:inline define:vars={{ analyticsID, adwordsID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", analyticsID);
+  gtag("config", adwordsID);
+</script>

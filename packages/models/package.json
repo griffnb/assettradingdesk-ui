@@ -1,0 +1,29 @@
+{
+  "name": "models",
+  "scripts": {
+    "tsc": "tsc --noEmit",
+    "watch": "tsc --watch --noEmit --project './tsconfig.json'"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.675.0",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.18",
+    "libphonenumber-js": "^1.11.12",
+    "mobx": "^6.13.7",
+    "mobx-react-lite": "^4.1.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-class-properties": "^7.27.1",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@types/node": "^24.4.0",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-import": "^2.32.0",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,46 @@
+---
+import { getPublicEnvVar } from "@/utils/env";
+
+interface Props {
+  title: string;
+  pageType?: string;
+  email?: string;
+}
+
+const { title, pageType, email } = Astro.props;
+const isDevelopment = getPublicEnvVar("PUBLIC_ENVIRONMENT") === "development";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      property="og:image"
+      content="https://d11n7da8rpqbjy.cloudfront.net/botbuilders/1874252_1535554318004BotBuildersLogo_Horizontal_cropped.webp"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      /></noscript
+    >
+
+    <title>{title}</title>
+
+    <slot name="header" />
+  </head>
+  <body>
+    <slot />
+  </body>
+  <slot name="after-body" />
+</html>

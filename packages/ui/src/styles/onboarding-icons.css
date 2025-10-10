@@ -1,0 +1,23 @@
+.u-atlas_fees {
+  mask-image: url("/icons/onboarding/atlas_fees.svg");
+}
+
+.u-how_atlas {
+  mask-image: url("/icons/onboarding/how_atlas.svg");
+}
+
+.u-invite {
+  mask-image: url("/icons/onboarding/invite.svg");
+}
+
+.u-send-dsr {
+  mask-image: url("/icons/onboarding/send.svg");
+}
+
+.u-terms {
+  mask-image: url("/icons/onboarding/terms.svg");
+}
+
+.u-send-header {
+  mask-image: url("/icons/onboarding/send-header.svg");
+}

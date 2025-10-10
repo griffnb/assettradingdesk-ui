@@ -1,0 +1,11 @@
+.u-plan-basic {
+  mask-image: url("/icons/plan_shields/basic.svg");
+}
+
+.u-plan-middle {
+  mask-image: url("/icons/plan_shields/middle.svg");
+}
+
+.u-plan-premium {
+  mask-image: url("/icons/plan_shields/premium.svg");
+}

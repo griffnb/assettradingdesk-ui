@@ -1,0 +1,26 @@
+---
+import GTMLandingPageLoad from "@/astro_ui/components/ads/GTMLandingPageLoad.astro";
+import Loader from "../../components/Loader.astro";
+import Layout from "../../layouts/Layout.astro";
+import type { BaseProps } from "../../types/base";
+import type { WebclassCvars } from "../../types/cvars";
+
+interface Props extends BaseProps<WebclassCvars> {}
+
+const props = Astro.props;
+---
+
+<Layout {...props}>
+  <Fragment slot="body">
+    <div class="flex flex-row justify-center items-center"></div>
+    <Loader>
+      <div
+        class="flex flex-col justify-center text-text-neutral-primary items-center w-full max-w-3xl px-4"
+      >
+        Hi
+      </div>
+    </Loader>
+
+    <GTMLandingPageLoad eventName="lp" {...props} />
+  </Fragment>
+</Layout>

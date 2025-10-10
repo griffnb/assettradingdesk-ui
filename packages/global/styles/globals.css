@@ -1,0 +1,45 @@
+#__next {
+  display: contents;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position:
+        0 0,
+        -200% 0;
+    }
+    100% {
+      background-position:
+        0 0,
+        200% 0;
+    }
+  }
+
+  .skeleton-bars {
+    /* defaults (override via CSS vars or style prop) */
+    --bar-h: 12px; /* bar height */
+    --gap: 10px; /* gap between bars */
+    --bar: theme(colors.gray.200);
+    --gap-bg: theme(colors.white);
+
+    background-color: var(--gap-bg);
+    background-image:
+      /* rows */ repeating-linear-gradient(
+      to bottom,
+      var(--bar) 0 var(--bar-h),
+      transparent var(--bar-h) calc(var(--bar-h) + var(--gap))
+    );
+
+    background-size:
+      100% auto,
+      200% 100%;
+    background-repeat: repeat, no-repeat;
+    animation: skeleton-shimmer 1.2s linear infinite;
+  }
+}

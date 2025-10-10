@@ -1,0 +1,19 @@
+.u-nav-more {
+  mask-image: url("/icons/navigation/nav-more.svg");
+}
+
+.u-roster {
+  mask-image: url("/icons/navigation/roster.svg");
+}
+
+.u-atlas_phone {
+  mask-image: url("/icons/navigation/atlas_phone.svg");
+}
+
+.u-spam {
+  mask-image: url("/icons/navigation/spam.svg");
+}
+
+.u-mail-outbox {
+  mask-image: url("/icons/navigation/mail-outbox.svg");
+}

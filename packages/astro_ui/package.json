@@ -1,0 +1,40 @@
+{
+  "name": "astro_ui",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "watch": "npx astro check --watch --root ./src",
+    "tsc": "npx astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^8.3.4",
+    "@astrojs/react": "^4.3.1",
+    "@astrojs/tailwind": "^5.1.2",
+    "@aws-sdk/client-cloudwatch-logs": "^3.675.0",
+    "astro": "^5.14.1",
+    "astro-aws-amplify": "^0.1.0",
+    "class-variance-authority": "^0.7.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@headlessui/tailwindcss": "^0.2.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^24.4.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "plop": "^4.0.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.2"
+  }
+}

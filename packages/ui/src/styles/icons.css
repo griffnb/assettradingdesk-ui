@@ -1,0 +1,26 @@
+@import "./category-icons.css";
+@import "./untitled-icons.css";
+@import "./feed-icons.css";
+@import "./dsr-activity-icons.css";
+@import "./navigation-icons.css";
+@import "./plan-icons.css";
+@import "./onboarding-icons.css";
+@import "./fa-custom.css";
+
+.u {
+  mask-size: contain; /* Scale the icon proportionally */
+  mask-repeat: no-repeat; /* Prevents tiling of the icon */
+  width: 1em; /* Set icon size relative to font size */
+  height: 1em; /* Matches width for a square icon */
+  background-color: currentColor; /* Inherits color from text color */
+  display: inline-block; /* Ensures it behaves like a text icon */
+}
+
+.fac {
+  mask-size: contain; /* Scale the icon proportionally */
+  mask-repeat: no-repeat; /* Prevents tiling of the icon */
+  width: 1em; /* Set icon size relative to font size */
+  height: 1em; /* Matches width for a square icon */
+  background-color: currentColor; /* Inherits color from text color */
+  display: inline-block; /* Ensures it behaves like a text icon */
+}

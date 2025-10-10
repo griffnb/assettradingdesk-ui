@@ -1,0 +1,21 @@
+.u-dsr-activity-claims-assigned {
+  mask-image: url("/icons/dsr-activity/claims-assigned.svg");
+}
+.u-dsr-activity-complaint-filed {
+  mask-image: url("/icons/dsr-activity/complaint-filed.svg");
+}
+.u-dsr-activity-compliance-period {
+  mask-image: url("/icons/dsr-activity/compliance-period.svg");
+}
+.u-dsr-activity-delivered {
+  mask-image: url("/icons/dsr-activity/delivered.svg");
+}
+.u-dsr-activity-dsr-replied {
+  mask-image: url("/icons/dsr-activity/dsr-replied.svg");
+}
+.u-dsr-activity-dsr-queued {
+  mask-image: url("/icons/dsr-activity/dsr-queued.svg");
+}
+.u-dsr-activity-not-delivered {
+  mask-image: url("/icons/dsr-activity/not-delivered.svg");
+}

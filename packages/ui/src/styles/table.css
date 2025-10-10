@@ -1,0 +1,5 @@
+.action-header {
+  @apply w-0;
+  @apply whitespace-nowrap;
+  @apply tracking-wide;
+}

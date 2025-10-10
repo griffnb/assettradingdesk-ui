@@ -1,0 +1,1 @@
+/Users/griffnb/projects/Crowdshield/go-core/ai/docs/ui-model.readme.md

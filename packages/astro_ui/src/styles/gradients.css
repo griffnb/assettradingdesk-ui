@@ -1,0 +1,28 @@
+.blue-gradient {
+  @apply from-primary-blue-500 to-secondary-blue-500;
+}
+
+.blue-gradient-dark {
+  @apply from-primary-blue-600 to-secondary-blue-600;
+}
+
+.blue-gradient-light {
+  @apply from-primary-blue-400 to-secondary-blue-400;
+}
+
+.background-gradient {
+  background: radial-gradient(
+      circle at right,
+      rgba(168, 218, 253, 0.8),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 20% 100%,
+      rgba(168, 218, 253, 0.8),
+      transparent 60%
+    );
+}
+
+.main-bg {
+  @apply bg-[#eef7f8];
+}

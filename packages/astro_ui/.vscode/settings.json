@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  "search.exclude": {
+    "**/node_modules": true, // Exclude node_modules folder
+    "**/dist": true, // Exclude dist folder
+    "**/build": true, // Exclude build folder
+    "**/out": true, // Exclude out folder
+    "**/.next": true, // Exclude .next folder
+    "**/*.json": true,
+    "**/*.tsbuildinfo": true
+  },
+
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
+}

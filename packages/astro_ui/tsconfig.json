@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.astro.base.json",
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.astro"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test.astro"
+  ]
+}

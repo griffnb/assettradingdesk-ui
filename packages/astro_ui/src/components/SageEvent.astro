@@ -1,0 +1,36 @@
+---
+interface Props {
+  event: string;
+  page: string;
+  placement: string;
+  url?: string;
+}
+
+const props = Astro.props;
+
+if (!props.url || props.event == "") {
+  return;
+}
+
+var params = {
+  e: props.event,
+  pl: props.placement,
+  pg: props.page,
+  _bcon: "json",
+};
+
+var queryString = [];
+for (var key in params) {
+  if (params.hasOwnProperty(key)) {
+    queryString.push(
+      encodeURIComponent(key) +
+        "=" +
+        encodeURIComponent(params[key as keyof typeof params]),
+    );
+  }
+}
+
+const url = props.url + "/pbeacon/?" + queryString.join("&");
+---
+
+<script type="text/javascript" src={url} is:inline></script>

@@ -1,0 +1,7 @@
+.fac-circle-mail {
+  mask-image: url("/icons/fa-custom/circle-mail.svg");
+}
+
+.fac-sent {
+  mask-image: url("/icons/fa-custom/sent.svg");
+}

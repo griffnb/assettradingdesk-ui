@@ -1,0 +1,32 @@
+---
+import type { BaseProps } from "@/models/types/base";
+
+interface Props extends BaseProps<any> {
+  eventName: string; // "conversion"
+}
+
+const props = Astro.props;
+const a = props.trackingValues.a;
+const lp = props.trackingValues.lp;
+
+const eventName = props.eventName;
+---
+
+<script is:inline define:vars={{ eventName, a, lp }}>
+  window.dataLayer = window.dataLayer || [];
+  const landingPageData = {
+    event: eventName,
+    a,
+    lp,
+  };
+
+  dataLayer.push(landingPageData);
+  localStorage.setItem("gtm_lp_visit", JSON.stringify(landingPageData));
+  const setCookie = (cname, cvalue, exdays) => {
+    const d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  };
+  setCookie("gtm_lp_visit", JSON.stringify(landingPageData), 365);
+</script>

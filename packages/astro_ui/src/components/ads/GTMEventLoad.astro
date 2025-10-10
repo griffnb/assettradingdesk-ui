@@ -1,0 +1,34 @@
+---
+import type { RegistrationModel } from "@/models/models/registration/RegistrationModel";
+
+interface Props {
+  eventName: string; // "conversion"
+  registration: RegistrationModel | undefined;
+}
+
+const props = Astro.props;
+const first_name = props.registration?.first_name || null;
+const email = props.registration?.email || null;
+const phone = props.registration?.phone || null;
+const eventName = props.eventName;
+---
+
+<script is:inline define:vars={{ eventName, first_name, email, phone }}>
+  window.dataLayer = window.dataLayer || [];
+  const registrationData = {
+    event: eventName,
+    first_name: first_name,
+    email: email,
+    phone: phone,
+  };
+
+  dataLayer.push(registrationData);
+  localStorage.setItem("gtm_event_data", JSON.stringify(registrationData));
+  const setCookie = (cname, cvalue, exdays) => {
+    const d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  };
+  setCookie("gtm_event_data", JSON.stringify(registrationData), 365);
+</script>

@@ -1,0 +1,46 @@
+{
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["dist", "node_modules"],
+
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "synchronousWatchDirectory": true
+  },
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/utils/*": ["packages/utils/src/*"],
+      "@/models/*": ["packages/models/src/*"],
+      "@/astro_ui/*": ["packages/astro_ui/src/*"],
+      "@/ui/*": ["packages/ui/src/*"],
+      "@/common_lib/*": ["packages/common_lib/src/*"]
+    },
+
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "es2021"],
+
+    "target": "ES2021",
+
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["vite/client", "node"],
+
+    "noEmit": true,
+    "strict": true,
+    "checkJs": true,
+    "allowJs": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}

@@ -1,0 +1,3561 @@
+.u-gavel-solid {
+  mask-image: url("/icons/untitled/gavel-solid.svg");
+}
+
+.u-dark-web {
+  mask-image: url("/icons/untitled/dark-web.svg");
+}
+
+.u-check {
+  mask-image: url("/icons/untitled/check.svg");
+}
+
+.u-check-circle-solid {
+  mask-image: url("/icons/untitled/check-circle-solid.svg");
+}
+
+.u-real-estate-01 {
+  mask-image: url("/icons/untitled/real-estate-01.svg");
+}
+
+.u-phone-03 {
+  mask-image: url("/icons/untitled/phone-03.svg");
+}
+
+/* default ones */
+.u-activity-heart {
+  mask-image: url("/icons/untitled/activity-heart.svg");
+}
+.u-activity {
+  mask-image: url("/icons/untitled/activity.svg");
+}
+.u-airplay {
+  mask-image: url("/icons/untitled/airplay.svg");
+}
+.u-airpods {
+  mask-image: url("/icons/untitled/airpods.svg");
+}
+.u-alarm-clock-check {
+  mask-image: url("/icons/untitled/alarm-clock-check.svg");
+}
+.u-alarm-clock-minus {
+  mask-image: url("/icons/untitled/alarm-clock-minus.svg");
+}
+.u-alarm-clock-off {
+  mask-image: url("/icons/untitled/alarm-clock-off.svg");
+}
+.u-alarm-clock-plus {
+  mask-image: url("/icons/untitled/alarm-clock-plus.svg");
+}
+.u-alarm-clock {
+  mask-image: url("/icons/untitled/alarm-clock.svg");
+}
+.u-alert-circle {
+  mask-image: url("/icons/untitled/alert-circle.svg");
+}
+.u-alert-circle-solid {
+  mask-image: url("/icons/untitled/alert-circle-solid.svg");
+}
+.u-alert-hexagon {
+  mask-image: url("/icons/untitled/alert-hexagon.svg");
+}
+.u-alert-octagon {
+  mask-image: url("/icons/untitled/alert-octagon.svg");
+}
+.u-alert-square {
+  mask-image: url("/icons/untitled/alert-square.svg");
+}
+.u-alert-triangle {
+  mask-image: url("/icons/untitled/alert-triangle.svg");
+}
+.u-align-bottom-02 {
+  mask-image: url("/icons/untitled/align-bottom-02.svg");
+}
+.u-align-bottom {
+  mask-image: url("/icons/untitled/align-bottom.svg");
+}
+.u-align-center {
+  mask-image: url("/icons/untitled/align-center.svg");
+}
+.u-align-horizontal-centre-02 {
+  mask-image: url("/icons/untitled/align-horizontal-centre-02.svg");
+}
+.u-align-horizontal-centre {
+  mask-image: url("/icons/untitled/align-horizontal-centre.svg");
+}
+.u-align-justify {
+  mask-image: url("/icons/untitled/align-justify.svg");
+}
+.u-align-left-02 {
+  mask-image: url("/icons/untitled/align-left-02.svg");
+}
+.u-align-left {
+  mask-image: url("/icons/untitled/align-left.svg");
+}
+.u-align-right-02 {
+  mask-image: url("/icons/untitled/align-right-02.svg");
+}
+.u-align-right {
+  mask-image: url("/icons/untitled/align-right.svg");
+}
+.u-align-top-02 {
+  mask-image: url("/icons/untitled/align-top-02.svg");
+}
+.u-align-top {
+  mask-image: url("/icons/untitled/align-top.svg");
+}
+.u-align-vertical-center-02 {
+  mask-image: url("/icons/untitled/align-vertical-center-02.svg");
+}
+.u-align-vertical-center {
+  mask-image: url("/icons/untitled/align-vertical-center.svg");
+}
+.u-anchor {
+  mask-image: url("/icons/untitled/anchor.svg");
+}
+.u-annotation-alert {
+  mask-image: url("/icons/untitled/annotation-alert.svg");
+}
+.u-annotation-check {
+  mask-image: url("/icons/untitled/annotation-check.svg");
+}
+.u-annotation-dots {
+  mask-image: url("/icons/untitled/annotation-dots.svg");
+}
+.u-annotation-heart {
+  mask-image: url("/icons/untitled/annotation-heart.svg");
+}
+.u-annotation-info {
+  mask-image: url("/icons/untitled/annotation-info.svg");
+}
+.u-annotation-plus {
+  mask-image: url("/icons/untitled/annotation-plus.svg");
+}
+.u-annotation-question {
+  mask-image: url("/icons/untitled/annotation-question.svg");
+}
+.u-annotation-x {
+  mask-image: url("/icons/untitled/annotation-x.svg");
+}
+.u-annotation {
+  mask-image: url("/icons/untitled/annotation.svg");
+}
+.u-announcement-02 {
+  mask-image: url("/icons/untitled/announcement-02.svg");
+}
+.u-announcement-03 {
+  mask-image: url("/icons/untitled/announcement-03.svg");
+}
+.u-announcement {
+  mask-image: url("/icons/untitled/announcement.svg");
+}
+.u-archive {
+  mask-image: url("/icons/untitled/archive.svg");
+}
+.u-arrow-block-down {
+  mask-image: url("/icons/untitled/arrow-block-down.svg");
+}
+.u-arrow-block-left {
+  mask-image: url("/icons/untitled/arrow-block-left.svg");
+}
+.u-arrow-block-right {
+  mask-image: url("/icons/untitled/arrow-block-right.svg");
+}
+.u-arrow-block-up {
+  mask-image: url("/icons/untitled/arrow-block-up.svg");
+}
+.u-arrow-circle-broken-down-left {
+  mask-image: url("/icons/untitled/arrow-circle-broken-down-left.svg");
+}
+.u-arrow-circle-broken-down-right {
+  mask-image: url("/icons/untitled/arrow-circle-broken-down-right.svg");
+}
+.u-arrow-circle-broken-down {
+  mask-image: url("/icons/untitled/arrow-circle-broken-down.svg");
+}
+.u-arrow-circle-broken-left {
+  mask-image: url("/icons/untitled/arrow-circle-broken-left.svg");
+}
+.u-arrow-circle-broken-right {
+  mask-image: url("/icons/untitled/arrow-circle-broken-right.svg");
+}
+.u-arrow-circle-broken-up-left {
+  mask-image: url("/icons/untitled/arrow-circle-broken-up-left.svg");
+}
+.u-arrow-circle-broken-up-right {
+  mask-image: url("/icons/untitled/arrow-circle-broken-up-right.svg");
+}
+.u-arrow-circle-broken-up {
+  mask-image: url("/icons/untitled/arrow-circle-broken-up.svg");
+}
+.u-arrow-circle-down-left {
+  mask-image: url("/icons/untitled/arrow-circle-down-left.svg");
+}
+.u-arrow-circle-down-right {
+  mask-image: url("/icons/untitled/arrow-circle-down-right.svg");
+}
+.u-arrow-circle-down {
+  mask-image: url("/icons/untitled/arrow-circle-down.svg");
+}
+.u-arrow-circle-left {
+  mask-image: url("/icons/untitled/arrow-circle-left.svg");
+}
+.u-arrow-circle-right {
+  mask-image: url("/icons/untitled/arrow-circle-right.svg");
+}
+.u-arrow-circle-up-left {
+  mask-image: url("/icons/untitled/arrow-circle-up-left.svg");
+}
+.u-arrow-circle-up-right {
+  mask-image: url("/icons/untitled/arrow-circle-up-right.svg");
+}
+.u-arrow-circle-up {
+  mask-image: url("/icons/untitled/arrow-circle-up.svg");
+}
+.u-arrow-down-left {
+  mask-image: url("/icons/untitled/arrow-down-left.svg");
+}
+.u-arrow-down-right {
+  mask-image: url("/icons/untitled/arrow-down-right.svg");
+}
+.u-arrow-down {
+  mask-image: url("/icons/untitled/arrow-down.svg");
+}
+.u-arrow-left {
+  mask-image: url("/icons/untitled/arrow-left.svg");
+}
+.u-arrow-narrow-down-left {
+  mask-image: url("/icons/untitled/arrow-narrow-down-left.svg");
+}
+.u-arrow-narrow-down-right {
+  mask-image: url("/icons/untitled/arrow-narrow-down-right.svg");
+}
+.u-arrow-narrow-down {
+  mask-image: url("/icons/untitled/arrow-narrow-down.svg");
+}
+.u-arrow-narrow-left {
+  mask-image: url("/icons/untitled/arrow-narrow-left.svg");
+}
+.u-arrow-narrow-right {
+  mask-image: url("/icons/untitled/arrow-narrow-right.svg");
+}
+.u-arrow-narrow-up-left {
+  mask-image: url("/icons/untitled/arrow-narrow-up-left.svg");
+}
+.u-arrow-narrow-up-right {
+  mask-image: url("/icons/untitled/arrow-narrow-up-right.svg");
+}
+.u-arrow-narrow-up {
+  mask-image: url("/icons/untitled/arrow-narrow-up.svg");
+}
+.u-arrow-right {
+  mask-image: url("/icons/untitled/arrow-right.svg");
+}
+.u-arrow-square-down-left {
+  mask-image: url("/icons/untitled/arrow-square-down-left.svg");
+}
+.u-arrow-square-down-right {
+  mask-image: url("/icons/untitled/arrow-square-down-right.svg");
+}
+.u-arrow-square-down {
+  mask-image: url("/icons/untitled/arrow-square-down.svg");
+}
+.u-arrow-square-left {
+  mask-image: url("/icons/untitled/arrow-square-left.svg");
+}
+.u-arrow-square-right {
+  mask-image: url("/icons/untitled/arrow-square-right.svg");
+}
+.u-arrow-square-up-left {
+  mask-image: url("/icons/untitled/arrow-square-up-left.svg");
+}
+.u-arrow-square-up-right {
+  mask-image: url("/icons/untitled/arrow-square-up-right.svg");
+}
+.u-arrow-square-up {
+  mask-image: url("/icons/untitled/arrow-square-up.svg");
+}
+.u-arrow-up-left {
+  mask-image: url("/icons/untitled/arrow-up-left.svg");
+}
+.u-arrow-up-right {
+  mask-image: url("/icons/untitled/arrow-up-right.svg");
+}
+.u-arrow-up {
+  mask-image: url("/icons/untitled/arrow-up.svg");
+}
+.u-arrows-down {
+  mask-image: url("/icons/untitled/arrows-down.svg");
+}
+.u-arrows-left {
+  mask-image: url("/icons/untitled/arrows-left.svg");
+}
+.u-arrows-right {
+  mask-image: url("/icons/untitled/arrows-right.svg");
+}
+.u-arrows-triangle {
+  mask-image: url("/icons/untitled/arrows-triangle.svg");
+}
+.u-arrows-up {
+  mask-image: url("/icons/untitled/arrows-up.svg");
+}
+.u-asterisk-01 {
+  mask-image: url("/icons/untitled/asterisk-01.svg");
+}
+.u-asterisk-02 {
+  mask-image: url("/icons/untitled/asterisk-02.svg");
+}
+.u-at-sign {
+  mask-image: url("/icons/untitled/at-sign.svg");
+}
+.u-atom-02 {
+  mask-image: url("/icons/untitled/atom-02.svg");
+}
+.u-atom {
+  mask-image: url("/icons/untitled/atom.svg");
+}
+.u-attachment-02 {
+  mask-image: url("/icons/untitled/attachment-02.svg");
+}
+.u-attachment {
+  mask-image: url("/icons/untitled/attachment.svg");
+}
+.u-award-02 {
+  mask-image: url("/icons/untitled/award-02.svg");
+}
+.u-award-03 {
+  mask-image: url("/icons/untitled/award-03.svg");
+}
+.u-award-04 {
+  mask-image: url("/icons/untitled/award-04.svg");
+}
+.u-award-05 {
+  mask-image: url("/icons/untitled/award-05.svg");
+}
+.u-award {
+  mask-image: url("/icons/untitled/award.svg");
+}
+.u-backpack {
+  mask-image: url("/icons/untitled/backpack.svg");
+}
+.u-bank-note-02 {
+  mask-image: url("/icons/untitled/bank-note-02.svg");
+}
+.u-bank-note-03 {
+  mask-image: url("/icons/untitled/bank-note-03.svg");
+}
+.u-bank-note {
+  mask-image: url("/icons/untitled/bank-note.svg");
+}
+.u-bank {
+  mask-image: url("/icons/untitled/bank.svg");
+}
+.u-bar-chart-04 {
+  mask-image: url("/icons/untitled/bar-chart-04.svg");
+}
+.u-bar-chart-05 {
+  mask-image: url("/icons/untitled/bar-chart-05.svg");
+}
+.u-bar-chart-06 {
+  mask-image: url("/icons/untitled/bar-chart-06.svg");
+}
+.u-bar-chart-07 {
+  mask-image: url("/icons/untitled/bar-chart-07.svg");
+}
+.u-bar-chart-08 {
+  mask-image: url("/icons/untitled/bar-chart-08.svg");
+}
+.u-bar-chart-09 {
+  mask-image: url("/icons/untitled/bar-chart-09.svg");
+}
+.u-bar-chart-10 {
+  mask-image: url("/icons/untitled/bar-chart-10.svg");
+}
+.u-bar-chart-11 {
+  mask-image: url("/icons/untitled/bar-chart-11.svg");
+}
+.u-bar-chart-12 {
+  mask-image: url("/icons/untitled/bar-chart-12.svg");
+}
+.u-bar-chart-circle-02 {
+  mask-image: url("/icons/untitled/bar-chart-circle-02.svg");
+}
+.u-bar-chart-circle-03 {
+  mask-image: url("/icons/untitled/bar-chart-circle-03.svg");
+}
+.u-bar-chart-circle {
+  mask-image: url("/icons/untitled/bar-chart-circle.svg");
+}
+.u-bar-chart-growdown {
+  mask-image: url("/icons/untitled/bar-chart-growdown.svg");
+}
+.u-bar-chart-growup {
+  mask-image: url("/icons/untitled/bar-chart-growup.svg");
+}
+.u-bar-chart-square-02 {
+  mask-image: url("/icons/untitled/bar-chart-square-02.svg");
+}
+.u-bar-chart-square-03 {
+  mask-image: url("/icons/untitled/bar-chart-square-03.svg");
+}
+.u-bar-chart-square-down {
+  mask-image: url("/icons/untitled/bar-chart-square-down.svg");
+}
+.u-bar-chart-square-minus {
+  mask-image: url("/icons/untitled/bar-chart-square-minus.svg");
+}
+.u-bar-chart-square-plus {
+  mask-image: url("/icons/untitled/bar-chart-square-plus.svg");
+}
+.u-bar-chart-square-up {
+  mask-image: url("/icons/untitled/bar-chart-square-up.svg");
+}
+.u-bar-chart-square {
+  mask-image: url("/icons/untitled/bar-chart-square.svg");
+}
+.u-bar-chart {
+  mask-image: url("/icons/untitled/bar-chart.svg");
+}
+.u-bar-line-chart {
+  mask-image: url("/icons/untitled/bar-line-chart.svg");
+}
+.u-battery-charging-02 {
+  mask-image: url("/icons/untitled/battery-charging-02.svg");
+}
+.u-battery-charging {
+  mask-image: url("/icons/untitled/battery-charging.svg");
+}
+.u-battery-empty {
+  mask-image: url("/icons/untitled/battery-empty.svg");
+}
+.u-battery-full {
+  mask-image: url("/icons/untitled/battery-full.svg");
+}
+.u-battery-low {
+  mask-image: url("/icons/untitled/battery-low.svg");
+}
+.u-battery-mid {
+  mask-image: url("/icons/untitled/battery-mid.svg");
+}
+.u-beaker-02 {
+  mask-image: url("/icons/untitled/beaker-02.svg");
+}
+.u-beaker {
+  mask-image: url("/icons/untitled/beaker.svg");
+}
+.u-bell-02 {
+  mask-image: url("/icons/untitled/bell-02.svg");
+}
+.u-bell-03 {
+  mask-image: url("/icons/untitled/bell-03.svg");
+}
+.u-bell-04 {
+  mask-image: url("/icons/untitled/bell-04.svg");
+}
+.u-bell-minus {
+  mask-image: url("/icons/untitled/bell-minus.svg");
+}
+.u-bell-off-02 {
+  mask-image: url("/icons/untitled/bell-off-02.svg");
+}
+.u-bell-off-03 {
+  mask-image: url("/icons/untitled/bell-off-03.svg");
+}
+.u-bell-off {
+  mask-image: url("/icons/untitled/bell-off.svg");
+}
+.u-bell-plus {
+  mask-image: url("/icons/untitled/bell-plus.svg");
+}
+.u-bell-ringing-02 {
+  mask-image: url("/icons/untitled/bell-ringing-02.svg");
+}
+.u-bell-ringing-03 {
+  mask-image: url("/icons/untitled/bell-ringing-03.svg");
+}
+.u-bell-ringing-04 {
+  mask-image: url("/icons/untitled/bell-ringing-04.svg");
+}
+.u-bell-ringing {
+  mask-image: url("/icons/untitled/bell-ringing.svg");
+}
+.u-bell {
+  mask-image: url("/icons/untitled/bell.svg");
+}
+.u-bezier-curve-02 {
+  mask-image: url("/icons/untitled/bezier-curve-02.svg");
+}
+.u-bezier-curve-03 {
+  mask-image: url("/icons/untitled/bezier-curve-03.svg");
+}
+.u-bezier-curve {
+  mask-image: url("/icons/untitled/bezier-curve.svg");
+}
+.u-bluetooth-connect {
+  mask-image: url("/icons/untitled/bluetooth-connect.svg");
+}
+.u-bluetooth-off {
+  mask-image: url("/icons/untitled/bluetooth-off.svg");
+}
+.u-bluetooth-on {
+  mask-image: url("/icons/untitled/bluetooth-on.svg");
+}
+.u-bluetooth-signal {
+  mask-image: url("/icons/untitled/bluetooth-signal.svg");
+}
+.u-bold-02 {
+  mask-image: url("/icons/untitled/bold-02.svg");
+}
+.u-bold-square {
+  mask-image: url("/icons/untitled/bold-square.svg");
+}
+.u-bold {
+  mask-image: url("/icons/untitled/bold.svg");
+}
+.u-book-closed {
+  mask-image: url("/icons/untitled/book-closed.svg");
+}
+.u-book-open-02 {
+  mask-image: url("/icons/untitled/book-open-02.svg");
+}
+.u-book-open {
+  mask-image: url("/icons/untitled/book-open.svg");
+}
+.u-bookmark-add {
+  mask-image: url("/icons/untitled/bookmark-add.svg");
+}
+.u-bookmark-check {
+  mask-image: url("/icons/untitled/bookmark-check.svg");
+}
+.u-bookmark-minus {
+  mask-image: url("/icons/untitled/bookmark-minus.svg");
+}
+.u-bookmark-x {
+  mask-image: url("/icons/untitled/bookmark-x.svg");
+}
+.u-bookmark {
+  mask-image: url("/icons/untitled/bookmark.svg");
+}
+.u-box {
+  mask-image: url("/icons/untitled/box.svg");
+}
+.u-brackets-check {
+  mask-image: url("/icons/untitled/brackets-check.svg");
+}
+.u-brackets-ellipses {
+  mask-image: url("/icons/untitled/brackets-ellipses.svg");
+}
+.u-brackets-minus {
+  mask-image: url("/icons/untitled/brackets-minus.svg");
+}
+.u-brackets-plus {
+  mask-image: url("/icons/untitled/brackets-plus.svg");
+}
+.u-brackets-slash {
+  mask-image: url("/icons/untitled/brackets-slash.svg");
+}
+.u-brackets-x {
+  mask-image: url("/icons/untitled/brackets-x.svg");
+}
+.u-brackets {
+  mask-image: url("/icons/untitled/brackets.svg");
+}
+.u-briefcase-02 {
+  mask-image: url("/icons/untitled/briefcase-02.svg");
+}
+.u-briefcase {
+  mask-image: url("/icons/untitled/briefcase.svg");
+}
+.u-browser {
+  mask-image: url("/icons/untitled/browser.svg");
+}
+.u-brush-02 {
+  mask-image: url("/icons/untitled/brush-02.svg");
+}
+.u-brush-03 {
+  mask-image: url("/icons/untitled/brush-03.svg");
+}
+.u-brush {
+  mask-image: url("/icons/untitled/brush.svg");
+}
+.u-building-03 {
+  mask-image: url("/icons/untitled/building-03.svg");
+}
+.u-building-04 {
+  mask-image: url("/icons/untitled/building-04.svg");
+}
+.u-building-05 {
+  mask-image: url("/icons/untitled/building-05.svg");
+}
+.u-building-06 {
+  mask-image: url("/icons/untitled/building-06.svg");
+}
+.u-building-07 {
+  mask-image: url("/icons/untitled/building-07.svg");
+}
+.u-building-08 {
+  mask-image: url("/icons/untitled/building-08.svg");
+}
+.u-building {
+  mask-image: url("/icons/untitled/building.svg");
+}
+.u-bus {
+  mask-image: url("/icons/untitled/bus.svg");
+}
+.u-calculator {
+  mask-image: url("/icons/untitled/calculator.svg");
+}
+.u-calendar-check-02 {
+  mask-image: url("/icons/untitled/calendar-check-02.svg");
+}
+.u-calendar-check {
+  mask-image: url("/icons/untitled/calendar-check.svg");
+}
+.u-calendar-date {
+  mask-image: url("/icons/untitled/calendar-date.svg");
+}
+.u-calendar-heart-02 {
+  mask-image: url("/icons/untitled/calendar-heart-02.svg");
+}
+.u-calendar-heart {
+  mask-image: url("/icons/untitled/calendar-heart.svg");
+}
+.u-calendar-minus-02 {
+  mask-image: url("/icons/untitled/calendar-minus-02.svg");
+}
+.u-calendar-minus {
+  mask-image: url("/icons/untitled/calendar-minus.svg");
+}
+.u-calendar-plus-02 {
+  mask-image: url("/icons/untitled/calendar-plus-02.svg");
+}
+.u-calendar-plus {
+  mask-image: url("/icons/untitled/calendar-plus.svg");
+}
+.u-calendar {
+  mask-image: url("/icons/untitled/calendar.svg");
+}
+.u-camera-02 {
+  mask-image: url("/icons/untitled/camera-02.svg");
+}
+.u-camera-03 {
+  mask-image: url("/icons/untitled/camera-03.svg");
+}
+.u-camera-lens {
+  mask-image: url("/icons/untitled/camera-lens.svg");
+}
+.u-camera-off {
+  mask-image: url("/icons/untitled/camera-off.svg");
+}
+.u-camera-plus {
+  mask-image: url("/icons/untitled/camera-plus.svg");
+}
+.u-camera {
+  mask-image: url("/icons/untitled/camera.svg");
+}
+.u-car-02 {
+  mask-image: url("/icons/untitled/car-02.svg");
+}
+.u-car {
+  mask-image: url("/icons/untitled/car.svg");
+}
+.u-certificate-02 {
+  mask-image: url("/icons/untitled/certificate-02.svg");
+}
+.u-certificate {
+  mask-image: url("/icons/untitled/certificate.svg");
+}
+.u-chart-breakout-circle {
+  mask-image: url("/icons/untitled/chart-breakout-circle.svg");
+}
+.u-chart-breakout-square {
+  mask-image: url("/icons/untitled/chart-breakout-square.svg");
+}
+.u-check-circle-broken {
+  mask-image: url("/icons/untitled/check-circle-broken.svg");
+}
+.u-check-circle {
+  mask-image: url("/icons/untitled/check-circle.svg");
+}
+.u-check-done {
+  mask-image: url("/icons/untitled/check-done.svg");
+}
+
+.u-check-done-02 {
+  mask-image: url("/icons/untitled/check-done-02.svg");
+}
+
+.u-check-heart {
+  mask-image: url("/icons/untitled/check-heart.svg");
+}
+.u-check-square-broken {
+  mask-image: url("/icons/untitled/check-square-broken.svg");
+}
+.u-check-square {
+  mask-image: url("/icons/untitled/check-square.svg");
+}
+.u-check-verified-02 {
+  mask-image: url("/icons/untitled/check-verified-02.svg");
+}
+.u-check-verified-03 {
+  mask-image: url("/icons/untitled/check-verified-03.svg");
+}
+.u-check-verified {
+  mask-image: url("/icons/untitled/check-verified.svg");
+}
+.u-chevron-down-double {
+  mask-image: url("/icons/untitled/chevron-down-double.svg");
+}
+.u-chevron-down {
+  mask-image: url("/icons/untitled/chevron-down.svg");
+}
+.u-chevron-left-double {
+  mask-image: url("/icons/untitled/chevron-left-double.svg");
+}
+.u-chevron-left {
+  mask-image: url("/icons/untitled/chevron-left.svg");
+}
+.u-chevron-right-double {
+  mask-image: url("/icons/untitled/chevron-right-double.svg");
+}
+.u-chevron-right {
+  mask-image: url("/icons/untitled/chevron-right.svg");
+}
+.u-chevron-selector-horizontal {
+  mask-image: url("/icons/untitled/chevron-selector-horizontal.svg");
+}
+.u-chevron-selector-vertical {
+  mask-image: url("/icons/untitled/chevron-selector-vertical.svg");
+}
+.u-chevron-up-double {
+  mask-image: url("/icons/untitled/chevron-up-double.svg");
+}
+.u-chevron-up {
+  mask-image: url("/icons/untitled/chevron-up.svg");
+}
+.u-chrome-cast {
+  mask-image: url("/icons/untitled/chrome-cast.svg");
+}
+.u-circle-cut {
+  mask-image: url("/icons/untitled/circle-cut.svg");
+}
+.u-circle {
+  mask-image: url("/icons/untitled/circle.svg");
+}
+.u-clapperboard {
+  mask-image: url("/icons/untitled/clapperboard.svg");
+}
+.u-clipboard-attachment {
+  mask-image: url("/icons/untitled/clipboard-attachment.svg");
+}
+.u-clipboard-check {
+  mask-image: url("/icons/untitled/clipboard-check.svg");
+}
+.u-clipboard-download {
+  mask-image: url("/icons/untitled/clipboard-download.svg");
+}
+.u-clipboard-minus {
+  mask-image: url("/icons/untitled/clipboard-minus.svg");
+}
+.u-clipboard-plus {
+  mask-image: url("/icons/untitled/clipboard-plus.svg");
+}
+.u-clipboard-x {
+  mask-image: url("/icons/untitled/clipboard-x.svg");
+}
+.u-clipboard {
+  mask-image: url("/icons/untitled/clipboard.svg");
+}
+.u-clock-check {
+  mask-image: url("/icons/untitled/clock-check.svg");
+}
+.u-clock-fast-forward {
+  mask-image: url("/icons/untitled/clock-fast-forward.svg");
+}
+.u-clock-plus {
+  mask-image: url("/icons/untitled/clock-plus.svg");
+}
+.u-clock-refresh {
+  mask-image: url("/icons/untitled/clock-refresh.svg");
+}
+.u-clock-rewind {
+  mask-image: url("/icons/untitled/clock-rewind.svg");
+}
+.u-clock-snooze {
+  mask-image: url("/icons/untitled/clock-snooze.svg");
+}
+.u-clock-stopwatch {
+  mask-image: url("/icons/untitled/clock-stopwatch.svg");
+}
+.u-clock {
+  mask-image: url("/icons/untitled/clock.svg");
+}
+.u-cloud-02 {
+  mask-image: url("/icons/untitled/cloud-02.svg");
+}
+.u-cloud-03 {
+  mask-image: url("/icons/untitled/cloud-03.svg");
+}
+.u-cloud-blank-02 {
+  mask-image: url("/icons/untitled/cloud-blank-02.svg");
+}
+.u-cloud-blank {
+  mask-image: url("/icons/untitled/cloud-blank.svg");
+}
+.u-cloud-lightning {
+  mask-image: url("/icons/untitled/cloud-lightning.svg");
+}
+.u-cloud-moon {
+  mask-image: url("/icons/untitled/cloud-moon.svg");
+}
+.u-cloud-off {
+  mask-image: url("/icons/untitled/cloud-off.svg");
+}
+.u-cloud-raining-02 {
+  mask-image: url("/icons/untitled/cloud-raining-02.svg");
+}
+.u-cloud-raining-03 {
+  mask-image: url("/icons/untitled/cloud-raining-03.svg");
+}
+.u-cloud-raining-04 {
+  mask-image: url("/icons/untitled/cloud-raining-04.svg");
+}
+.u-cloud-raining-05 {
+  mask-image: url("/icons/untitled/cloud-raining-05.svg");
+}
+.u-cloud-raining-06 {
+  mask-image: url("/icons/untitled/cloud-raining-06.svg");
+}
+.u-cloud-raining {
+  mask-image: url("/icons/untitled/cloud-raining.svg");
+}
+.u-cloud-snowing-02 {
+  mask-image: url("/icons/untitled/cloud-snowing-02.svg");
+}
+.u-cloud-snowing {
+  mask-image: url("/icons/untitled/cloud-snowing.svg");
+}
+.u-cloud-sun-02 {
+  mask-image: url("/icons/untitled/cloud-sun-02.svg");
+}
+.u-cloud-sun-03 {
+  mask-image: url("/icons/untitled/cloud-sun-03.svg");
+}
+.u-cloud-sun {
+  mask-image: url("/icons/untitled/cloud-sun.svg");
+}
+.u-cloud {
+  mask-image: url("/icons/untitled/cloud.svg");
+}
+.u-code-02 {
+  mask-image: url("/icons/untitled/code-02.svg");
+}
+.u-code-browser {
+  mask-image: url("/icons/untitled/code-browser.svg");
+}
+.u-code-circle-02 {
+  mask-image: url("/icons/untitled/code-circle-02.svg");
+}
+.u-code-circle-03 {
+  mask-image: url("/icons/untitled/code-circle-03.svg");
+}
+.u-code-circle {
+  mask-image: url("/icons/untitled/code-circle.svg");
+}
+.u-code-snippet-02 {
+  mask-image: url("/icons/untitled/code-snippet-02.svg");
+}
+.u-code-snippet {
+  mask-image: url("/icons/untitled/code-snippet.svg");
+}
+.u-code-square-02 {
+  mask-image: url("/icons/untitled/code-square-02.svg");
+}
+.u-code-square {
+  mask-image: url("/icons/untitled/code-square.svg");
+}
+.u-code {
+  mask-image: url("/icons/untitled/code.svg");
+}
+.u-codepen {
+  mask-image: url("/icons/untitled/codepen.svg");
+}
+.u-coins-02 {
+  mask-image: url("/icons/untitled/coins-02.svg");
+}
+.u-coins-03 {
+  mask-image: url("/icons/untitled/coins-03.svg");
+}
+.u-coins-04 {
+  mask-image: url("/icons/untitled/coins-04.svg");
+}
+.u-coins-hand {
+  mask-image: url("/icons/untitled/coins-hand.svg");
+}
+.u-coins-stacked-02 {
+  mask-image: url("/icons/untitled/coins-stacked-02.svg");
+}
+.u-coins-stacked-03 {
+  mask-image: url("/icons/untitled/coins-stacked-03.svg");
+}
+.u-coins-stacked-04 {
+  mask-image: url("/icons/untitled/coins-stacked-04.svg");
+}
+.u-coins-stacked {
+  mask-image: url("/icons/untitled/coins-stacked.svg");
+}
+.u-coins-swap-02 {
+  mask-image: url("/icons/untitled/coins-swap-02.svg");
+}
+.u-coins-swap {
+  mask-image: url("/icons/untitled/coins-swap.svg");
+}
+.u-coins {
+  mask-image: url("/icons/untitled/coins.svg");
+}
+.u-colors {
+  mask-image: url("/icons/untitled/colors.svg");
+}
+.u-columns-02 {
+  mask-image: url("/icons/untitled/columns-02.svg");
+}
+.u-columns-03 {
+  mask-image: url("/icons/untitled/columns-03.svg");
+}
+.u-columns {
+  mask-image: url("/icons/untitled/columns.svg");
+}
+.u-command {
+  mask-image: url("/icons/untitled/command.svg");
+}
+.u-compass-02 {
+  mask-image: url("/icons/untitled/compass-02.svg");
+}
+.u-compass-03 {
+  mask-image: url("/icons/untitled/compass-03.svg");
+}
+.u-compass {
+  mask-image: url("/icons/untitled/compass.svg");
+}
+.u-container {
+  mask-image: url("/icons/untitled/container.svg");
+}
+.u-contrast-02 {
+  mask-image: url("/icons/untitled/contrast-02.svg");
+}
+.u-contrast-03 {
+  mask-image: url("/icons/untitled/contrast-03.svg");
+}
+.u-contrast {
+  mask-image: url("/icons/untitled/contrast.svg");
+}
+.u-copy-02 {
+  mask-image: url("/icons/untitled/copy-02.svg");
+}
+.u-copy-dashed {
+  mask-image: url("/icons/untitled/copy-dashed.svg");
+}
+.u-copy {
+  mask-image: url("/icons/untitled/copy.svg");
+}
+.u-corner-down-left {
+  mask-image: url("/icons/untitled/corner-down-left.svg");
+}
+.u-corner-down-right {
+  mask-image: url("/icons/untitled/corner-down-right.svg");
+}
+.u-corner-left-down {
+  mask-image: url("/icons/untitled/corner-left-down.svg");
+}
+.u-corner-left-up {
+  mask-image: url("/icons/untitled/corner-left-up.svg");
+}
+.u-corner-right-down {
+  mask-image: url("/icons/untitled/corner-right-down.svg");
+}
+.u-corner-right-up {
+  mask-image: url("/icons/untitled/corner-right-up.svg");
+}
+.u-corner-up-left {
+  mask-image: url("/icons/untitled/corner-up-left.svg");
+}
+.u-corner-up-right {
+  mask-image: url("/icons/untitled/corner-up-right.svg");
+}
+.u-cpu-chip-02 {
+  mask-image: url("/icons/untitled/cpu-chip-02.svg");
+}
+.u-cpu-chip {
+  mask-image: url("/icons/untitled/cpu-chip.svg");
+}
+.u-credit-card-02 {
+  mask-image: url("/icons/untitled/credit-card-02.svg");
+}
+.u-credit-card-check {
+  mask-image: url("/icons/untitled/credit-card-check.svg");
+}
+.u-credit-card-down {
+  mask-image: url("/icons/untitled/credit-card-down.svg");
+}
+.u-credit-card-download {
+  mask-image: url("/icons/untitled/credit-card-download.svg");
+}
+.u-credit-card-edit {
+  mask-image: url("/icons/untitled/credit-card-edit.svg");
+}
+.u-credit-card-lock {
+  mask-image: url("/icons/untitled/credit-card-lock.svg");
+}
+.u-credit-card-minus {
+  mask-image: url("/icons/untitled/credit-card-minus.svg");
+}
+.u-credit-card-plus {
+  mask-image: url("/icons/untitled/credit-card-plus.svg");
+}
+.u-credit-card-refresh {
+  mask-image: url("/icons/untitled/credit-card-refresh.svg");
+}
+.u-credit-card-search {
+  mask-image: url("/icons/untitled/credit-card-search.svg");
+}
+.u-credit-card-shield {
+  mask-image: url("/icons/untitled/credit-card-shield.svg");
+}
+.u-credit-card-up {
+  mask-image: url("/icons/untitled/credit-card-up.svg");
+}
+.u-credit-card-upload {
+  mask-image: url("/icons/untitled/credit-card-upload.svg");
+}
+.u-credit-card-x {
+  mask-image: url("/icons/untitled/credit-card-x.svg");
+}
+.u-credit-card {
+  mask-image: url("/icons/untitled/credit-card.svg");
+}
+.u-crop-02 {
+  mask-image: url("/icons/untitled/crop-02.svg");
+}
+.u-crop {
+  mask-image: url("/icons/untitled/crop.svg");
+}
+.u-cryptocurrency-02 {
+  mask-image: url("/icons/untitled/cryptocurrency-02.svg");
+}
+.u-cryptocurrency-03 {
+  mask-image: url("/icons/untitled/cryptocurrency-03.svg");
+}
+.u-cryptocurrency-04 {
+  mask-image: url("/icons/untitled/cryptocurrency-04.svg");
+}
+.u-cryptocurrency {
+  mask-image: url("/icons/untitled/cryptocurrency.svg");
+}
+.u-csv-icon-pending {
+  mask-image: url("/icons/untitled/csv-icon-pending.svg");
+}
+.u-csv-icon-ready {
+  mask-image: url("/icons/untitled/csv-icon-ready.svg");
+}
+.u-cube-02 {
+  mask-image: url("/icons/untitled/cube-02.svg");
+}
+.u-cube-03 {
+  mask-image: url("/icons/untitled/cube-03.svg");
+}
+.u-cube-04 {
+  mask-image: url("/icons/untitled/cube-04.svg");
+}
+.u-cube-outline {
+  mask-image: url("/icons/untitled/cube-outline.svg");
+}
+.u-cube {
+  mask-image: url("/icons/untitled/cube.svg");
+}
+.u-currency-bitcoin-circle {
+  mask-image: url("/icons/untitled/currency-bitcoin-circle.svg");
+}
+.u-currency-bitcoin {
+  mask-image: url("/icons/untitled/currency-bitcoin.svg");
+}
+.u-currency-dollar-circle {
+  mask-image: url("/icons/untitled/currency-dollar-circle.svg");
+}
+.u-currency-dollar {
+  mask-image: url("/icons/untitled/currency-dollar.svg");
+}
+.u-currency-ethereum-circle {
+  mask-image: url("/icons/untitled/currency-ethereum-circle.svg");
+}
+.u-currency-ethereum {
+  mask-image: url("/icons/untitled/currency-ethereum.svg");
+}
+.u-currency-euro-circle {
+  mask-image: url("/icons/untitled/currency-euro-circle.svg");
+}
+.u-currency-euro {
+  mask-image: url("/icons/untitled/currency-euro.svg");
+}
+.u-currency-pound-circle {
+  mask-image: url("/icons/untitled/currency-pound-circle.svg");
+}
+.u-currency-pound {
+  mask-image: url("/icons/untitled/currency-pound.svg");
+}
+.u-currency-ruble-circle {
+  mask-image: url("/icons/untitled/currency-ruble-circle.svg");
+}
+.u-currency-ruble {
+  mask-image: url("/icons/untitled/currency-ruble.svg");
+}
+.u-currency-rupee-circle {
+  mask-image: url("/icons/untitled/currency-rupee-circle.svg");
+}
+.u-currency-rupee {
+  mask-image: url("/icons/untitled/currency-rupee.svg");
+}
+.u-currency-yen-circle {
+  mask-image: url("/icons/untitled/currency-yen-circle.svg");
+}
+.u-currency-yen {
+  mask-image: url("/icons/untitled/currency-yen.svg");
+}
+.u-cursor-02 {
+  mask-image: url("/icons/untitled/cursor-02.svg");
+}
+.u-cursor-03 {
+  mask-image: url("/icons/untitled/cursor-03.svg");
+}
+.u-cursor-04 {
+  mask-image: url("/icons/untitled/cursor-04.svg");
+}
+.u-cursor-box {
+  mask-image: url("/icons/untitled/cursor-box.svg");
+}
+.u-cursor-click-02 {
+  mask-image: url("/icons/untitled/cursor-click-02.svg");
+}
+.u-cursor-click {
+  mask-image: url("/icons/untitled/cursor-click.svg");
+}
+.u-cursor {
+  mask-image: url("/icons/untitled/cursor.svg");
+}
+.u-51 dark-web {
+  mask-image: url("/icons/untitled/51 dark-web.svg");
+}
+.u-data {
+  mask-image: url("/icons/untitled/data.svg");
+}
+.u-database-02 {
+  mask-image: url("/icons/untitled/database-02.svg");
+}
+.u-database-03 {
+  mask-image: url("/icons/untitled/database-03.svg");
+}
+.u-database {
+  mask-image: url("/icons/untitled/database.svg");
+}
+.u-dataflow-02 {
+  mask-image: url("/icons/untitled/dataflow-02.svg");
+}
+.u-dataflow-03 {
+  mask-image: url("/icons/untitled/dataflow-03.svg");
+}
+.u-dataflow-04 {
+  mask-image: url("/icons/untitled/dataflow-04.svg");
+}
+.u-dataflow {
+  mask-image: url("/icons/untitled/dataflow.svg");
+}
+.u-delete {
+  mask-image: url("/icons/untitled/delete.svg");
+}
+.u-diamond-02 {
+  mask-image: url("/icons/untitled/diamond-02.svg");
+}
+.u-diamond {
+  mask-image: url("/icons/untitled/diamond.svg");
+}
+.u-dice-2 {
+  mask-image: url("/icons/untitled/dice-2.svg");
+}
+.u-dice-3 {
+  mask-image: url("/icons/untitled/dice-3.svg");
+}
+.u-dice-4 {
+  mask-image: url("/icons/untitled/dice-4.svg");
+}
+.u-dice-5 {
+  mask-image: url("/icons/untitled/dice-5.svg");
+}
+.u-dice-6 {
+  mask-image: url("/icons/untitled/dice-6.svg");
+}
+.u-dice {
+  mask-image: url("/icons/untitled/dice.svg");
+}
+.u-disc-02 {
+  mask-image: url("/icons/untitled/disc-02.svg");
+}
+.u-disc {
+  mask-image: url("/icons/untitled/disc.svg");
+}
+.u-distribute-spacing-horizontal {
+  mask-image: url("/icons/untitled/distribute-spacing-horizontal.svg");
+}
+.u-distribute-spacing-vertical {
+  mask-image: url("/icons/untitled/distribute-spacing-vertical.svg");
+}
+.u-divide-02 {
+  mask-image: url("/icons/untitled/divide-02.svg");
+}
+.u-divide-circle {
+  mask-image: url("/icons/untitled/divide-circle.svg");
+}
+.u-divide {
+  mask-image: url("/icons/untitled/divide.svg");
+}
+.u-divider {
+  mask-image: url("/icons/untitled/divider.svg");
+}
+.u-dotpoints-02 {
+  mask-image: url("/icons/untitled/dotpoints-02.svg");
+}
+.u-dotpoints {
+  mask-image: url("/icons/untitled/dotpoints.svg");
+}
+.u-dots-grid {
+  mask-image: url("/icons/untitled/dots-grid.svg");
+}
+.u-dots-horizontal {
+  mask-image: url("/icons/untitled/dots-horizontal.svg");
+}
+.u-dots-vertical {
+  mask-image: url("/icons/untitled/dots-vertical.svg");
+}
+.u-download-04 {
+  mask-image: url("/icons/untitled/download-04.svg");
+}
+.u-download-circle {
+  mask-image: url("/icons/untitled/download-circle.svg");
+}
+.u-download-cloud-01 {
+  mask-image: url("/icons/untitled/download-cloud-01.svg");
+}
+.u-download-cloud-02 {
+  mask-image: url("/icons/untitled/download-cloud-02.svg");
+}
+.u-download-line {
+  mask-image: url("/icons/untitled/download-line.svg");
+}
+.u-download {
+  mask-image: url("/icons/untitled/download.svg");
+}
+.u-drop {
+  mask-image: url("/icons/untitled/drop.svg");
+}
+.u-droplets-02 {
+  mask-image: url("/icons/untitled/droplets-02.svg");
+}
+.u-droplets-03 {
+  mask-image: url("/icons/untitled/droplets-03.svg");
+}
+.u-droplets {
+  mask-image: url("/icons/untitled/droplets.svg");
+}
+.u-dropper {
+  mask-image: url("/icons/untitled/dropper.svg");
+}
+.u-edit-01 {
+  mask-image: url("/icons/untitled/edit-01.svg");
+}
+.u-edit-02 {
+  mask-image: url("/icons/untitled/edit-02.svg");
+}
+.u-edit-03 {
+  mask-image: url("/icons/untitled/edit-03.svg");
+}
+.u-edit-04 {
+  mask-image: url("/icons/untitled/edit-04.svg");
+}
+.u-edit-05 {
+  mask-image: url("/icons/untitled/edit-05.svg");
+}
+.u-equal-not {
+  mask-image: url("/icons/untitled/equal-not.svg");
+}
+.u-equal {
+  mask-image: url("/icons/untitled/equal.svg");
+}
+.u-eraser {
+  mask-image: url("/icons/untitled/eraser.svg");
+}
+.u-expand-03 {
+  mask-image: url("/icons/untitled/expand-03.svg");
+}
+.u-expand-04 {
+  mask-image: url("/icons/untitled/expand-04.svg");
+}
+.u-expand-05 {
+  mask-image: url("/icons/untitled/expand-05.svg");
+}
+.u-expand-06 {
+  mask-image: url("/icons/untitled/expand-06.svg");
+}
+.u-expand-lg {
+  mask-image: url("/icons/untitled/expand-lg.svg");
+}
+.u-expand {
+  mask-image: url("/icons/untitled/expand.svg");
+}
+.u-eye-off {
+  mask-image: url("/icons/untitled/eye-off.svg");
+}
+.u-eye {
+  mask-image: url("/icons/untitled/eye.svg");
+}
+.u-face-content {
+  mask-image: url("/icons/untitled/face-content.svg");
+}
+.u-face-frown {
+  mask-image: url("/icons/untitled/face-frown.svg");
+}
+.u-face-happy {
+  mask-image: url("/icons/untitled/face-happy.svg");
+}
+.u-face-id-square {
+  mask-image: url("/icons/untitled/face-id-square.svg");
+}
+.u-face-id {
+  mask-image: url("/icons/untitled/face-id.svg");
+}
+.u-face-neutral {
+  mask-image: url("/icons/untitled/face-neutral.svg");
+}
+.u-face-sad {
+  mask-image: url("/icons/untitled/face-sad.svg");
+}
+.u-face-smile {
+  mask-image: url("/icons/untitled/face-smile.svg");
+}
+.u-face-wink {
+  mask-image: url("/icons/untitled/face-wink.svg");
+}
+.u-fast-backward {
+  mask-image: url("/icons/untitled/fast-backward.svg");
+}
+.u-fast-forward {
+  mask-image: url("/icons/untitled/fast-forward.svg");
+}
+.u-feather {
+  mask-image: url("/icons/untitled/feather.svg");
+}
+.u-figma {
+  mask-image: url("/icons/untitled/figma.svg");
+}
+.u-file-02 {
+  mask-image: url("/icons/untitled/file-02.svg");
+}
+.u-file-03 {
+  mask-image: url("/icons/untitled/file-03.svg");
+}
+.u-file-04 {
+  mask-image: url("/icons/untitled/file-04.svg");
+}
+.u-file-05 {
+  mask-image: url("/icons/untitled/file-05.svg");
+}
+.u-file-06 {
+  mask-image: url("/icons/untitled/file-06.svg");
+}
+.u-file-07 {
+  mask-image: url("/icons/untitled/file-07.svg");
+}
+.u-file-attachment-02 {
+  mask-image: url("/icons/untitled/file-attachment-02.svg");
+}
+.u-file-attachment-03 {
+  mask-image: url("/icons/untitled/file-attachment-03.svg");
+}
+.u-file-attachment-04 {
+  mask-image: url("/icons/untitled/file-attachment-04.svg");
+}
+.u-file-attachment-05 {
+  mask-image: url("/icons/untitled/file-attachment-05.svg");
+}
+.u-file-attachment {
+  mask-image: url("/icons/untitled/file-attachment.svg");
+}
+.u-file-check-02 {
+  mask-image: url("/icons/untitled/file-check-02.svg");
+}
+.u-file-check-03 {
+  mask-image: url("/icons/untitled/file-check-03.svg");
+}
+.u-file-check {
+  mask-image: url("/icons/untitled/file-check.svg");
+}
+.u-file-code-02 {
+  mask-image: url("/icons/untitled/file-code-02.svg");
+}
+.u-file-code {
+  mask-image: url("/icons/untitled/file-code.svg");
+}
+.u-file-download-02 {
+  mask-image: url("/icons/untitled/file-download-02.svg");
+}
+.u-file-download-03 {
+  mask-image: url("/icons/untitled/file-download-03.svg");
+}
+.u-file-download {
+  mask-image: url("/icons/untitled/file-download.svg");
+}
+.u-file-heart-02 {
+  mask-image: url("/icons/untitled/file-heart-02.svg");
+}
+.u-file-heart-03 {
+  mask-image: url("/icons/untitled/file-heart-03.svg");
+}
+.u-file-heart {
+  mask-image: url("/icons/untitled/file-heart.svg");
+}
+.u-file-lock-02 {
+  mask-image: url("/icons/untitled/file-lock-02.svg");
+}
+.u-file-lock-03 {
+  mask-image: url("/icons/untitled/file-lock-03.svg");
+}
+.u-file-lock {
+  mask-image: url("/icons/untitled/file-lock.svg");
+}
+.u-file-minus-02 {
+  mask-image: url("/icons/untitled/file-minus-02.svg");
+}
+.u-file-minus-03 {
+  mask-image: url("/icons/untitled/file-minus-03.svg");
+}
+.u-file-minus {
+  mask-image: url("/icons/untitled/file-minus.svg");
+}
+.u-file-plus-02 {
+  mask-image: url("/icons/untitled/file-plus-02.svg");
+}
+.u-file-plus-03 {
+  mask-image: url("/icons/untitled/file-plus-03.svg");
+}
+.u-file-plus {
+  mask-image: url("/icons/untitled/file-plus.svg");
+}
+.u-file-question-02 {
+  mask-image: url("/icons/untitled/file-question-02.svg");
+}
+.u-file-question-03 {
+  mask-image: url("/icons/untitled/file-question-03.svg");
+}
+.u-file-question {
+  mask-image: url("/icons/untitled/file-question.svg");
+}
+.u-file-search-02 {
+  mask-image: url("/icons/untitled/file-search-02.svg");
+}
+.u-file-search-03 {
+  mask-image: url("/icons/untitled/file-search-03.svg");
+}
+.u-file-search {
+  mask-image: url("/icons/untitled/file-search.svg");
+}
+.u-file-shield-02 {
+  mask-image: url("/icons/untitled/file-shield-02.svg");
+}
+.u-file-shield-03 {
+  mask-image: url("/icons/untitled/file-shield-03.svg");
+}
+.u-file-shield {
+  mask-image: url("/icons/untitled/file-shield.svg");
+}
+.u-file-x-02 {
+  mask-image: url("/icons/untitled/file-x-02.svg");
+}
+.u-file-x-03 {
+  mask-image: url("/icons/untitled/file-x-03.svg");
+}
+.u-file-x {
+  mask-image: url("/icons/untitled/file-x.svg");
+}
+.u-file {
+  mask-image: url("/icons/untitled/file.svg");
+}
+.u-film-02 {
+  mask-image: url("/icons/untitled/film-02.svg");
+}
+.u-film-03 {
+  mask-image: url("/icons/untitled/film-03.svg");
+}
+.u-film {
+  mask-image: url("/icons/untitled/film.svg");
+}
+.u-filter-funnel {
+  mask-image: url("/icons/untitled/filter-funnel.svg");
+}
+.u-filter-lines {
+  mask-image: url("/icons/untitled/filter-lines.svg");
+}
+.u-fingerprint-02 {
+  mask-image: url("/icons/untitled/fingerprint-02.svg");
+}
+.u-fingerprint-03 {
+  mask-image: url("/icons/untitled/fingerprint-03.svg");
+}
+.u-fingerprint-04 {
+  mask-image: url("/icons/untitled/fingerprint-04.svg");
+}
+.u-fingerprint {
+  mask-image: url("/icons/untitled/fingerprint.svg");
+}
+.u-flag-02 {
+  mask-image: url("/icons/untitled/flag-02.svg");
+}
+.u-flag-03 {
+  mask-image: url("/icons/untitled/flag-03.svg");
+}
+.u-flag-04 {
+  mask-image: url("/icons/untitled/flag-04.svg");
+}
+.u-flag-05 {
+  mask-image: url("/icons/untitled/flag-05.svg");
+}
+.u-flag-06 {
+  mask-image: url("/icons/untitled/flag-06.svg");
+}
+.u-flag {
+  mask-image: url("/icons/untitled/flag.svg");
+}
+.u-flash-off {
+  mask-image: url("/icons/untitled/flash-off.svg");
+}
+.u-flash {
+  mask-image: url("/icons/untitled/flash.svg");
+}
+.u-flex-align-bottom {
+  mask-image: url("/icons/untitled/flex-align-bottom.svg");
+}
+.u-flex-align-left {
+  mask-image: url("/icons/untitled/flex-align-left.svg");
+}
+.u-flex-align-right {
+  mask-image: url("/icons/untitled/flex-align-right.svg");
+}
+.u-flex-align-top {
+  mask-image: url("/icons/untitled/flex-align-top.svg");
+}
+.u-flip-backward {
+  mask-image: url("/icons/untitled/flip-backward.svg");
+}
+.u-flip-forward {
+  mask-image: url("/icons/untitled/flip-forward.svg");
+}
+.u-folder-check {
+  mask-image: url("/icons/untitled/folder-check.svg");
+}
+.u-folder-closed {
+  mask-image: url("/icons/untitled/folder-closed.svg");
+}
+.u-folder-download {
+  mask-image: url("/icons/untitled/folder-download.svg");
+}
+.u-folder-lock {
+  mask-image: url("/icons/untitled/folder-lock.svg");
+}
+.u-folder-minus {
+  mask-image: url("/icons/untitled/folder-minus.svg");
+}
+.u-folder-plus {
+  mask-image: url("/icons/untitled/folder-plus.svg");
+}
+.u-folder-question {
+  mask-image: url("/icons/untitled/folder-question.svg");
+}
+.u-folder-search {
+  mask-image: url("/icons/untitled/folder-search.svg");
+}
+.u-folder-shield {
+  mask-image: url("/icons/untitled/folder-shield.svg");
+}
+.u-folder-x {
+  mask-image: url("/icons/untitled/folder-x.svg");
+}
+.u-folder {
+  mask-image: url("/icons/untitled/folder.svg");
+}
+.u-framer {
+  mask-image: url("/icons/untitled/framer.svg");
+}
+.u-gaming-pad-02 {
+  mask-image: url("/icons/untitled/gaming-pad-02.svg");
+}
+.u-gaming-pad {
+  mask-image: url("/icons/untitled/gaming-pad.svg");
+}
+.u-gift-02 {
+  mask-image: url("/icons/untitled/gift-02.svg");
+}
+.u-gift {
+  mask-image: url("/icons/untitled/gift.svg");
+}
+.u-git-branch-02 {
+  mask-image: url("/icons/untitled/git-branch-02.svg");
+}
+.u-git-branch {
+  mask-image: url("/icons/untitled/git-branch.svg");
+}
+.u-git-commit {
+  mask-image: url("/icons/untitled/git-commit.svg");
+}
+.u-git-merge {
+  mask-image: url("/icons/untitled/git-merge.svg");
+}
+.u-git-pull-request {
+  mask-image: url("/icons/untitled/git-pull-request.svg");
+}
+.u-glasses-02 {
+  mask-image: url("/icons/untitled/glasses-02.svg");
+}
+.u-glasses {
+  mask-image: url("/icons/untitled/glasses.svg");
+}
+.u-globe-02 {
+  mask-image: url("/icons/untitled/globe-02.svg");
+}
+.u-globe-03 {
+  mask-image: url("/icons/untitled/globe-03.svg");
+}
+.u-globe-04 {
+  mask-image: url("/icons/untitled/globe-04.svg");
+}
+.u-globe-05 {
+  mask-image: url("/icons/untitled/globe-05.svg");
+}
+.u-globe-06 {
+  mask-image: url("/icons/untitled/globe-06.svg");
+}
+.u-globe-slated-02 {
+  mask-image: url("/icons/untitled/globe-slated-02.svg");
+}
+.u-globe-slated {
+  mask-image: url("/icons/untitled/globe-slated.svg");
+}
+.u-globe {
+  mask-image: url("/icons/untitled/globe.svg");
+}
+.u-google-chrome {
+  mask-image: url("/icons/untitled/google-chrome.svg");
+}
+.u-graduation-hat-02 {
+  mask-image: url("/icons/untitled/graduation-hat-02.svg");
+}
+.u-graduation-hat {
+  mask-image: url("/icons/untitled/graduation-hat.svg");
+}
+.u-grid-02 {
+  mask-image: url("/icons/untitled/grid-02.svg");
+}
+.u-grid-03 {
+  mask-image: url("/icons/untitled/grid-03.svg");
+}
+.u-grid-dots-blank {
+  mask-image: url("/icons/untitled/grid-dots-blank.svg");
+}
+.u-grid-dots-bottom {
+  mask-image: url("/icons/untitled/grid-dots-bottom.svg");
+}
+.u-grid-dots-horizontal-center {
+  mask-image: url("/icons/untitled/grid-dots-horizontal-center.svg");
+}
+.u-grid-dots-left {
+  mask-image: url("/icons/untitled/grid-dots-left.svg");
+}
+.u-grid-dots-outer {
+  mask-image: url("/icons/untitled/grid-dots-outer.svg");
+}
+.u-grid-dots-right {
+  mask-image: url("/icons/untitled/grid-dots-right.svg");
+}
+.u-grid-dots-top {
+  mask-image: url("/icons/untitled/grid-dots-top.svg");
+}
+.u-grid-dots-vertical-center {
+  mask-image: url("/icons/untitled/grid-dots-vertical-center.svg");
+}
+.u-grid {
+  mask-image: url("/icons/untitled/grid.svg");
+}
+.u-hand {
+  mask-image: url("/icons/untitled/hand.svg");
+}
+.u-hard-drive {
+  mask-image: url("/icons/untitled/hard-drive.svg");
+}
+.u-hash-italic {
+  mask-image: url("/icons/untitled/hash-italic.svg");
+}
+.u-hash {
+  mask-image: url("/icons/untitled/hash.svg");
+}
+.u-heading-02 {
+  mask-image: url("/icons/untitled/heading-02.svg");
+}
+.u-heading-square {
+  mask-image: url("/icons/untitled/heading-square.svg");
+}
+.u-heading {
+  mask-image: url("/icons/untitled/heading.svg");
+}
+.u-headphones-02 {
+  mask-image: url("/icons/untitled/headphones-02.svg");
+}
+.u-headphones {
+  mask-image: url("/icons/untitled/headphones.svg");
+}
+.u-heart-circle {
+  mask-image: url("/icons/untitled/heart-circle.svg");
+}
+.u-heart-hexagon {
+  mask-image: url("/icons/untitled/heart-hexagon.svg");
+}
+.u-heart-octagon {
+  mask-image: url("/icons/untitled/heart-octagon.svg");
+}
+.u-heart-rounded {
+  mask-image: url("/icons/untitled/heart-rounded.svg");
+}
+.u-heart-square {
+  mask-image: url("/icons/untitled/heart-square.svg");
+}
+.u-heart {
+  mask-image: url("/icons/untitled/heart.svg");
+}
+.u-hearts {
+  mask-image: url("/icons/untitled/hearts.svg");
+}
+.u-help-circle {
+  mask-image: url("/icons/untitled/help-circle.svg");
+}
+.u-help-hexagon {
+  mask-image: url("/icons/untitled/help-hexagon.svg");
+}
+.u-help-square {
+  mask-image: url("/icons/untitled/help-square.svg");
+}
+.u-hexagon-02 {
+  mask-image: url("/icons/untitled/hexagon-02.svg");
+}
+.u-hexagon {
+  mask-image: url("/icons/untitled/hexagon.svg");
+}
+
+.u-household {
+  mask-image: url("/icons/untitled/household.svg");
+}
+
+.u-home-solid {
+  mask-image: url("/icons/untitled/home-solid.svg");
+}
+
+.u-home-02 {
+  mask-image: url("/icons/untitled/home-02.svg");
+}
+.u-home-03 {
+  mask-image: url("/icons/untitled/home-03.svg");
+}
+.u-home-04 {
+  mask-image: url("/icons/untitled/home-04.svg");
+}
+.u-home-05 {
+  mask-image: url("/icons/untitled/home-05.svg");
+}
+.u-home-line {
+  mask-image: url("/icons/untitled/home-line.svg");
+}
+.u-home-smile {
+  mask-image: url("/icons/untitled/home-smile.svg");
+}
+.u-home {
+  mask-image: url("/icons/untitled/home.svg");
+}
+.u-horizontal-bar-chart-02 {
+  mask-image: url("/icons/untitled/horizontal-bar-chart-02.svg");
+}
+.u-horizontal-bar-chart-03 {
+  mask-image: url("/icons/untitled/horizontal-bar-chart-03.svg");
+}
+.u-horizontal-bar-chart {
+  mask-image: url("/icons/untitled/horizontal-bar-chart.svg");
+}
+.u-hourglass-02 {
+  mask-image: url("/icons/untitled/hourglass-02.svg");
+}
+.u-hourglass-03 {
+  mask-image: url("/icons/untitled/hourglass-03.svg");
+}
+.u-hourglass {
+  mask-image: url("/icons/untitled/hourglass.svg");
+}
+.u-hurricane-02 {
+  mask-image: url("/icons/untitled/hurricane-02.svg");
+}
+.u-hurricane-03 {
+  mask-image: url("/icons/untitled/hurricane-03.svg");
+}
+.u-hurricane {
+  mask-image: url("/icons/untitled/hurricane.svg");
+}
+.u-image-02 {
+  mask-image: url("/icons/untitled/image-02.svg");
+}
+.u-image-03 {
+  mask-image: url("/icons/untitled/image-03.svg");
+}
+.u-image-04 {
+  mask-image: url("/icons/untitled/image-04.svg");
+}
+.u-image-check {
+  mask-image: url("/icons/untitled/image-check.svg");
+}
+.u-image-circle {
+  mask-image: url("/icons/untitled/image-circle.svg");
+}
+.u-image-down {
+  mask-image: url("/icons/untitled/image-down.svg");
+}
+.u-image-indent-left {
+  mask-image: url("/icons/untitled/image-indent-left.svg");
+}
+.u-image-indent-right {
+  mask-image: url("/icons/untitled/image-indent-right.svg");
+}
+.u-image-left {
+  mask-image: url("/icons/untitled/image-left.svg");
+}
+.u-image-plus {
+  mask-image: url("/icons/untitled/image-plus.svg");
+}
+.u-image-right {
+  mask-image: url("/icons/untitled/image-right.svg");
+}
+.u-image-up {
+  mask-image: url("/icons/untitled/image-up.svg");
+}
+.u-image-user-check {
+  mask-image: url("/icons/untitled/image-user-check.svg");
+}
+.u-image-user-down {
+  mask-image: url("/icons/untitled/image-user-down.svg");
+}
+.u-image-user-left {
+  mask-image: url("/icons/untitled/image-user-left.svg");
+}
+.u-image-user-plus {
+  mask-image: url("/icons/untitled/image-user-plus.svg");
+}
+.u-image-user-right {
+  mask-image: url("/icons/untitled/image-user-right.svg");
+}
+.u-image-user-up {
+  mask-image: url("/icons/untitled/image-user-up.svg");
+}
+.u-image-user-x {
+  mask-image: url("/icons/untitled/image-user-x.svg");
+}
+.u-image-user {
+  mask-image: url("/icons/untitled/image-user.svg");
+}
+.u-image-x {
+  mask-image: url("/icons/untitled/image-x.svg");
+}
+.u-image {
+  mask-image: url("/icons/untitled/image.svg");
+}
+.u-inbox-02 {
+  mask-image: url("/icons/untitled/inbox-02.svg");
+}
+.u-inbox {
+  mask-image: url("/icons/untitled/inbox.svg");
+}
+.u-infinity {
+  mask-image: url("/icons/untitled/infinity.svg");
+}
+.u-info-circle {
+  mask-image: url("/icons/untitled/info-circle.svg");
+}
+.u-info-hexagon {
+  mask-image: url("/icons/untitled/info-hexagon.svg");
+}
+.u-info-square {
+  mask-image: url("/icons/untitled/info-square.svg");
+}
+.u-intersect-circle {
+  mask-image: url("/icons/untitled/intersect-circle.svg");
+}
+.u-intersect-square {
+  mask-image: url("/icons/untitled/intersect-square.svg");
+}
+.u-iphone {
+  mask-image: url("/icons/untitled/iphone.svg");
+}
+.u-italic-02 {
+  mask-image: url("/icons/untitled/italic-02.svg");
+}
+.u-italic-square {
+  mask-image: url("/icons/untitled/italic-square.svg");
+}
+.u-italic {
+  mask-image: url("/icons/untitled/italic.svg");
+}
+.u-key-02 {
+  mask-image: url("/icons/untitled/key-02.svg");
+}
+.u-key {
+  mask-image: url("/icons/untitled/key.svg");
+}
+.u-keyboard-02 {
+  mask-image: url("/icons/untitled/keyboard-02.svg");
+}
+.u-keyboard {
+  mask-image: url("/icons/untitled/keyboard.svg");
+}
+.u-laptop-02 {
+  mask-image: url("/icons/untitled/laptop-02.svg");
+}
+.u-laptop {
+  mask-image: url("/icons/untitled/laptop.svg");
+}
+.u-layer-single {
+  mask-image: url("/icons/untitled/layer-single.svg");
+}
+.u-layers-three-02 {
+  mask-image: url("/icons/untitled/layers-three-02.svg");
+}
+.u-layers-three {
+  mask-image: url("/icons/untitled/layers-three.svg");
+}
+.u-layers-two-02 {
+  mask-image: url("/icons/untitled/layers-two-02.svg");
+}
+.u-layers-two {
+  mask-image: url("/icons/untitled/layers-two.svg");
+}
+.u-layout-alt-02 {
+  mask-image: url("/icons/untitled/layout-alt-02.svg");
+}
+.u-layout-alt-03 {
+  mask-image: url("/icons/untitled/layout-alt-03.svg");
+}
+.u-layout-alt-04 {
+  mask-image: url("/icons/untitled/layout-alt-04.svg");
+}
+.u-layout-alt {
+  mask-image: url("/icons/untitled/layout-alt.svg");
+}
+.u-layout-bottom {
+  mask-image: url("/icons/untitled/layout-bottom.svg");
+}
+.u-layout-grid-02 {
+  mask-image: url("/icons/untitled/layout-grid-02.svg");
+}
+.u-layout-grid {
+  mask-image: url("/icons/untitled/layout-grid.svg");
+}
+.u-layout-left {
+  mask-image: url("/icons/untitled/layout-left.svg");
+}
+.u-layout-right {
+  mask-image: url("/icons/untitled/layout-right.svg");
+}
+.u-layout-top {
+  mask-image: url("/icons/untitled/layout-top.svg");
+}
+.u-left-indent-02 {
+  mask-image: url("/icons/untitled/left-indent-02.svg");
+}
+.u-left-indent {
+  mask-image: url("/icons/untitled/left-indent.svg");
+}
+.u-left-menu-closed {
+  mask-image: url("/icons/untitled/left-menu-closed.svg");
+}
+.u-letter-spacing-02 {
+  mask-image: url("/icons/untitled/letter-spacing-02.svg");
+}
+.u-letter-spacing {
+  mask-image: url("/icons/untitled/letter-spacing.svg");
+}
+.u-life-buoy-02 {
+  mask-image: url("/icons/untitled/life-buoy-02.svg");
+}
+.u-life-buoy {
+  mask-image: url("/icons/untitled/life-buoy.svg");
+}
+.u-lightbulb-02 {
+  mask-image: url("/icons/untitled/lightbulb-02.svg");
+}
+.u-lightbulb-03 {
+  mask-image: url("/icons/untitled/lightbulb-03.svg");
+}
+.u-lightbulb-04 {
+  mask-image: url("/icons/untitled/lightbulb-04.svg");
+}
+.u-lightbulb-05 {
+  mask-image: url("/icons/untitled/lightbulb-05.svg");
+}
+.u-lightbulb {
+  mask-image: url("/icons/untitled/lightbulb.svg");
+}
+.u-lightning-02 {
+  mask-image: url("/icons/untitled/lightning-02.svg");
+}
+.u-lightning {
+  mask-image: url("/icons/untitled/lightning.svg");
+}
+.u-line-chart-down-02 {
+  mask-image: url("/icons/untitled/line-chart-down-02.svg");
+}
+.u-line-chart-down-03 {
+  mask-image: url("/icons/untitled/line-chart-down-03.svg");
+}
+.u-line-chart-down-04 {
+  mask-image: url("/icons/untitled/line-chart-down-04.svg");
+}
+.u-line-chart-down-05 {
+  mask-image: url("/icons/untitled/line-chart-down-05.svg");
+}
+.u-line-chart-down {
+  mask-image: url("/icons/untitled/line-chart-down.svg");
+}
+.u-line-chart-up-02 {
+  mask-image: url("/icons/untitled/line-chart-up-02.svg");
+}
+.u-line-chart-up-03 {
+  mask-image: url("/icons/untitled/line-chart-up-03.svg");
+}
+.u-line-chart-up-04 {
+  mask-image: url("/icons/untitled/line-chart-up-04.svg");
+}
+.u-line-chart-up-05 {
+  mask-image: url("/icons/untitled/line-chart-up-05.svg");
+}
+.u-line-chart-up {
+  mask-image: url("/icons/untitled/line-chart-up.svg");
+}
+.u-line-height {
+  mask-image: url("/icons/untitled/line-height.svg");
+}
+.u-link-02 {
+  mask-image: url("/icons/untitled/link-02.svg");
+}
+.u-link-03 {
+  mask-image: url("/icons/untitled/link-03.svg");
+}
+.u-link-04 {
+  mask-image: url("/icons/untitled/link-04.svg");
+}
+.u-link-05 {
+  mask-image: url("/icons/untitled/link-05.svg");
+}
+.u-link-broken-02 {
+  mask-image: url("/icons/untitled/link-broken-02.svg");
+}
+.u-link-broken {
+  mask-image: url("/icons/untitled/link-broken.svg");
+}
+.u-link-external-01 {
+  mask-image: url("/icons/untitled/link-external-01.svg");
+}
+.u-link-external-02 {
+  mask-image: url("/icons/untitled/link-external-02.svg");
+}
+.u-link {
+  mask-image: url("/icons/untitled/link.svg");
+}
+.u-list {
+  mask-image: url("/icons/untitled/list.svg");
+}
+.u-loading-01 {
+  mask-image: url("/icons/untitled/loading-01.svg");
+}
+.u-loading-02 {
+  mask-image: url("/icons/untitled/loading-02.svg");
+}
+.u-loading-03 {
+  mask-image: url("/icons/untitled/loading-03.svg");
+}
+.u-lock-02 {
+  mask-image: url("/icons/untitled/lock-02.svg");
+}
+.u-lock-03 {
+  mask-image: url("/icons/untitled/lock-03.svg");
+}
+.u-lock-04 {
+  mask-image: url("/icons/untitled/lock-04.svg");
+}
+.u-lock-keyhole-circle {
+  mask-image: url("/icons/untitled/lock-keyhole-circle.svg");
+}
+.u-lock-keyhole-square {
+  mask-image: url("/icons/untitled/lock-keyhole-square.svg");
+}
+.u-lock-unlocked-02 {
+  mask-image: url("/icons/untitled/lock-unlocked-02.svg");
+}
+.u-lock-unlocked-03 {
+  mask-image: url("/icons/untitled/lock-unlocked-03.svg");
+}
+.u-lock-unlocked-04 {
+  mask-image: url("/icons/untitled/lock-unlocked-04.svg");
+}
+.u-lock-unlocked {
+  mask-image: url("/icons/untitled/lock-unlocked.svg");
+}
+.u-lock {
+  mask-image: url("/icons/untitled/lock.svg");
+}
+.u-log-in-02 {
+  mask-image: url("/icons/untitled/log-in-02.svg");
+}
+.u-log-in-03 {
+  mask-image: url("/icons/untitled/log-in-03.svg");
+}
+.u-log-in-04 {
+  mask-image: url("/icons/untitled/log-in-04.svg");
+}
+.u-log-in {
+  mask-image: url("/icons/untitled/log-in.svg");
+}
+.u-log-out-02 {
+  mask-image: url("/icons/untitled/log-out-02.svg");
+}
+.u-log-out-03 {
+  mask-image: url("/icons/untitled/log-out-03.svg");
+}
+.u-log-out-rounded {
+  mask-image: url("/icons/untitled/log-out-rounded.svg");
+}
+.u-log-out {
+  mask-image: url("/icons/untitled/log-out.svg");
+}
+.u-luggage-02 {
+  mask-image: url("/icons/untitled/luggage-02.svg");
+}
+.u-luggage-03 {
+  mask-image: url("/icons/untitled/luggage-03.svg");
+}
+.u-luggage {
+  mask-image: url("/icons/untitled/luggage.svg");
+}
+.u-magic-wand-02 {
+  mask-image: url("/icons/untitled/magic-wand-02.svg");
+}
+.u-magic-wand {
+  mask-image: url("/icons/untitled/magic-wand.svg");
+}
+.u-mail-02 {
+  mask-image: url("/icons/untitled/mail-02.svg");
+}
+.u-mail-03 {
+  mask-image: url("/icons/untitled/mail-03.svg");
+}
+.u-mail-04 {
+  mask-image: url("/icons/untitled/mail-04.svg");
+}
+.u-mail-checkmark-circle {
+  mask-image: url("/icons/untitled/mail-checkmark-circle.svg");
+}
+.u-mail-open-02 {
+  mask-image: url("/icons/untitled/mail-open-02.svg");
+}
+.u-mail-open {
+  mask-image: url("/icons/untitled/mail-open.svg");
+}
+.u-mail {
+  mask-image: url("/icons/untitled/mail.svg");
+}
+.u-mail-right-circle {
+  mask-image: url("/icons/untitled/mail-right-circle.svg");
+}
+.u-mail-return-circle {
+  mask-image: url("/icons/untitled/mail-return-circle.svg");
+}
+.u-map-02 {
+  mask-image: url("/icons/untitled/map-02.svg");
+}
+.u-map {
+  mask-image: url("/icons/untitled/map.svg");
+}
+.u-mark {
+  mask-image: url("/icons/untitled/mark.svg");
+}
+.u-marker-pin-02 {
+  mask-image: url("/icons/untitled/marker-pin-02.svg");
+}
+.u-marker-pin-03 {
+  mask-image: url("/icons/untitled/marker-pin-03.svg");
+}
+.u-marker-pin-flag {
+  mask-image: url("/icons/untitled/marker-pin-flag.svg");
+}
+.u-marker-pin {
+  mask-image: url("/icons/untitled/marker-pin.svg");
+}
+.u-maximize-02 {
+  mask-image: url("/icons/untitled/maximize-02.svg");
+}
+.u-maximize {
+  mask-image: url("/icons/untitled/maximize.svg");
+}
+.u-medical-circle {
+  mask-image: url("/icons/untitled/medical-circle.svg");
+}
+.u-medical-cross {
+  mask-image: url("/icons/untitled/medical-cross.svg");
+}
+.u-medical-square {
+  mask-image: url("/icons/untitled/medical-square.svg");
+}
+.u-menu-02 {
+  mask-image: url("/icons/untitled/menu-02.svg");
+}
+.u-menu-03 {
+  mask-image: url("/icons/untitled/menu-03.svg");
+}
+.u-menu-05 {
+  mask-image: url("/icons/untitled/menu-05.svg");
+}
+.u-menu {
+  mask-image: url("/icons/untitled/menu.svg");
+}
+.u-message-alert-circle {
+  mask-image: url("/icons/untitled/message-alert-circle.svg");
+}
+.u-message-alert-square {
+  mask-image: url("/icons/untitled/message-alert-square.svg");
+}
+.u-message-chat-circle {
+  mask-image: url("/icons/untitled/message-chat-circle.svg");
+}
+.u-message-chat-square {
+  mask-image: url("/icons/untitled/message-chat-square.svg");
+}
+.u-message-check-circle {
+  mask-image: url("/icons/untitled/message-check-circle.svg");
+}
+.u-message-check-square {
+  mask-image: url("/icons/untitled/message-check-square.svg");
+}
+.u-message-circle-02 {
+  mask-image: url("/icons/untitled/message-circle-02.svg");
+}
+.u-message-circle {
+  mask-image: url("/icons/untitled/message-circle.svg");
+}
+.u-message-dots-circle {
+  mask-image: url("/icons/untitled/message-dots-circle.svg");
+}
+.u-message-dots-square {
+  mask-image: url("/icons/untitled/message-dots-square.svg");
+}
+.u-message-heart-circle {
+  mask-image: url("/icons/untitled/message-heart-circle.svg");
+}
+.u-message-heart-square {
+  mask-image: url("/icons/untitled/message-heart-square.svg");
+}
+.u-message-notification-circle {
+  mask-image: url("/icons/untitled/message-notification-circle.svg");
+}
+.u-message-notification-square {
+  mask-image: url("/icons/untitled/message-notification-square.svg");
+}
+.u-message-plus-circle {
+  mask-image: url("/icons/untitled/message-plus-circle.svg");
+}
+.u-message-plus-square {
+  mask-image: url("/icons/untitled/message-plus-square.svg");
+}
+.u-message-question-circle {
+  mask-image: url("/icons/untitled/message-question-circle.svg");
+}
+.u-message-question-square {
+  mask-image: url("/icons/untitled/message-question-square.svg");
+}
+.u-message-smile-circle {
+  mask-image: url("/icons/untitled/message-smile-circle.svg");
+}
+.u-message-smile-square {
+  mask-image: url("/icons/untitled/message-smile-square.svg");
+}
+.u-message-square-02 {
+  mask-image: url("/icons/untitled/message-square-02.svg");
+}
+.u-message-square {
+  mask-image: url("/icons/untitled/message-square.svg");
+}
+.u-message-text-circle-02 {
+  mask-image: url("/icons/untitled/message-text-circle-02.svg");
+}
+.u-message-text-circle {
+  mask-image: url("/icons/untitled/message-text-circle.svg");
+}
+.u-message-text-square-02 {
+  mask-image: url("/icons/untitled/message-text-square-02.svg");
+}
+.u-message-text-square {
+  mask-image: url("/icons/untitled/message-text-square.svg");
+}
+.u-message-x-circle {
+  mask-image: url("/icons/untitled/message-x-circle.svg");
+}
+.u-message-x-square {
+  mask-image: url("/icons/untitled/message-x-square.svg");
+}
+.u-microphone-02 {
+  mask-image: url("/icons/untitled/microphone-02.svg");
+}
+.u-microphone-off-02 {
+  mask-image: url("/icons/untitled/microphone-off-02.svg");
+}
+.u-microphone-off {
+  mask-image: url("/icons/untitled/microphone-off.svg");
+}
+.u-microphone {
+  mask-image: url("/icons/untitled/microphone.svg");
+}
+.u-microscope {
+  mask-image: url("/icons/untitled/microscope.svg");
+}
+.u-minimize-02 {
+  mask-image: url("/icons/untitled/minimize-02.svg");
+}
+.u-minimize {
+  mask-image: url("/icons/untitled/minimize.svg");
+}
+.u-minus-circle {
+  mask-image: url("/icons/untitled/minus-circle.svg");
+}
+.u-minus-square {
+  mask-image: url("/icons/untitled/minus-square.svg");
+}
+.u-minus {
+  mask-image: url("/icons/untitled/minus.svg");
+}
+.u-mobile {
+  mask-image: url("/icons/untitled/mobile.svg");
+}
+.u-modem-02 {
+  mask-image: url("/icons/untitled/modem-02.svg");
+}
+.u-modem {
+  mask-image: url("/icons/untitled/modem.svg");
+}
+.u-monitor-02 {
+  mask-image: url("/icons/untitled/monitor-02.svg");
+}
+.u-monitor-03 {
+  mask-image: url("/icons/untitled/monitor-03.svg");
+}
+.u-monitor-04 {
+  mask-image: url("/icons/untitled/monitor-04.svg");
+}
+.u-monitor-05 {
+  mask-image: url("/icons/untitled/monitor-05.svg");
+}
+.u-monitor {
+  mask-image: url("/icons/untitled/monitor.svg");
+}
+.u-moon-02 {
+  mask-image: url("/icons/untitled/moon-02.svg");
+}
+.u-moon-eclipse {
+  mask-image: url("/icons/untitled/moon-eclipse.svg");
+}
+.u-moon-star {
+  mask-image: url("/icons/untitled/moon-star.svg");
+}
+.u-moon {
+  mask-image: url("/icons/untitled/moon.svg");
+}
+.u-mouse {
+  mask-image: url("/icons/untitled/mouse.svg");
+}
+.u-move {
+  mask-image: url("/icons/untitled/move.svg");
+}
+.u-music-note-02 {
+  mask-image: url("/icons/untitled/music-note-02.svg");
+}
+.u-music-note-plus {
+  mask-image: url("/icons/untitled/music-note-plus.svg");
+}
+.u-music-note {
+  mask-image: url("/icons/untitled/music-note.svg");
+}
+.u-navigation-pointer-02 {
+  mask-image: url("/icons/untitled/navigation-pointer-02.svg");
+}
+.u-navigation-pointer-off-02 {
+  mask-image: url("/icons/untitled/navigation-pointer-off-02.svg");
+}
+.u-navigation-pointer-off {
+  mask-image: url("/icons/untitled/navigation-pointer-off.svg");
+}
+.u-navigation-pointer {
+  mask-image: url("/icons/untitled/navigation-pointer.svg");
+}
+.u-notification-box {
+  mask-image: url("/icons/untitled/notification-box.svg");
+}
+.u-notification-message {
+  mask-image: url("/icons/untitled/notification-message.svg");
+}
+.u-notification-text {
+  mask-image: url("/icons/untitled/notification-text.svg");
+}
+.u-octagon {
+  mask-image: url("/icons/untitled/octagon.svg");
+}
+.u-package-check {
+  mask-image: url("/icons/untitled/package-check.svg");
+}
+.u-package-minus {
+  mask-image: url("/icons/untitled/package-minus.svg");
+}
+.u-package-plus {
+  mask-image: url("/icons/untitled/package-plus.svg");
+}
+.u-package-search {
+  mask-image: url("/icons/untitled/package-search.svg");
+}
+.u-package-x {
+  mask-image: url("/icons/untitled/package-x.svg");
+}
+.u-package {
+  mask-image: url("/icons/untitled/package.svg");
+}
+.u-paint-pour {
+  mask-image: url("/icons/untitled/paint-pour.svg");
+}
+.u-paint {
+  mask-image: url("/icons/untitled/paint.svg");
+}
+.u-palette {
+  mask-image: url("/icons/untitled/palette.svg");
+}
+.u-paperclip {
+  mask-image: url("/icons/untitled/paperclip.svg");
+}
+.u-paragraph-spacing {
+  mask-image: url("/icons/untitled/paragraph-spacing.svg");
+}
+.u-paragraph-wrap {
+  mask-image: url("/icons/untitled/paragraph-wrap.svg");
+}
+.u-passcode-lock {
+  mask-image: url("/icons/untitled/passcode-lock.svg");
+}
+.u-passcode {
+  mask-image: url("/icons/untitled/passcode.svg");
+}
+.u-passport {
+  mask-image: url("/icons/untitled/passport.svg");
+}
+.u-pause-circle {
+  mask-image: url("/icons/untitled/pause-circle.svg");
+}
+.u-pause-square {
+  mask-image: url("/icons/untitled/pause-square.svg");
+}
+.u-pen-tool-02 {
+  mask-image: url("/icons/untitled/pen-tool-02.svg");
+}
+.u-pen-tool-minus {
+  mask-image: url("/icons/untitled/pen-tool-minus.svg");
+}
+.u-pen-tool-plus {
+  mask-image: url("/icons/untitled/pen-tool-plus.svg");
+}
+.u-pen-tool {
+  mask-image: url("/icons/untitled/pen-tool.svg");
+}
+.u-pencil-02 {
+  mask-image: url("/icons/untitled/pencil-02.svg");
+}
+.u-pencil-line {
+  mask-image: url("/icons/untitled/pencil-line.svg");
+}
+.u-pencil {
+  mask-image: url("/icons/untitled/pencil.svg");
+}
+.u-pentagon {
+  mask-image: url("/icons/untitled/pentagon.svg");
+}
+.u-percent-circle {
+  mask-image: url("/icons/untitled/percent-circle.svg");
+}
+.u-percent {
+  mask-image: url("/icons/untitled/percent.svg");
+}
+.u-perspective-02 {
+  mask-image: url("/icons/untitled/perspective-02.svg");
+}
+.u-perspective {
+  mask-image: url("/icons/untitled/perspective.svg");
+}
+
+.u-phone-solid {
+  mask-image: url("/icons/untitled/phone-solid.svg");
+}
+
+.u-phone-call-02 {
+  mask-image: url("/icons/untitled/phone-call-02.svg");
+}
+.u-phone-call {
+  mask-image: url("/icons/untitled/phone-call.svg");
+}
+.u-phone-hang-up {
+  mask-image: url("/icons/untitled/phone-hang-up.svg");
+}
+.u-phone-incoming-02 {
+  mask-image: url("/icons/untitled/phone-incoming-02.svg");
+}
+.u-phone-incoming {
+  mask-image: url("/icons/untitled/phone-incoming.svg");
+}
+.u-phone-outgoing-02 {
+  mask-image: url("/icons/untitled/phone-outgoing-02.svg");
+}
+.u-phone-outgoing {
+  mask-image: url("/icons/untitled/phone-outgoing.svg");
+}
+.u-phone-pause {
+  mask-image: url("/icons/untitled/phone-pause.svg");
+}
+.u-phone-plus {
+  mask-image: url("/icons/untitled/phone-plus.svg");
+}
+.u-phone-x {
+  mask-image: url("/icons/untitled/phone-x.svg");
+}
+.u-phone {
+  mask-image: url("/icons/untitled/phone.svg");
+}
+.u-pie-chart-02 {
+  mask-image: url("/icons/untitled/pie-chart-02.svg");
+}
+.u-pie-chart-03 {
+  mask-image: url("/icons/untitled/pie-chart-03.svg");
+}
+.u-pie-chart-04 {
+  mask-image: url("/icons/untitled/pie-chart-04.svg");
+}
+.u-pie-chart {
+  mask-image: url("/icons/untitled/pie-chart.svg");
+}
+.u-piggy-bank-02 {
+  mask-image: url("/icons/untitled/piggy-bank-02.svg");
+}
+.u-piggy-bank {
+  mask-image: url("/icons/untitled/piggy-bank.svg");
+}
+.u-pilcrow-02 {
+  mask-image: url("/icons/untitled/pilcrow-02.svg");
+}
+.u-pilcrow-square {
+  mask-image: url("/icons/untitled/pilcrow-square.svg");
+}
+.u-pilcrow {
+  mask-image: url("/icons/untitled/pilcrow.svg");
+}
+.u-pin-italic {
+  mask-image: url("/icons/untitled/pin-italic.svg");
+}
+.u-pin {
+  mask-image: url("/icons/untitled/pin.svg");
+}
+.u-plane {
+  mask-image: url("/icons/untitled/plane.svg");
+}
+.u-play-circle {
+  mask-image: url("/icons/untitled/play-circle.svg");
+}
+.u-play-square {
+  mask-image: url("/icons/untitled/play-square.svg");
+}
+.u-play {
+  mask-image: url("/icons/untitled/play.svg");
+}
+.u-plus-circle {
+  mask-image: url("/icons/untitled/plus-circle.svg");
+}
+.u-plus-square {
+  mask-image: url("/icons/untitled/plus-square.svg");
+}
+.u-plus {
+  mask-image: url("/icons/untitled/plus.svg");
+}
+.u-podcast {
+  mask-image: url("/icons/untitled/podcast.svg");
+}
+.u-power-02 {
+  mask-image: url("/icons/untitled/power-02.svg");
+}
+.u-power-03 {
+  mask-image: url("/icons/untitled/power-03.svg");
+}
+.u-power {
+  mask-image: url("/icons/untitled/power.svg");
+}
+.u-presentation-chart-02 {
+  mask-image: url("/icons/untitled/presentation-chart-02.svg");
+}
+.u-presentation-chart-03 {
+  mask-image: url("/icons/untitled/presentation-chart-03.svg");
+}
+.u-presentation-chart {
+  mask-image: url("/icons/untitled/presentation-chart.svg");
+}
+.u-printer {
+  mask-image: url("/icons/untitled/printer.svg");
+}
+.u-puzzle-piece-02 {
+  mask-image: url("/icons/untitled/puzzle-piece-02.svg");
+}
+.u-puzzle-piece {
+  mask-image: url("/icons/untitled/puzzle-piece.svg");
+}
+.u-qr-code-02 {
+  mask-image: url("/icons/untitled/qr-code-02.svg");
+}
+.u-qr-code {
+  mask-image: url("/icons/untitled/qr-code.svg");
+}
+.u-receipt-check {
+  mask-image: url("/icons/untitled/receipt-check.svg");
+}
+.u-receipt {
+  mask-image: url("/icons/untitled/receipt.svg");
+}
+.u-recording-02 {
+  mask-image: url("/icons/untitled/recording-02.svg");
+}
+.u-recording-03 {
+  mask-image: url("/icons/untitled/recording-03.svg");
+}
+.u-recording {
+  mask-image: url("/icons/untitled/recording.svg");
+}
+.u-reflect-02 {
+  mask-image: url("/icons/untitled/reflect-02.svg");
+}
+.u-reflect {
+  mask-image: url("/icons/untitled/reflect.svg");
+}
+.u-refresh-ccw-double {
+  mask-image: url("/icons/untitled/refresh-ccw-double.svg");
+}
+.u-refresh-ccw-vertical-md {
+  mask-image: url("/icons/untitled/refresh-ccw-vertical-md.svg");
+}
+.u-refresh-ccw-vertical-sm {
+  mask-image: url("/icons/untitled/refresh-ccw-vertical-sm.svg");
+}
+.u-refresh-ccw-vertical {
+  mask-image: url("/icons/untitled/refresh-ccw-vertical.svg");
+}
+.u-refresh-ccw {
+  mask-image: url("/icons/untitled/refresh-ccw.svg");
+}
+.u-refresh-cw-right {
+  mask-image: url("/icons/untitled/refresh-cw-right.svg");
+}
+.u-repeat-02 {
+  mask-image: url("/icons/untitled/repeat-02.svg");
+}
+.u-repeat-03 {
+  mask-image: url("/icons/untitled/repeat-03.svg");
+}
+.u-repeat-04 {
+  mask-image: url("/icons/untitled/repeat-04.svg");
+}
+.u-repeat {
+  mask-image: url("/icons/untitled/repeat.svg");
+}
+.u-reverse-left {
+  mask-image: url("/icons/untitled/reverse-left.svg");
+}
+.u-reverse-right {
+  mask-image: url("/icons/untitled/reverse-right.svg");
+}
+.u-right-indent-02 {
+  mask-image: url("/icons/untitled/right-indent-02.svg");
+}
+.u-right-indent {
+  mask-image: url("/icons/untitled/right-indent.svg");
+}
+.u-rocket-02 {
+  mask-image: url("/icons/untitled/rocket-02.svg");
+}
+.u-rocket {
+  mask-image: url("/icons/untitled/rocket.svg");
+}
+.u-roller-brush {
+  mask-image: url("/icons/untitled/roller-brush.svg");
+}
+.u-route {
+  mask-image: url("/icons/untitled/route.svg");
+}
+.u-rows-02 {
+  mask-image: url("/icons/untitled/rows-02.svg");
+}
+.u-rows-03 {
+  mask-image: url("/icons/untitled/rows-03.svg");
+}
+.u-rows {
+  mask-image: url("/icons/untitled/rows.svg");
+}
+.u-rss-02 {
+  mask-image: url("/icons/untitled/rss-02.svg");
+}
+.u-rss {
+  mask-image: url("/icons/untitled/rss.svg");
+}
+.u-ruler {
+  mask-image: url("/icons/untitled/ruler.svg");
+}
+.u-safe {
+  mask-image: url("/icons/untitled/safe.svg");
+}
+.u-sale-02 {
+  mask-image: url("/icons/untitled/sale-02.svg");
+}
+.u-sale-03 {
+  mask-image: url("/icons/untitled/sale-03.svg");
+}
+.u-sale-04 {
+  mask-image: url("/icons/untitled/sale-04.svg");
+}
+.u-sale {
+  mask-image: url("/icons/untitled/sale.svg");
+}
+.u-save-02 {
+  mask-image: url("/icons/untitled/save-02.svg");
+}
+.u-save-double {
+  mask-image: url("/icons/untitled/save-double.svg");
+}
+.u-save {
+  mask-image: url("/icons/untitled/save.svg");
+}
+.u-scale-02 {
+  mask-image: url("/icons/untitled/scale-02.svg");
+}
+.u-scale-03 {
+  mask-image: url("/icons/untitled/scale-03.svg");
+}
+.u-scale {
+  mask-image: url("/icons/untitled/scale.svg");
+}
+.u-scales-02 {
+  mask-image: url("/icons/untitled/scales-02.svg");
+}
+.u-scales {
+  mask-image: url("/icons/untitled/scales.svg");
+}
+.u-scan {
+  mask-image: url("/icons/untitled/scan.svg");
+}
+.u-school-compass {
+  mask-image: url("/icons/untitled/school-compass.svg");
+}
+.u-scissors-02 {
+  mask-image: url("/icons/untitled/scissors-02.svg");
+}
+.u-scissors-cut-02 {
+  mask-image: url("/icons/untitled/scissors-cut-02.svg");
+}
+.u-scissors-cut {
+  mask-image: url("/icons/untitled/scissors-cut.svg");
+}
+.u-scissors {
+  mask-image: url("/icons/untitled/scissors.svg");
+}
+.u-search-lg {
+  mask-image: url("/icons/untitled/search-lg.svg");
+}
+.u-search-md {
+  mask-image: url("/icons/untitled/search-md.svg");
+}
+.u-search-refraction {
+  mask-image: url("/icons/untitled/search-refraction.svg");
+}
+.u-search-sm {
+  mask-image: url("/icons/untitled/search-sm.svg");
+}
+.u-secure-file {
+  mask-image: url("/icons/untitled/secure-file.svg");
+}
+.u-send-horizontal {
+  mask-image: url("/icons/untitled/send-horizontal.svg");
+}
+.u-send-vertical {
+  mask-image: url("/icons/untitled/send-vertical.svg");
+}
+.u-send {
+  mask-image: url("/icons/untitled/send.svg");
+}
+.u-server-02 {
+  mask-image: url("/icons/untitled/server-02.svg");
+}
+.u-server-03 {
+  mask-image: url("/icons/untitled/server-03.svg");
+}
+.u-server-04 {
+  mask-image: url("/icons/untitled/server-04.svg");
+}
+.u-server-05 {
+  mask-image: url("/icons/untitled/server-05.svg");
+}
+.u-server-06 {
+  mask-image: url("/icons/untitled/server-06.svg");
+}
+.u-server {
+  mask-image: url("/icons/untitled/server.svg");
+}
+.u-settings-02 {
+  mask-image: url("/icons/untitled/settings-02.svg");
+}
+.u-settings-toggle-line {
+  mask-image: url("/icons/untitled/settings-toggle-line.svg");
+}
+.u-settings-toggle {
+  mask-image: url("/icons/untitled/settings-toggle.svg");
+}
+.u-settings {
+  mask-image: url("/icons/untitled/settings.svg");
+}
+.u-share-02 {
+  mask-image: url("/icons/untitled/share-02.svg");
+}
+.u-share-03 {
+  mask-image: url("/icons/untitled/share-03.svg");
+}
+.u-share-04 {
+  mask-image: url("/icons/untitled/share-04.svg");
+}
+.u-share-05 {
+  mask-image: url("/icons/untitled/share-05.svg");
+}
+.u-share-06 {
+  mask-image: url("/icons/untitled/share-06.svg");
+}
+.u-share-07 {
+  mask-image: url("/icons/untitled/share-07.svg");
+}
+.u-share {
+  mask-image: url("/icons/untitled/share.svg");
+}
+.u-shield-02 {
+  mask-image: url("/icons/untitled/shield-02.svg");
+}
+.u-shield-dollar {
+  mask-image: url("/icons/untitled/shield-dollar.svg");
+}
+.u-shield-off {
+  mask-image: url("/icons/untitled/shield-off.svg");
+}
+.u-shield-plus {
+  mask-image: url("/icons/untitled/shield-plus.svg");
+}
+.u-shield-separator {
+  mask-image: url("/icons/untitled/shield-separator.svg");
+}
+.u-shield-tick {
+  mask-image: url("/icons/untitled/shield-tick.svg");
+}
+.u-shield-zap {
+  mask-image: url("/icons/untitled/shield-zap.svg");
+}
+.u-shield {
+  mask-image: url("/icons/untitled/shield.svg");
+}
+.u-shop {
+  mask-image: url("/icons/untitled/shop.svg");
+}
+.u-shopping-bag-02 {
+  mask-image: url("/icons/untitled/shopping-bag-02.svg");
+}
+.u-shopping-bag-03 {
+  mask-image: url("/icons/untitled/shopping-bag-03.svg");
+}
+.u-shopping-bag {
+  mask-image: url("/icons/untitled/shopping-bag.svg");
+}
+.u-shopping-cart-02 {
+  mask-image: url("/icons/untitled/shopping-cart-02.svg");
+}
+.u-shopping-cart-03 {
+  mask-image: url("/icons/untitled/shopping-cart-03.svg");
+}
+.u-shopping-cart {
+  mask-image: url("/icons/untitled/shopping-cart.svg");
+}
+.u-shuffle-02 {
+  mask-image: url("/icons/untitled/shuffle-02.svg");
+}
+.u-shuffle {
+  mask-image: url("/icons/untitled/shuffle.svg");
+}
+.u-signal-02 {
+  mask-image: url("/icons/untitled/signal-02.svg");
+}
+.u-signal-03 {
+  mask-image: url("/icons/untitled/signal-03.svg");
+}
+.u-signal {
+  mask-image: url("/icons/untitled/signal.svg");
+}
+.u-simcard {
+  mask-image: url("/icons/untitled/simcard.svg");
+}
+.u-skew {
+  mask-image: url("/icons/untitled/skew.svg");
+}
+.u-skip-back {
+  mask-image: url("/icons/untitled/skip-back.svg");
+}
+.u-skip-forward {
+  mask-image: url("/icons/untitled/skip-forward.svg");
+}
+.u-slash-circle-01 {
+  mask-image: url("/icons/untitled/slash-circle-01.svg");
+}
+.u-slash-circle-02 {
+  mask-image: url("/icons/untitled/slash-circle-02.svg");
+}
+.u-slash-divider {
+  mask-image: url("/icons/untitled/slash-divider.svg");
+}
+.u-slash-octagon {
+  mask-image: url("/icons/untitled/slash-octagon.svg");
+}
+.u-sliders-02 {
+  mask-image: url("/icons/untitled/sliders-02.svg");
+}
+.u-sliders-03 {
+  mask-image: url("/icons/untitled/sliders-03.svg");
+}
+.u-sliders-04 {
+  mask-image: url("/icons/untitled/sliders-04.svg");
+}
+.u-sliders {
+  mask-image: url("/icons/untitled/sliders.svg");
+}
+.u-snowflake-02 {
+  mask-image: url("/icons/untitled/snowflake-02.svg");
+}
+.u-snowflake {
+  mask-image: url("/icons/untitled/snowflake.svg");
+}
+.u-spacing-height-02 {
+  mask-image: url("/icons/untitled/spacing-height-02.svg");
+}
+.u-spacing-height {
+  mask-image: url("/icons/untitled/spacing-height.svg");
+}
+.u-spacing-width-02 {
+  mask-image: url("/icons/untitled/spacing-width-02.svg");
+}
+.u-spacing-width {
+  mask-image: url("/icons/untitled/spacing-width.svg");
+}
+.u-speaker-02 {
+  mask-image: url("/icons/untitled/speaker-02.svg");
+}
+.u-speaker-03 {
+  mask-image: url("/icons/untitled/speaker-03.svg");
+}
+.u-speaker {
+  mask-image: url("/icons/untitled/speaker.svg");
+}
+.u-speedometer-02 {
+  mask-image: url("/icons/untitled/speedometer-02.svg");
+}
+.u-speedometer {
+  mask-image: url("/icons/untitled/speedometer.svg");
+}
+.u-square {
+  mask-image: url("/icons/untitled/square.svg");
+}
+.u-stand {
+  mask-image: url("/icons/untitled/stand.svg");
+}
+.u-star-02 {
+  mask-image: url("/icons/untitled/star-02.svg");
+}
+.u-star-03 {
+  mask-image: url("/icons/untitled/star-03.svg");
+}
+.u-star-04 {
+  mask-image: url("/icons/untitled/star-04.svg");
+}
+.u-star-05 {
+  mask-image: url("/icons/untitled/star-05.svg");
+}
+.u-star-06 {
+  mask-image: url("/icons/untitled/star-06.svg");
+}
+.u-star-07 {
+  mask-image: url("/icons/untitled/star-07.svg");
+}
+.u-star {
+  mask-image: url("/icons/untitled/star.svg");
+}
+.u-star-solid {
+  mask-image: url("/icons/untitled/star-solid.svg");
+}
+.u-stars-02 {
+  mask-image: url("/icons/untitled/stars-02.svg");
+}
+.u-stars-03 {
+  mask-image: url("/icons/untitled/stars-03.svg");
+}
+.u-stars {
+  mask-image: url("/icons/untitled/stars.svg");
+}
+.u-sticker-circle {
+  mask-image: url("/icons/untitled/sticker-circle.svg");
+}
+.u-sticker-square {
+  mask-image: url("/icons/untitled/sticker-square.svg");
+}
+.u-stop-circle {
+  mask-image: url("/icons/untitled/stop-circle.svg");
+}
+.u-stop-square {
+  mask-image: url("/icons/untitled/stop-square.svg");
+}
+.u-stop {
+  mask-image: url("/icons/untitled/stop.svg");
+}
+.u-strikethrough-02 {
+  mask-image: url("/icons/untitled/strikethrough-02.svg");
+}
+.u-strikethrough-square {
+  mask-image: url("/icons/untitled/strikethrough-square.svg");
+}
+.u-strikethrough {
+  mask-image: url("/icons/untitled/strikethrough.svg");
+}
+.u-subscript {
+  mask-image: url("/icons/untitled/subscript.svg");
+}
+.u-sun-setting-02 {
+  mask-image: url("/icons/untitled/sun-setting-02.svg");
+}
+.u-sun-setting-03 {
+  mask-image: url("/icons/untitled/sun-setting-03.svg");
+}
+.u-sun-setting {
+  mask-image: url("/icons/untitled/sun-setting.svg");
+}
+.u-sun {
+  mask-image: url("/icons/untitled/sun.svg");
+}
+.u-sunrise {
+  mask-image: url("/icons/untitled/sunrise.svg");
+}
+.u-sunset {
+  mask-image: url("/icons/untitled/sunset.svg");
+}
+.u-switch-horizontal-sm {
+  mask-image: url("/icons/untitled/switch-horizontal-sm.svg");
+}
+.u-switch-horizontal {
+  mask-image: url("/icons/untitled/switch-horizontal.svg");
+}
+.u-switch-vertical-sm {
+  mask-image: url("/icons/untitled/switch-vertical-sm.svg");
+}
+.u-switch-vertical {
+  mask-image: url("/icons/untitled/switch-vertical.svg");
+}
+.u-table {
+  mask-image: url("/icons/untitled/table.svg");
+}
+.u-tablet-02 {
+  mask-image: url("/icons/untitled/tablet-02.svg");
+}
+.u-tablet {
+  mask-image: url("/icons/untitled/tablet.svg");
+}
+.u-tag-02 {
+  mask-image: url("/icons/untitled/tag-02.svg");
+}
+.u-tag-03 {
+  mask-image: url("/icons/untitled/tag-03.svg");
+}
+.u-tag {
+  mask-image: url("/icons/untitled/tag.svg");
+}
+.u-target-02 {
+  mask-image: url("/icons/untitled/target-02.svg");
+}
+.u-target-arrow {
+  mask-image: url("/icons/untitled/target-arrow.svg");
+}
+.u-target {
+  mask-image: url("/icons/untitled/target.svg");
+}
+.u-telescope {
+  mask-image: url("/icons/untitled/telescope.svg");
+}
+.u-terminal-browser {
+  mask-image: url("/icons/untitled/terminal-browser.svg");
+}
+.u-terminal-circle {
+  mask-image: url("/icons/untitled/terminal-circle.svg");
+}
+.u-terminal-square {
+  mask-image: url("/icons/untitled/terminal-square.svg");
+}
+.u-terminal {
+  mask-image: url("/icons/untitled/terminal.svg");
+}
+.u-text-align-left {
+  mask-image: url("/icons/untitled/text-align-left.svg");
+}
+.u-text-align-right {
+  mask-image: url("/icons/untitled/text-align-right.svg");
+}
+.u-text-input {
+  mask-image: url("/icons/untitled/text-input.svg");
+}
+.u-thermometer-02 {
+  mask-image: url("/icons/untitled/thermometer-02.svg");
+}
+.u-thermometer-03 {
+  mask-image: url("/icons/untitled/thermometer-03.svg");
+}
+.u-thermometer-cold {
+  mask-image: url("/icons/untitled/thermometer-cold.svg");
+}
+.u-thermometer-warm {
+  mask-image: url("/icons/untitled/thermometer-warm.svg");
+}
+.u-thermometer {
+  mask-image: url("/icons/untitled/thermometer.svg");
+}
+.u-thumbs-down {
+  mask-image: url("/icons/untitled/thumbs-down.svg");
+}
+.u-thumbs-up {
+  mask-image: url("/icons/untitled/thumbs-up.svg");
+}
+.u-ticket-02 {
+  mask-image: url("/icons/untitled/ticket-02.svg");
+}
+.u-ticket {
+  mask-image: url("/icons/untitled/ticket.svg");
+}
+.u-toggle-left {
+  mask-image: url("/icons/untitled/toggle-left.svg");
+}
+.u-toggle-right {
+  mask-image: url("/icons/untitled/toggle-right.svg");
+}
+.u-toggle-rounded-left {
+  mask-image: url("/icons/untitled/toggle-rounded-left.svg");
+}
+.u-toggle-rounded-right {
+  mask-image: url("/icons/untitled/toggle-rounded-right.svg");
+}
+.u-tool-02 {
+  mask-image: url("/icons/untitled/tool-02.svg");
+}
+.u-tool {
+  mask-image: url("/icons/untitled/tool.svg");
+}
+.u-train {
+  mask-image: url("/icons/untitled/train.svg");
+}
+.u-tram {
+  mask-image: url("/icons/untitled/tram.svg");
+}
+.u-transform {
+  mask-image: url("/icons/untitled/transform.svg");
+}
+.u-translate {
+  mask-image: url("/icons/untitled/translate.svg");
+}
+.u-trash-02 {
+  mask-image: url("/icons/untitled/trash-02.svg");
+}
+.u-trash-03 {
+  mask-image: url("/icons/untitled/trash-03.svg");
+}
+.u-trash-04 {
+  mask-image: url("/icons/untitled/trash-04.svg");
+}
+.u-trash {
+  mask-image: url("/icons/untitled/trash.svg");
+}
+.u-trend-down-02 {
+  mask-image: url("/icons/untitled/trend-down-02.svg");
+}
+.u-trend-down {
+  mask-image: url("/icons/untitled/trend-down.svg");
+}
+.u-trend-up-02 {
+  mask-image: url("/icons/untitled/trend-up-02.svg");
+}
+.u-trend-up {
+  mask-image: url("/icons/untitled/trend-up.svg");
+}
+.u-triangle {
+  mask-image: url("/icons/untitled/triangle.svg");
+}
+.u-trophy-02 {
+  mask-image: url("/icons/untitled/trophy-02.svg");
+}
+.u-trophy {
+  mask-image: url("/icons/untitled/trophy.svg");
+}
+.u-truck-02 {
+  mask-image: url("/icons/untitled/truck-02.svg");
+}
+.u-truck {
+  mask-image: url("/icons/untitled/truck.svg");
+}
+.u-tv-02 {
+  mask-image: url("/icons/untitled/tv-02.svg");
+}
+.u-tv-03 {
+  mask-image: url("/icons/untitled/tv-03.svg");
+}
+.u-tv {
+  mask-image: url("/icons/untitled/tv.svg");
+}
+.u-type-02 {
+  mask-image: url("/icons/untitled/type-02.svg");
+}
+.u-type-square {
+  mask-image: url("/icons/untitled/type-square.svg");
+}
+.u-type-strikethrough-02 {
+  mask-image: url("/icons/untitled/type-strikethrough-02.svg");
+}
+.u-type-strikethrough {
+  mask-image: url("/icons/untitled/type-strikethrough.svg");
+}
+.u-type {
+  mask-image: url("/icons/untitled/type.svg");
+}
+.u-umbrella-02 {
+  mask-image: url("/icons/untitled/umbrella-02.svg");
+}
+.u-umbrella-03 {
+  mask-image: url("/icons/untitled/umbrella-03.svg");
+}
+.u-umbrella {
+  mask-image: url("/icons/untitled/umbrella.svg");
+}
+.u-underline-02 {
+  mask-image: url("/icons/untitled/underline-02.svg");
+}
+.u-underline-square {
+  mask-image: url("/icons/untitled/underline-square.svg");
+}
+.u-underline {
+  mask-image: url("/icons/untitled/underline.svg");
+}
+.u-upload-02 {
+  mask-image: url("/icons/untitled/upload-02.svg");
+}
+.u-upload-circle-broken {
+  mask-image: url("/icons/untitled/upload-circle-broken.svg");
+}
+.u-upload-circle {
+  mask-image: url("/icons/untitled/upload-circle.svg");
+}
+.u-upload-cloud-02 {
+  mask-image: url("/icons/untitled/upload-cloud-02.svg");
+}
+.u-upload-cloud {
+  mask-image: url("/icons/untitled/upload-cloud.svg");
+}
+.u-upload {
+  mask-image: url("/icons/untitled/upload.svg");
+}
+.u-usb-flash-drive {
+  mask-image: url("/icons/untitled/usb-flash-drive.svg");
+}
+
+.u-user-solid {
+  mask-image: url("/icons/untitled/user-solid.svg");
+}
+
+.u-user-02 {
+  mask-image: url("/icons/untitled/user-02.svg");
+}
+.u-user-03 {
+  mask-image: url("/icons/untitled/user-03.svg");
+}
+.u-user-check-02 {
+  mask-image: url("/icons/untitled/user-check-02.svg");
+}
+.u-user-check {
+  mask-image: url("/icons/untitled/user-check.svg");
+}
+.u-user-circle {
+  mask-image: url("/icons/untitled/user-circle.svg");
+}
+.u-user-circle-solid {
+  mask-image: url("/icons/untitled/user-circle-solid.svg");
+}
+.u-user-down-02 {
+  mask-image: url("/icons/untitled/user-down-02.svg");
+}
+.u-user-down {
+  mask-image: url("/icons/untitled/user-down.svg");
+}
+.u-user-edit {
+  mask-image: url("/icons/untitled/user-edit.svg");
+}
+.u-user-left-02 {
+  mask-image: url("/icons/untitled/user-left-02.svg");
+}
+.u-user-left {
+  mask-image: url("/icons/untitled/user-left.svg");
+}
+.u-user-minus-02 {
+  mask-image: url("/icons/untitled/user-minus-02.svg");
+}
+.u-user-minus {
+  mask-image: url("/icons/untitled/user-minus.svg");
+}
+.u-user-plus-02 {
+  mask-image: url("/icons/untitled/user-plus-02.svg");
+}
+.u-user-plus {
+  mask-image: url("/icons/untitled/user-plus.svg");
+}
+.u-user-right-02 {
+  mask-image: url("/icons/untitled/user-right-02.svg");
+}
+.u-user-right {
+  mask-image: url("/icons/untitled/user-right.svg");
+}
+.u-user-square {
+  mask-image: url("/icons/untitled/user-square.svg");
+}
+.u-user-up-02 {
+  mask-image: url("/icons/untitled/user-up-02.svg");
+}
+.u-user-up {
+  mask-image: url("/icons/untitled/user-up.svg");
+}
+.u-user-x-02 {
+  mask-image: url("/icons/untitled/user-x-02.svg");
+}
+.u-user-x {
+  mask-image: url("/icons/untitled/user-x.svg");
+}
+.u-user {
+  mask-image: url("/icons/untitled/user.svg");
+}
+.u-users-02 {
+  mask-image: url("/icons/untitled/users-02.svg");
+}
+.u-users-03 {
+  mask-image: url("/icons/untitled/users-03.svg");
+}
+.u-users-check {
+  mask-image: url("/icons/untitled/users-check.svg");
+}
+.u-users-down {
+  mask-image: url("/icons/untitled/users-down.svg");
+}
+.u-users-edit {
+  mask-image: url("/icons/untitled/users-edit.svg");
+}
+.u-users-left {
+  mask-image: url("/icons/untitled/users-left.svg");
+}
+.u-users-minus {
+  mask-image: url("/icons/untitled/users-minus.svg");
+}
+.u-users-plus {
+  mask-image: url("/icons/untitled/users-plus.svg");
+}
+.u-users-right {
+  mask-image: url("/icons/untitled/users-right.svg");
+}
+.u-users-up {
+  mask-image: url("/icons/untitled/users-up.svg");
+}
+.u-users-x {
+  mask-image: url("/icons/untitled/users-x.svg");
+}
+.u-users {
+  mask-image: url("/icons/untitled/users.svg");
+}
+.u-variable {
+  mask-image: url("/icons/untitled/variable.svg");
+}
+.u-video-recorder-off {
+  mask-image: url("/icons/untitled/video-recorder-off.svg");
+}
+.u-video-recorder {
+  mask-image: url("/icons/untitled/video-recorder.svg");
+}
+.u-virus {
+  mask-image: url("/icons/untitled/virus.svg");
+}
+.u-voicemail {
+  mask-image: url("/icons/untitled/voicemail.svg");
+}
+.u-volume-max {
+  mask-image: url("/icons/untitled/volume-max.svg");
+}
+.u-volume-min {
+  mask-image: url("/icons/untitled/volume-min.svg");
+}
+.u-volume-minus {
+  mask-image: url("/icons/untitled/volume-minus.svg");
+}
+.u-volume-plus {
+  mask-image: url("/icons/untitled/volume-plus.svg");
+}
+.u-volume-x {
+  mask-image: url("/icons/untitled/volume-x.svg");
+}
+.u-wallet-02 {
+  mask-image: url("/icons/untitled/wallet-02.svg");
+}
+.u-wallet-03 {
+  mask-image: url("/icons/untitled/wallet-03.svg");
+}
+.u-wallet-04 {
+  mask-image: url("/icons/untitled/wallet-04.svg");
+}
+.u-wallet-05 {
+  mask-image: url("/icons/untitled/wallet-05.svg");
+}
+.u-wallet {
+  mask-image: url("/icons/untitled/wallet.svg");
+}
+.u-watch-circle {
+  mask-image: url("/icons/untitled/watch-circle.svg");
+}
+.u-watch-square {
+  mask-image: url("/icons/untitled/watch-square.svg");
+}
+.u-waves {
+  mask-image: url("/icons/untitled/waves.svg");
+}
+.u-webcam-02 {
+  mask-image: url("/icons/untitled/webcam-02.svg");
+}
+.u-webcam {
+  mask-image: url("/icons/untitled/webcam.svg");
+}
+.u-wifi-off {
+  mask-image: url("/icons/untitled/wifi-off.svg");
+}
+.u-wifi {
+  mask-image: url("/icons/untitled/wifi.svg");
+}
+.u-wind-02 {
+  mask-image: url("/icons/untitled/wind-02.svg");
+}
+.u-wind-03 {
+  mask-image: url("/icons/untitled/wind-03.svg");
+}
+.u-wind {
+  mask-image: url("/icons/untitled/wind.svg");
+}
+.u-x-circle {
+  mask-image: url("/icons/untitled/x-circle.svg");
+}
+.u-x-close {
+  mask-image: url("/icons/untitled/x-close.svg");
+}
+.u-x-circle-solid {
+  mask-image: url("/icons/untitled/x-circle-solid.svg");
+}
+.u-x-square {
+  mask-image: url("/icons/untitled/x-square.svg");
+}
+.u-x {
+  mask-image: url("/icons/untitled/x.svg");
+}
+.u-youtube {
+  mask-image: url("/icons/untitled/youtube.svg");
+}
+.u-zap-circle {
+  mask-image: url("/icons/untitled/zap-circle.svg");
+}
+.u-zap-fast {
+  mask-image: url("/icons/untitled/zap-fast.svg");
+}
+.u-zap-off {
+  mask-image: url("/icons/untitled/zap-off.svg");
+}
+.u-zap-square {
+  mask-image: url("/icons/untitled/zap-square.svg");
+}
+.u-zap {
+  mask-image: url("/icons/untitled/zap.svg");
+}
+.u-zoom-in {
+  mask-image: url("/icons/untitled/zoom-in.svg");
+}
+.u-zoom-out {
+  mask-image: url("/icons/untitled/zoom-out.svg");
+}
+
+.u-shield-tick-solid {
+  mask-image: url("/icons/untitled/shield-tick-solid.svg");
+}
+
+.u-shield-crown-solid {
+  mask-image: url("/icons/untitled/shield-crown-solid.svg");
+}
+.u-file-pdf {
+  mask-image: url("/icons/untitled/file-pdf.svg");
+}
+
+.u-google-color {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: url("/icons/feed/google.svg");
+
+  @apply bg-contain bg-center bg-no-repeat;
+}
+
+.u-gavel {
+  mask-image: url("/icons/untitled/gavel.svg");
+}
+
+.u-site-merged {
+  mask-image: url("/icons/untitled/site-merged.svg");
+}
+
+.u-refresh-ccw-05 {
+  mask-image: url("/icons/untitled/refresh-ccw-05.svg");
+}
+
+.u-target-04 {
+  mask-image: url("/icons/untitled/target-04.svg");
+}
+
+.u-user-executive-solid {
+  mask-image: url("/icons/untitled/user-executive-solid.svg");
+}

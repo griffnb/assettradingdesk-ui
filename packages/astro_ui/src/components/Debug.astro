@@ -1,0 +1,77 @@
+---
+import type { BaseProps } from "@/models/types/base";
+import { getEnv, getPublicEnvVar } from "@/utils/env";
+
+interface Props extends BaseProps<any> {}
+
+const props = Astro.props;
+
+const sageAdminURL = getPublicEnvVar("PUBLIC_SAGE_ADMIN_URL");
+
+const editLPLink = `${sageAdminURL}/landing-pages/edit/${props.lp_id}`;
+const manageLPsLink = `${sageAdminURL}/ad-landing-pages?ad_id=${props.ad_id}`;
+const editAdLink = `${sageAdminURL}/ads/edit/${props.ad_id}`;
+---
+
+<div
+  id="debug"
+  class="fixed z-[901] bottom-3 right-3 rounded-full bg-gray-500 border-1 border-black cursor-pointer"
+>
+  <i class="fa fa-bug text-white p-2"></i>
+</div>
+<div
+  id="debug-panel"
+  class="hidden z-[900] fixed w-full h-full top-0 left-0 overflow-auto max-h-svh bg-orange-dark-300"
+>
+  <div class="flex flex-col gap-y-3 p-5">
+    <div class="flex flex-row gap-x-3">
+      <a
+        href={editLPLink}
+        target="_blank"
+        class="text-gray-700 bg-gray-50 border-1 px-3 py-2 rounded-xl"
+      >
+        Edit LP
+      </a>
+      <a
+        href={manageLPsLink}
+        target="_blank"
+        class="text-gray-700 bg-gray-50 border-1 px-3 py-2 rounded-xl"
+      >
+        Manage LPs
+      </a>
+      <a
+        href={editAdLink}
+        target="_blank"
+        class="text-gray-700 bg-gray-50 border-1 px-3 py-2 rounded-xl"
+      >
+        Edit Ad
+      </a>
+    </div>
+    <div class="bg-gray-50 border-1 rounded-xl">
+      <h1>Product Settings</h1>
+      <pre>{JSON.stringify(props.productSettings, null, 2)}</pre>
+    </div>
+
+    <div class="bg-gray-50 border-1 rounded-xl">
+      <h1>Tracking Values</h1>
+      <pre>{JSON.stringify(props.trackingValues, null, 2)}</pre>
+    </div>
+    <div class="bg-gray-50 border-1 rounded-xl">
+      <h1>Cvars</h1>
+      <pre>{JSON.stringify(props.cvars, null, 2)}</pre>
+    </div>
+    <div class="bg-gray-50 border-1 rounded-xl">
+      <h1>Geo</h1>
+      <pre>{JSON.stringify(props.geo, null, 2)}</pre>
+    </div>
+    <div class="bg-gray-50 border-1 rounded-xl">
+      <h1>Env</h1>
+      <pre>{JSON.stringify(getEnv(), null, 2)}</pre>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector("#debug")?.addEventListener("click", function () {
+    document.getElementById("debug-panel")?.classList.toggle("hidden");
+  });
+</script>

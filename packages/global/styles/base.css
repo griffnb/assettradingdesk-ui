@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import "@/ui/theme_styles/primitives.css";
+
+  label {
+    cursor: inherit;
+  }
+
+  :root {
+    --color-primary: #116df8;
+    --color-primary-lightest: #f1f3f6;
+    --color-primary-lighter: #bcd7ff;
+    --color-primary-light: #add3ff;
+    --color-primary-dark: #62708e;
+    --color-primary-darker: #262b43;
+    --color-primary-darkest: #161a2e;
+    --color-primary-black: #0e1227;
+
+    --color-white: #fff;
+    --color-red: #f04438;
+    --color-orange: #f79009;
+    --color-green: #17b26a;
+    --color-black: #000;
+    --color-yellow: #fac515;
+
+    --color-gray-lighter: #fafafa;
+    --color-gray-light: #e4e7e9;
+    --color-gray: #c3c6c9;
+    --color-gray-dark: #83888c;
+    --color-gray-darker: #6e6e6e;
+
+    --bottom-nav-height: 64px;
+    --top-nav-height: 64px;
+    --titlebar-height: 54px;
+  }
+
+  /* hides the input spinner on number types */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+}
+
+/* Need to hide pactsafe title, it's loaded by the pactsafe script */
+#tos-container .ps-contract-title {
+  display: none !important;
+}

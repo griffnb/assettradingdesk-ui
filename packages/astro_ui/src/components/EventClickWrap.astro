@@ -1,0 +1,57 @@
+---
+import type { TrackingComponent } from "@/sage/types/Tracking";
+
+interface Props extends TrackingComponent {
+  event: string;
+}
+
+const props = Astro.props;
+---
+
+<script>
+  import { SageLibrary } from "@/sage/SageLibrary.ts";
+
+  class AdClickWrap extends HTMLElement {
+    event: string;
+    page: string;
+    placement: string;
+    sageURL: string;
+    trackingValues: {};
+
+    eventClick = () => {
+      const extraParams = {
+        [SageLibrary.PARAM_PAGE]: this.page,
+        [SageLibrary.PARAM_PLACEMENT]: this.placement,
+      };
+
+      SageLibrary.callEvent(this.trackingValues, this.event, extraParams);
+    };
+
+    constructor() {
+      super();
+
+      // Read the message from the data attribute.
+      this.event = this.dataset.event ? this.dataset.event : "";
+      this.page = this.dataset.page ? this.dataset.page : "";
+      this.placement = this.dataset.placement ? this.dataset.placement : "";
+      this.sageURL = this.dataset.sageUrl ? this.dataset.sageUrl : "";
+      this.trackingValues = this.dataset.trackingValues
+        ? JSON.parse(this.dataset.trackingValues)
+        : {};
+      this.onclick = () => {
+        this.eventClick();
+      };
+    }
+  }
+
+  customElements.define("event-click-wrap", AdClickWrap);
+</script>
+<event-click-wrap
+  data-event={props.event}
+  data-page={props.page}
+  data-placement={props.placement}
+  data-sage-url={props.sageURL}
+  data-tracking-values={JSON.stringify(props.trackingValues)}
+>
+  <slot />
+</event-click-wrap>

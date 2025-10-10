@@ -1,0 +1,21 @@
+---
+import type { SagePlacement } from "@/sage/SageLibrary";
+import type { BaseProps } from "../types/base";
+import type { BlockConfig } from "../types/blocks";
+
+interface Props extends BaseProps<any> {
+  placement: SagePlacement;
+  blockConfig: BlockConfig;
+}
+
+const props = Astro.props;
+---
+
+{
+  (() => {
+    switch (props.blockConfig.type) {
+      default:
+        return <div>Block not found</div>;
+    }
+  })()
+}

@@ -1,0 +1,175 @@
+.btn-primary {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 px-3 py-2  text-center text-base font-medium text-white shadow hover:from-primary-blue-600 hover:to-secondary-blue-600 disabled:bg-gray-300 disabled:bg-none disabled:text-gray-500;
+  &.active {
+    @apply from-primary-blue-600 to-secondary-blue-600;
+  }
+}
+
+.btn-primary-xs {
+  @apply inline-flex h-6 max-w-[300px] cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 px-3  py-2 text-center text-xxs font-medium text-white shadow hover:from-primary-blue-600 hover:to-secondary-blue-600 disabled:bg-gray-300 disabled:bg-none disabled:text-gray-500;
+  &.active {
+    @apply from-primary-blue-600 to-secondary-blue-600;
+  }
+}
+
+.btn-primary-lg {
+  @apply inline-flex h-10 max-w-[300px] cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 px-4 py-2.5  text-center text-sm font-medium text-white shadow hover:from-primary-blue-600 hover:to-secondary-blue-600 disabled:bg-gray-300 disabled:bg-none disabled:text-gray-500;
+  &.active {
+    @apply from-primary-blue-600 to-secondary-blue-600;
+  }
+}
+
+.btn-primary-2xl {
+  @apply inline-flex max-w-[300px] cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 px-6 py-3.5  text-center text-base font-medium text-white shadow hover:from-primary-blue-600 hover:to-secondary-blue-600 disabled:bg-gray-300 disabled:bg-none disabled:text-gray-500;
+  &.active {
+    @apply from-primary-blue-600 to-secondary-blue-600;
+  }
+}
+
+.btn-secondary {
+  @apply relative inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-base font-medium text-gray-700 hover:bg-primary-blue-50 hover:text-primary-blue-400 focus:outline-none;
+  background-clip: padding-box; /* Prevents the background color from overlapping the border */
+  &::before {
+    @apply absolute bottom-0 left-0 right-0 top-0 rounded-full bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 p-0.5;
+    content: "";
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none; /* Prevents the pseudo-element from blocking button interaction */
+  }
+
+  &.active {
+    @apply bg-primary-blue-500 text-white;
+  }
+
+  @apply disabled:border-2 disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-white;
+}
+
+.btn-secondary:disabled {
+  ::before {
+    content: none; /* Hides the ::before pseudo-element when the button is disabled */
+  }
+}
+
+.btn-secondary-xs {
+  @apply relative inline-flex h-6  max-w-[300px] items-center justify-center rounded-full bg-white px-3 py-2 text-xxs font-medium text-gray-700 hover:bg-primary-blue-50 hover:text-primary-blue-400 focus:outline-none;
+  background-clip: padding-box; /* Prevents the background color from overlapping the border */
+  &::before {
+    @apply absolute bottom-0 left-0 right-0 top-0 rounded-full bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 p-0.5;
+    content: "";
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none; /* Prevents the pseudo-element from blocking button interaction */
+  }
+
+  &.active {
+    @apply bg-primary-blue-500 text-white;
+  }
+
+  @apply disabled:border-2 disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-white;
+}
+
+.btn-secondary-xs:disabled {
+  ::before {
+    content: none; /* Hides the ::before pseudo-element when the button is disabled */
+  }
+}
+
+.btn-secondary-lg {
+  @apply relative inline-flex h-10 max-w-[300px] items-center justify-center rounded-full bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary-blue-50 hover:text-primary-blue-400 focus:outline-none;
+  background-clip: padding-box; /* Prevents the background color from overlapping the border */
+  &::before {
+    @apply absolute bottom-0 left-0 right-0 top-0 rounded-full bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 p-0.5;
+    content: "";
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none; /* Prevents the pseudo-element from blocking button interaction */
+  }
+
+  &.active {
+    @apply bg-primary-blue-500 text-white;
+  }
+
+  @apply disabled:border-2 disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-white;
+}
+
+.btn-secondary-lg:disabled {
+  ::before {
+    content: none; /* Hides the ::before pseudo-element when the button is disabled */
+  }
+}
+
+.btn-secondary-2xl {
+  @apply relative inline-flex max-w-[300px] items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-medium text-gray-700 hover:bg-primary-blue-50 hover:text-primary-blue-400 focus:outline-none;
+  background-clip: padding-box; /* Prevents the background color from overlapping the border */
+  &::before {
+    @apply absolute bottom-0 left-0 right-0 top-0 rounded-full bg-gradient-to-b from-primary-blue-500 to-secondary-blue-500 p-0.5;
+    content: "";
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none; /* Prevents the pseudo-element from blocking button interaction */
+  }
+
+  &.active {
+    @apply bg-primary-blue-500 text-white;
+  }
+
+  @apply disabled:border-2 disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-white;
+}
+
+.btn-secondary-2xl:disabled {
+  ::before {
+    content: none; /* Hides the ::before pseudo-element when the button is disabled */
+  }
+}
+
+.btn-tertiary {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 bg-white px-3 py-2 text-center text-base font-medium  text-gray-700 hover:bg-gray-200  disabled:bg-white disabled:text-gray-500;
+  &.active {
+    @apply bg-gray-200;
+  }
+}
+
+.btn-tertiary-xs {
+  @apply inline-flex h-6 max-w-[300px] cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 bg-white px-3 py-2 text-center text-xxs font-medium  text-gray-700 hover:bg-gray-200  disabled:bg-white disabled:text-gray-500;
+  &.active {
+    @apply bg-gray-200;
+  }
+}
+
+.btn-tertiary-lg {
+  @apply inline-flex h-10 max-w-[300px] cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 bg-white px-4 py-2.5 text-center text-sm font-medium  text-gray-700 hover:bg-gray-200  disabled:bg-white disabled:text-gray-500;
+  &.active {
+    @apply bg-gray-200;
+  }
+}
+
+.btn-tertiary-2xl {
+  @apply inline-flex max-w-[300px] cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 bg-white px-6 py-3.5 text-center text-base font-medium  text-gray-700 hover:bg-gray-200  disabled:bg-white disabled:text-gray-500;
+  &.active {
+    @apply bg-gray-200;
+  }
+}

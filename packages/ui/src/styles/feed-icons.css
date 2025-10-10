@@ -1,0 +1,27 @@
+.u-feed-dark-web {
+  mask-image: url("/icons/feed/dark-web.svg");
+}
+.u-feed-google {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: url("/icons/feed/google.svg");
+  @apply bg-contain bg-center bg-no-repeat;
+}
+.u-feed-invite-accepted {
+  mask-image: url("/icons/feed/invite-accepted.svg");
+}
+
+.u-feed-invite-sent {
+  mask-image: url("/icons/untitled/users.svg");
+}
+.u-feed-invite-reminder {
+  mask-image: url("/icons/feed/invite-pending.svg");
+}
+.u-feed-press {
+  mask-image: url("/icons/feed/press.svg");
+}
+.u-feed-theft {
+  mask-image: url("/icons/feed/theft.svg");
+}
+.u-feed-welcome {
+  mask-image: url("/icons/feed/welcome.svg");
+}

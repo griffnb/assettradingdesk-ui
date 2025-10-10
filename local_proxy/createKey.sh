@@ -1,0 +1,1 @@
+mkcert --cert-file ssl/$1.pem --key-file ssl/$1.key $@

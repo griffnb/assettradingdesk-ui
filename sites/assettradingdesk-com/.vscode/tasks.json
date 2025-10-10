@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": ["$tsc"],
+      "group": "build",
+      "label": "npm: build",
+      "detail": "tsc"
+    },
+    {
+      "label": "Flows Watch",
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": {
+        "owner": "typescript",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(\\S.*):(\\d+):(\\d+) - (\\w+) \\w+\\((\\d+)\\): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 6
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Watching for changes...",
+          "endsPattern": "Result \\(\\d+ files\\):"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "revealProblems": "onProblem"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

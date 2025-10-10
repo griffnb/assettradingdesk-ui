@@ -1,0 +1,49 @@
+---
+interface Props {
+  googleEventName?: string; // "conversion"
+  googleSendTo?: string;
+  bingEventName?: string; // "conversion"
+  bingEventCategory?: string; // "Replace_with_Event_Category"
+  bingEventLabel?: string; // "Replace_with_Event_Label"
+  value?: number;
+}
+
+const props = Astro.props;
+---
+
+<script is:inline define:vars={{ props }}>
+  if (typeof window !== "undefined") {
+    if (props.googleEventName) {
+      const convValues = {
+        send_to: props.googleSendTo, //"AW-10880607912/RZNHCMnh49UDEKjNo8Qo",
+      };
+      if (props.value) {
+        convValues.value = props.value;
+        convValues.currency = "USD";
+      }
+      try {
+        window.gtag("event", props.googleEventName, convValues);
+      } catch (e) {}
+    }
+
+    if (props.bingEventName) {
+      try {
+        const conversionData = {};
+        if (props.value) {
+          conversionData.event_value = props.value;
+        }
+        if (props.bingEventCategory) {
+          conversionData.event_category = props.bingEventCategory;
+        }
+        if (props.bingEventLabel) {
+          conversionData.event_label = props.bingEventLabel;
+        }
+
+        window.uetq = window.uetq || [];
+        window.uetq.push("event", props.bingEventName, conversionData);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
+</script>
