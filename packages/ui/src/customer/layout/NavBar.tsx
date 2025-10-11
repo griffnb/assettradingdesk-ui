@@ -1,5 +1,5 @@
-import * as React from "react";
-
+import { Button } from "@/ui/shadcn/ui/button";
+import { Input } from "@/ui/shadcn/ui/input";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,7 +8,16 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/ui/shadcn/ui/navigation-menu";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/clerk-react";
+import { Bell } from "lucide-react";
 import { observer } from "mobx-react-lite";
+import { useState } from "react";
 import { Link } from "react-router";
 
 const components: { title: string; href: string; description: string }[] = [
@@ -50,12 +59,20 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export const NavBar = observer(function NavBar() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
-    <div className="flex flex-1 flex-row py-3 px-6 border-b w-full">
+    <div className="flex flex-1 items-center flex-row py-3 px-6 border-b w-full">
       <img src="/img/logo.png" />
-      <NavigationMenu viewport={false} value="categories">
+      <Input
+        className="max-w-sm mx-6"
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <NavigationMenu viewport={false}>
         <NavigationMenuList>
-          <NavigationMenuItem value="categories">
+          <NavigationMenuItem>
             <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -104,6 +121,22 @@ export const NavBar = observer(function NavBar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <div className="ml-auto flex flex-row gap-2 items-center">
+        <SignedIn>
+          <Button variant="outline" size="icon" aria-label="Submit">
+            <Bell />
+          </Button>
+          <UserButton />
+        </SignedIn>
+        <SignedOut>
+          <SignUpButton>
+            <Button>Register Now</Button>
+          </SignUpButton>
+          <SignInButton>
+            <Button>Sign In</Button>
+          </SignInButton>
+        </SignedOut>
+      </div>
     </div>
   );
 });
