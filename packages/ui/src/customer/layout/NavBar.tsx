@@ -53,7 +53,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export const NavBar = observer(function NavBar() {
   return (
-    <NavigationMenu>
+    <NavigationMenu viewport={false} value="icon">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Home</NavigationMenuTrigger>
@@ -158,25 +158,25 @@ export const NavBar = observer(function NavBar() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="icon">
           <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[200px] gap-4">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
+                  <Link to="#" className="!flex-row items-center gap-2">
                     <CircleHelpIcon />
                     Backlog
                   </Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
+                  <Link to="#" className="!flex-row items-center gap-2">
                     <CircleIcon />
                     To Do
                   </Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
+                  <Link to="#" className="!flex-row items-center gap-2">
                     <CircleCheckIcon />
                     Done
                   </Link>

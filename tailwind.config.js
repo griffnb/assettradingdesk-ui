@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-// @ts-expect-error (no types for tailwind plugin)
-const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
@@ -725,15 +723,5 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/typography"),
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          "text-shadow": (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme("textShadow") }
-      );
-    }),
   ],
 };
