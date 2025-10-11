@@ -1,4 +1,3 @@
-"use client";
 import { UserButton } from "@clerk/clerk-react";
 import { ChevronDown, Search, Settings, Wand2, X } from "lucide-react";
 

@@ -1,11 +1,8 @@
-"use client";
 import { cn } from "@/utils/cn";
 import { BookOpen, Bookmark, FileText, Grid, Home, Layers } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
-import { DesktopSidebar } from "./DesktopSidebar";
-import { Header } from "./Header";
-import { MobileMenu } from "./MobileMenu";
+import { NavBar } from "./NavBar";
 
 export const sidebarItems = [
   {
@@ -84,19 +81,6 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <MobileMenu
-        expandedItems={expandedItems}
-        toggleExpanded={toggleExpanded}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-      />
-      <DesktopSidebar
-        expandedItems={expandedItems}
-        toggleExpanded={toggleExpanded}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
-
       {/* Main Content */}
       <div
         className={cn(
@@ -104,13 +88,7 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
           sidebarOpen ? "md:pl-64" : "md:pl-0"
         )}
       >
-        <Header
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-          title={props.title}
-          notifications={notifications}
-          setMobileMenuOpen={setMobileMenuOpen}
-        />
+        <NavBar />
         <main className="flex-1">{props.children}</main>
       </div>
     </div>
