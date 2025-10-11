@@ -2,15 +2,6 @@
 const path = require("path");
 
 const aliasResolver = (id) => {
-  console.log("ID", id, "Dir Name", __dirname);
-  if (id.startsWith("@/astro_ui/")) {
-    return path.resolve(
-      __dirname,
-      "./packages/astro_ui/src/",
-      id.slice("@/astro_ui/".length)
-    );
-  }
-
   if (id.startsWith("@/ui/")) {
     return path.resolve(
       __dirname,

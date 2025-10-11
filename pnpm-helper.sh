@@ -4,7 +4,7 @@
 commands=("install" "install -D" "up" "run" "build")
 
 # Step 2: Get the list of packages in ./packages
-packages=($(ls -d ./sites/*/ ./packages/*/ | xargs -n 1 basename))
+packages=($(ls -d ./apps/*/ ./sites/*/ ./packages/*/ | xargs -n 1 basename))
 packages+=("all") # Add the "all" option
 
 # Step 3: Function to run pnpm commands based on user input

@@ -16,36 +16,36 @@ import { Link } from "react-router";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    href: "#",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
     title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    href: "#",
     description:
       "For sighted users to preview content available behind a link.",
   },
   {
     title: "Progress",
-    href: "/docs/primitives/progress",
+    href: "#",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
   {
     title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
+    href: "#",
     description: "Visually or semantically separates content.",
   },
   {
     title: "Tabs",
-    href: "/docs/primitives/tabs",
+    href: "#",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
     title: "Tooltip",
-    href: "/docs/primitives/tooltip",
+    href: "#",
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
@@ -53,7 +53,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export const NavBar = observer(function NavBar() {
   return (
-    <NavigationMenu value="components">
+    <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Home</NavigationMenuTrigger>
@@ -62,7 +62,7 @@ export const NavBar = observer(function NavBar() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                    className="from-gray-500/50 to-gray-500 flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md"
                     href="/"
                   >
                     <div className="mt-4 mb-2 text-lg font-medium">

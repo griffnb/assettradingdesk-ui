@@ -6,7 +6,6 @@ export default {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "../../packages/ui/src/**/*.{js,jsx,ts,tsx}",
-    "../../packages/astro_ui/src/**/*.{js,jsx,ts,tsx}",
     "../../packages/common_lib/src/**/*.{js,jsx,ts,tsx}",
   ],
   plugins: [
@@ -15,5 +14,6 @@ export default {
     require("@tailwindcss/forms"),
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/container-queries"),
+    require("tailwindcss-animate"),
   ],
 };

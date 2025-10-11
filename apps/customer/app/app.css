@@ -1,12 +1,1 @@
-@import "@/ui/theme_styles/base.css";
-@import "@/ui/styles/loading.css";
-@import "@/ui/styles/form-select.css";
-@import "@/ui/styles/datepicker.css";
-@import "@/ui/styles/table.css";
-@import "@/ui/styles/code.css";
-@import "@/ui/styles/globals.css";
-@import "@/ui/styles/scrollbar.css";
-
-@import "@/ui/styles/icons.css";
-
-
+@import "@/ui/theme_styles/all.css";

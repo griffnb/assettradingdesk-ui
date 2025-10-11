@@ -1,4 +1,3 @@
-import { cn } from "@/utils/cn";
 import { BookOpen, Bookmark, FileText, Grid, Home, Layers } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
@@ -81,16 +80,9 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      {/* Main Content */}
-      <div
-        className={cn(
-          "min-h-screen transition-all duration-300 ease-in-out",
-          sidebarOpen ? "md:pl-64" : "md:pl-0"
-        )}
-      >
-        <NavBar />
-        <main className="flex-1">{props.children}</main>
-      </div>
+      <NavBar />
+
+      <main className="flex-1">{props.children}</main>
     </div>
   );
 });
