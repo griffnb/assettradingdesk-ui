@@ -5,6 +5,17 @@ import { states } from "@/models/constants/states";
 import { countries } from "./constants/countries";
 import { constants as account } from "./models/account/constants";
 import { constants as admin } from "./models/admin/constants";
+import { constants as asset } from "./models/asset/constants";
+import { constants as category } from "./models/category/constants";
+import { constants as client } from "./models/client/constants";
+import { constants as company } from "./models/company/constants";
+import { constants as facility } from "./models/facility/constants";
+import { constants as industry } from "./models/industry/constants";
+import { constants as manufacturer } from "./models/manufacturer/constants";
+import { constants as opportunity } from "./models/opportunity/constants";
+import { constants as organization } from "./models/organization/constants";
+import { constants as pipeline } from "./models/pipeline/constants";
+import { constants as request } from "./models/request/constants";
 import { IConstant, Status } from "./types/constants";
 export function findConstant(
   collection: IConstant[],
@@ -49,9 +60,9 @@ export function findConstantOrUndefined(
 export function findStatus(
   collection: Status[],
   attrValue: number,
-  attrName = "id"
+  attrName: keyof Status = "id"
 ): Status {
-  const constant = collection.find((el: any) => {
+  const constant = collection.find((el: Status) => {
     return el[attrName] === attrValue;
   });
 
@@ -69,6 +80,17 @@ export function findStatus(
 export const model_constants = {
   admin,
   account,
+  asset,
+  category,
+  client,
+  company,
+  facility,
+  industry,
+  manufacturer,
+  organization,
+  opportunity,
+  pipeline,
+  request,
 };
 
 export const constants = {
