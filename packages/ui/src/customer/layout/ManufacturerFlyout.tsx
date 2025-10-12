@@ -40,7 +40,7 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
   const { className, variant, manufacturers, ...props } = fullProps;
 
   return (
-    <div className="fixed left-0 top-[var(--customer-top-nav-h,20px)] w-full">
+    <div className="fixed left-0 top-[var(--customer-top-nav-h,20px)] z-nav-bar-over w-full">
       <div className={cn(styleVariants({ variant, className }))}>
         <div className="flex items-center justify-start gap-2 self-stretch rounded-md py-1.5 text-sm font-semibold leading-none text-foreground">
           <div className="justify-start">Shop by Manufacturers</div>
