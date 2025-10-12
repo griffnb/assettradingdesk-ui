@@ -102,7 +102,7 @@ function Auth() {
   const isAuthPage =
     location.pathname === "/login" || location.pathname === "/signup";
 
-  console.log("In auth");
+  console.log("In auth", location);
 
   if ((!isLoaded && !isAuthPage) || !ready) {
     console.log("Loading...");
@@ -110,7 +110,7 @@ function Auth() {
   }
 
   if (!isSignedIn && !isAuthPage) {
-    navigate("/login");
+    //navigate("/login");
     console.log("Navigating to login");
     return null;
   }

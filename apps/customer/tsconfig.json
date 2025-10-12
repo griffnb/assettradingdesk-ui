@@ -10,7 +10,6 @@
       "@/utils/*": ["packages/utils/src/*"],
       "@/models/*": ["packages/models/src/*"],
       "@/ui/*": ["packages/ui/src/*"],
-      "@/sage/*": ["packages/sage/src/*"],
       "@/common_lib/*": ["packages/common_lib/src/*"]
     }
   }
