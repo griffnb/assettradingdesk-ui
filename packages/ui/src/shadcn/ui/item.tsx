@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "@/ui/shadcn/utils"
-import { Separator } from "@/ui/shadcn/ui/separator"
+import { Separator } from "@/ui/shadcn/ui/separator";
+import { cn } from "@/ui/shadcn/utils";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -13,7 +13,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("group/item-group flex flex-col", className)}
       {...props}
     />
-  )
+  );
 }
 
 function ItemSeparator({
@@ -27,11 +27,11 @@ function ItemSeparator({
       className={cn("my-0", className)}
       {...props}
     />
-  )
+  );
 }
 
 const itemVariants = cva(
-  "group/item [a]:hover:bg-neutral-100/50 focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 [a]:transition-colors flex flex-wrap items-center rounded-md border border-neutral-200 border-transparent text-sm outline-none transition-colors duration-100 focus-visible:ring-[3px] dark:[a]:hover:bg-neutral-800/50 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50 dark:border-neutral-800",
+  "group/item flex items-center border border-neutral-200 border-transparent text-sm rounded-md transition-colors [a]:hover:bg-neutral-100/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px] dark:border-neutral-800 dark:[a]:hover:bg-neutral-800/50 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
   {
     variants: {
       variant: {
@@ -40,8 +40,8 @@ const itemVariants = cva(
         muted: "bg-neutral-100/50 dark:bg-neutral-800/50",
       },
       size: {
-        default: "gap-4 p-4",
-        sm: "gap-2.5 px-4 py-3",
+        default: "p-4 gap-4",
+        sm: "py-3 px-4 gap-2.5",
       },
     },
     defaultVariants: {
@@ -49,7 +49,7 @@ const itemVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 function Item({
   className,
@@ -59,7 +59,7 @@ function Item({
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "div"
+  const Comp = asChild ? Slot : "div";
   return (
     <Comp
       data-slot="item"
@@ -68,25 +68,25 @@ function Item({
       className={cn(itemVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }
 
 const itemMediaVariants = cva(
-  "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:translate-y-0.5 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none",
+  "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5",
   {
     variants: {
       variant: {
         default: "bg-transparent",
-        icon: "bg-neutral-100 size-8 rounded-sm border border-neutral-200 [&_svg:not([class*='size-'])]:size-4 dark:bg-neutral-800 dark:border-neutral-800",
+        icon: "size-8 border border-neutral-200 rounded-sm bg-neutral-100 [&_svg:not([class*='size-'])]:size-4 dark:border-neutral-800 dark:bg-neutral-800",
         image:
-          "size-10 overflow-hidden rounded-sm [&_img]:size-full [&_img]:object-cover",
+          "size-10 rounded-sm overflow-hidden [&_img]:size-full [&_img]:object-cover",
       },
     },
     defaultVariants: {
       variant: "default",
     },
   }
-)
+);
 
 function ItemMedia({
   className,
@@ -100,7 +100,7 @@ function ItemMedia({
       className={cn(itemMediaVariants({ variant, className }))}
       {...props}
     />
-  )
+  );
 }
 
 function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
@@ -113,7 +113,7 @@ function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
@@ -121,12 +121,12 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "flex w-fit items-center gap-2 text-sm font-medium leading-snug",
+        "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
 function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
@@ -134,13 +134,13 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "text-neutral-500 line-clamp-2 text-balance text-sm font-normal leading-normal dark:text-neutral-400",
+        "text-neutral-500 line-clamp-2 text-sm leading-normal font-normal text-balance dark:text-neutral-400",
         "[&>a:hover]:text-neutral-900 [&>a]:underline [&>a]:underline-offset-4 dark:[&>a:hover]:text-neutral-50",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
 function ItemActions({ className, ...props }: React.ComponentProps<"div">) {
@@ -150,7 +150,7 @@ function ItemActions({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("flex items-center gap-2", className)}
       {...props}
     />
-  )
+  );
 }
 
 function ItemHeader({ className, ...props }: React.ComponentProps<"div">) {
@@ -163,7 +163,7 @@ function ItemHeader({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
@@ -176,18 +176,18 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 export {
   Item,
-  ItemMedia,
-  ItemContent,
   ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
   ItemGroup,
+  ItemHeader,
+  ItemMedia,
   ItemSeparator,
   ItemTitle,
-  ItemDescription,
-  ItemHeader,
-  ItemFooter,
-}
+};

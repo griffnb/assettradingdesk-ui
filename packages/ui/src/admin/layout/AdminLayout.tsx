@@ -3,7 +3,7 @@ import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
 import NotificationWrap from "@/ui/common/components/notification/NotificationWrap";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { ReactNode, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import BookmarkModalActivator from "../bookmark/BookmarkModalActivator";
 import { SearchModalActivator } from "../search/SearchModalActivator";
 import { DesktopSidebar } from "./DesktopSidebar";
@@ -22,7 +22,6 @@ export const sidebarItems: SidebarItem[] = [
   {
     title: "Home",
     icon: <i className="fa fa-home" />,
-    isActive: true,
     url: "/",
   },
 
@@ -103,19 +102,18 @@ interface AdminLayoutProps {
 }
 
 export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
-  const [notifications] = useState(5);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
     {}
   );
 
-  const toggleExpanded = (title: string) => {
+  const toggleExpanded = useCallback((title: string) => {
     setExpandedItems((prev) => ({
       ...prev,
       [title]: !prev[title],
     }));
-  };
+  }, []);
 
   return (
     <>

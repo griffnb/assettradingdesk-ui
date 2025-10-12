@@ -20,7 +20,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   const { sidebarOpen, expandedItems, toggleExpanded } = props;
   const location = useLocation();
   const navigate = useNavigate();
-
+  console.log({ location });
   return (
     <div
       className={cn(
@@ -81,7 +81,12 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                     {item.items.map((subItem) => (
                       <span
                         key={subItem.title}
-                        className="flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer"
+                        className={cn(
+                          "flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer",
+                          item.url && location.pathname == item.url
+                            ? "bg-bg-brand-primary/10 text-text-brand-primary"
+                            : "hover:bg-gray-200"
+                        )}
                         onClick={() => {
                           if (subItem.url) {
                             navigate(subItem.url);
