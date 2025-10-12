@@ -17,17 +17,17 @@ help: ## Show this help message
 
 .PHONY: assettradingdesk
 assettradingdesk: ## Run development server
-	@open -a "Google Chrome" http://assets-site.localhost:4321
+	@open -a "Google Chrome" http://assets-local:4321
 	pnpm -F assettradingdesk-com dev --host 0.0.0.0
 
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://assets-admin.localhost:5174
+	@open -a "Google Chrome" http://assets-local:5174
 	pnpm -F admin dev --host 0.0.0.0
 
 .PHONY: customer
 customer: ## Run development server
-	@open -a "Google Chrome" http://assets-customer.localhost:5173
+	@open -a "Google Chrome" http://assets-local:5173
 	pnpm -F customer dev --host 0.0.0.0
 
 # Docker targets

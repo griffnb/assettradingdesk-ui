@@ -12,6 +12,9 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
+  server: {
+    allowedHosts: ["assets-local"],
+  },
   resolve: {
     alias: {
       "@/ui": path.resolve(__dirname, "../../packages/ui/src"),

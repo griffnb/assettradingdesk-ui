@@ -14,6 +14,7 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
 import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import type { Route } from "../.react-router/types/app/+types/root";
 import "./app.css";
@@ -72,51 +73,55 @@ export default function App() {
   );
 }
 
-function Auth() {
+const Auth = observer(function Auth() {
   const [ready, setReady] = useState(false);
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
   let navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     SessionService.tokenFetch = getToken;
   }, [getToken]);
 
   useEffect(() => {
-    console.log(isLoaded, isSignedIn);
-
     if (isLoaded && isSignedIn && getToken) {
       getToken().then((token) => {
-        console.log("Got token:", token);
-
         if (token) {
           SessionService.setSessionToken(token);
         }
-        setReady(true);
       });
-    } else if (isLoaded && !isSignedIn) {
-      setReady(true);
     }
   }, [isLoaded, isSignedIn, getToken]);
 
+  // Handle navigation in useEffect to avoid navigation during render
+  useEffect(() => {
+    if (isLoaded) {
+      const isAuthPage =
+        location.pathname === "/login" || location.pathname === "/signup";
+
+      console.log("In auth", location);
+
+      if (!isSignedIn && !isAuthPage) {
+        console.log("Navigating to login");
+        navigate("/login");
+      } else {
+        setReady(true);
+      }
+    }
+  }, [isLoaded, ready, isSignedIn, location.pathname, navigate]);
+
   const isAuthPage =
     location.pathname === "/login" || location.pathname === "/signup";
-
-  console.log("In auth", location);
 
   if ((!isLoaded && !isAuthPage) || !ready) {
     console.log("Loading...");
     return <Skeleton />;
   }
 
-  if (!isSignedIn && !isAuthPage) {
-    //navigate("/login");
-    console.log("Navigating to login");
-    return null;
-  }
   console.log("Rendering outlet");
   return <Outlet />;
-}
+});
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";

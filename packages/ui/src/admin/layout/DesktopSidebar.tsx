@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, Settings, Wand2 } from "lucide-react";
+import { ChevronDown, Settings } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
@@ -21,8 +21,6 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location.pathname);
-
   return (
     <div
       className={cn(
@@ -33,12 +31,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
       <div className="flex h-full flex-col">
         <div className="p-4">
           <div className="flex items-center gap-3">
-            <div className="flex aspect-square size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-              <Wand2 className="size-5" />
-            </div>
-            <div>
-              <h2 className="font-semibold">Techboss</h2>
-            </div>
+            <img src="/img/logo.png" />
           </div>
         </div>
 

@@ -2,7 +2,6 @@
 import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
 import NotificationWrap from "@/ui/common/components/notification/NotificationWrap";
 import { cn } from "@/utils/cn";
-import { FileText, Grid, Home } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
 import BookmarkModalActivator from "../bookmark/BookmarkModalActivator";
@@ -22,24 +21,79 @@ interface SidebarItem {
 export const sidebarItems: SidebarItem[] = [
   {
     title: "Home",
-    icon: <Home />,
+    icon: <i className="fa fa-home" />,
     isActive: true,
     url: "/",
   },
+
   {
-    title: "Agents",
-    icon: <Grid />,
+    title: "Pipelines",
+    icon: <i className="fa fa-handshake" />,
+    url: "/pipelines",
+  },
+
+  {
+    title: "Companies",
+    icon: <i className="fa fa-building" />,
     items: [
-      { title: "All Agents", url: "/agents" },
-      { title: "Business Planner", url: "#" },
-      { title: "Marketing Planner", url: "#", badge: "2" },
+      {
+        title: "Companies",
+        url: "/companies",
+      },
+      {
+        title: "Facilities",
+        url: "/facilities",
+      },
+
+      {
+        title: "Contacts",
+        url: "/contacts",
+      },
+    ],
+  },
+  {
+    title: "Assets",
+    icon: <i className="fa fa-box-open" />,
+    url: "/assets",
+  },
+  {
+    title: "Requests",
+    icon: <i className="fa fa-bell-concierge" />,
+    url: "/requests",
+  },
+  {
+    title: "Models",
+    icon: <i className="fa fa-gears" />,
+    items: [
+      {
+        title: "Categories",
+        url: "/categories",
+      },
+      {
+        title: "Manufacturers",
+        url: "/manufacturers",
+      },
+
+      {
+        title: "Models",
+        url: "/models",
+      },
     ],
   },
 
   {
-    title: "Accounts",
-    icon: <FileText />,
-    url: "/accounts",
+    title: "Organizations",
+    icon: <i className="fa fa-sitemap" />,
+    items: [
+      {
+        title: "Organizations",
+        url: "/organizations",
+      },
+      {
+        title: "Accounts",
+        url: "/accounts",
+      },
+    ],
   },
 ];
 

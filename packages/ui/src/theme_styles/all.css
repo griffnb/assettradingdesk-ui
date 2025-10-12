@@ -1,4 +1,5 @@
 @import "./base.css";
+@import "./primatives.css";
 @import "../styles/loading.css";
 @import "../styles/form-select.css";
 @import "../styles/datepicker.css";
