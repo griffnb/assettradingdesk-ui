@@ -4,7 +4,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/ui/shadcn/ui/navigation-menu";
@@ -19,10 +18,9 @@ import {
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
-import { Bell } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { CategoryFlyout } from "./CategoryFlyout";
 import { ManufacturerFlyout } from "./ManufacturerFlyout";
 
@@ -87,14 +85,19 @@ export const NavBar = observer(function NavBar() {
   }, []);
 
   return (
-    <div className="flex w-full flex-1 flex-row items-center border-b px-6 py-3">
+    <div className="flex w-full flex-1 flex-row items-center gap-3 border-b px-6 py-3">
       <img src="/img/logo.png" />
-      <Input
-        className="mx-6 max-w-sm"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+
+      <div className="mx-6 flex w-full max-w-sm items-center rounded-lg border bg-white">
+        <Search className="ml-3 size-5 text-gray-400" />
+        <Input
+          type="text"
+          placeholder="Search equipment, manufacturers, models..."
+          className="flex-1 border-0 bg-transparent text-lg placeholder:text-gray-700 focus-visible:ring-0"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem value="categories">
@@ -130,23 +133,3 @@ export const NavBar = observer(function NavBar() {
     </div>
   );
 });
-
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link to={href}>
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-}

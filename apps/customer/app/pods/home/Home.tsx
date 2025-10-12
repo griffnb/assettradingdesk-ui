@@ -49,7 +49,7 @@ export const Home = observer(function Home() {
           {/* Statistics Section */}
           <div className="mx-auto mt-20 max-w-4xl">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <Card className="border-0 bg-white/60 backdrop-blur-sm">
+              <Card className="border bg-white/60 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
                   <div className="text-3xl font-bold text-blue-600">40,417</div>
                   <div className="mt-2 text-sm font-semibold uppercase tracking-wide text-gray-600">
@@ -58,7 +58,7 @@ export const Home = observer(function Home() {
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white/60 backdrop-blur-sm">
+              <Card className="border bg-white/60 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
                   <div className="text-3xl font-bold text-green-600">
                     $7.1B+
@@ -69,7 +69,7 @@ export const Home = observer(function Home() {
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white/60 backdrop-blur-sm sm:col-span-2 lg:col-span-1">
+              <Card className="border bg-white/60 backdrop-blur-sm sm:col-span-2 lg:col-span-1">
                 <CardContent className="p-8 text-center">
                   <div className="text-3xl font-bold text-purple-600">
                     5,884+
