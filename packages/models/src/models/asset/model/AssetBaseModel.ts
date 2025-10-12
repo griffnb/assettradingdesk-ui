@@ -23,4 +23,7 @@ export class AssetBaseModel extends BaseModel {
   @attr("number") verified_at_ts: number = 0;
   @attr("json", { classType: AssetMetaData }) meta_data: AssetMetaData =
     new AssetMetaData();
+
+  @attr("json", { classType: AssetFileModel }) images: AssetFileModel[] =
+    new AssetFileModel();
 }
