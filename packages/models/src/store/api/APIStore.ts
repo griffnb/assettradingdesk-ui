@@ -23,6 +23,7 @@ const DEFAULT_TTL = 500; // 500 ms
 interface Options extends RequestInit {
   skipCache?: boolean;
   silentError?: boolean;
+  customTTL?: number;
 }
 
 export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
@@ -67,7 +68,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
   ): Promise<StoreResponse<T[]>> {
     const cacheData = this.checkCache(
       this.buildKey(this.modelRoute, "", params),
-      DEFAULT_TTL,
+      options?.customTTL || DEFAULT_TTL,
     );
     if (cacheData && !options?.skipCache) {
       return {
@@ -97,7 +98,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
   ): Promise<StoreResponse<T>> {
     const cacheData = this.checkCache(
       this.buildKey(this.modelRoute, path, params),
-      DEFAULT_TTL,
+      options?.customTTL || DEFAULT_TTL,
     );
     if (cacheData && !options?.skipCache) {
       if (Array.isArray(cacheData) && cacheData.length > 0) {
@@ -136,7 +137,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
   ): Promise<StoreResponse<T[]>> {
     const cacheData = this.checkCache(
       this.buildKey(this.modelRoute, path, params),
-      DEFAULT_TTL,
+      options?.customTTL || DEFAULT_TTL,
     );
     if (cacheData && !options?.skipCache) {
       return { success: true, data: this.loadMany(cacheData) } as StoreResponse<
@@ -164,7 +165,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
   async get(id: string, options?: Options): Promise<StoreResponse<T>> {
     const cacheData = this.checkCache(
       this.buildKey(this.modelRoute, "", { id }),
-      DEFAULT_TTL,
+      options?.customTTL || DEFAULT_TTL,
     );
     if (cacheData && !options?.skipCache) {
       return { success: true, data: this.load(cacheData) };
@@ -187,7 +188,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
   async getRaw(id: string, options?: Options): Promise<StoreResponse<unknown>> {
     const cacheData = this.checkCache(
       this.buildKey(this.modelRoute, "", { id }),
-      DEFAULT_TTL,
+      options?.customTTL || DEFAULT_TTL,
     );
     if (cacheData && !options?.skipCache) {
       return { success: true, data: cacheData };

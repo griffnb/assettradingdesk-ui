@@ -15,10 +15,16 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/clerk-react";
+
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { Store } from "@/models/store/Store";
 import { Bell } from "lucide-react";
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { CategoryFlyout } from "./CategoryFlyout";
+import { ManufacturerFlyout } from "./ManufacturerFlyout";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -60,68 +66,52 @@ const components: { title: string; href: string; description: string }[] = [
 
 export const NavBar = observer(function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [categories, setCategories] = useState<CategoryModel[]>([]);
+  const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
+  useEffect(() => {
+    Store.category
+      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 5 })
+      .then((resp) => {
+        if (resp.success && resp.data) {
+          setCategories(resp.data);
+          console.log("Categories");
+        }
+      });
+    Store.manufacturer
+      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 5 })
+      .then((resp) => {
+        if (resp.success && resp.data) {
+          setManufacturers(resp.data);
+        }
+      });
+  }, []);
 
   return (
-    <div className="flex flex-1 items-center flex-row py-3 px-6 border-b w-full">
+    <div className="flex w-full flex-1 flex-row items-center border-b px-6 py-3">
       <img src="/img/logo.png" />
       <Input
-        className="max-w-sm mx-6"
+        className="mx-6 max-w-sm"
         placeholder="Search..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
-          <NavigationMenuItem>
+          <NavigationMenuItem value="categories">
             <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="from-gray-500/50 to-gray-500 flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md"
-                      href="/"
-                    >
-                      <div className="mt-4 mb-2 text-lg font-medium">
-                        shadcn/ui
-                      </div>
-                      <p className="text-muted-foreground text-sm leading-tight">
-                        Beautifully designed components built with Tailwind CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
-                </ListItem>
-              </ul>
+            <NavigationMenuContent className="contents">
+              <CategoryFlyout categories={categories} />
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem value="components">
+          <NavigationMenuItem value="manufacturers">
             <NavigationMenuTrigger>Manufacturers</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {components.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
-                    {component.description}
-                  </ListItem>
-                ))}
-              </ul>
+            <NavigationMenuContent className="contents">
+              <ManufacturerFlyout manufacturers={manufacturers} />
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="ml-auto flex flex-row gap-2 items-center">
+      <div className="ml-auto flex flex-row items-center gap-2">
         <SignedIn>
           <Button variant="outline" size="icon" aria-label="Submit">
             <Bell />
@@ -151,8 +141,8 @@ function ListItem({
     <li {...props}>
       <NavigationMenuLink asChild>
         <Link to={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>
