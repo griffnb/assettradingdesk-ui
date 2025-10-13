@@ -2,6 +2,7 @@ import { AssetModel } from "@/models/models/asset/model/AssetModel";
 
 import { TableState } from "@/models/store/state/TableState";
 import { useVirtualization } from "@/ui/common/components/table/virtual/useVirtual";
+import { useGridCount } from "@/ui/hooks/useGridCount";
 import { observer } from "mobx-react";
 import { useCallback, useEffect } from "react";
 import { AssetCard } from "./AssetCard";
@@ -12,8 +13,9 @@ interface AssetCardsProps {
 }
 export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
   const { tableState } = props;
+  const { ref, count } = useGridCount<HTMLDivElement>();
+
   const loadMore = useCallback(() => {
-    console.log("Load more being called");
     if (tableState.totalCount > tableState.data.length && !tableState.loading) {
       tableState.loadMoreData();
     }
@@ -28,9 +30,9 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
     bottomSpacerStyle,
     visibleIndexes,
   } = useVirtualization({
-    rows: Math.ceil(props.tableState.data.length / 3),
-    rowHeight: 367,
-    overscan: 5,
+    rows: Math.ceil(props.tableState.data.length / count),
+    rowHeight: 364,
+    overscan: 10,
     loadMore,
     scrollDebounceMs: 5,
   });
@@ -40,13 +42,15 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
   }, [props.tableState.data]);
 
   const rowClickAction = (record: AssetModel) => {};
-
+  console.log(
+    `count ${count} rows:${Math.ceil(props.tableState.data.length / (count > 0 ? count : 1))}`,
+  );
   return (
     <>
       <div
         ref={scrollRef}
         onScroll={onScroll}
-        className={`h-[calc(100svh-64px)] w-full overflow-y-auto border border-border-neutral-secondary`}
+        className={`h-[calc(100svh-64px)] w-full overflow-y-auto border border-border-neutral-secondary p-4`}
       >
         {props.tableState.data.length == 0 && !props.tableState.loading && (
           <div className="flex cursor-pointer self-stretch bg-white p-4">
@@ -54,10 +58,13 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
           </div>
         )}
         {topPad > 0 && <div style={topSpacerStyle} />}
-        <div className="grid grid-cols-3 gap-4 p-4">
+        <div
+          className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_320px))] gap-4"
+          ref={ref}
+        >
           {visibleIndexes.flatMap((rowIndex) => {
-            const startIndex = rowIndex * 3;
-            const endIndex = startIndex + 3;
+            const startIndex = rowIndex * count;
+            const endIndex = startIndex + count;
             const records = props.tableState.data.slice(
               startIndex,
               endIndex,
