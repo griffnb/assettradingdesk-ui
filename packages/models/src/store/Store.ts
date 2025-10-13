@@ -10,6 +10,7 @@ import { FacilityModel } from "../models/facility/model/FacilityModel";
 import { GlobalConfigModel } from "../models/global_config/model/GlobalConfigModel";
 import { IndustryModel } from "../models/industry/model/IndustryModel";
 import { ManufacturerModel } from "../models/manufacturer/model/ManufacturerModel";
+import { ModelModel } from "../models/model/model/ModelModel";
 import { OpportunityModel } from "../models/opportunity/model/OpportunityModel";
 import { OrganizationModel } from "../models/organization/model/OrganizationModel";
 import { PipelineModel } from "../models/pipeline/model/PipelineModel";
@@ -66,6 +67,10 @@ export const Store = {
   manufacturer: new APIStore({
     _class: ManufacturerModel,
     modelName: "manufacturer",
+  }),
+  model: new APIStore({
+    _class: ModelModel,
+    modelName: "model",
   }),
   organization: new APIStore({
     _class: OrganizationModel,

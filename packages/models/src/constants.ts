@@ -13,6 +13,7 @@ import { constants as company } from "./models/company/constants";
 import { constants as facility } from "./models/facility/constants";
 import { constants as industry } from "./models/industry/constants";
 import { constants as manufacturer } from "./models/manufacturer/constants";
+import { constants as model } from "./models/model/constants";
 import { constants as opportunity } from "./models/opportunity/constants";
 import { constants as organization } from "./models/organization/constants";
 import { constants as pipeline } from "./models/pipeline/constants";
@@ -89,6 +90,7 @@ export const model_constants = {
   facility,
   industry,
   manufacturer,
+  model,
   organization,
   opportunity,
   pipeline,

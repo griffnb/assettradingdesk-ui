@@ -9,6 +9,7 @@ export type StoreKeys =
   | "facility"
   | "industry"
   | "manufacturer"
+  | "model"
   | "organization"
   | "opportunity"
   | "pipeline"

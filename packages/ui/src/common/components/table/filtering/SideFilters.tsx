@@ -8,33 +8,27 @@ import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { FilterBlock } from "./FilterBlock";
 
+import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
 } from "@/ui/shadcn/ui/accordion";
 import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
+import { AccordionContent } from "@radix-ui/react-accordion";
 
 interface SideFiltersProps<T extends object> {
   tableState: TableState<T>;
 }
 
-// normalize all filter values into arrays
-function normalizeFilters(raw: Record<string, any>): Record<string, string[]> {
-  const result: Record<string, string[]> = {};
-  for (const [key, value] of Object.entries(raw)) {
-    if (value == null) continue;
-    result[key] = Array.isArray(value) ? value.map(String) : [String(value)];
-  }
-  return result;
-}
-
 export const SideFilters = observer(function SideFilters<T extends object>(
   props: SideFiltersProps<T>,
 ) {
-  const [openValues, setOpenValues] = useState<string[]>([]);
+  const [openValues, setOpenValues] = useState<string[]>(["categories"]);
   const [filters, setFilters] = useState<Record<string, string[]>>({});
   const [categories, setCategories] = useState<CategoryModel[]>([]);
+  const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
+  const [models, setModels] = useState<ModelModel[]>([]);
   const { tableState } = props;
   const initialFilters = tableState.appliedFilters;
 
@@ -45,10 +39,6 @@ export const SideFilters = observer(function SideFilters<T extends object>(
       }
     });
   }, []);
-
-  useEffect(() => {
-    setFilters(normalizeFilters(tableState.appliedFilters));
-  }, [tableState.appliedFilters]);
 
   const isChecked = (type: string, id: string | number) =>
     filters[type]?.includes(id.toString()) ?? false;
@@ -84,27 +74,41 @@ export const SideFilters = observer(function SideFilters<T extends object>(
           <Label htmlFor="has_pictures">Has Pictures</Label>
         </div>
         <Accordion
-          type="single"
-          collapsible
-          //value={openValues}
-          //onValueChange={(values) => {
-          //  console.log("Accordion values", values);
-          //  setOpenValues(values as string[]);
-          //}}
+          type="multiple"
+          value={openValues}
+          onValueChange={(values) => {
+            setOpenValues(values as string[]);
+          }}
         >
-          <AccordionItem value="categories">
+          <AccordionItem value="categories" className="border-b">
             <AccordionTrigger>Categories</AccordionTrigger>
-
-            <ScrollArea className="h-72 w-full">
-              <FilterBlock
-                label="Categories"
-                tableState={tableState}
-                filterRecords={categories}
-                labelField={"name"}
-                valueField={"id"}
-                filterKey="categories.id"
-              />
-            </ScrollArea>
+            <AccordionContent className="border-b pb-2">
+              <ScrollArea className="h-72 w-full">
+                <FilterBlock
+                  label="Categories"
+                  tableState={tableState}
+                  filterRecords={categories}
+                  labelField={"name"}
+                  valueField={"id"}
+                  filterKey="categories.id"
+                />
+              </ScrollArea>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="makes" className="border-b">
+            <AccordionTrigger>Manufacturers</AccordionTrigger>
+            <AccordionContent className="border-b pb-2">
+              <ScrollArea className="h-72 w-full">
+                <FilterBlock
+                  label="Manufacturers"
+                  tableState={tableState}
+                  filterRecords={manufacturers}
+                  labelField={"name"}
+                  valueField={"id"}
+                  filterKey="categories.id"
+                />
+              </ScrollArea>
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
