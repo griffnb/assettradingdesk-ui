@@ -1,55 +1,36 @@
-import { LayerService } from "@/common_lib/services/LayerService";
-import { status } from "@/models/models/asset/_constants/status";
-import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
-import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
+import { AssetTable } from "@/ui/customer/assets/AssetTable";
+import {
+  applyQueryFilters,
+  parseSearchParams,
+  queryToFilters,
+} from "@/utils/query/builder";
+import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router";
-import { columns } from "../columns";
-import { AssetFormModal, AssetFormModalId } from "../components/AssetFormModal";
-import { filters } from "../filters";
 
-export const AssetIndex = observer(function AssetIndex() {
-  const [searchParams, setSearchParams] = useSearchParams();
+export const AssetsIndex = observer(function AssetIndex() {
+  const [params, setParams] = useSearchParams();
 
   const appliedFilters = useMemo(
     () =>
-      queryToFilters(parseSearchParams(searchParams), {
+      queryToFilters(parseSearchParams(params), {
         status: [],
         limit: "100",
       }),
-    [searchParams],
+    [params],
   );
 
+  console.log(appliedFilters, params);
+
   const applyFilters = (params: { [key: string]: string | string[] }) => {
-    setSearchParams(params);
+    console.log("APPLY FILTERS", toJS(params));
+    //setParams(params);
+    applyQueryFilters(setParams, params);
   };
   return (
     <>
-      <AdminTitleBar title="Assets" />
-      <StandardTableWrap<AssetModel>
-        className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
-        newComponent={() => {
-          LayerService.add(AssetFormModalId, AssetFormModal, {
-            onSave: () => applyFilters({ ...appliedFilters }),
-          });
-        }}
-        columns={columns}
-        statuses={status}
-        modelType="asset"
-        filters={filters}
-        applyFilters={applyFilters}
-        appliedFilters={appliedFilters}
-        selectRows={true}
-        tableSearch={true}
-        tableExport={true}
-        hideTotalRow={true}
-        infiniteScroll={true}
-        massActions={[(props) => <DefaultMassActions {...props} />]}
-      />
+      <AssetTable appliedFilters={appliedFilters} applyFilters={applyFilters} />
     </>
   );
 });

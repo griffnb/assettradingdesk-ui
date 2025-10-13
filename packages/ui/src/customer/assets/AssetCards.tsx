@@ -1,19 +1,24 @@
-import { AiToolModel } from "@/models/models/ai_tool/model/AiToolModel";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
 
 import { TableState } from "@/models/store/state/TableState";
 import { useVirtualization } from "@/ui/common/components/table/virtual/useVirtual";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { AssetCard } from "./AssetCard";
 
 interface AssetCardsProps {
-  rowClickAction?: (
-    record: AiToolModel,
-    clearSelectedRowID: () => void,
-  ) => void; // Function to call when a row is clicked
-  tableState: TableState<AiToolModel>;
+  rowClickAction?: (record: AssetModel, clearSelectedRowID: () => void) => void; // Function to call when a row is clicked
+  tableState: TableState<AssetModel>;
 }
 export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
+  const { tableState } = props;
+  const loadMore = useCallback(() => {
+    console.log("Load more being called");
+    if (tableState.totalCount > tableState.data.length && !tableState.loading) {
+      tableState.loadMoreData();
+    }
+  }, [tableState]);
+
   const {
     scrollRef,
     onScroll,
@@ -24,15 +29,17 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
     visibleIndexes,
   } = useVirtualization({
     rows: Math.ceil(props.tableState.data.length / 3),
-    rowHeight: 230,
+    rowHeight: 367,
     overscan: 5,
+    loadMore,
+    scrollDebounceMs: 5,
   });
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, 0);
   }, [props.tableState.data]);
 
-  const rowClickAction = (record: AiToolModel) => {};
+  const rowClickAction = (record: AssetModel) => {};
 
   return (
     <>
@@ -56,7 +63,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
               endIndex,
             ) as AssetModel[];
             return records.map((record) => (
-              <AssetCard key={record.id} ai_tool={record} />
+              <AssetCard key={record.id} asset={record} />
             ));
           })}
         </div>

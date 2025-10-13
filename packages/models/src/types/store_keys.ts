@@ -3,6 +3,7 @@ export type StoreKeys =
   | "account"
   | "category"
   | "asset"
+  | "asset_file"
   | "client"
   | "company"
   | "facility"

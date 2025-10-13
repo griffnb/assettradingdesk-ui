@@ -1,6 +1,7 @@
 import { AccountModel } from "../models/account/model/AccountModel";
 import { AdminModel } from "../models/admin/model/AdminModel";
 import { AssetModel } from "../models/asset/model/AssetModel";
+import { AssetFileModel } from "../models/asset_file/model/AssetFileModel";
 import { CategoryModel } from "../models/category/model/CategoryModel";
 import { ChangeLogModel } from "../models/change_log/model/ChangeLogModel";
 import { ClientModel } from "../models/client/model/ClientModel";
@@ -33,6 +34,10 @@ export const Store = {
   asset: new APIStore({
     _class: AssetModel,
     modelName: "asset",
+  }),
+  asset_file: new APIStore({
+    _class: AssetFileModel,
+    modelName: "asset_file",
   }),
   category: new APIStore({
     _class: CategoryModel,

@@ -1,10 +1,9 @@
-import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
+import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
 import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
+import { useNavigate } from "react-router";
 
 interface OpportunityFormProps {
   record: OpportunityModel;
@@ -12,7 +11,9 @@ interface OpportunityFormProps {
   onCancel?: () => void;
 }
 
-export const OpportunityForm = observer(function OpportunityForm(props: OpportunityFormProps) {
+export const OpportunityForm = observer(function OpportunityForm(
+  props: OpportunityFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,17 +60,7 @@ export const OpportunityForm = observer(function OpportunityForm(props: Opportun
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
-
+      <></>
     </FormWrap>
   );
 });
-

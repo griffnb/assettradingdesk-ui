@@ -2,10 +2,18 @@ import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 
 import { TableState } from "@/models/store/state/TableState";
 import { Store } from "@/models/store/Store";
-import { Button } from "@/ui/common/components/buttons/Button";
+import { Label } from "@/ui/shadcn/ui/label";
+import { Switch } from "@/ui/shadcn/ui/switch";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { FilterBlock } from "./FilterBlock";
+
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/ui/shadcn/ui/accordion";
+import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
 
 interface SideFiltersProps<T extends object> {
   tableState: TableState<T>;
@@ -22,9 +30,9 @@ function normalizeFilters(raw: Record<string, any>): Record<string, string[]> {
 }
 
 export const SideFilters = observer(function SideFilters<T extends object>(
-  props: SideFiltersProps<T>
+  props: SideFiltersProps<T>,
 ) {
-  const [open, setOpen] = useState<boolean>(true);
+  const [openValues, setOpenValues] = useState<string[]>([]);
   const [filters, setFilters] = useState<Record<string, string[]>>({});
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const { tableState } = props;
@@ -42,32 +50,6 @@ export const SideFilters = observer(function SideFilters<T extends object>(
     setFilters(normalizeFilters(tableState.appliedFilters));
   }, [tableState.appliedFilters]);
 
-  const toggleFilter = (
-    type: string,
-    id: string | number,
-    checked: boolean
-  ) => {
-    setFilters((prev) => {
-      const copy = { ...prev };
-      const current = copy[type] || [];
-
-      if (checked) {
-        copy[type] = [...current, id.toString()].filter(
-          (v, i, arr) => arr.indexOf(v) === i
-        );
-      } else {
-        copy[type] = current.filter((v) => v !== id.toString());
-        if (copy[type].length === 0) delete copy[type]; // clean empty arrays
-      }
-
-      return copy;
-    });
-  };
-
-  const applyCurrentFilters = () => {
-    tableState.applyTableFilters(filters);
-  };
-
   const isChecked = (type: string, id: string | number) =>
     filters[type]?.includes(id.toString()) ?? false;
 
@@ -78,37 +60,53 @@ export const SideFilters = observer(function SideFilters<T extends object>(
           Filters
         </span>
 
-        <i
-          className="u u-x-circle ml-auto cursor-pointer"
-          onClick={() => setOpen(false)}
-        />
+        <i className="u u-x-circle ml-auto cursor-pointer" />
       </div>
 
-      <div className="overflow-y-auto pl-1 h-[calc(100svh-215px)]">
-        <FilterBlock
-          label="Categories"
-          tableState={tableState}
-          filterRecords={categories}
-          labelField={"name"}
-          valueField={"id"}
-          filterKey="category_id"
-        />
-      </div>
-
-      <div className="mt-auto flex w-full flex-row border-t border-border-neutral-primary py-4 pr-4">
-        <Button
-          variant="tertiary"
-          size="sm"
-          className="ml-auto"
-          onClick={() => {
-            tableState.applyTableFilters(initialFilters);
-          }}
+      <div className="h-[calc(100svh-215px)] overflow-y-auto pl-1">
+        <div className="flex items-center space-x-2">
+          <Switch
+            onCheckedChange={(checked) => {
+              if (checked) {
+                tableState.applyTableFilters({
+                  ...tableState.appliedFilters,
+                  "_c:has_pictures": "1",
+                });
+              } else {
+                const newFilters = { ...tableState.appliedFilters };
+                delete newFilters["_c:has_pictures"];
+                tableState.applyTableFilters(newFilters);
+              }
+            }}
+            id="has_pictures"
+            checked={isChecked("_c:has_pictures", "1")}
+          />
+          <Label htmlFor="has_pictures">Has Pictures</Label>
+        </div>
+        <Accordion
+          type="single"
+          collapsible
+          //value={openValues}
+          //onValueChange={(values) => {
+          //  console.log("Accordion values", values);
+          //  setOpenValues(values as string[]);
+          //}}
         >
-          Reset
-        </Button>
-        <Button size="sm" className="ml-2 w-40" onClick={applyCurrentFilters}>
-          Apply
-        </Button>
+          <AccordionItem value="categories">
+            <AccordionTrigger>Categories</AccordionTrigger>
+
+            <ScrollArea className="h-72 w-full">
+              <FilterBlock
+                label="Categories"
+                tableState={tableState}
+                filterRecords={categories}
+                labelField={"name"}
+                valueField={"id"}
+                filterKey="categories.id"
+              />
+            </ScrollArea>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );

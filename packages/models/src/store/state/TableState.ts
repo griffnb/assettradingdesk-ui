@@ -15,7 +15,7 @@ import {
 } from "@/utils/query/builder";
 
 import { getFilterForQueryParam } from "@/utils/filters/helpers";
-import { flow, makeAutoObservable } from "mobx";
+import { flow, makeAutoObservable, toJS } from "mobx";
 import { IColumn } from "../../../../ui/src/common/components/types/columns";
 import { IFilter } from "../../../../ui/src/common/components/types/filters";
 
@@ -95,6 +95,48 @@ export class TableState<T extends object> {
     this.filtered_data = data;
   }
 
+  addFilter(key: string, value: string) {
+    const current = (this.tableFilters[key] as string[] | string) || [];
+    let newFilters: string[] = [];
+
+    if (Array.isArray(current)) {
+      if (!current.includes(value.toString())) {
+        newFilters = [...current, value.toString()];
+      }
+    } else {
+      newFilters = [current, value.toString()];
+    }
+
+    const newTableFilters = {
+      ...this.tableFilters,
+      [key]: newFilters.length > 0 ? newFilters : [],
+    };
+    this.applyTableFilters(newTableFilters);
+  }
+
+  removeFilter(key: string, value: string) {
+    const current = (this.tableFilters[key] as string[] | string) || [];
+    let newFilters: string[] = [];
+
+    if (Array.isArray(current)) {
+      if (current.includes(value.toString())) {
+        newFilters = current.filter((v) => v !== value.toString());
+      }
+    } else {
+      if (current == value.toString()) {
+        newFilters = [];
+      } else {
+        newFilters = [current];
+      }
+    }
+
+    const newTableFilters = {
+      ...this.tableFilters,
+      [key]: newFilters.length > 0 ? newFilters : [],
+    };
+    this.applyTableFilters(newTableFilters);
+  }
+
   applyTableFilters(params: URLParams) {
     this.tableFilters = params;
     this.updateAppliedFilters();
@@ -103,7 +145,7 @@ export class TableState<T extends object> {
   applySort = (
     sortColumn: number,
     sortDirection: number,
-    newTableFilters?: URLParams
+    newTableFilters?: URLParams,
   ) => {
     // Update the query param
     const col = this.columns[sortColumn];
@@ -170,6 +212,7 @@ export class TableState<T extends object> {
     // Check if the incoming params are different from current applied filters
     const noChange = deepEqual(this.appliedFilters, params);
     if (!noChange) {
+      console.log("APPLYING ROUTE FILTERS", params);
       this.loadFilters(params);
       this.reloadData();
     }
@@ -206,6 +249,13 @@ export class TableState<T extends object> {
     this.appliedFilters = appliedFilters;
     this.statusFilters = getStatusFilters(appliedFilters);
     this.tableFilters = getTableFilters(appliedFilters);
+
+    console.log(
+      "Loaded Filters",
+      toJS(this.statusFilters),
+      toJS(this.tableFilters),
+    );
+
     this.limit = getLimit(appliedFilters, this.limit);
     this.page = getPage(this.appliedFilters, this.limit);
     this.searchQuery = getSearchQuery(appliedFilters);
@@ -246,7 +296,7 @@ export class TableState<T extends object> {
           ...this.appliedFilters,
           offset: ((pageToLoad - 1) * this.limit).toString(),
         },
-        this.filters
+        this.filters,
       );
     } else {
       query = buildQuery(this.appliedFilters, this.filters);
@@ -256,7 +306,7 @@ export class TableState<T extends object> {
       if (!this.storeRoute) {
         const response = yield Store[this.modelType].queryRecords(
           this.customPath || "",
-          query
+          query,
         );
 
         if (response.data) {
@@ -290,11 +340,11 @@ export class TableState<T extends object> {
         const response = yield ServerService.callGet(
           this.storeRoute,
           this.customPath || "",
-          query
+          query,
         );
         if (response.success && response.data) {
           const loadedData = Store[this.modelType].loadMany(
-            response.data
+            response.data,
           ) as T[];
           if (pageToLoad && pageToLoad > 1) {
             const newPage: VirtualPage<T> = {
@@ -331,7 +381,7 @@ export class TableState<T extends object> {
           : yield ServerService.callGet(
               Store[this.modelType].modelRoute,
               countPath,
-              query
+              query,
             );
 
         if (countResponse.success && countResponse.data) {
@@ -354,7 +404,7 @@ export class TableState<T extends object> {
     const combinedFilters = { ...this.tableFilters };
     if (this.statusFilters.length > 0) {
       combinedFilters["status"] = this.statusFilters.map((status: number) =>
-        status.toString()
+        status.toString(),
       );
     }
 
@@ -399,7 +449,7 @@ export class TableState<T extends object> {
     }
 
     const cachedCols = CacheService.get<IColumn<T>[]>(
-      `columns_${this.columnCacheKey}`
+      `columns_${this.columnCacheKey}`,
     );
 
     if (cachedCols) {
@@ -486,7 +536,7 @@ export class TableState<T extends object> {
       this.rows.length > 0 &&
       this.rows.every(
         (row) =>
-          this.checked_row_ids[(row["id" as keyof T] as number).toString()]
+          this.checked_row_ids[(row["id" as keyof T] as number).toString()],
       )
     );
   }
@@ -688,7 +738,7 @@ export class TableState<T extends object> {
       if (!this.storeRoute) {
         const resp = await Store[this.modelType].queryRecords(
           this.customPath || "",
-          { ...query, limit: "999999" }
+          { ...query, limit: "999999" },
         );
 
         if (resp.success && resp.data) {
@@ -698,7 +748,7 @@ export class TableState<T extends object> {
         const resp = await ServerService.callGet(
           this.storeRoute,
           this.customPath || "",
-          { ...query, limit: "999999" }
+          { ...query, limit: "999999" },
         );
 
         if (resp.success && resp.data) {
@@ -710,7 +760,7 @@ export class TableState<T extends object> {
     let csvContent = "";
 
     const exportableColumns = this.columns.filter(
-      (col) => !("noExport" in col) || !col.noExport
+      (col) => !("noExport" in col) || !col.noExport,
     );
 
     // Adding header row.
@@ -785,7 +835,7 @@ export class TableState<T extends object> {
     if (props.appliedFilters) {
       const { sortColumn, sortDirection } = getSortColumnDirection(
         props.appliedFilters,
-        props.columns
+        props.columns,
       );
       this.sortColumn = sortColumn;
       this.sortDirection = sortDirection;

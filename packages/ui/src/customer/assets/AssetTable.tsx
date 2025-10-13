@@ -1,12 +1,13 @@
-import { AiToolModel } from "@/models/models/ai_tool/model/AiToolModel";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { TableState, TableStateProps } from "@/models/store/state/TableState";
 import { SideFilters } from "@/ui/common/components/table/filtering/SideFilters";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { ToolsCards } from "./ToolsCards";
+import { AssetCards } from "./AssetCards";
 
-export interface AssetTableProps extends TableStateProps<AiToolModel> {
+export interface AssetTableProps
+  extends Omit<TableStateProps<AssetModel>, "columns" | "modelType"> {
   className?: string;
 }
 
@@ -14,8 +15,14 @@ export const AssetTable = observer(function AssetTable(
   rawProps: AssetTableProps,
 ) {
   const { className, ...props } = rawProps;
-  const [tableState] = useState<TableState<AiToolModel>>(
-    () => new TableState<AiToolModel>(props),
+  const [tableState] = useState<TableState<AssetModel>>(
+    () =>
+      new TableState<AssetModel>({
+        ...props,
+        columns: [],
+        modelType: "asset",
+        infiniteScroll: true,
+      }),
   );
 
   useEffect(() => {
@@ -29,7 +36,7 @@ export const AssetTable = observer(function AssetTable(
       className={cn("bg-gray-modern-800 flex flex-row items-start", className)}
     >
       <SideFilters tableState={tableState} />
-      <ToolsCards tableState={tableState} />
+      <AssetCards tableState={tableState} />
     </div>
   );
 });

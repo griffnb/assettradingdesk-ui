@@ -1,5 +1,5 @@
-import { status } from "@/models/models/pipeline/_constants/status";
-import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
+import { status } from "@/models/models/asset_file/_constants/status";
+import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
 import {
   RowActionColumn,
   RowActions,
@@ -8,22 +8,22 @@ import {
   ColumnComponentOptions,
   IColumn,
 } from "@/ui/common/components/types/columns";
-export const columns: IColumn<PipelineModel>[] = [
+export const columns: IColumn<AssetFileModel>[] = [
   {
     title: "Status",
     field: "status",
     fixed: true,
-    render: (options: ColumnComponentOptions<PipelineModel>) => {
+    render: (options: ColumnComponentOptions<AssetFileModel>) => {
       return (
         <RowActions
           {...options}
-          column={options.column as RowActionColumn<PipelineModel>}
+          column={options.column as RowActionColumn<AssetFileModel>}
         />
       );
     },
     queryField: "status",
     statuses: status,
     headerClass: "action-header",
-    edit: "/pipelines/edit",
-  } as RowActionColumn<PipelineModel>,
+    edit: "/asset_files/edit",
+  } as RowActionColumn<AssetFileModel>,
 ];

@@ -1,10 +1,9 @@
-import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
+import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
 import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
+import { useNavigate } from "react-router";
 
 interface PipelineFormProps {
   record: PipelineModel;
@@ -12,7 +11,9 @@ interface PipelineFormProps {
   onCancel?: () => void;
 }
 
-export const PipelineForm = observer(function PipelineForm(props: PipelineFormProps) {
+export const PipelineForm = observer(function PipelineForm(
+  props: PipelineFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,17 +60,7 @@ export const PipelineForm = observer(function PipelineForm(props: PipelineFormPr
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
-
+      <></>
     </FormWrap>
   );
 });
-

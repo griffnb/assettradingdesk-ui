@@ -12,7 +12,7 @@ export class AssetModel extends AssetBaseModel {
 
   // Search Result Values
   get label(): string {
-    return `${this.description || "Asset"} `;
+    return `${this.manufacturer_name} ${this.model_name}`;
   }
 
   get icon(): string {

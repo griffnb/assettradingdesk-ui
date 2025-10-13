@@ -1,10 +1,10 @@
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { useNavigate } from "react-router";
 
 interface AssetFormProps {
   record: AssetModel;
@@ -59,17 +59,13 @@ export const AssetForm = observer(function AssetForm(props: AssetFormProps) {
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
-        field="name"
+        field="price"
         type="text"
-        label="Name"
-        placeholder="Name"
+        label="Price"
+        placeholder="0.00"
       />
-
     </FormWrap>
   );
 });
-

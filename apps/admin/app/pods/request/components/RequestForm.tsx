@@ -1,10 +1,9 @@
-import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
+import { RequestModel } from "@/models/models/request/model/RequestModel";
 import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { RequestModel } from "@/models/models/request/model/RequestModel";
+import { useNavigate } from "react-router";
 
 interface RequestFormProps {
   record: RequestModel;
@@ -12,7 +11,9 @@ interface RequestFormProps {
   onCancel?: () => void;
 }
 
-export const RequestForm = observer(function RequestForm(props: RequestFormProps) {
+export const RequestForm = observer(function RequestForm(
+  props: RequestFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,17 +60,7 @@ export const RequestForm = observer(function RequestForm(props: RequestFormProps
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
-
+      <></>
     </FormWrap>
   );
 });
-

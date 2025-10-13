@@ -1,3 +1,4 @@
-export default function RootIndex() {
-  return <Home />;
+import { AssetsIndex } from "@/customer/pods/assets/AssetsIndex";
+export default function index() {
+  return <AssetsIndex />;
 }

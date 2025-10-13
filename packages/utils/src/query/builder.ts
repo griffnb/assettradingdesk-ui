@@ -1,7 +1,7 @@
 import { IColumn } from "@/ui/common/components/types/columns";
 import { IFilter } from "@/ui/common/components/types/filters";
 import { ParsedUrlQuery } from "querystring";
-import { NavigateFunction } from "react-router";
+import { SetURLSearchParams } from "react-router";
 import { getFieldForQuery, getFilterForQueryParam } from "../filters/helpers";
 
 export enum Direction {
@@ -13,7 +13,7 @@ export enum Direction {
 export function setDefaults(
   params: { [key: string]: string | string[] },
   limit: number,
-  order: string
+  order: string,
 ) {
   if (!params["limit"]) {
     params["limit"] = limit.toString();
@@ -45,7 +45,7 @@ export function getReportPeriod(params: {
 
 export function getLimit(
   params: { [key: string]: string | string[] },
-  defaultLimit = 20
+  defaultLimit = 20,
 ): number {
   if (params && params["limit"] && typeof params["limit"] == "string") {
     const limit = parseInt(params["limit"]);
@@ -59,7 +59,7 @@ export function getLimit(
 
 export function getStatusFilters(
   params: { [key: string]: string | string[] },
-  defaultFilters = []
+  defaultFilters = [],
 ): number[] {
   if (params && params["status"]) {
     if (Array.isArray(params["status"])) {
@@ -146,7 +146,7 @@ export function getTableFilters(params: { [key: string]: string | string[] }): {
 export function getPage(
   params: { [key: string]: string | string[] },
   limit: number,
-  defaultPage = 1
+  defaultPage = 1,
 ): number {
   // Page
 
@@ -163,7 +163,7 @@ export function getPage(
 
 export function getSortColumnDirection<T extends object>(
   params: { [key: string]: string | string[] },
-  columns: IColumn<T>[]
+  columns: IColumn<T>[],
 ) {
   let sortColumn = 0;
   let sortDirection = 0;
@@ -204,7 +204,7 @@ export function formatQuery(rawQuery: ParsedUrlQuery) {
 export function queryToFilters(
   rawQuery: ParsedUrlQuery,
   defaultValues?: { [key: string]: any },
-  reportingPeriod?: boolean
+  reportingPeriod?: boolean,
 ): { [key: string]: string | string[] } {
   const queryParams = formatQuery(rawQuery);
 
@@ -225,7 +225,7 @@ export function queryToFilters(
 
 export function buildQuery(
   filterValues: { [key: string]: string | string[] },
-  filters: IFilter[]
+  filters: IFilter[],
 ) {
   const query: { [key: string]: any } = {};
 
@@ -325,9 +325,9 @@ export const cleanObject = <T extends object>(obj: T): Partial<T> => {
   }, {} as Partial<T>);
 };
 
-
-
-export const parseSearchParams = (searchParams: URLSearchParams): { [key: string]: string | string[] } => {
+export const parseSearchParams = (
+  searchParams: URLSearchParams,
+): { [key: string]: string | string[] } => {
   const params: { [key: string]: string | string[] } = {};
   searchParams.forEach((value, key) => {
     if (params[key]) {
@@ -343,12 +343,10 @@ export const parseSearchParams = (searchParams: URLSearchParams): { [key: string
   return params;
 };
 
-
 export function applyQueryFilters(
-  nav: NavigateFunction,
+  setParams: SetURLSearchParams,
   params: { [key: string]: string | string[] },
 ) {
-
   const searchString = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
     if (Array.isArray(value)) {
@@ -358,7 +356,5 @@ export function applyQueryFilters(
     }
   }
 
-  nav({
-    search: searchString.toString(),
-  });
+  setParams(searchString);
 }
