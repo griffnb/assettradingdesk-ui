@@ -21,19 +21,30 @@ export const AssetCard = observer(function AssetCard(
 ) {
   const { className, asset, ...props } = fullProps;
 
-  const primaryImage = asset.asset_files
-    ? asset.asset_files[0]?.meta_data.medium_image
-    : "";
+  let primaryImage = "https://placehold.co/400x400?text=No+Image";
+
+  if (asset.asset_files && asset.asset_files.length > 0) {
+    const file = asset.asset_files[0];
+    if (
+      file &&
+      file.meta_data &&
+      file.meta_data.medium_image &&
+      file.meta_data.medium_image !== ""
+    ) {
+      primaryImage = file.meta_data.medium_image;
+    }
+  }
+
   return (
-    <Card className={cn("h-[360px] w-80 overflow-hidden", className)}>
+    <Card className={cn("h-[360px] w-80 overflow-hidden shadow-sm", className)}>
       <CardContent className="h-full">
-        <div className="h-52 w-full">
+        <div className="h-52 w-full shadow-md">
           <img
             alt={asset.label}
             loading="lazy"
             decoding="async"
             data-nimg="1"
-            className="size-full rounded"
+            className="size-full rounded object-cover"
             src={primaryImage}
           />
         </div>
