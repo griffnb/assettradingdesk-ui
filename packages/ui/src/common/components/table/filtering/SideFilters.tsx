@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { FilterBlock } from "./FilterBlock";
 
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { ModelModel } from "@/models/models/model/model/ModelModel";
 import {
   Accordion,
   AccordionItem,

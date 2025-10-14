@@ -1,5 +1,5 @@
-import { Home } from "../../../pods/home/Home";
+import { HomeV2 } from "../../../pods/home/HomeV2";
 
 export default function RootIndex() {
-  return <Home />;
+  return <HomeV2 />;
 }
