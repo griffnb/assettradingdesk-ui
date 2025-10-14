@@ -21,6 +21,7 @@ import { Store } from "@/models/store/Store";
 import { Bell, Search } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { CategoryFlyout } from "./CategoryFlyout";
 import { ManufacturerFlyout } from "./ManufacturerFlyout";
 
@@ -68,7 +69,10 @@ export const NavBar = observer(function NavBar() {
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
   useEffect(() => {
     Store.category
-      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 5 })
+      .query(
+        { disabled: "0", "isnull:parent_category_id": "1" },
+        { customTTL: 1000 * 60 * 5 },
+      )
       .then((resp) => {
         if (resp.success && resp.data) {
           setCategories(resp.data);
@@ -86,7 +90,9 @@ export const NavBar = observer(function NavBar() {
 
   return (
     <div className="flex w-full flex-1 flex-row items-center gap-3 border-b px-6 py-3">
-      <img src="/img/logo.png" />
+      <Link to="/">
+        <img src="/img/logo.png" />
+      </Link>
 
       <div className="mx-6 flex w-full max-w-sm items-center rounded-lg border bg-white">
         <Search className="ml-3 size-5 text-gray-400" />

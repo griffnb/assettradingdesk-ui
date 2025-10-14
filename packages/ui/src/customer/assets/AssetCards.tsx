@@ -5,6 +5,7 @@ import { useVirtualization } from "@/ui/common/components/table/virtual/useVirtu
 import { useGridCount } from "@/ui/hooks/useGridCount";
 import { observer } from "mobx-react";
 import { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { AssetCard } from "./AssetCard";
 
 interface AssetCardsProps {
@@ -14,6 +15,8 @@ interface AssetCardsProps {
 export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
   const { tableState } = props;
   const { ref, count } = useGridCount<HTMLDivElement>();
+
+  const nav = useNavigate();
 
   const loadMore = useCallback(() => {
     if (tableState.totalCount > tableState.data.length && !tableState.loading) {
@@ -41,10 +44,10 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
     scrollRef.current?.scrollTo(0, 0);
   }, [props.tableState.data]);
 
-  const rowClickAction = (record: AssetModel) => {};
-  console.log(
-    `count ${count} rows:${Math.ceil(props.tableState.data.length / (count > 0 ? count : 1))}`,
-  );
+  const rowClickAction = (record: AssetModel) => {
+    nav(`/assets/details/${record.id}`);
+  };
+
   return (
     <>
       <div
@@ -53,9 +56,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
         className={`h-[calc(100svh-64px)] w-full overflow-y-auto border border-border-neutral-secondary p-4`}
       >
         {props.tableState.data.length == 0 && !props.tableState.loading && (
-          <div className="flex cursor-pointer self-stretch bg-white p-4">
-            No results available.
-          </div>
+          <div className="flex cursor-pointer self-stretch bg-white p-4"></div>
         )}
         {topPad > 0 && <div style={topSpacerStyle} />}
         <div
@@ -70,7 +71,11 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
               endIndex,
             ) as AssetModel[];
             return records.map((record) => (
-              <AssetCard key={record.id} asset={record} />
+              <AssetCard
+                key={record.id}
+                asset={record}
+                onClick={rowClickAction}
+              />
             ));
           })}
         </div>

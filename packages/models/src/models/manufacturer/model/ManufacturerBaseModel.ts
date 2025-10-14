@@ -12,4 +12,6 @@ export class ManufacturerBaseModel extends BaseModel {
   @attr("string") slug: string = "";
   @attr("json", { classType: ManufacturerMetaData })
   meta_data: ManufacturerMetaData = new ManufacturerMetaData();
+
+  @attr("number", { readOnly: true }) asset_count: number = 0;
 }

@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import { ModalWrap, ModalWrapProps } from "./ModalWrap";
 
 const styleVariants = cva(
-  "max-h-[calc(100svh-var(--top-nav-height))] relative w-full rounded-lg shadow transition-all lg:my-auto mt-auto overscroll-none",
+  "max-h-[calc(100svh-var(--customer-top-nav-h))] relative w-full rounded-lg shadow transition-all lg:my-auto mt-auto overscroll-none",
   {
     variants: {
       variant: {
@@ -17,7 +17,7 @@ const styleVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface SimpleModalProps

@@ -12,7 +12,7 @@ export class CategoryModel extends CategoryBaseModel {
 
   // Search Result Values
   get label(): string {
-    return `${this.name} `;
+    return `${this.name} (${this.asset_count}) `;
   }
 
   get icon(): string {

@@ -46,12 +46,12 @@ export const CategoryFlyout = observer(function CategoryFlyout(
           <div className="justify-start">Shop by Categories</div>
         </div>
         <div
-          className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-x-2 gap-y-4 overflow-y-auto lg:max-h-[400px]`}
+          className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-2 overflow-y-auto lg:max-h-[400px]`}
         >
           {categories.map((category) => (
             <NavigationMenuLink key={category.id}>
               <Link
-                to={`/category/${category.slug}`}
+                to={`/assets?categories=${category.slug}`}
                 key={category.id}
                 className="text-sm font-normal leading-tight"
               >

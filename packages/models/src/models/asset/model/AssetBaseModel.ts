@@ -1,5 +1,6 @@
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
+import dayjs from "dayjs";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 
 export class AssetMetaData {
@@ -21,7 +22,7 @@ export class AssetBaseModel extends BaseModel {
   @attr("decimal") price: number = 0;
   @attr("string") notes: string = "";
   @attr("string") serial_number: string = "";
-  @attr("number") verified_at_ts: number = 0;
+  @attr("ts-dayjs") verified_at_ts: dayjs.Dayjs = dayjs();
   @attr("json", { classType: AssetMetaData }) meta_data: AssetMetaData =
     new AssetMetaData();
 

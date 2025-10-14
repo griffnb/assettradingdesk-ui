@@ -68,7 +68,7 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
-    {}
+    {},
   );
 
   const toggleExpanded = (title: string) => {
@@ -79,7 +79,7 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background">
+    <div className="relative h-dvh overflow-hidden bg-background">
       <NavBar />
 
       <main className="flex-1">{props.children}</main>

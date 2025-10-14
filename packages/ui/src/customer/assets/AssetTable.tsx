@@ -1,10 +1,11 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { TableState, TableStateProps } from "@/models/store/state/TableState";
-import { SideFilters } from "@/ui/common/components/table/filtering/SideFilters";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { AssetCards } from "./AssetCards";
+import { SideFilters } from "./SideFilters";
+import { filters } from "./filters";
 
 export interface AssetTableProps
   extends Omit<TableStateProps<AssetModel>, "columns" | "modelType"> {
@@ -22,6 +23,7 @@ export const AssetTable = observer(function AssetTable(
         columns: [],
         modelType: "asset",
         infiniteScroll: true,
+        filters: filters,
       }),
   );
 

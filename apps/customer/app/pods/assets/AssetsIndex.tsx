@@ -15,7 +15,7 @@ export const AssetsIndex = observer(function AssetIndex() {
   const appliedFilters = useMemo(
     () =>
       queryToFilters(parseSearchParams(params), {
-        status: [],
+        status: [100],
         limit: "100",
       }),
     [params],

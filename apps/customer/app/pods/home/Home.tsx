@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 
 export const Home = observer(function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="h-dvh bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Hero Section */}
       <div className="relative px-6 py-24 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
