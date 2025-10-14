@@ -79,10 +79,11 @@ export const InAppLayout = observer(function InApp(props: InAppProps) {
   };
 
   return (
-    <div className="relative h-dvh overflow-hidden bg-background">
+    <div className="relative flex h-dvh flex-col overflow-hidden bg-background">
       <NavBar />
-
-      <main className="flex-1">{props.children}</main>
+      <main className="flex h-full flex-col overflow-auto">
+        {props.children}
+      </main>
     </div>
   );
 });

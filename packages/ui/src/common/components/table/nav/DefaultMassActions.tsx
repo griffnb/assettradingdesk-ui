@@ -60,7 +60,7 @@ const DefaultMassActions = observer(
 
         const response = await ServerService.callPut(
           tableState.modelType as StoreKeys,
-          `0`,
+          `bulk`,
           postData,
         );
 

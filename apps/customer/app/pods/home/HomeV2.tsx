@@ -9,7 +9,7 @@ import {
 
 export const HomeV2 = observer(function HomeV2() {
   return (
-    <div className="min-h-screen bg-neutral-100">
+    <div className="flex flex-col overflow-auto bg-neutral-100">
       {/* Hero Section with search and stats */}
       <HeroSection />
 

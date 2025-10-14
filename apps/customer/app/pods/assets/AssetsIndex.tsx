@@ -21,8 +21,6 @@ export const AssetsIndex = observer(function AssetIndex() {
     [params],
   );
 
-  console.log(appliedFilters, params);
-
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     console.log("APPLY FILTERS", toJS(params));
     //setParams(params);

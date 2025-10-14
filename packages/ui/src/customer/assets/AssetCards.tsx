@@ -1,6 +1,7 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 
 import { TableState } from "@/models/store/state/TableState";
+import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { useVirtualization } from "@/ui/common/components/table/virtual/useVirtual";
 import { useGridCount } from "@/ui/hooks/useGridCount";
 import { observer } from "mobx-react";
@@ -56,7 +57,9 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
         className={`h-[calc(100svh-64px)] w-full overflow-y-auto border border-border-neutral-secondary p-4`}
       >
         {props.tableState.data.length == 0 && !props.tableState.loading && (
-          <div className="flex cursor-pointer self-stretch bg-white p-4"></div>
+          <div className="flex cursor-pointer self-stretch bg-white p-4">
+            No assets Found
+          </div>
         )}
         {topPad > 0 && <div style={topSpacerStyle} />}
         <div
@@ -80,6 +83,8 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
           })}
         </div>
         {bottomPad > 0 && <div style={bottomSpacerStyle} />}
+        {props.tableState.loading ||
+          (props.tableState.isLoadingMore && <LoadingSkeleton />)}
       </div>
     </>
   );

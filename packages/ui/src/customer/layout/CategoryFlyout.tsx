@@ -51,7 +51,7 @@ export const CategoryFlyout = observer(function CategoryFlyout(
           {categories.map((category) => (
             <NavigationMenuLink key={category.id}>
               <Link
-                to={`/assets?categories=${category.slug}`}
+                to={`/assets?categories=${category.id}`}
                 key={category.id}
                 className="text-sm font-normal leading-tight"
               >

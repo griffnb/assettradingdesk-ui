@@ -24,8 +24,8 @@ export const filters: IFilter[] = [
     type: "hidden",
     field: {
       queryParam: "categories",
-      postgresColumn: "categories.id",
-      elasticsearchColumn: "categories.id",
+      postgresColumn: "_c:category_id",
+      elasticsearchColumn: "_c:category_id",
     },
   },
   {
