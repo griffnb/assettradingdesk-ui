@@ -50,9 +50,9 @@ export const GroupedFilterBlock = observer(function GroupedFilterBlock<
 
   return (
     <div className={cn("flex flex-col gap-y-2 overflow-hidden", className)}>
-      <div className="">
+      <div className="flex w-full flex-row pr-3">
         <Input
-          className="focus-visible:ring-0"
+          className="w-full focus-visible:ring-0"
           placeholder={`Search ${label}`}
           onChange={(e) => {
             setSearchTerm(e.target.value);

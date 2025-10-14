@@ -128,7 +128,7 @@ export const SideFilters = observer(function SideFilters<T extends object>(
         >
           <AccordionItem value="categories" className="border-b">
             <AccordionTrigger>Categories</AccordionTrigger>
-            <AccordionContent className="border-b pb-2">
+            <AccordionContent className="max-w-[330px] border-b pb-2">
               <GroupedFilterBlock
                 label="Categories"
                 tableState={tableState}
@@ -142,17 +142,15 @@ export const SideFilters = observer(function SideFilters<T extends object>(
           </AccordionItem>
           <AccordionItem value="makes" className="border-b">
             <AccordionTrigger>Manufacturers</AccordionTrigger>
-            <AccordionContent className="border-b pb-2">
-              <ScrollArea className="h-72 w-full">
-                <FilterBlock
-                  label="Manufacturers"
-                  tableState={tableState}
-                  filterRecords={manufacturers}
-                  labelField={"label"}
-                  valueField={"id"}
-                  filterKey="manufacturers"
-                />
-              </ScrollArea>
+            <AccordionContent className="max-w-[330px] border-b pb-2">
+              <FilterBlock
+                label="Manufacturers"
+                tableState={tableState}
+                filterRecords={manufacturers}
+                labelField={"label"}
+                valueField={"id"}
+                filterKey="manufacturers"
+              />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
