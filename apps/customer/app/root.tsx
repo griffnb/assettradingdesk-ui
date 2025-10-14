@@ -66,7 +66,13 @@ export default function App({ loaderData }: Route.ComponentProps) {
     throw new Error("Add your Clerk Publishable Key to the .env file");
   }
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} loaderData={loaderData}>
+    <ClerkProvider
+      appearance={{
+        theme: "simple",
+      }}
+      publishableKey={PUBLISHABLE_KEY}
+      loaderData={loaderData}
+    >
       <Auth />
     </ClerkProvider>
   );

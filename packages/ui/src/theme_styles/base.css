@@ -498,3 +498,7 @@ label {
     -moz-appearance: textfield !important;
   }
 }
+
+.cl-formFieldInput {
+  @apply rounded-md;
+}

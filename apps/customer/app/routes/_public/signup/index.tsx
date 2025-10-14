@@ -1,9 +1,17 @@
 import { SignUp } from "@clerk/clerk-react";
 
-export default function Login() {
+export default function Signup() {
   return (
-    <>
-      <SignUp signInUrl="/login" />
-    </>
+    <div className="flex flex-col items-center justify-center">
+      <SignUp
+        signInUrl="/login"
+        oauthFlow="popup"
+        appearance={{
+          layout: {
+            logoPlacement: "none",
+          },
+        }}
+      />
+    </div>
   );
 }

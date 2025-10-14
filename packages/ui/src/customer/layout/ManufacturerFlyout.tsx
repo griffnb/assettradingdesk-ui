@@ -43,17 +43,17 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
     <div className="fixed left-0 top-[var(--customer-top-nav-h,20px)] z-nav-bar-over w-full">
       <div className={cn(styleVariants({ variant, className }))}>
         <div className="flex items-center justify-start gap-2 self-stretch rounded-md py-1.5 text-sm font-semibold leading-none text-foreground">
-          <div className="justify-start">Shop by Manufacturers</div>
+          <div className="justify-start">Shop by Top Manufacturers</div>
         </div>
         <div
-          className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-x-2 gap-y-4 overflow-y-auto lg:max-h-[400px]`}
+          className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-2 overflow-y-auto lg:max-h-[400px]`}
         >
           {manufacturers.map((manufacturer) => (
             <NavigationMenuLink key={manufacturer.id}>
               <Link
                 to={`/manufacturer/${manufacturer.slug}`}
                 key={manufacturer.id}
-                className="text-sm font-normal leading-tight"
+                className="truncate text-sm font-normal leading-tight"
               >
                 {manufacturer.name}
               </Link>

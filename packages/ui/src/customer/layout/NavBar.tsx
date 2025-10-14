@@ -7,13 +7,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/ui/shadcn/ui/navigation-menu";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
@@ -76,11 +70,13 @@ export const NavBar = observer(function NavBar() {
       .then((resp) => {
         if (resp.success && resp.data) {
           setCategories(resp.data);
-          console.log("Categories");
         }
       });
     Store.manufacturer
-      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 5 })
+      .query(
+        { disabled: "0", order: "asset_count desc,name asc", limit: "20" },
+        { customTTL: 1000 * 60 * 5 },
+      )
       .then((resp) => {
         if (resp.success && resp.data) {
           setManufacturers(resp.data);
@@ -128,12 +124,12 @@ export const NavBar = observer(function NavBar() {
           <UserButton />
         </SignedIn>
         <SignedOut>
-          <SignUpButton>
+          <Link to="/signup">
             <Button>Register Now</Button>
-          </SignUpButton>
-          <SignInButton>
+          </Link>
+          <Link to="/login">
             <Button>Sign In</Button>
-          </SignInButton>
+          </Link>
         </SignedOut>
       </div>
     </div>
