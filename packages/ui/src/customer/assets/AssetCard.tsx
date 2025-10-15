@@ -5,6 +5,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
 import { observer } from "mobx-react";
 import { ReactNode } from "react";
+import { useNavigate } from "react-router";
 
 const styleVariants = cva(
   "h-[340px] w-[310px] gap-2 overflow-hidden shadow-sm hover:bg-gray-50 cursor-pointer",
@@ -45,25 +46,20 @@ export const AssetCard = observer(function AssetCard(
   fullProps: AssetCardProps,
 ) {
   const { className, asset, variant, badge, onClick } = fullProps;
+  const nav = useNavigate();
 
-  let primaryImage = "https://placehold.co/400x400?text=No+Image";
-
-  if (asset.asset_files && asset.asset_files.length > 0) {
-    const file = asset.asset_files[0];
-    if (
-      file &&
-      file.meta_data &&
-      file.meta_data.medium_image &&
-      file.meta_data.medium_image !== ""
-    ) {
-      primaryImage = file.meta_data.medium_image;
+  const onClickHandler = () => {
+    if (onClick) {
+      onClick(asset);
+    } else {
+      nav(`/assets/details/${asset.id}`);
     }
-  }
+  };
 
   return (
     <Card
       className={cn(styleVariants({ variant, className }))}
-      onClick={() => onClick?.(asset)}
+      onClick={onClickHandler}
     >
       <CardContent className={cn(imageVariant({ variant }))}>
         <div className="relative size-full">
@@ -79,8 +75,8 @@ export const AssetCard = observer(function AssetCard(
             loading="lazy"
             decoding="async"
             data-nimg="1"
-            className="size-full rounded object-cover shadow-md"
-            src={primaryImage}
+            className="size-full rounded border object-cover shadow-md"
+            src={asset.mediumImage}
           />
         </div>
       </CardContent>

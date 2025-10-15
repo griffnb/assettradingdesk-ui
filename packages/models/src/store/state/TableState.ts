@@ -231,7 +231,7 @@ export class TableState<T extends object> {
     }
 
     if (!pageOnly || !this.virtualPages[this.page - 1]) {
-      this.loadServerData();
+      this.loadServerData(this.page);
     }
   }
 
@@ -264,7 +264,7 @@ export class TableState<T extends object> {
   applyPage(page: number) {
     this.page = page;
     this.offset = (page - 1) * this.limit;
-    this.updateAppliedFilters();
+    this.updateAppliedFilters(true);
   }
 
   applyLimit(limit: number) {

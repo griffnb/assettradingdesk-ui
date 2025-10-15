@@ -17,3 +17,9 @@ export const file_type: Status[] = [
     class: "fa fa-file text-gray-500",
   },
 ];
+
+export const AssetFileTypes = {
+  Image: 1,
+  Video: 2,
+  Document: 3,
+};

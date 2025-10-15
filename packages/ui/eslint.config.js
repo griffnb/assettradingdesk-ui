@@ -1,4 +1,4 @@
-import sharedConfig from "../../eslint.config.mjs";
-export default [
+const sharedConfig = require("../../eslint.config.js");
+module.exports = [
   ...sharedConfig, // Import the higher-up config
 ];

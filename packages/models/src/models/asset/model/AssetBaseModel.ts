@@ -31,9 +31,14 @@ export class AssetBaseModel extends BaseModel {
 
   // Public Join Data
   @attr("string", { readOnly: true }) model_name: string | null = null;
+  @attr("string", { readOnly: true }) model_description: string | null = null;
   @attr("string", { readOnly: true }) manufacturer_name: string | null = null;
+  @attr("string", { readOnly: true }) manufacturer_description: string | null =
+    null;
   @attr("uuid", { readOnly: true }) manufacturer_id: string | null = null;
   @attr("string", { readOnly: true }) category_name: string | null = null;
+  @attr("string", { readOnly: true }) category_description: string | null =
+    null;
   @attr("uuid", { readOnly: true }) category_id: string | null = null;
   @attr("string", { readOnly: true }) industry_name: string | null = null;
   @attr("uuid", { readOnly: true }) industry_id: string | null = null;

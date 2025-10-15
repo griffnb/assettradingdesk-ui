@@ -5,7 +5,13 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config({
   files: ["**/*.{ts,tsx,mtsx}"],
-  ignores: ["**/node_modules/", "**/dist/*", "**/.next/*", "**/build/*", "**/.react-router/**"],
+  ignores: [
+    "**/node_modules/",
+    "**/dist/*",
+    "**/.next/*",
+    "**/build/*",
+    "**/.react-router/**",
+  ],
   extends: [
     // Built-in ESLint configs
     js.configs.recommended,

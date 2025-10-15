@@ -1,6 +1,7 @@
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
+import { AssetFileTypes } from "../../asset_file/_constants/file_type";
 import { AssetBaseModel } from "./AssetBaseModel";
 import { validationRules } from "./validation_rules";
 
@@ -45,6 +46,61 @@ export class AssetModel extends AssetBaseModel {
       title: "",
       url: "",
     };
+  }
+
+  get largeImage(): string {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const img = this.asset_files.find(
+        (file) =>
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.large_image &&
+          file.meta_data.large_image != "",
+      );
+      return img
+        ? img.meta_data.large_image.replaceAll("_lw.", "_l.")
+        : "/img/placeholder.png";
+    }
+    return "/img/placeholder.png";
+  }
+
+  get mediumImage(): string {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const img = this.asset_files.find(
+        (file) =>
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.medium_image &&
+          file.meta_data.medium_image != "",
+      );
+      if (!img) {
+        return "/img/placeholder.png";
+      }
+      return img
+        ? img.meta_data.medium_image.replaceAll("_mw.", "_m.")
+        : "/img/placeholder.png";
+    }
+    return "/img/placeholder.png";
+  }
+
+  images(size: "sm" | "md" | "lg", skipFirst?: boolean): string[] {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const images = this.asset_files.filter(
+        (file, index) =>
+          (skipFirst ? index > 0 : true) &&
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.large_image &&
+          file.meta_data.large_image != "",
+      );
+      return images.map((file) => {
+        if (size == "sm") {
+          return file.meta_data.small_image.replaceAll("_sw.", "_s.");
+        } else if (size == "md") {
+          return file.meta_data.medium_image.replaceAll("_mw.", "_m.");
+        } else {
+          return file.meta_data.large_image.replaceAll("_lw.", "_l.");
+        }
+      });
+    }
+    return ["/img/placeholder.png"];
   }
 
   constructor(store: IStore<AssetModel>) {

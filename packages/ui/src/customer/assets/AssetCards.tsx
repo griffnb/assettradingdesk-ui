@@ -54,7 +54,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
       <div
         ref={scrollRef}
         onScroll={onScroll}
-        className={`h-[calc(100svh-64px)] w-full overflow-y-auto border border-border-neutral-secondary p-4`}
+        className={`h-[calc(100svh-64px)] w-full overflow-y-auto border p-4`}
       >
         {props.tableState.data.length == 0 && !props.tableState.loading && (
           <div className="flex cursor-pointer self-stretch bg-white p-4">

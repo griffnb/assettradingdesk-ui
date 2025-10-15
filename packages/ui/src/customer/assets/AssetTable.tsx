@@ -34,9 +34,7 @@ export const AssetTable = observer(function AssetTable(
   }, [props.appliedFilters]);
 
   return (
-    <div
-      className={cn("bg-gray-modern-800 flex flex-row items-start", className)}
-    >
+    <div className={cn("flex flex-row items-start", className)}>
       <SideFilters tableState={tableState} />
       <AssetCards tableState={tableState} />
     </div>
