@@ -2,6 +2,7 @@ import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { AssetFileTypes } from "../../asset_file/_constants/file_type";
+import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 import { AssetBaseModel } from "./AssetBaseModel";
 import { validationRules } from "./validation_rules";
 
@@ -81,7 +82,7 @@ export class AssetModel extends AssetBaseModel {
     return "/img/placeholder.png";
   }
 
-  images(size: "sm" | "md" | "lg", skipFirst?: boolean): string[] {
+  imageValues(size: "sm" | "md" | "lg", skipFirst?: boolean): string[] {
     if (this.asset_files && this.asset_files.length > 0) {
       const images = this.asset_files.filter(
         (file, index) =>
@@ -101,6 +102,20 @@ export class AssetModel extends AssetBaseModel {
       });
     }
     return ["/img/placeholder.png"];
+  }
+
+  images(skipFirst?: boolean): AssetFileModel[] {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const images = this.asset_files.filter(
+        (file, index) =>
+          (skipFirst ? index > 0 : true) &&
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.large_image &&
+          file.meta_data.large_image != "",
+      );
+      return images;
+    }
+    return [];
   }
 
   constructor(store: IStore<AssetModel>) {

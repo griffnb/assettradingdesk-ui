@@ -21,7 +21,7 @@ export const ProductActions = observer(function ProductActions({
     <div className={cn("flex w-full items-end gap-5", className)}>
       <Button
         onClick={onPrimaryAction}
-        className="h-10 flex-1 bg-gray-800 text-white hover:bg-gray-700"
+        className="h-10 flex-1 bg-primary text-white hover:bg-primary/90"
       >
         {primaryLabel}
       </Button>

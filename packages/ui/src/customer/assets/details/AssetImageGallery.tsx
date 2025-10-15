@@ -1,4 +1,12 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import ZoomableImage from "@/ui/common/components/image/ZoomableImage";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/ui/shadcn/ui/carousel";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 
@@ -12,33 +20,37 @@ export const AssetImageGallery = observer(function AssetImageGallery({
   className,
 }: AssetImageGalleryProps) {
   // Default placeholder if no images
-  const displayImages = asset.images("md", true);
+  const displayImages = asset.images(true);
 
   return (
-    <div className={cn("flex flex-col gap-5", className)}>
+    <div className={cn("flex max-w-[500px] flex-col gap-5", className)}>
       {/* Main large image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-xl">
-        <img
+        <ZoomableImage
           src={asset.largeImage}
-          alt="Asset main view"
-          className="size-full object-cover"
+          largeSrc={asset.largeImage}
+          className="size-full rounded-xl object-cover"
         />
       </div>
 
-      {/* Thumbnail grid */}
-      <div className="grid grid-cols-2 gap-5">
-        {displayImages.slice(1, 5).map((image, index) => (
-          <button
-            key={index + 1}
-            className={cn(
-              "relative aspect-square overflow-hidden rounded-xl transition-all",
-              "hover:ring-2 hover:ring-gray-300",
-            )}
-          >
-            <img src={image} className="size-full object-cover" />
-          </button>
-        ))}
-      </div>
+      <Carousel className="mx-auto max-w-[500px]">
+        <CarouselContent>
+          {displayImages.map((image, index) => (
+            <CarouselItem
+              className="max-h-[100px] basis-1/3 overflow-hidden"
+              key={index}
+            >
+              <ZoomableImage
+                src={image.mediumImage}
+                largeSrc={image.largeImage}
+                className="h-[100px] w-full rounded-xl object-cover"
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
+        <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
+      </Carousel>
     </div>
   );
 });

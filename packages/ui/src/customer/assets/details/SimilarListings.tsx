@@ -25,11 +25,13 @@ export const SimilarListings = observer(function SimilarListings({
     if (!asset.model_id) {
       return;
     }
-    Store.asset.query({ model_id: asset.model_id, limit: "4" }).then((resp) => {
-      if (resp.success && resp.data) {
-        setAssets(resp.data);
-      }
-    });
+    Store.asset
+      .query({ model_id: asset.model_id, limit: "4", "not:id": asset.id || "" })
+      .then((resp) => {
+        if (resp.success && resp.data) {
+          setAssets(resp.data);
+        }
+      });
     ServerService.callGet("asset", "count", { model_id: asset.model_id }).then(
       (resp) => {
         if (resp.success && resp.data) {

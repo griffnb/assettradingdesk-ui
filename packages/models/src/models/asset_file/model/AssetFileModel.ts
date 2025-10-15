@@ -36,6 +36,18 @@ export class AssetFileModel extends AssetFileBaseModel {
     return `/asset_files/details/${this.id}`;
   }
 
+  get largeImage(): string {
+    return this.meta_data.large_image.replaceAll("_lw.", "_l.");
+  }
+
+  get mediumImage(): string {
+    return this.meta_data.medium_image.replaceAll("_mw.", "_m.");
+  }
+
+  get smallImage(): string {
+    return this.meta_data.small_image.replaceAll("_sw.", "_s.");
+  }
+
   getParent(): ParentInfo | null {
     if (this.asset_id) {
       return {

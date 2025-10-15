@@ -31,9 +31,7 @@ export const ProductInfo = observer(function ProductInfo({
   };
 
   return (
-    <div
-      className={cn("flex w-[600px] max-w-[600px] flex-col gap-6", className)}
-    >
+    <div className={cn("flex w-full flex-col gap-6", className)}>
       {/* Header with title, category, badges, and action buttons */}
       <div className="flex w-full items-center gap-2">
         <div className="flex min-w-0 flex-1 flex-col items-start gap-1">
@@ -60,17 +58,17 @@ export const ProductInfo = observer(function ProductInfo({
             variant="ghost"
             size="icon"
             onClick={onShare}
-            className="h-8 w-8"
+            className="size-8"
           >
-            <Share2 className="h-4 w-4" />
+            <Share2 className="size-4" />
           </Button>
           <Button
             variant="ghost"
             size="icon"
             onClick={onFavorite}
-            className="h-8 w-8"
+            className="size-8"
           >
-            <Heart className="h-4 w-4" />
+            <Heart className="size-4" />
           </Button>
         </div>
       </div>
@@ -86,6 +84,19 @@ export const ProductInfo = observer(function ProductInfo({
         <p className="w-full whitespace-pre-wrap text-lg font-medium leading-7 text-gray-500">
           {asset.model_description}
         </p>
+      </div>
+      <div className="flex w-full flex-col items-start gap-2">
+        <div className="grid w-full grid-cols-[100px,_1fr] gap-2">
+          <span>Year:</span>
+          <span className="font-semibold">{asset.year || "N/A"}</span>
+          <hr className="col-span-2" />
+          <span>Condition:</span> <span className="font-semibold">{"N/A"}</span>
+          <hr className="col-span-2" />
+          <span>Install Status:</span>
+          <span className="font-semibold">{"N/A"}</span>
+          <hr className="col-span-2" />
+          <span>Location:</span> <span className="font-semibold">{"N/A"}</span>
+        </div>
       </div>
 
       {/* Action buttons */}
