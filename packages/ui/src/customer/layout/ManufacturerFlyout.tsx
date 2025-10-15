@@ -1,4 +1,5 @@
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { Button } from "@/ui/shadcn/ui/button";
 import { NavigationMenuLink } from "@/ui/shadcn/ui/navigation-menu";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
@@ -37,7 +38,7 @@ export interface ManufacturerFlyoutProps
 export const ManufacturerFlyout = observer(function ManufacturerFlyout(
   fullProps: ManufacturerFlyoutProps,
 ) {
-  const { className, variant, manufacturers, ...props } = fullProps;
+  const { className, variant, manufacturers } = fullProps;
 
   return (
     <div className="fixed left-0 top-[var(--customer-top-nav-h,20px)] z-nav-bar-over w-full">
@@ -51,7 +52,7 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
           {manufacturers.map((manufacturer) => (
             <NavigationMenuLink key={manufacturer.id}>
               <Link
-                to={`/manufacturer/${manufacturer.slug}`}
+                to={`/assets?manufacturers=${manufacturer.id}`}
                 key={manufacturer.id}
                 className="truncate text-sm font-normal leading-tight"
               >
@@ -59,6 +60,15 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
               </Link>
             </NavigationMenuLink>
           ))}
+        </div>
+        <div className="flex w-full flex-col items-start">
+          <Button
+            variant="link"
+            className="ml-0 pl-2 text-sm font-medium text-primary"
+            asChild
+          >
+            <Link to="/assets">See All Manufacturers</Link>
+          </Button>
         </div>
       </div>
     </div>

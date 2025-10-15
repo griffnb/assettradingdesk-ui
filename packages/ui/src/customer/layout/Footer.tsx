@@ -1,7 +1,9 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
+import dayjs from "dayjs";
 import { observer } from "mobx-react";
 import { HTMLAttributes } from "react";
+import { Link } from "react-router";
 
 const styleVariants = cva(
   "inline-flex flex-col items-start justify-start gap-8 self-stretch border-t bg-dark-background px-16 text-dark-foreground py-20",
@@ -45,9 +47,12 @@ export const Footer = observer(function Footer(fullProps: FooterProps) {
               data-state="Default"
               className="flex items-center justify-center gap-2.5"
             >
-              <div className="justify-start text-sm font-medium leading-tight text-dark-foreground">
+              <Link
+                to="/"
+                className="justify-start text-sm font-medium leading-tight text-dark-foreground"
+              >
                 Home
-              </div>
+              </Link>
             </div>
             <div
               data-direction="Horizontal"
@@ -55,19 +60,12 @@ export const Footer = observer(function Footer(fullProps: FooterProps) {
               data-state="Default"
               className="flex items-center justify-center gap-2.5"
             >
-              <div className="justify-start text-sm font-medium leading-tight text-dark-foreground">
-                Learn More
-              </div>
-            </div>
-            <div
-              data-direction="Horizontal"
-              data-show-icon="No"
-              data-state="Default"
-              className="flex items-center justify-center gap-2.5"
-            >
-              <div className="justify-start text-sm font-medium leading-tight text-dark-foreground">
-                Products
-              </div>
+              <Link
+                to="/assets"
+                className="justify-start text-sm font-medium leading-tight text-dark-foreground"
+              >
+                Assets
+              </Link>
             </div>
             <div
               data-direction="Horizontal"
@@ -105,7 +103,7 @@ export const Footer = observer(function Footer(fullProps: FooterProps) {
       <div className="h-0 self-stretch border-b-2"></div>
       <div className="inline-flex items-center justify-between self-stretch">
         <div className="justify-start text-sm font-medium leading-tight text-muted-foreground">
-          Copyright @2025 AssetTradingDesk.com. All right reserved
+          Copyright @{dayjs().year()} AssetTradingDesk.com. All right reserved
         </div>
         <div className="flex items-center justify-start gap-6">
           <div

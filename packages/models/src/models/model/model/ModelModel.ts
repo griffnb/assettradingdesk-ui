@@ -14,7 +14,7 @@ export class ModelModel extends ModelBaseModel {
 
   // Search Result Values
   get label(): string {
-    return `${this.name}`;
+    return `${this.manufacturer_name} - ${this.name}`;
   }
 
   get icon(): string {

@@ -1,5 +1,4 @@
 import { Button } from "@/ui/shadcn/ui/button";
-import { Input } from "@/ui/shadcn/ui/input";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,53 +11,15 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
-import { Bell, Search } from "lucide-react";
+import { Bell } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { CategoryFlyout } from "./CategoryFlyout";
 import { ManufacturerFlyout } from "./ManufacturerFlyout";
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "#",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "#",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "#",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "#",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "#",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "#",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
+import { SearchFlyout } from "./SearchFlyout";
 
 export const NavBar = observer(function NavBar() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
   useEffect(() => {
@@ -85,22 +46,14 @@ export const NavBar = observer(function NavBar() {
   }, []);
 
   return (
-    <div className="flex w-full flex-1 flex-row items-center gap-3 border-b px-6 py-3">
+    <div className="flex w-full flex-1 flex-row items-center gap-3 border-b px-6 py-3 shadow-md">
       <Link to="/">
         <img src="/img/logo.png" />
       </Link>
 
-      <div className="mx-6 flex w-full max-w-sm items-center rounded-lg border bg-white">
-        <Search className="ml-3 size-5 text-gray-400" />
-        <Input
-          type="text"
-          placeholder="Search equipment, manufacturers, models..."
-          className="flex-1 border-0 bg-transparent text-lg placeholder:text-gray-700 focus-visible:ring-0"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
+      <SearchFlyout />
 
-      <NavigationMenu viewport={false}>
+      <NavigationMenu viewport={false} delayDuration={1} skipDelayDuration={1}>
         <NavigationMenuList>
           <NavigationMenuItem value="categories">
             <NavigationMenuTrigger>Categories</NavigationMenuTrigger>

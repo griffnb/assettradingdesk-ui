@@ -1,5 +1,6 @@
 {
   "name": "ui",
+  "type": "module",
   "scripts": {
     "watch": "tsc --watch --noEmit --project './tsconfig.json'",
     "tsc": "tsc --noEmit --project './tsconfig.json'",

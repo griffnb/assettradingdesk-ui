@@ -1,4 +1,5 @@
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { Button } from "@/ui/shadcn/ui/button";
 import { NavigationMenuLink } from "@/ui/shadcn/ui/navigation-menu";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
@@ -37,7 +38,7 @@ export interface CategoryFlyoutProps
 export const CategoryFlyout = observer(function CategoryFlyout(
   fullProps: CategoryFlyoutProps,
 ) {
-  const { className, variant, categories, ...props } = fullProps;
+  const { className, variant, categories } = fullProps;
 
   return (
     <div className="fixed left-0 top-[var(--customer-top-nav-h,0px)] z-nav-bar-over w-full">
@@ -59,6 +60,15 @@ export const CategoryFlyout = observer(function CategoryFlyout(
               </Link>
             </NavigationMenuLink>
           ))}
+        </div>
+        <div className="flex w-full flex-col items-start">
+          <Button
+            variant="link"
+            className="ml-0 pl-2 text-sm font-medium text-primary"
+            asChild
+          >
+            <Link to="/assets">See All Categories</Link>
+          </Button>
         </div>
       </div>
     </div>

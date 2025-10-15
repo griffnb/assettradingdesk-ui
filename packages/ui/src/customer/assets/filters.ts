@@ -2,7 +2,7 @@ import { IFilter } from "@/ui/common/components/types/filters";
 
 export const filters: IFilter[] = [
   {
-    placeholder: "Paying Organization",
+    placeholder: "",
     type: "hidden",
     field: {
       queryParam: "pictures",
@@ -11,7 +11,7 @@ export const filters: IFilter[] = [
     },
   },
   {
-    placeholder: "Paying Organization",
+    placeholder: "",
     type: "hidden",
     field: {
       queryParam: "price",
@@ -35,6 +35,15 @@ export const filters: IFilter[] = [
       queryParam: "manufacturers",
       postgresColumn: "manufacturers.id",
       elasticsearchColumn: "manufacturers.id",
+    },
+  },
+  {
+    placeholder: "Models",
+    type: "hidden",
+    field: {
+      queryParam: "models",
+      postgresColumn: "model_id",
+      elasticsearchColumn: "model_id",
     },
   },
 ];

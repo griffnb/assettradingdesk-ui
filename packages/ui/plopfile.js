@@ -1,6 +1,6 @@
-const mainPlopfile = require("../../plopfile");
+import mainPlopfile from "../../plopfile";
 
-module.exports = function (plop) {
+export default function (plop) {
   // Load the main plopfile to inherit its generators
   mainPlopfile(plop);
-};
+}
