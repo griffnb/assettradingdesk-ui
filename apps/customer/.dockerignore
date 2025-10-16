@@ -1,4 +1,48 @@
+# Build outputs
 .react-router
 build
+dist
+
+# Dependencies
 node_modules
+*/node_modules
+
+# Environment files
+.env*
+!.env.example
+
+# Development files
 README.md
+*.md
+.vscode
+.idea
+
+# Testing
+coverage
+*.test.*
+*.spec.*
+__tests__
+test
+
+# Git and CI
+.git
+.gitignore
+.github
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs
+
+# Temporary files
+*.tmp
+*.temp
+.cache
