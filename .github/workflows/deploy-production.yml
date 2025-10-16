@@ -8,42 +8,42 @@ on:
 
 # Define environment mappings
 jobs:
-  build_admin:
-    name: Build Admin
-    env:
-      APP: admin
-      ENVIRONMENT: production
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      MONOREPO_PATH: apps/admin
-
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-    permissions:
-      id-token: write
-      contents: read
-    outputs:
-      admin_image: ${{ steps.build_admin.outputs.admin_image_tag }}
-      admin_nginx_image: ${{ steps.build_admin.outputs.admin_nginx_image_tag }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::${{ vars.ACCOUNT_ID }}:role/admin-deploy-role
-          unset-current-credentials: true
-      - name: Build Admin
-        id: build_admin
-        run: |
-          FULL_OUTPUT=$(bash -ex infra/build/build_image.sh)
-          ADMIN_IMAGE_TAG=$(echo "$FULL_OUTPUT" | tail -n 1)
-          echo "admin_image_tag=$ADMIN_IMAGE_TAG" >> $GITHUB_OUTPUT
-          FULL_OUTPUT=$(bash -ex infra/build/build_nginx.sh)
-          ADMIN_NGINX_IMAGE_TAG=$(echo "$FULL_OUTPUT" | tail -n 1)
-          echo "admin_nginx_image_tag=$ADMIN_NGINX_IMAGE_TAG" >> $GITHUB_OUTPUT
+  #build_admin:
+  #  name: Build Admin
+  #  env:
+  #    APP: admin
+  #    ENVIRONMENT: production
+  #    SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  #    MONOREPO_PATH: apps/admin
+  #
+  #  runs-on: ubuntu-latest
+  #  environment:
+  #    name: production
+  #  permissions:
+  #    id-token: write
+  #    contents: read
+  #  outputs:
+  #    admin_image: ${{ steps.build_admin.outputs.admin_image_tag }}
+  #    admin_nginx_image: ${{ steps.build_admin.outputs.admin_nginx_image_tag }}
+  #
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v4
+  #
+  #    - uses: aws-actions/configure-aws-credentials@v4
+  #      with:
+  #        aws-region: us-east-1
+  #        role-to-assume: arn:aws:iam::${{ vars.ACCOUNT_ID }}:role/admin-deploy-role
+  #        unset-current-credentials: true
+  #    - name: Build Admin
+  #      id: build_admin
+  #      run: |
+  #        FULL_OUTPUT=$(bash -ex infra/build/build_image.sh)
+  #        ADMIN_IMAGE_TAG=$(echo "$FULL_OUTPUT" | tail -n 1)
+  #        echo "admin_image_tag=$ADMIN_IMAGE_TAG" >> $GITHUB_OUTPUT
+  #        FULL_OUTPUT=$(bash -ex infra/build/build_nginx.sh)
+  #        ADMIN_NGINX_IMAGE_TAG=$(echo "$FULL_OUTPUT" | tail -n 1)
+  #        echo "admin_nginx_image_tag=$ADMIN_NGINX_IMAGE_TAG" >> $GITHUB_OUTPUT
 
   build_customer:
     name: Build Customer
@@ -83,34 +83,34 @@ jobs:
           echo "customer_nginx_image_tag=$ATLAS_NGINX_IMAGE_TAG" >> $GITHUB_OUTPUT
 
   # Split the jobs to ensure we have independent jobs for each service
-  deploy_admin:
-    name: Deploy admin
-    env:
-      APP: admin
-      ENVIRONMENT: production
-      SYSTEM_MEMORY: "2048"
-      CONTAINER_MEMORY: "1024"
-      SYSTEM_CPU: "1024"
-      TASK_COUNT: 2
-      IMAGE: "${{ needs.build_admin.outputs.admin_image }}"
-      NGINXIMAGE: "${{ needs.build_admin.outputs.admin_nginx_image }}"
-    needs: [build_admin]
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    concurrency: ${{ github.event.inputs.environment }}-admin
-    permissions:
-      id-token: write
-      contents: read
-    environment:
-      name: production
-    steps:
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::${{ vars.ACCOUNT_ID }}:role/admin-deploy-role
-      - uses: actions/checkout@v4
-      - run: |
-          bash -ex infra/deploy/deploy_web_ui.sh
+  #deploy_admin:
+  #  name: Deploy admin
+  #  env:
+  #    APP: admin
+  #    ENVIRONMENT: production
+  #    SYSTEM_MEMORY: "2048"
+  #    CONTAINER_MEMORY: "1024"
+  #    SYSTEM_CPU: "1024"
+  #    TASK_COUNT: 2
+  #    IMAGE: "${{ needs.build_admin.outputs.admin_image }}"
+  #    NGINXIMAGE: "${{ needs.build_admin.outputs.admin_nginx_image }}"
+  #  needs: [build_admin]
+  #  runs-on: ubuntu-latest
+  #  timeout-minutes: 10
+  #  concurrency: ${{ github.event.inputs.environment }}-admin
+  #  permissions:
+  #    id-token: write
+  #    contents: read
+  #  environment:
+  #    name: production
+  #  steps:
+  #    - uses: aws-actions/configure-aws-credentials@v4
+  #      with:
+  #        aws-region: us-east-1
+  #        role-to-assume: arn:aws:iam::${{ vars.ACCOUNT_ID }}:role/admin-deploy-role
+  #    - uses: actions/checkout@v4
+  #    - run: |
+  #        bash -ex infra/deploy/deploy_web_ui.sh
 
   deploy_customer:
     name: Deploy Customer

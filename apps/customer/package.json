@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
+    "build": "rm -rf ./public && cp -R ../../packages/ui/public ./public && react-router build",
     "dev": "react-router dev",
     "cloudflare-build": "export ENVIRONMENT=production && cp ./env/.env-production ./.env && pnpm run build",
     "start": "react-router-serve ./build/server/index.js",
