@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["**/app/*", "**/.client/**/*", ".react-router/types/**/*"],
+  "compilerOptions": {
+    "types": ["node", "vite/client"],
+    "moduleResolution": "bundler",
+    "rootDirs": [".", "./.react-router/types"],
+    "paths": {
+      "@/customer/*": ["apps/customer/app/*"],
+      "@/utils/*": ["packages/utils/src/*"],
+      "@/models/*": ["packages/models/src/*"],
+      "@/ui/*": ["packages/ui/src/*"],
+      "@/common_lib/*": ["packages/common_lib/src/*"]
+    }
+  }
+}

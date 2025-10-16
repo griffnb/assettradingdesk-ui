@@ -33,7 +33,7 @@ const config = tseslint.config({
   settings: {
     tailwindcss: {
       callees: ["classnames", "clsx", "ctl", "cn"],
-      //config: "./tailwind.base.config.js", // Use the base config at root level
+      config: "../../tailwind.config.js", // Use the root config which extends with custom colors
       cssFiles: [
         "**/*.css",
         "!**/node_modules",

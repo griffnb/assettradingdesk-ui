@@ -1,23 +1,29 @@
 import { AccountModel } from "../models/account/model/AccountModel";
 import { AdminModel } from "../models/admin/model/AdminModel";
-import { AiToolModel } from "../models/ai_tool/model/AiToolModel";
+import { AssetModel } from "../models/asset/model/AssetModel";
+import { AssetFileModel } from "../models/asset_file/model/AssetFileModel";
 import { CategoryModel } from "../models/category/model/CategoryModel";
-import { LeadModel } from "../models/lead/model/LeadModel";
-import { RegistrationModel } from "../models/registration/RegistrationModel";
-import { SageProductModel } from "../models/sage_product/SageProductModel";
+import { ChangeLogModel } from "../models/change_log/model/ChangeLogModel";
+import { ClientModel } from "../models/client/model/ClientModel";
+import { CompanyModel } from "../models/company/model/CompanyModel";
+import { FacilityModel } from "../models/facility/model/FacilityModel";
+import { GlobalConfigModel } from "../models/global_config/model/GlobalConfigModel";
+import { IndustryModel } from "../models/industry/model/IndustryModel";
+import { ManufacturerModel } from "../models/manufacturer/model/ManufacturerModel";
+import { ModelModel } from "../models/model/model/ModelModel";
+import { OpportunityModel } from "../models/opportunity/model/OpportunityModel";
+import { OrganizationModel } from "../models/organization/model/OrganizationModel";
+import { PipelineModel } from "../models/pipeline/model/PipelineModel";
+import { RequestModel } from "../models/request/model/RequestModel";
+
 import { APIStore } from "./api/APIStore";
 
 //: Partial<{ [key in StoreKeys]: IStore<any> }>
 export const Store = {
-  registration: new APIStore({
-    _class: RegistrationModel,
-    modelName: "registration",
+  change_log: new APIStore({
+    _class: ChangeLogModel,
+    modelName: "change_log",
   }),
-  sage_product: new APIStore({
-    _class: SageProductModel,
-    modelName: "sage_product",
-  }),
-
   admin: new APIStore({
     _class: AdminModel,
     modelName: "admin",
@@ -26,27 +32,60 @@ export const Store = {
     _class: AccountModel,
     modelName: "account",
   }),
-  ai_tool: new APIStore({
-    _class: AiToolModel,
-    modelName: "ai_tool",
+  asset: new APIStore({
+    _class: AssetModel,
+    modelName: "asset",
   }),
-  lead: new APIStore({
-    _class: LeadModel,
-    modelName: "lead",
+  asset_file: new APIStore({
+    _class: AssetFileModel,
+    modelName: "asset_file",
   }),
   category: new APIStore({
     _class: CategoryModel,
     modelName: "category",
   }),
-};
-
-export const LandingPageStore = {
-  registration: new APIStore({
-    _class: RegistrationModel,
-    modelName: "registration",
+  client: new APIStore({
+    _class: ClientModel,
+    modelName: "client",
   }),
-  sage_product: new APIStore({
-    _class: SageProductModel,
-    modelName: "sage_product",
+  company: new APIStore({
+    _class: CompanyModel,
+    modelName: "company",
+  }),
+  facility: new APIStore({
+    _class: FacilityModel,
+    modelName: "facility",
+  }),
+  global_config: new APIStore({
+    _class: GlobalConfigModel,
+    modelName: "global_config",
+  }),
+  industry: new APIStore({
+    _class: IndustryModel,
+    modelName: "industry",
+  }),
+  manufacturer: new APIStore({
+    _class: ManufacturerModel,
+    modelName: "manufacturer",
+  }),
+  model: new APIStore({
+    _class: ModelModel,
+    modelName: "model",
+  }),
+  organization: new APIStore({
+    _class: OrganizationModel,
+    modelName: "organization",
+  }),
+  opportunity: new APIStore({
+    _class: OpportunityModel,
+    modelName: "opportunity",
+  }),
+  pipeline: new APIStore({
+    _class: PipelineModel,
+    modelName: "pipeline",
+  }),
+  request: new APIStore({
+    _class: RequestModel,
+    modelName: "request",
   }),
 };

@@ -1,5 +1,5 @@
 //postcss.config.js
-const rootConfig = require("../../postcss.config.js");
-module.exports = {
+import rootConfig from "../../postcss.config.js";
+export default {
   ...rootConfig,
 };

@@ -24,7 +24,7 @@ const styleVariants = cva("flex flex-row items-center cursor-pointer", {
 });
 
 export const FilterCheckbox = observer(function FilterCheckbox<T>(
-  rawProps: FilterCheckboxProps<T>
+  rawProps: FilterCheckboxProps<T>,
 ) {
   const {
     record,
@@ -42,7 +42,7 @@ export const FilterCheckbox = observer(function FilterCheckbox<T>(
         styleVariants({
           variant,
           className,
-        })
+        }),
       )}
       onClick={(e) => {
         e.stopPropagation();
@@ -54,13 +54,13 @@ export const FilterCheckbox = observer(function FilterCheckbox<T>(
         uncheckedValue={false}
         checkedValue={true}
         value={checked}
-        className="gap-x-0 cursor-pointer"
+        className="cursor-pointer gap-x-0"
         //noPropagation={true}
       />
       <span className="flex flex-row items-center rounded-lg px-2 text-sm font-normal">
         <span
           data-checked={checked}
-          className="text-sm text-text-neutral-primary data-[checked=true]:font-semibold"
+          className="truncate text-sm text-text-neutral-primary data-[checked=true]:font-semibold"
         >
           {record[labelField] as unknown as string}
         </span>

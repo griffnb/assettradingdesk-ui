@@ -1,11 +1,11 @@
 "use client";
-import { ChevronDown, Settings, Wand2 } from "lucide-react";
+import { ChevronDown, Settings } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router";
-import { Badge } from "../../ai/ui/badge";
-import { ScrollArea } from "../../ai/ui/scroll-area";
+import { Badge } from "../../shadcn/ui/badge";
+import { ScrollArea } from "../../shadcn/ui/scroll-area";
 import { sidebarItems } from "./AdminLayout";
 
 interface DesktopSidebarProps {
@@ -20,9 +20,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   const { sidebarOpen, expandedItems, toggleExpanded } = props;
   const location = useLocation();
   const navigate = useNavigate();
-
-  console.log(location.pathname);
-
+  console.log({ location });
   return (
     <div
       className={cn(
@@ -33,12 +31,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
       <div className="flex h-full flex-col">
         <div className="p-4">
           <div className="flex items-center gap-3">
-            <div className="flex aspect-square size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-              <Wand2 className="size-5" />
-            </div>
-            <div>
-              <h2 className="font-semibold">Techboss</h2>
-            </div>
+            <img src="/img/logo.png" />
           </div>
         </div>
 
@@ -88,7 +81,12 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                     {item.items.map((subItem) => (
                       <span
                         key={subItem.title}
-                        className="flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer"
+                        className={cn(
+                          "flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer",
+                          item.url && location.pathname == item.url
+                            ? "bg-bg-brand-primary/10 text-text-brand-primary"
+                            : "hover:bg-gray-200"
+                        )}
                         onClick={() => {
                           if (subItem.url) {
                             navigate(subItem.url);

@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 

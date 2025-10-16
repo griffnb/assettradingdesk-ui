@@ -11,10 +11,10 @@ import {
 } from "react-router";
 
 import { SessionService } from "@/common_lib/services/SessionService";
-import { ThemeProvider } from "@/ui/ai/theme-provider";
-import { Skeleton } from "@/ui/ai/ui/skeleton";
+import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
 import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import type { Route } from "../.react-router/types/app/+types/root";
 import "./app.css";
@@ -32,9 +32,9 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css",
+    href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css",
     integrity:
-      "sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==",
+      "sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==",
     crossOrigin: "anonymous",
     referrerPolicy: "no-referrer",
   },
@@ -67,59 +67,66 @@ export default function App() {
     throw new Error("Add your Clerk Publishable Key to the .env file");
   }
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <ThemeProvider>
-        <Auth />
-      </ThemeProvider>
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      appearance={{
+        theme: "simple",
+      }}
+    >
+      <Auth />
     </ClerkProvider>
   );
 }
 
-function Auth() {
+const Auth = observer(function Auth() {
   const [ready, setReady] = useState(false);
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     SessionService.tokenFetch = getToken;
   }, [getToken]);
 
   useEffect(() => {
-    console.log(isLoaded, isSignedIn);
-
     if (isLoaded && isSignedIn && getToken) {
       getToken().then((token) => {
-        console.log("Got token:", token);
-
         if (token) {
           SessionService.setSessionToken(token);
         }
-        setReady(true);
       });
-    } else if (isLoaded && !isSignedIn) {
-      setReady(true);
     }
   }, [isLoaded, isSignedIn, getToken]);
 
+  // Handle navigation in useEffect to avoid navigation during render
+  useEffect(() => {
+    if (isLoaded) {
+      const isAuthPage =
+        location.pathname === "/login" || location.pathname === "/signup";
+
+      console.log("In auth", location);
+
+      if (!isSignedIn && !isAuthPage) {
+        console.log("Navigating to login");
+        //navigate("/login");
+      } else {
+        setReady(true);
+      }
+    }
+  }, [isLoaded, ready, isSignedIn, location.pathname, navigate]);
+
   const isAuthPage =
     location.pathname === "/login" || location.pathname === "/signup";
-
-  console.log("In auth");
 
   if ((!isLoaded && !isAuthPage) || !ready) {
     console.log("Loading...");
     return <Skeleton />;
   }
 
-  if (!isSignedIn && !isAuthPage) {
-    navigate("/login");
-    console.log("Navigating to login");
-    return null;
-  }
   console.log("Rendering outlet");
   return <Outlet />;
-}
+});
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
@@ -138,11 +145,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="container mx-auto p-4 pt-16">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="w-full overflow-x-auto p-4">
           <code>{stack}</code>
         </pre>
       )}

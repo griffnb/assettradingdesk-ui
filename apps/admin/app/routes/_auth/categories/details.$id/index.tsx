@@ -1,6 +1,6 @@
 import { useAdmin } from "@/common_lib/authentication/useAdmin";
 import { CategoryDetails } from "@/admin/pods/category/pages/CategoryDetails";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 
 export default observer(() => {
   const { admin, adminLoading } = useAdmin();

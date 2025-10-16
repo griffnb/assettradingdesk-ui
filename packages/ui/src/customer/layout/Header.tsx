@@ -3,13 +3,13 @@ import { UserButton } from "@clerk/clerk-react";
 import { Bell, Menu, PanelLeft } from "lucide-react";
 
 import { observer } from "mobx-react-lite";
-import { Button } from "../../ai/ui/button";
+import { Button } from "../../shadcn/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../../ai/ui/tooltip";
+} from "../../shadcn/ui/tooltip";
 
 interface HeaderProps {
   title?: string;

@@ -18,7 +18,7 @@ const styleVariants = cva(
     defaultVariants: {
       location: "right",
     },
-  }
+  },
 );
 
 const overlayVariants = cva("z-[99] fixed inset-0 backdrop-blur-md", {
@@ -140,8 +140,8 @@ export const SidePanelWrap = observer((rawProps: SidePanelWrapProps) => {
             isSmallDesktop
               ? {
                   height:
-                    "calc(100svh - var(--top-nav-height) - var(--bottom-nav-height))",
-                  top: "var(--top-nav-height)",
+                    "calc(100svh - var(--customer-top-nav-h) - var(--bottom-nav-height))",
+                  top: "var(--customer-top-nav-h)",
                   width: "100%",
                 }
               : {}

@@ -22,7 +22,7 @@ const styleVariants = cva(
       variant: "default",
       size: "auto",
     },
-  }
+  },
 );
 interface TakeoverPanelWrapProps extends VariantProps<typeof styleVariants> {
   title?: string | ReactNode;
@@ -67,8 +67,8 @@ export const TakeoverPanelWrap = observer(
             isSmallDesktop
               ? {
                   height:
-                    "calc(100svh - var(--top-nav-height) - var(--bottom-nav-height))",
-                  top: "var(--top-nav-height)",
+                    "calc(100svh - var(--customer-top-nav-h) - var(--bottom-nav-height))",
+                  top: "var(--customer-top-nav-h)",
                   width: "100%",
                 }
               : size !== "full"
@@ -101,5 +101,5 @@ export const TakeoverPanelWrap = observer(
         </div>
       </Transition>
     );
-  }
+  },
 );

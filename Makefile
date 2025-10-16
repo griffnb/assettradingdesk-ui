@@ -17,14 +17,18 @@ help: ## Show this help message
 
 .PHONY: assettradingdesk
 assettradingdesk: ## Run development server
-	@open -a "Google Chrome" http://assets-site.localhost:4321
+	@open -a "Google Chrome" http://assets-local:4321
 	pnpm -F assettradingdesk-com dev --host 0.0.0.0
 
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://assets-admin.localhost:5433
+	@open -a "Google Chrome" http://assets-local:5174
 	pnpm -F admin dev --host 0.0.0.0
 
+.PHONY: customer
+customer: ## Run development server
+	@open -a "Google Chrome" http://assets-local:5173
+	pnpm -F customer dev --host 0.0.0.0
 
 # Docker targets
 .PHONY: docker-up
@@ -66,3 +70,13 @@ add-component: ## adds one or more shadcn components
 # swallow extra goals so make doesn't complain
 %:
 	@:
+
+
+.PHONY: pr
+pr:
+	@if [ -z "$(title)" ]; then \
+		echo "Usage: make pr title='Fixes this bug'"; \
+		exit 1; \
+	fi; \
+	current_branch=$$(git rev-parse --abbrev-ref HEAD); \
+	gh pr create --base development --head $$current_branch --title "$(title)" --body "$(title)"

@@ -33,44 +33,34 @@ export const columns: IColumn<CategoryModel>[] = [
     queryField: "name",
   },
   {
+    title: "Description",
+    field: "description",
+    queryField: "description",
+  },
+  {
     title: "Slug",
     field: "slug",
     queryField: "slug",
   },
   {
-    title: "Description",
-    field: "description",
-    queryField: "description",
-    render: (options: ColumnComponentOptions<CategoryModel>) => {
-      const description = options.record.description;
-      if (!description)
-        return <span className="text-gray-400">No description</span>;
-      return (
-        <span title={description}>
-          {description.length > 50
-            ? `${description.substring(0, 50)}...`
-            : description}
-        </span>
-      );
-    },
+    title: "Industry",
+    field: "industry_name",
+    queryField: "industry_name",
   },
   {
     title: "Parent Category",
-    field: "parent_category_id",
-    queryField: "parent_category_id",
-    render: (options: ColumnComponentOptions<CategoryModel>) => {
-      if (options.record.isRootCategory) {
-        return <span className="text-gray-400">Root Category</span>;
-      }
-      return <span>Has Parent</span>;
-    },
+    field: "parent_name",
+    queryField: "parent_name",
   },
   {
-    title: "Created At",
-    field: "created_at",
-    queryField: "created_at",
-    render: (options: ColumnComponentOptions<CategoryModel>) => {
-      return options.record.created_at?.format("MMM DD, YYYY") || "";
-    },
+    title: "Assets",
+    field: "asset_count",
+    queryField: "asset_count",
+  },
+
+  {
+    title: "Hierarchy",
+    field: "category_hierarchy",
+    queryField: "category_hierarchy",
   },
 ];

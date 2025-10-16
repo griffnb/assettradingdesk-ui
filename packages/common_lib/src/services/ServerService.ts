@@ -78,7 +78,7 @@ class ServerServiceClass {
     ids: string[],
     field: string,
     value: string | number,
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ) {
     const putBody: any = { data: {} };
 
@@ -89,7 +89,7 @@ class ServerServiceClass {
       `/${this.namespace}${route}/0`,
       putBody,
       "PUT",
-      rawParameters
+      rawParameters,
     );
   }
 
@@ -98,14 +98,14 @@ class ServerServiceClass {
     path: NoLeadingSlash<Path>,
     body: Record<string, any>,
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ) {
     return this.postRaw(
       `/${this.namespace}${route}/${path}`,
       body,
       "POST",
       rawParameters,
-      options
+      options,
     );
   }
 
@@ -114,14 +114,14 @@ class ServerServiceClass {
     path: NoLeadingSlash<Path>,
     body: Record<string, any>,
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ) {
     return this.postRaw(
       `/${this.namespace}${route}/${path}`,
       body,
       "PUT",
       rawParameters,
-      options
+      options,
     );
   }
 
@@ -129,13 +129,13 @@ class ServerServiceClass {
     route: string,
     path: NoLeadingSlash<Path>,
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     return this.getRaw(
       `/${this.namespace}${route}/${path}`,
       rawParameters,
       "GET",
-      options
+      options,
     );
   }
 
@@ -143,13 +143,13 @@ class ServerServiceClass {
     route: string,
     path: NoLeadingSlash<Path>,
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     return this.getRaw(
       `/${this.namespace}${route}/${path}`,
       rawParameters,
       "DELETE",
-      options
+      options,
     );
   }
 
@@ -158,7 +158,7 @@ class ServerServiceClass {
     body: Record<string, any>,
     method = "POST",
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -190,7 +190,7 @@ class ServerServiceClass {
     body: FormData,
     type = "POST",
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -224,7 +224,7 @@ class ServerServiceClass {
     endpoint: string,
     rawParameters: Record<string, string | string[]>,
     method = "GET",
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -254,13 +254,13 @@ class ServerServiceClass {
     route: string,
     path: NoLeadingSlash<Path>,
     body: Record<string, any>,
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ) {
     return this.downloadRaw(
       `/${this.namespace}${route}/${path}`,
       body,
       "POST",
-      rawParameters
+      rawParameters,
     );
   }
 
@@ -269,7 +269,7 @@ class ServerServiceClass {
     body: Record<string, any>,
     method = "POST",
     rawParameters: Record<string, string | string[]> = {},
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -310,14 +310,14 @@ class ServerServiceClass {
     path: NoLeadingSlash<Path>,
     body: Record<string, any>,
     handlers: FetchEventSourceHandlers,
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ) {
     this.postStreamRaw(
       `/${this.namespace}${route}/${path}`,
       body,
       handlers,
       "POST",
-      rawParameters
+      rawParameters,
     );
   }
 
@@ -326,14 +326,14 @@ class ServerServiceClass {
     path: NoLeadingSlash<Path>,
     body: Record<string, any>,
     handlers: FetchEventSourceHandlers,
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ) {
     this.postStreamRaw(
       `/${this.namespace}${route}/${path}`,
       body,
       handlers,
       "PUT",
-      rawParameters
+      rawParameters,
     );
   }
 
@@ -341,12 +341,12 @@ class ServerServiceClass {
     route: string,
     path: NoLeadingSlash<Path>,
     rawParameters: Record<string, string | string[]> = {},
-    handlers: FetchEventSourceHandlers
+    handlers: FetchEventSourceHandlers,
   ) {
     this.getStreamRaw(
       `/${this.namespace}${route}/${path}`,
       rawParameters,
-      handlers
+      handlers,
     );
   }
 
@@ -355,7 +355,7 @@ class ServerServiceClass {
     body: Record<string, any>,
     handlers: FetchEventSourceHandlers,
     method = "POST",
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ) {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -376,7 +376,7 @@ class ServerServiceClass {
     endpoint: string,
     rawParameters: Record<string, string | string[]>,
     handlers: FetchEventSourceHandlers,
-    method = "GET"
+    method = "GET",
   ) {
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
@@ -395,7 +395,7 @@ class ServerServiceClass {
   getURL(
     route: string,
     path: NoLeadingSlash<string>,
-    rawParameters: Record<string, string | string[]> = {}
+    rawParameters: Record<string, string | string[]> = {},
   ): string {
     const params = getUrlString(rawParameters);
     return `${this.host}/${this.namespace}${route}/${path}?${params.toString()}`;
@@ -403,7 +403,7 @@ class ServerServiceClass {
 
   handleErrorResponse = async (
     resp: Response,
-    options?: Options
+    options?: Options,
   ): Promise<IJSONAPI> => {
     let notificationService = this.notificationService;
 
@@ -460,7 +460,7 @@ async function fetchWithRetry(
   url: string,
   options: RequestInit = {},
   retries = 3,
-  backoff = 500
+  backoff = 500,
 ): Promise<Response> {
   for (let i = 0; i <= retries; i++) {
     try {

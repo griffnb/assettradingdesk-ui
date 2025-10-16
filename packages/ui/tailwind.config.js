@@ -1,12 +1,13 @@
-const rootConfig = require("../../tailwind.config.js");
+import rootConfig, { plugins as _plugins } from "../../tailwind.config.js";
 
-module.exports = {
+export default {
   ...rootConfig,
   plugins: [
-    ...rootConfig.plugins,
+    ..._plugins,
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("@headlessui/tailwindcss"),
     require("@tailwindcss/container-queries"),
+    require("tailwindcss-animate"),
   ],
 };

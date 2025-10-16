@@ -1,6 +1,9 @@
 import { TableState } from "@/models/store/state/TableState";
-import { CollapsablePanel } from "@/ui/common/components/panels/CollapsablePanel";
+import { Input } from "@/ui/shadcn/ui/input";
+import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
+import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
+import { useState } from "react";
 import { FilterCheckbox } from "./FilterCheckbox";
 
 interface FilterBlockProps<T extends object, V> {
@@ -12,55 +15,65 @@ interface FilterBlockProps<T extends object, V> {
   colorField?: keyof V & string;
   valueField: keyof V & string;
   filterKey: string;
+  searchFilterField?: keyof V & string;
+  className?: string;
 }
 
 export const FilterBlock = observer(function FilterBlock<T extends object, V>(
-  rawProps: FilterBlockProps<T, V>
+  rawProps: FilterBlockProps<T, V>,
 ) {
-  const { label, tableState, filterRecords, labelField, filterKey } = rawProps;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const { label, tableState, labelField, filterKey, className } = rawProps;
 
   const handleChange = (checked: boolean, record: V) => {
-    const current = (tableState.tableFilters[filterKey] as string[]) || [];
-    let newFilters: string[] = [];
     const value = record[rawProps.valueField] as any;
 
     if (checked) {
-      // add
-      if (!current.includes(value.toString())) {
-        newFilters = [...current, value.toString()];
-      }
+      tableState.addFilter(filterKey, value.toString());
     } else {
-      // remove
-      if (current.includes(value.toString())) {
-        newFilters = current.filter((v) => v !== value.toString());
-      }
+      tableState.removeFilter(filterKey, value.toString());
     }
-
-    const newTableFilters = {
-      ...tableState.tableFilters,
-      [filterKey]: newFilters.length > 0 ? newFilters : [],
-    };
-
-    tableState.applyTableFilters(newTableFilters);
   };
 
+  let filterRecords = rawProps.filterRecords;
+
+  if (rawProps.searchFilterField && searchTerm) {
+    filterRecords = filterRecords.filter((record) =>
+      (record[rawProps.searchFilterField!] as unknown as string)
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()),
+    );
+  }
+
   return (
-    <CollapsablePanel label={label} defaultShow={true}>
-      <div className="flex flex-col gap-y-2">
-        {filterRecords.map((record) => (
-          <FilterCheckbox<V>
-            key={record["id" as keyof V] as string | number}
-            record={record}
-            labelField={labelField}
-            checked={(
-              (tableState.tableFilters[filterKey] as string[]) || []
-            ).includes(
-              (record[rawProps.valueField] as unknown as string) || ""
-            )}
-            handleChange={(checked) => handleChange(checked, record)} // pass null when unchecked
-          />
-        ))}
+    <div className={cn("flex flex-col gap-y-2 overflow-hidden", className)}>
+      <div className="flex w-full flex-row pr-3">
+        <Input
+          className="w-full focus-visible:ring-0"
+          placeholder={`Search ${label}`}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
       </div>
-    </CollapsablePanel>
+      <ScrollArea className="flex h-72 w-full flex-col gap-2">
+        <div className="flex flex-col gap-2 self-stretch">
+          {filterRecords.map((record) => (
+            <FilterCheckbox<V>
+              key={record["id" as keyof V] as string | number}
+              record={record}
+              labelField={labelField}
+              checked={(
+                (tableState.tableFilters[filterKey] as string[]) || []
+              ).includes(
+                (record[rawProps.valueField] as unknown as string) || "",
+              )}
+              handleChange={(checked) => handleChange(checked, record)} // pass null when unchecked
+            />
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
   );
 });

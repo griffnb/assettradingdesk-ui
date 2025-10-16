@@ -2,8 +2,8 @@ import { StoreModel } from "@/models/store/StoreModel";
 import { isObjectValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
-import Link from "next/link";
 import { ReactNode, useState } from "react";
+import { Link } from "react-router";
 type ChildrenProps = {
   append: ReactNode;
 };
@@ -17,7 +17,7 @@ interface InlineEditCellWrapProps<T extends ValidationType & StoreModel> {
 }
 const InlineEditCellWrap = observer(
   <T extends ValidationType & StoreModel>(
-    props: InlineEditCellWrapProps<T>,
+    props: InlineEditCellWrapProps<T>
   ) => {
     const [isEditing, setIsEditing] = useState(false);
 
@@ -67,7 +67,7 @@ const InlineEditCellWrap = observer(
           <div className="group/edit flex items-center">
             {props.route ? (
               <Link
-                href={props.route}
+                to={props.route}
                 className="mr-2 border-b-2 border-dotted border-blue-500 font-medium text-blue-600"
               >
                 {props.record[field] as string}
@@ -87,7 +87,7 @@ const InlineEditCellWrap = observer(
         )}
       </>
     );
-  },
+  }
 );
 
 export default InlineEditCellWrap;

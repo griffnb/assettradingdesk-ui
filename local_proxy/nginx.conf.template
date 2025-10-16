@@ -12,8 +12,8 @@ http {
     listen 443 ssl;
     server_name local.techboss.ai;
 
-    ssl_certificate         /etc/nginx/ssl/local.techboss.ai.pem;
-    ssl_certificate_key     /etc/nginx/ssl/local.techboss.ai.key;
+    ssl_certificate         /etc/nginx/ssl/local.assettradingdesk.com.pem;
+    ssl_certificate_key     /etc/nginx/ssl/local.assettradingdesk.com.key;
 
     location / {
       proxy_pass              http://host.docker.internal:3000;

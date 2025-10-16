@@ -1,8 +1,18 @@
 export type StoreKeys =
-  | "registration"
-  | "sage_product"
   | "admin"
   | "account"
-  | "ai_tool"
-  | "lead"
-  | "category";
+  | "category"
+  | "asset"
+  | "asset_file"
+  | "client"
+  | "company"
+  | "facility"
+  | "industry"
+  | "manufacturer"
+  | "model"
+  | "organization"
+  | "opportunity"
+  | "pipeline"
+  | "request"
+  | "global_config"
+  | "change_log";
