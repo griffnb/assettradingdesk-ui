@@ -60,7 +60,7 @@ REGION=us-east-1
 aws cloudformation deploy \
     --no-fail-on-empty-changeset \
     --stack-name "$APP-deployment" \
-    --template-file "./infra/deploy/stack_web_ui.yaml" \
+    --template-file "./infra/deploy/stack_secure_web_ui.yaml" \
     --parameter-overrides "Image=$IMAGE" \
                           "NGINXImage=$NGINXIMAGE" \
                           "Architecture=$ARCHITECTURE" \
