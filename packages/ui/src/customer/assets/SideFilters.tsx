@@ -9,7 +9,6 @@ import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
-import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { StoreModel } from "@/models/store/StoreModel";
 import { GroupedFilterBlock } from "@/ui/common/components/table/filtering/GroupedFilterBlock";
 import {
@@ -31,14 +30,11 @@ export const SideFilters = observer(function SideFilters<T extends object>(
     "categories",
     "makes",
   ]);
-  const [filters, setFilters] = useState<Record<string, string[]>>({});
   const [categories, setCategories] = useState<
     { label: string; records: CategoryModel[] }[]
   >([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
-  const [models, setModels] = useState<ModelModel[]>([]);
   const { tableState } = props;
-  const initialFilters = tableState.appliedFilters;
 
   useEffect(() => {
     Store.category.query({ disabled: "0" }).then((resp) => {
@@ -150,6 +146,7 @@ export const SideFilters = observer(function SideFilters<T extends object>(
                 labelField={"label"}
                 valueField={"id"}
                 filterKey="manufacturers"
+                searchFilterField="name"
               />
             </AccordionContent>
           </AccordionItem>

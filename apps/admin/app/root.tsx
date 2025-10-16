@@ -67,7 +67,12 @@ export default function App() {
     throw new Error("Add your Clerk Publishable Key to the .env file");
   }
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      appearance={{
+        theme: "simple",
+      }}
+    >
       <Auth />
     </ClerkProvider>
   );
@@ -77,7 +82,7 @@ const Auth = observer(function Auth() {
   const [ready, setReady] = useState(false);
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -104,7 +109,7 @@ const Auth = observer(function Auth() {
 
       if (!isSignedIn && !isAuthPage) {
         console.log("Navigating to login");
-        navigate("/login");
+        //navigate("/login");
       } else {
         setReady(true);
       }
