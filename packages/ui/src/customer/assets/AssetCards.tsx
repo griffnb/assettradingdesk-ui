@@ -46,7 +46,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
   }, [props.tableState.data]);
 
   const rowClickAction = (record: AssetModel) => {
-    nav(`/assets/details/${record.id}`);
+    nav(record.publicLink);
   };
 
   return (

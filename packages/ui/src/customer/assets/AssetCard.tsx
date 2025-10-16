@@ -1,8 +1,10 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent, CardFooter } from "@/ui/shadcn/ui/card";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
+import { Image } from "lucide-react";
 import { observer } from "mobx-react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
@@ -52,7 +54,7 @@ export const AssetCard = observer(function AssetCard(
     if (onClick) {
       onClick(asset);
     } else {
-      nav(`/assets/details/${asset.id}`);
+      nav(asset.publicLink);
     }
   };
 
@@ -78,6 +80,13 @@ export const AssetCard = observer(function AssetCard(
             className="size-full rounded border object-cover shadow-md"
             src={asset.mediumImage}
           />
+          {asset.picture_count && asset.picture_count > 0 && (
+            <div className="absolute bottom-1 right-1">
+              <Badge className="bg-primary">
+                <Image /> {asset.picture_count}
+              </Badge>
+            </div>
+          )}
         </div>
       </CardContent>
       <CardFooter>

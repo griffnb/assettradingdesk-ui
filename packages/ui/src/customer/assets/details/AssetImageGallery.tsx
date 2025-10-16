@@ -33,24 +33,30 @@ export const AssetImageGallery = observer(function AssetImageGallery({
         />
       </div>
 
-      <Carousel className="mx-auto max-w-[500px]">
-        <CarouselContent>
-          {displayImages.map((image, index) => (
-            <CarouselItem
-              className="max-h-[100px] basis-1/3 overflow-hidden"
-              key={index}
-            >
-              <ZoomableImage
-                src={image.mediumImage}
-                largeSrc={image.largeImage}
-                className="h-[100px] w-full rounded-xl object-cover"
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
-        <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
-      </Carousel>
+      {displayImages.length > 0 && (
+        <Carousel className="mx-auto w-[500px]">
+          <CarouselContent>
+            {displayImages.map((image, index) => (
+              <CarouselItem
+                className="max-h-[100px] basis-1/3 overflow-hidden"
+                key={index}
+              >
+                <ZoomableImage
+                  src={image.mediumImage}
+                  largeSrc={image.largeImage}
+                  className="h-[100px] w-full rounded-xl object-cover"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {displayImages.length > 3 && (
+            <>
+              <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
+              <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
+            </>
+          )}
+        </Carousel>
+      )}
     </div>
   );
 });

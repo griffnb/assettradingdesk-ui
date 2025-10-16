@@ -6,15 +6,15 @@ import { AssetImageGallery } from "./AssetImageGallery";
 import { ProductInfo } from "./ProductInfo";
 import { SimilarListings } from "./SimilarListings";
 
-export interface AssetDetailsPageBodyProps {
+export interface AssetDetailsProps {
   // Asset data
   asset: AssetModel;
   // Similar assets
 }
 
-export const AssetDetailsPageBody = observer(function AssetDetailsPageBody({
+export const AssetDetails = observer(function AssetDetails({
   asset,
-}: AssetDetailsPageBodyProps) {
+}: AssetDetailsProps) {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({

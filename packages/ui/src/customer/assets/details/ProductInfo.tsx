@@ -86,14 +86,15 @@ export const ProductInfo = observer(function ProductInfo({
         </p>
       </div>
       <div className="flex w-full flex-col items-start gap-2">
-        <div className="grid w-full grid-cols-[100px,_1fr] gap-2">
+        <div className="grid w-full grid-cols-[200px,_1fr] gap-2">
           <span>Year:</span>
           <span className="font-semibold">{asset.year || "N/A"}</span>
           <hr className="col-span-2" />
-          <span>Condition:</span> <span className="font-semibold">{"N/A"}</span>
+          <span>Operational Status:</span>{" "}
+          <span className="font-semibold">{asset.operationalStatus.label}</span>
           <hr className="col-span-2" />
           <span>Install Status:</span>
-          <span className="font-semibold">{"N/A"}</span>
+          <span className="font-semibold">{asset.installStatus.label}</span>
           <hr className="col-span-2" />
           <span>Location:</span> <span className="font-semibold">{"N/A"}</span>
         </div>

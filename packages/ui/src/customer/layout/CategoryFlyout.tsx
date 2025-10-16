@@ -50,7 +50,7 @@ export const CategoryFlyout = observer(function CategoryFlyout(
           className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-2 overflow-y-auto lg:max-h-[400px]`}
         >
           {categories.map((category) => (
-            <NavigationMenuLink key={category.id}>
+            <NavigationMenuLink asChild key={category.id}>
               <Link
                 to={`/assets?categories=${category.id}`}
                 key={category.id}

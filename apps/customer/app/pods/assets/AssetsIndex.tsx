@@ -16,6 +16,7 @@ export const AssetsIndex = observer(function AssetIndex() {
       queryToFilters(parseSearchParams(params), {
         status: [100],
         limit: "100",
+        pictures: "1",
       }),
     [params],
   );
@@ -24,8 +25,6 @@ export const AssetsIndex = observer(function AssetIndex() {
     applyQueryFilters(setParams, params);
   };
   return (
-    <>
-      <AssetTable appliedFilters={appliedFilters} applyFilters={applyFilters} />
-    </>
+    <AssetTable appliedFilters={appliedFilters} applyFilters={applyFilters} />
   );
 });

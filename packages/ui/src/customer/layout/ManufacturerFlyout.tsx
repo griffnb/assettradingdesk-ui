@@ -50,7 +50,7 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
           className={`grid w-full grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-2 overflow-y-auto lg:max-h-[400px]`}
         >
           {manufacturers.map((manufacturer) => (
-            <NavigationMenuLink key={manufacturer.id}>
+            <NavigationMenuLink asChild key={manufacturer.id}>
               <Link
                 to={`/assets?manufacturers=${manufacturer.id}`}
                 key={manufacturer.id}

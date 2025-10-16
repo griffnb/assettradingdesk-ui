@@ -1,4 +1,4 @@
-export { AssetDetailsPageBody } from "./AssetDetailsPageBody";
+export { AssetDetails } from "./AssetDetails";
 export { AssetImageGallery } from "./AssetImageGallery";
 export { ProductActions } from "./ProductActions";
 export { ProductInfo } from "./ProductInfo";

@@ -1,3 +1,5 @@
+import { constants, findConstant } from "@/models/constants";
+import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
@@ -23,6 +25,25 @@ export class AssetModel extends AssetBaseModel {
 
   get link(): string {
     return `/assets/details/${this.id}`;
+  }
+
+  get publicLink(): string {
+    return `/assets/details/${this.category_slug}/${this.manufacturer_slug}/${this.model_slug}/${this.id}`;
+  }
+
+  get installStatus(): IConstant {
+    return findConstant(constants.asset.install_status, this.install_status);
+  }
+
+  get operationalStatus(): IConstant {
+    return findConstant(
+      constants.asset.operational_status,
+      this.operational_status,
+    );
+  }
+
+  get waferSize(): IConstant {
+    return findConstant(constants.asset.wafer_size, this.meta_data.wafer_size);
   }
 
   getParent(): ParentInfo | null {

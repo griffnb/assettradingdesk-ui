@@ -43,7 +43,6 @@ export const ProductCards = observer(function ProductCards(
         disabled: "0",
         "_c:has_pictures": "1",
         limit: "4",
-        order: "verified_at_ts desc, picture_count desc",
       });
       if (resp.success && resp.data) {
         setAssets(resp.data);
