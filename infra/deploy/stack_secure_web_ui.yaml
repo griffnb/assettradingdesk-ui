@@ -129,7 +129,7 @@ Resources:
               # Write the secret string exactly as provided (already KEY=VAL lines)
               printf "%s" "$ENVFILE" > /shared/.env
               # Restrict permissions and show a debug line (no secret contents)
-              chmod 0400 /shared/.env
+              chmod 0444 /shared/.env
               echo "Wrote .env to shared volume"
           Secrets:
             - Name: ENVFILE
