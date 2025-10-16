@@ -1,0 +1,198 @@
+Parameters:
+  App:
+    Type: String
+    Default: sample-fargate
+
+  Image:
+    Type: String
+    Description: The Docker image to use for the task
+
+  NGINXImage:
+    Type: String
+    Description: The Docker image to use for the NGINX container
+
+  NGINXMemory:
+    Description: The amount of memory to allocate to the container
+    Type: Number
+    Default: 512
+
+  Architecture:
+    Type: String
+    AllowedValues:
+      - X86_64
+      - ARM64
+
+  SystemMemory:
+    Description: The amount of memory to allocate to the container
+    Type: Number
+    Default: 1024
+
+  ContainerMemory:
+    Description: The amount of memory to allocate to the container
+    Type: Number
+    Default: 512
+
+  ContainerPort:
+    Description: The port on which the container listens for requests
+    Type: Number
+    Default: 3000
+
+  SystemCPU:
+    Description: The amount of CPU to allocate to the container
+    Type: Number
+    Default: 512
+  #256 (.25 vCPU) - Available memory values: 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB)
+  #512 (.5 vCPU) - Available memory values: 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB)
+  #1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
+  #2048 (2 vCPU) - Available memory values: 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB)
+  #4096 (4 vCPU) - Available memory values: 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB)
+  #8192 (8 vCPU) - Available memory values: 16 GB and 60 GB in 4 GB increments This option requires Linux platform 1.4.0 or later.
+  #16384 (16vCPU) - Available memory values: 32GB and 120 GB in 8 GB increments This option requires Linux platform 1.4.0 or later.
+
+  TaskCount:
+    Description: Number of Tasks
+    Type: Number
+    Default: 2
+
+  AssignPublicIp:
+    Type: String
+    AllowedValues:
+      - ENABLED
+      - DISABLED
+    Description: Whether to assign a public IP address to the task's elastic network interface., need this for default VPC
+    Default: DISABLED
+
+  EnvSecretArn:
+    Type: String
+    Description: ARN of the Secrets Manager secret whose *string* value is KEY=VAL lines
+
+Resources:
+  FargateService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Fn::ImportValue: !Sub "${App}-cluster"
+      DesiredCount: !Ref TaskCount
+      TaskDefinition: !Ref TaskDefinition
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Weight: 0
+          Base: 1
+        - CapacityProvider: FARGATE_SPOT
+          Weight: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !Ref AssignPublicIp
+          SecurityGroups:
+            - Fn::ImportValue: !Sub "${App}-sg"
+          Subnets:
+            - !ImportValue PrivateSubnetA
+            - !ImportValue PrivateSubnetB
+      LoadBalancers:
+        - ContainerName: nginx
+          ContainerPort: 8080
+          TargetGroupArn:
+            Fn::ImportValue: !Sub "${App}-tg"
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Cpu: !Ref SystemCPU
+      Memory: !Ref SystemMemory
+      ExecutionRoleArn:
+        Fn::ImportValue: !Sub "${App}-exec-role"
+      TaskRoleArn:
+        Fn::ImportValue: !Sub "${App}-role"
+      Family: !Sub "${App}-taskdef"
+      NetworkMode: awsvpc
+      RuntimePlatform:
+        CpuArchitecture: !Ref Architecture
+        OperatingSystemFamily: LINUX
+      RequiresCompatibilities:
+        - FARGATE
+      Volumes:
+        - Name: shared
+      ContainerDefinitions:
+        # --- Sidecar: writes /shared/.env from a single Secrets Manager string ---
+        - Name: secrets-sidecar
+          Image: public.ecr.aws/docker/library/alpine:3.20
+          Essential: false
+          Command:
+            - /bin/sh
+            - -c
+            - |
+              set -euo pipefail
+              mkdir -p /shared
+              # Write the secret string exactly as provided (already KEY=VAL lines)
+              printf "%s" "$ENVFILE" > /shared/.env
+              # Restrict permissions and show a debug line (no secret contents)
+              chmod 0400 /shared/.env
+              echo "Wrote .env to shared volume"
+          Secrets:
+            - Name: ENVFILE
+              ValueFrom: !Ref EnvSecretArn
+          MountPoints:
+            - SourceVolume: shared
+              ContainerPath: /shared
+              ReadOnly: false
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref AWS::Region
+              awslogs-group:
+                Fn::ImportValue: !Sub "${App}-log-group"
+              awslogs-stream-prefix: sidecar
+        - Name: "nginx"
+          Essential: true
+          Image: !Ref NGINXImage
+          Memory: !Ref NGINXMemory
+          PortMappings:
+            - ContainerPort: 8080
+              HostPort: 8080
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref AWS::Region
+              awslogs-group:
+                Fn::ImportValue: !Sub "${App}-log-group"
+              awslogs-stream-prefix: nginx
+          DependsOn:
+            - Condition: START
+              ContainerName: "nextjs-docker"
+        - Name: nextjs-docker
+          Essential: true
+          Image: !Ref Image
+          DependsOn:
+            - ContainerName: secrets-sidecar
+              Condition: SUCCESS
+          EntryPoint: ["/bin/sh", "-c"]
+          Command:
+            - |
+              set -euo pipefail
+              for i in $(seq 1 60); do [ -s /shared/.env ] && break; sleep 1; done
+              set -a
+              . /shared/.env
+              set +a
+              exec npx react-router-serve ./build/server/index.js
+          MountPoints:
+            - SourceVolume: shared
+              ContainerPath: /shared
+              ReadOnly: true
+          Memory: !Ref ContainerMemory
+          PortMappings:
+            - ContainerPort: !Ref ContainerPort
+          Environment:
+            - Name: NODE_ENV
+              Value: production
+            - Name: REGION
+              Value: !Ref AWS::Region
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref AWS::Region
+              awslogs-group:
+                Fn::ImportValue: !Sub "${App}-log-group"
+              awslogs-stream-prefix: task
