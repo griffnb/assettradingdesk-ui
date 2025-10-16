@@ -7,10 +7,6 @@ dist
 node_modules
 */node_modules
 
-# Environment files
-.env*
-!.env.example
-
 # Development files
 README.md
 *.md

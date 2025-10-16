@@ -63,6 +63,7 @@ COPY --from=build --chown=reactrouter:nodejs /app/$PACKAGE_DIR/build ./build
 # Debug: List contents to verify build artifacts
 RUN ls -la /app && ls -la /app/build/
 
+
 # Switch to non-root user
 USER reactrouter
 
