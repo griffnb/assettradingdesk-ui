@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "cloudflare-build": "export ENVIRONMENT=production cp ./env/.env-production ./.env && pnpm run build",
+    "cloudflare-build": "export ENVIRONMENT=production && cp ./env/.env-production ./.env && pnpm run build",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "watch": "tsc --watch --noEmit --project './tsconfig.json'"
