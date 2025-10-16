@@ -49,6 +49,8 @@ aws ecr get-login-password --region $REGION | docker login --username AWS --pass
 cp ./$MONOREPO_PATH/env/.env-$ENVIRONMENT ./$MONOREPO_PATH/.env
 
 
+cat ./$MONOREPO_PATH/.env
+
 docker build -f "./${MONOREPO_PATH}/Dockerfile" --build-arg PACKAGE_DIR="${MONOREPO_PATH}" --build-arg SENTRY_AUTH_TOKEN="${SENTRY_AUTH_TOKEN}" --build-arg BUILD_ENVIRONMENT="${ENVIRONMENT}" --tag $APP .
 
 
