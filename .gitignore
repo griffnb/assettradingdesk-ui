@@ -56,3 +56,4 @@ tsconfig.tsbuildinfo
 /scripts/tools.json
 .astro
 /sites/techboss_ai/dist
+dist
