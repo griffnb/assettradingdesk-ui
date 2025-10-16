@@ -1,6 +1,6 @@
 import { LayerService } from "@/common_lib/services/LayerService";
 import { detectOS } from "@/utils/os";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import SearchModal, { SearchModalId } from "./SearchModal";
 

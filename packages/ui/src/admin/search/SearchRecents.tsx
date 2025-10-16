@@ -3,7 +3,7 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { Bookmark } from "@/models/models/admin/model/AdminBaseModel";
 import { titleCase } from "@/utils/strings";
 import { runInAction } from "mobx";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { buildRecordLink, getRecordLabel } from "./helpers";
 import { LinkableRecord } from "./types";
@@ -107,7 +107,7 @@ export const SearchRecents = observer((props: SearchRecentsProps) => {
                 onClick={() => {
                   const name = window.prompt(
                     "Enter a name for this bookmark",
-                    `${titleCase(item._model_name)} / ${getRecordLabel(item)}`
+                    `${titleCase(item._model_name)} / ${getRecordLabel(item)}`,
                   );
                   if (name) {
                     runInAction(() => {
@@ -122,7 +122,7 @@ export const SearchRecents = observer((props: SearchRecentsProps) => {
                 onClick={() => {
                   if (
                     window.confirm(
-                      "Are you sure you want to remove this recent?"
+                      "Are you sure you want to remove this recent?",
                     )
                   ) {
                     removeRecent(index);
@@ -157,7 +157,7 @@ export const SearchRecents = observer((props: SearchRecentsProps) => {
                   onClick={() => {
                     if (
                       window.confirm(
-                        "Are you sure you want to remove this bookmark?"
+                        "Are you sure you want to remove this bookmark?",
                       )
                     ) {
                       runInAction(() => {

@@ -3,7 +3,7 @@ import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AssetCard } from "../assets/AssetCard";

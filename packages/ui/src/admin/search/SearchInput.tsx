@@ -2,7 +2,7 @@ import { cn } from "@/utils/cn";
 import { debounce } from "@/utils/debounce";
 import { detectOS } from "@/utils/os";
 import { cva, VariantProps } from "class-variance-authority";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
 
 const styleVariants = cva("relative", {
@@ -36,7 +36,7 @@ const inputVariant = cva(
     defaultVariants: {
       variant: "light",
     },
-  }
+  },
 );
 
 const iconVariants = cva(
@@ -51,7 +51,7 @@ const iconVariants = cva(
     defaultVariants: {
       variant: "light",
     },
-  }
+  },
 );
 
 const commandVariants = cva(
@@ -67,7 +67,7 @@ const commandVariants = cva(
     defaultVariants: {
       variant: "light",
     },
-  }
+  },
 );
 
 interface SearchInputProps
@@ -94,7 +94,7 @@ export const SearchInput = observer((props: SearchInputProps) => {
     debounce((query: string) => {
       props.applySearchQuery(query);
     }, 500),
-    []
+    [],
   );
 
   return (
@@ -103,7 +103,7 @@ export const SearchInput = observer((props: SearchInputProps) => {
         styleVariants({
           variant: props.variant,
           className: props.className,
-        })
+        }),
       )}
     >
       <label className="sr-only">Search input</label>
@@ -112,7 +112,7 @@ export const SearchInput = observer((props: SearchInputProps) => {
           className={cn(
             iconVariants({
               variant: props.variant,
-            })
+            }),
           )}
         >
           {props.prependIcon}
@@ -123,7 +123,7 @@ export const SearchInput = observer((props: SearchInputProps) => {
               size: props.size,
               variant: props.variant,
               className: props.className,
-            })
+            }),
           )}
           type="text"
           placeholder="Search...."

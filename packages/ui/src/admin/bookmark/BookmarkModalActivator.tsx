@@ -2,7 +2,7 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { detectOS } from "@/utils/os";
 import { buildQueryString, getQueryParams } from "@/utils/strings";
 import { runInAction } from "mobx";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 
 const BookmarkModalActivator = observer(() => {
@@ -35,7 +35,7 @@ const BookmarkModalActivator = observer(() => {
     const query = getQueryParams(window.location.search);
     const name = window.prompt(
       "Enter a name for the bookmark",
-      window.document.title
+      window.document.title,
     );
     if (!name) {
       return;

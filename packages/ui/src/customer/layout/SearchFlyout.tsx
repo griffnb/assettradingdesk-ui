@@ -10,7 +10,7 @@ import { Button } from "@/ui/shadcn/ui/button";
 import { Input } from "@/ui/shadcn/ui/input";
 import { debounce } from "@/utils/debounce";
 import { Search } from "lucide-react";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 

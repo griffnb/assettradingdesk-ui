@@ -8,7 +8,7 @@ import {
 } from "@/ui/shadcn/ui/breadcrumb";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { Link } from "react-router";
 
 const styleVariants = cva("flex flex-row w-full px-16 py-2", {

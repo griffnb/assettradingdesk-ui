@@ -5,7 +5,7 @@ import {
   ViewRecordModalId,
 } from "@/ui/admin/modal/ViewRecordModal";
 import { titleCase } from "@/utils/strings";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { getRecordLabel } from "./helpers";
 import { LinkableRecord } from "./types";
 
@@ -22,7 +22,7 @@ export const SearchItem = observer((props: SearchItemProps) => {
     }
 
     existingItems = existingItems.filter(
-      (item) => item && item.link !== props.record.link
+      (item) => item && item.link !== props.record.link,
     );
 
     if (existingItems.length > 5) {

@@ -4,7 +4,7 @@ import { TableState } from "@/models/store/state/TableState";
 import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { useVirtualization } from "@/ui/common/components/table/virtual/useVirtual";
 import { useGridCount } from "@/ui/hooks/useGridCount";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AssetCard } from "./AssetCard";

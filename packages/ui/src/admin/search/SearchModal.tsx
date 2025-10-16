@@ -6,7 +6,7 @@ import { LayerService } from "@/common_lib/services/LayerService";
 import { Button } from "@/ui/common/components/buttons/Button";
 import { ModalWrap } from "@/ui/common/components/modal/ModalWrap";
 import { isUUID } from "@/utils/strings";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { SearchInput } from "./SearchInput";
 import { SearchItem } from "./SearchItem";
@@ -20,7 +20,7 @@ const allModels: StoreKeys[] = ["account"];
 
 const SearchModal = observer(() => {
   const [models, setModels] = useState<Map<StoreKeys, string>>(
-    new Map<StoreKeys, string>()
+    new Map<StoreKeys, string>(),
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -59,7 +59,7 @@ const SearchModal = observer(() => {
               id: searchQuery,
               limit: "1",
             },
-            { signal: controller.signal }
+            { signal: controller.signal },
           );
         }
 
@@ -68,16 +68,16 @@ const SearchModal = observer(() => {
             q: searchQuery,
             limit: "5",
           },
-          { signal: controller.signal }
+          { signal: controller.signal },
         );
-      })
+      }),
     )
       .then((responses) => {
         setSearchResults(
           responses
             .map((resp) => resp.data)
             .flat()
-            .filter((item) => item)
+            .filter((item) => item),
         );
         setLoading(false);
       })

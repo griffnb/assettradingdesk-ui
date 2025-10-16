@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 import { Link } from "react-router";
 

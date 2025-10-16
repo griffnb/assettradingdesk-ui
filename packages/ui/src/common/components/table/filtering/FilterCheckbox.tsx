@@ -2,7 +2,7 @@ import { BadgeColorKeys } from "@/ui/common/components/badge/Badge";
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 
 interface FilterCheckboxProps<T> extends VariantProps<typeof styleVariants> {
   record: T;

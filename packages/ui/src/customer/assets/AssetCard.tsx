@@ -5,7 +5,7 @@ import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
 import { Image } from "lucide-react";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 

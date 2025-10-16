@@ -2,7 +2,7 @@ import { Button } from "@/ui/shadcn/ui/button";
 import { Card } from "@/ui/shadcn/ui/card";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 import { useNavigate } from "react-router";
 
