@@ -106,7 +106,15 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
         ) : (
           <>
             {props.tableState.data.length == 0 && !props.tableState.loading && (
-              <NoResults />
+              <NoResults
+                clearFilters={() => {
+                  tableState.applyTableFilters({
+                    status: "100",
+                    limit: "100",
+                    pictures: "1",
+                  });
+                }}
+              />
             )}
             {topPad > 0 && <div style={topSpacerStyle} />}
             <div

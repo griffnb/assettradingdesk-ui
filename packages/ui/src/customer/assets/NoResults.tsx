@@ -35,7 +35,9 @@ const styleVariants = cva("", {
 
 export interface NoResultsProps
   extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof styleVariants> {}
+    VariantProps<typeof styleVariants> {
+  clearFilters: () => void;
+}
 export const NoResults = observer(function NoResults(
   fullProps: NoResultsProps,
 ) {
@@ -56,7 +58,7 @@ export const NoResults = observer(function NoResults(
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
-          <Button>View All Assets</Button>
+          <Button onClick={fullProps.clearFilters}>View All Assets</Button>
         </EmptyContent>
       </Empty>
     </div>
