@@ -10,7 +10,7 @@ import {
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { Search } from "lucide-react";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 
 const styleVariants = cva("", {
