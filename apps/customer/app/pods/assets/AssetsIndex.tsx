@@ -12,16 +12,21 @@ export const AssetsIndex = observer(function AssetIndex() {
   const [params, setParams] = useSearchParams();
 
   const appliedFilters = useMemo(
-    () =>
-      queryToFilters(parseSearchParams(params), {
-        status: [100],
-        limit: "100",
+    () => ({
+      ...queryToFilters(parseSearchParams(params), {
         pictures: "1",
       }),
+      status: ["100"],
+      limit: "100",
+    }),
     [params],
   );
 
-  const applyFilters = (params: { [key: string]: string | string[] }) => {
+  const applyFilters = (rawParams: { [key: string]: string | string[] }) => {
+    const params = { ...rawParams };
+    delete params["limit"];
+    delete params["status"];
+
     applyQueryFilters(setParams, params);
   };
   return (

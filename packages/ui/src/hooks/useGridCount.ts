@@ -6,9 +6,11 @@ export function useGridCount<T extends HTMLElement>() {
 
   useLayoutEffect(() => {
     if (!ref.current) return;
+    console.log("in layout");
 
     const measure = () => {
       const el = ref.current!;
+      if (!el) return;
       const kids = Array.from(el.children) as HTMLElement[];
       if (!kids.length) return (countRef.current = 1);
 
@@ -33,7 +35,7 @@ export function useGridCount<T extends HTMLElement>() {
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [ref.current]);
 
   return { ref, count: countRef.current };
 }

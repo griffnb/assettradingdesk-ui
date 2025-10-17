@@ -30,15 +30,15 @@ export const ManufacturerLogos = observer(function ManufacturerLogos(
   const { className, variant, ...props } = fullProps;
 
   const logos = [
-    "https://placehold.co/500x500?text=Applied+Materials&font=roboto",
-    "https://placehold.co/500x500?text=ASML&font=roboto",
-    "https://placehold.co/500x500?text=LAM+Research&font=roboto",
-    "https://placehold.co/500x500?text=TEL&font=roboto",
+    "/img/logos/applied.png",
+    "/img/logos/asml.png",
+    "/img/logos/lam.png",
+    "/img/logos/tel.png",
   ];
 
   return (
     <div className={cn(styleVariants({ variant, className }))} {...props}>
-      <div className="relative flex h-32 w-full content-stretch items-center overflow-clip rounded-[inherit]">
+      <div className="relative flex h-32 w-full content-stretch items-center rounded-[inherit]">
         {/* Premium Tools Text Section */}
         <div className="relative box-border flex h-full w-96 shrink-0 flex-col content-stretch items-start justify-center gap-1 whitespace-pre-wrap bg-white px-10 py-0">
           <h2 className="relative shrink-0 text-xl font-semibold leading-7 text-neutral-700">
@@ -54,17 +54,10 @@ export const ManufacturerLogos = observer(function ManufacturerLogos(
             key={index}
             className="relative h-full min-h-px min-w-px flex-1 shrink-0 border-l border-neutral-200 bg-white shadow-sm"
           >
-            <div className="flex size-full flex-col items-center justify-center overflow-clip rounded-[inherit]">
+            <div className="flex size-full flex-col items-center justify-center rounded-[inherit]">
               <div className="relative box-border flex size-full flex-col content-stretch items-center justify-center px-6 py-10">
-                <div className="relative flex shrink-0 flex-col content-stretch items-center justify-center gap-2">
-                  {/* Applied Materials logo placeholder */}
-                  <div className="relative h-16 w-32 shrink-0 overflow-clip">
-                    <img
-                      src={logo}
-                      alt="Applied Materials Logo"
-                      className="size-full object-cover"
-                    />
-                  </div>
+                <div className="flex shrink-0 flex-col content-stretch items-center justify-center gap-2">
+                  <img src={logo} className="flex-none object-contain" />
                 </div>
               </div>
             </div>
@@ -73,7 +66,7 @@ export const ManufacturerLogos = observer(function ManufacturerLogos(
       </div>
 
       {/* Top and bottom borders */}
-      <div className="pointer-events-none absolute inset-0 border-b border-l-0 border-r-0 border-t border-solid border-neutral-200" />
+      <div className="pointer-events-none absolute inset-0 border-x-0 border-y border-solid border-neutral-200" />
     </div>
   );
 });

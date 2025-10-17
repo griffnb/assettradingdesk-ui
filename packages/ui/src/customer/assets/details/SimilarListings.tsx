@@ -32,21 +32,28 @@ export const SimilarListings = observer(function SimilarListings({
           setAssets(resp.data);
         }
       });
-    ServerService.callGet("asset", "count", { model_id: asset.model_id }).then(
-      (resp) => {
-        if (resp.success && resp.data) {
-          setResultCount(resp.data);
-        }
-      },
-    );
+    ServerService.callGet("asset", "count", {
+      model_id: asset.model_id,
+      "not:id": asset.id || "",
+    }).then((resp) => {
+      if (resp.success && resp.data) {
+        setResultCount(resp.data);
+      }
+    });
   }, [asset]);
+
+  if (assets.length === 0) {
+    return null;
+  }
 
   return (
     <div className={cn("flex w-full flex-col items-start gap-5", className)}>
       {/* Header with results count and sort dropdown */}
       <div className="flex w-full items-center justify-between">
         <p className="whitespace-pre-wrap text-lg font-semibold leading-7 text-gray-700">
-          <span>Showing 4 of {resultCount} similar </span>
+          <span>
+            Showing {Math.min(assets.length, 4)} of {resultCount} similar{" "}
+          </span>
           <span className="font-normal">results for {asset.model_name}</span>
         </p>
         <Button

@@ -5,12 +5,14 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/ui/shadcn/ui/navigation-menu";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
+import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import { Bell } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
@@ -66,6 +68,14 @@ export const NavBar = observer(function NavBar() {
             <NavigationMenuContent className="contents">
               <ManufacturerFlyout manufacturers={manufacturers} />
             </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem value="browse">
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <Link to="/assets">Browse All Assets</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

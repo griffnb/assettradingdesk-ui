@@ -3,7 +3,7 @@ import { Input } from "@/ui/shadcn/ui/input";
 import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { FilterCheckbox } from "./FilterCheckbox";
 
 interface GroupedFilterBlockProps<T extends object, V> {
@@ -37,16 +37,43 @@ export const GroupedFilterBlock = observer(function GroupedFilterBlock<
     }
   };
 
-  let filterRecords = rawProps.filterRecords;
-  /*
-  if (rawProps.searchFilterField && searchTerm) {
-    filterRecords = filterRecords.filter((record) =>
-      (record[rawProps.searchFilterField!] as unknown as string)
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()),
-    );
-  }
-    */
+  const filterRecords = rawProps.filterRecords;
+
+  const hasCheckedRecord = useCallback(
+    (group: { label: string; records: V[] }) => {
+      const checkedValues =
+        (tableState.tableFilters[filterKey] as string[]) || [];
+      return group.records.some((record) =>
+        checkedValues.includes(
+          (record[rawProps.valueField] as unknown as string) || "",
+        ),
+      );
+    },
+    [tableState.tableFilters, filterKey],
+  );
+
+  const isChecked = useCallback(
+    (record: V) => {
+      const value = record[rawProps.valueField] as any;
+      const checkedValues =
+        (tableState.tableFilters[filterKey] as string[]) || [];
+      return checkedValues.includes(value);
+    },
+    [tableState.tableFilters, filterKey],
+  );
+
+  const sortedFilterRecords = useMemo(
+    () =>
+      [...filterRecords].sort((a, b) => {
+        const aHasChecked = hasCheckedRecord(a);
+        const bHasChecked = hasCheckedRecord(b);
+
+        if (aHasChecked && !bHasChecked) return -1;
+        if (!aHasChecked && bHasChecked) return 1;
+        return 0;
+      }),
+    [filterRecords, hasCheckedRecord],
+  );
 
   return (
     <div className={cn("flex flex-col gap-y-2 overflow-hidden", className)}>
@@ -61,7 +88,7 @@ export const GroupedFilterBlock = observer(function GroupedFilterBlock<
       </div>
       <ScrollArea className="flex h-72 w-full flex-col gap-2">
         <div className="flex flex-col gap-2 self-stretch">
-          {filterRecords.map((group) => (
+          {sortedFilterRecords.map((group) => (
             <div key={group.label} className="flex flex-col gap-2">
               <div className="font-medium">{group.label}</div>
               <div className="flex flex-col gap-2 pl-4">
@@ -71,19 +98,15 @@ export const GroupedFilterBlock = observer(function GroupedFilterBlock<
                       ? true
                       : (record[rawProps.labelField] as unknown as string)
                           .toLowerCase()
-                          .includes(searchTerm.toLowerCase()),
+                          .includes(searchTerm.toLowerCase()) &&
+                        !isChecked(record),
                   )
                   .map((record) => (
                     <FilterCheckbox<V>
                       key={record["id" as keyof V] as string | number}
                       record={record}
                       labelField={labelField}
-                      checked={(
-                        (tableState.tableFilters[filterKey] as string[]) || []
-                      ).includes(
-                        (record[rawProps.valueField] as unknown as string) ||
-                          "",
-                      )}
+                      checked={isChecked(record)}
                       handleChange={(checked) => handleChange(checked, record)} // pass null when unchecked
                     />
                   ))}

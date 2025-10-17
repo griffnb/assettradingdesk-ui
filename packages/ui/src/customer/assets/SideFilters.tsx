@@ -9,13 +9,17 @@ import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { StoreModel } from "@/models/store/StoreModel";
 import { GroupedFilterBlock } from "@/ui/common/components/table/filtering/GroupedFilterBlock";
+import { SearchFilterBlock } from "@/ui/common/components/table/filtering/SearchFilterBlock";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
 } from "@/ui/shadcn/ui/accordion";
+import { Badge } from "@/ui/shadcn/ui/badge";
+import { Button } from "@/ui/shadcn/ui/button";
 import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
 import { AccordionContent } from "@radix-ui/react-accordion";
 
@@ -26,26 +30,28 @@ interface SideFiltersProps<T extends object> {
 export const SideFilters = observer(function SideFilters<T extends object>(
   props: SideFiltersProps<T>,
 ) {
-  const [openValues, setOpenValues] = useState<string[]>([
-    "categories",
-    "makes",
-  ]);
+  const [openValues, setOpenValues] = useState<string[]>([]);
   const [categories, setCategories] = useState<
     { label: string; records: CategoryModel[] }[]
   >([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
+
   const { tableState } = props;
 
   useEffect(() => {
-    Store.category.query({ disabled: "0" }).then((resp) => {
-      if (resp.success && resp.data) {
-        const grouped = groupRecords(resp.data, "parent_name");
-        console.log(grouped);
-        setCategories(grouped);
-      }
-    });
+    Store.category
+      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 10 })
+      .then((resp) => {
+        if (resp.success && resp.data) {
+          const grouped = groupRecords(resp.data, "parent_name");
+          setCategories(grouped);
+        }
+      });
     Store.manufacturer
-      .query({ disabled: "0", "cte:gt:asset_count": "0", limit: "1000" })
+      .query(
+        { disabled: "0", "cte:gt:asset_count": "0" },
+        { customTTL: 1000 * 60 * 10 },
+      )
       .then((resp) => {
         if (resp.success && resp.data) {
           setManufacturers(resp.data);
@@ -63,18 +69,24 @@ export const SideFilters = observer(function SideFilters<T extends object>(
           Filters
         </span>
 
-        <i
-          className="u u-x-circle ml-auto cursor-pointer"
+        <Button
+          variant="outline"
+          size="sm"
+          className="ml-auto"
           onClick={() =>
             tableState.applyTableFilters({
               status: "100",
               limit: "100",
+              pictures: "1",
             })
           }
-        />
+        >
+          Clear Filters
+          <i className="u u-x-circle ml-auto cursor-pointer" />
+        </Button>
       </div>
 
-      <ScrollArea className="h-[calc(100svh-70px-var(--customer-top-nav-h))] px-4">
+      <ScrollArea className="h-[calc(100svh-5px-var(--customer-top-nav-h))] px-4">
         <div className="flex flex-col gap-2">
           <div className="flex items-center space-x-2">
             <Switch
@@ -122,8 +134,17 @@ export const SideFilters = observer(function SideFilters<T extends object>(
             setOpenValues(values as string[]);
           }}
         >
-          <AccordionItem value="categories" className="border-b">
-            <AccordionTrigger>Categories</AccordionTrigger>
+          <AccordionItem value="categories">
+            <AccordionTrigger>
+              <div className="flex w-full flex-row items-center justify-between">
+                <span>Categories</span>
+                {tableState.getFilter("categories").length > 0 && (
+                  <Badge className="bg-primary text-primary-foreground">
+                    {tableState.getFilter("categories").length}
+                  </Badge>
+                )}
+              </div>
+            </AccordionTrigger>
             <AccordionContent className="max-w-[330px] border-b pb-2">
               <GroupedFilterBlock
                 label="Categories"
@@ -136,8 +157,17 @@ export const SideFilters = observer(function SideFilters<T extends object>(
               />
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="makes" className="border-b">
-            <AccordionTrigger>Manufacturers</AccordionTrigger>
+          <AccordionItem value="makes">
+            <AccordionTrigger>
+              <div className="flex w-full flex-row items-center justify-between">
+                <span>Manufacturers</span>
+                {tableState.getFilter("manufacturers").length > 0 && (
+                  <Badge className="bg-primary text-primary-foreground">
+                    {tableState.getFilter("manufacturers").length}
+                  </Badge>
+                )}
+              </div>
+            </AccordionTrigger>
             <AccordionContent className="max-w-[330px] border-b pb-2">
               <FilterBlock
                 label="Manufacturers"
@@ -147,6 +177,29 @@ export const SideFilters = observer(function SideFilters<T extends object>(
                 valueField={"id"}
                 filterKey="manufacturers"
                 searchFilterField="name"
+              />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="models">
+            <AccordionTrigger className="border-b data-[state=open]:border-b-0">
+              <div className="flex w-full flex-row items-center justify-between">
+                <span>Models</span>
+                {tableState.getFilter("models").length > 0 && (
+                  <Badge className="bg-primary text-primary-foreground">
+                    {tableState.getFilter("models").length}
+                  </Badge>
+                )}
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="max-w-[330px] border-b pb-2">
+              <SearchFilterBlock<T, ModelModel>
+                label="Models"
+                tableState={tableState}
+                modelName="model"
+                modelFilters={{ disabled: "0" }}
+                labelField={"label"}
+                valueField={"id"}
+                filterKey="models"
               />
             </AccordionContent>
           </AccordionItem>

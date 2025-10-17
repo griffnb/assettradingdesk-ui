@@ -15,7 +15,7 @@ import {
 } from "@/utils/query/builder";
 
 import { getFilterForQueryParam } from "@/utils/filters/helpers";
-import { flow, makeAutoObservable, toJS } from "mobx";
+import { flow, makeAutoObservable } from "mobx";
 import { IColumn } from "../../../../ui/src/common/components/types/columns";
 import { IFilter } from "../../../../ui/src/common/components/types/filters";
 
@@ -93,6 +93,16 @@ export class TableState<T extends object> {
   setData(data: T[]) {
     this.data = data;
     this.filtered_data = data;
+  }
+
+  getFilter(key: string) {
+    const current = (this.tableFilters[key] as string[] | string) || [];
+
+    if (Array.isArray(current)) {
+      return current;
+    } else {
+      return [current];
+    }
   }
 
   addFilter(key: string, value: string) {
@@ -200,6 +210,11 @@ export class TableState<T extends object> {
     }
   };
 
+  applyOrder = (order: string) => {
+    this.order = order;
+    this.updateAppliedFilters();
+  };
+
   unselectRow() {
     this.selected_row_id = null;
   }
@@ -212,7 +227,6 @@ export class TableState<T extends object> {
     // Check if the incoming params are different from current applied filters
     const noChange = deepEqual(this.appliedFilters, params);
     if (!noChange) {
-      console.log("APPLYING ROUTE FILTERS", params);
       this.loadFilters(params);
       this.reloadData();
     }
@@ -249,16 +263,16 @@ export class TableState<T extends object> {
     this.appliedFilters = appliedFilters;
     this.statusFilters = getStatusFilters(appliedFilters);
     this.tableFilters = getTableFilters(appliedFilters);
-
-    console.log(
-      "Loaded Filters",
-      toJS(this.statusFilters),
-      toJS(this.tableFilters),
-    );
-
     this.limit = getLimit(appliedFilters, this.limit);
     this.page = getPage(this.appliedFilters, this.limit);
+    this.offset = (this.page - 1) * this.limit;
     this.searchQuery = getSearchQuery(appliedFilters);
+    const { sortColumn, sortDirection } = getSortColumnDirection(
+      appliedFilters,
+      this.columns,
+    );
+    this.sortColumn = sortColumn;
+    this.sortDirection = sortDirection;
   }
 
   applyPage(page: number) {
@@ -448,9 +462,12 @@ export class TableState<T extends object> {
       return this.applied_columns;
     }
 
-    const cachedCols = CacheService.get<IColumn<T>[]>(
-      `columns_${this.columnCacheKey}`,
-    );
+    let cachedCols: IColumn<T>[] | null = null;
+    if (typeof window !== "undefined") {
+      cachedCols = CacheService.get<IColumn<T>[]>(
+        `columns_${this.columnCacheKey}`,
+      );
+    }
 
     if (cachedCols) {
       const colMapByTitle = new Map<string, IColumn<T>>();
@@ -822,33 +839,12 @@ export class TableState<T extends object> {
   constructor(props: TableStateProps<T>) {
     makeAutoObservable(this);
     this.mode = props.mode || "server";
-    if (props.appliedFilters) {
-      this.loadFilters(props.appliedFilters);
-    }
     this.limit = props.defaultLimit || 100;
     this.filters = props.filters || [];
-    this.appliedFilters = props.appliedFilters || {};
+    this.appliedFilters = {};
     this.data = props.data || [];
     this.filtered_data = props.data || [];
     this.parent = props.parent || null;
-
-    if (props.appliedFilters) {
-      const { sortColumn, sortDirection } = getSortColumnDirection(
-        props.appliedFilters,
-        props.columns,
-      );
-      this.sortColumn = sortColumn;
-      this.sortDirection = sortDirection;
-      const limit = getLimit(props.appliedFilters, props.defaultLimit);
-      this.limit = limit;
-      const page = getPage(props.appliedFilters, limit);
-      this.page = page;
-      this.offset = (page - 1) * limit;
-      this.searchQuery = getSearchQuery(props.appliedFilters);
-      this.statusFilters = getStatusFilters(props.appliedFilters);
-      this.tableFilters = getTableFilters(props.appliedFilters);
-    }
-
     this.modelType = props.modelType as StoreKeys;
     this.customPath = props.customPath || null;
     this.storeRoute = props.storeRoute || null;
@@ -857,6 +853,10 @@ export class TableState<T extends object> {
     this.default_columns = props.columns;
     this.infiniteScroll = props.infiniteScroll || false;
     this.columnCacheKey = props.columnCacheKey || `columns_${props.modelType}`;
+
+    if (props.appliedFilters) {
+      this.loadFilters(props.appliedFilters);
+    }
 
     if (this.mode === "server") {
       this.loadServerData();
