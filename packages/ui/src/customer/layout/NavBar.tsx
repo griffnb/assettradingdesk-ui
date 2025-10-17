@@ -88,10 +88,14 @@ export const NavBar = observer(function NavBar() {
         </SignedIn>
         <SignedOut>
           <Link to="/signup">
-            <Button>Register Now</Button>
+            <Button className="bg-primary text-primary-foreground">
+              Register Now
+            </Button>
           </Link>
           <Link to="/login">
-            <Button>Sign In</Button>
+            <Button className="bg-primary text-primary-foreground">
+              Sign In
+            </Button>
           </Link>
         </SignedOut>
       </div>
