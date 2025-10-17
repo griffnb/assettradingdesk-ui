@@ -11,19 +11,17 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
 
-//import { ClerkProvider, useAuth } from "@clerk/react-router";
-//import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
+import { ClerkProvider, useAuth } from "@clerk/react-router";
+import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
 import type { Route } from "../.react-router/types/app/+types/root";
 
-import { ClerkProvider, useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import "./app.css";
 
-//export const middleware: Route.MiddlewareFunction[] = [clerkMiddleware()];
-//export const loader = (args: Route.LoaderArgs) => rootAuthLoader(args);
+export const middleware: Route.MiddlewareFunction[] = [clerkMiddleware()];
+export const loader = (args: Route.LoaderArgs) => rootAuthLoader(args);
 
-//export default function App({ loaderData }: Route.ComponentProps) {
-export default function App() {
+export default function App({ loaderData }: Route.ComponentProps) {
   // Import your Publishable Key
   const PUBLISHABLE_KEY = getPublicEnvVar("PUBLIC_CLERK_PUBLISHABLE_KEY");
 
@@ -36,6 +34,7 @@ export default function App() {
         theme: "simple",
       }}
       publishableKey={PUBLISHABLE_KEY}
+      loaderData={loaderData}
     >
       <Auth />
     </ClerkProvider>
