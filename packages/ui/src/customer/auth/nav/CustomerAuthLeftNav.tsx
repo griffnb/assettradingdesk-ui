@@ -1,6 +1,5 @@
 import { Button } from "@/ui/shadcn/ui/button";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { SidebarTrigger } from "@/ui/shadcn/ui/sidebar";
 import {
   Sidebar,
   SidebarContent,
@@ -9,18 +8,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/ui/shadcn/ui/sidebar3";
-import {
-  BookOpen,
-  Bot,
-  CircleHelp,
-  Plus,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { BookOpen, Bot, PanelLeft, Plus, SquareTerminal } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CustomerAuthLeftNavProps {}
 
 const platformItems = [
@@ -41,35 +35,41 @@ const platformItems = [
   },
 ];
 
-const footerItems = [
-  {
-    title: "Support",
-    url: "/support",
-    icon: CircleHelp,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings2,
-  },
-];
-
 export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { toggleSidebar } = useSidebar();
+
   return (
     <Sidebar
       className="top-[var(--customer-top-nav-h)] h-[calc(100dvh-var(--customer-top-nav-h))] border-r"
       variant="inset"
       collapsible="icon"
     >
-      <SidebarTrigger />
       <SidebarContent>
+        <SidebarGroup className="!py-0 pb-2">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="ml-auto size-7"
+                  onClick={toggleSidebar}
+                >
+                  <PanelLeft className="size-4" />
+                  <span className="sr-only">Toggle Sidebar</span>
+                </Button>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
         <SidebarGroup className="flex-1 p-2">
           <SidebarMenu>
             <SidebarGroupLabel className="px-2 opacity-70">
               Platform
             </SidebarGroupLabel>
+
             {platformItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild isActive={currentPath === item.url}>
@@ -82,26 +82,25 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
             ))}
           </SidebarMenu>
           <Separator className="my-2" />
-          <div className="flex flex-col gap-2">
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/listings">
-                    <SquareTerminal className="size-4" />
-                    <span>Listings</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full justify-start gap-2 text-xs"
-            >
-              <Plus className="size-4" />
-              Create New Listing
-            </Button>
-          </div>
+
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link to="/listings">
+                  <SquareTerminal className="size-4" />
+                  <span>Assets</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link to="/listings">
+                  <Plus className="size-4" />
+                  Create New Asset
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

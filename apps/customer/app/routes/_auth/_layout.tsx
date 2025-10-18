@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 
 export default function RootIndex() {
   return (
-    <InAppLayout>
+    <InAppLayout noFooter={true}>
       <SidebarProvider>
         <CustomerAuthLeftNav />
         <SidebarInset className="!m-0">

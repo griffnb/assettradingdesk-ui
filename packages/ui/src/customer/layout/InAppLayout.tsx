@@ -62,17 +62,18 @@ export const sidebarItems = [
 interface InAppLayoutProps {
   children: ReactNode;
   title?: string;
+  noFooter?: boolean;
 }
 
 export const InAppLayout = observer(function InAppLayout(
   props: InAppLayoutProps,
 ) {
   return (
-    <div className="relative flex h-dvh flex-col overflow-hidden bg-background">
+    <div className="relative flex flex-1 flex-col bg-background">
       <NavBar />
-      <main className="flex h-full flex-col overflow-auto">
+      <main className="flex h-full flex-col">
         {props.children}
-        <Footer />
+        {!props.noFooter && <Footer />}
       </main>
     </div>
   );

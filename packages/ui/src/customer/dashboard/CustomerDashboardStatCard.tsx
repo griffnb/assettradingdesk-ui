@@ -30,7 +30,7 @@ export const CustomerDashboardStatCard = observer(
 
     return (
       <Card className={cn("border", className)} {...props}>
-        <CardContent className="flex flex-col gap-2 p-6">
+        <CardContent className="flex flex-col gap-2">
           <div className="flex w-full items-center justify-between">
             <p className="text-sm font-medium text-foreground">{title}</p>
             {trend && (
