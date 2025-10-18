@@ -3,8 +3,6 @@ import { CustomerDashboardView } from "@/ui/customer/dashboard/CustomerDashboard
 export default function RootIndex() {
   return (
     <CustomerDashboardView
-      listings={[]}
-      offers={[]}
       stats={[
         {
           title: "Total Assets",
@@ -28,7 +26,6 @@ export default function RootIndex() {
           comparisonValue: "20",
         },
       ]}
-      suggestedTools={[]}
     />
   );
 }
