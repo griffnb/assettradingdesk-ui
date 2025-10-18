@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: [
-    "../../packages/astro_ui/src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "../../packages/ui/src/**/*.{html,js,tsx,ts,jsx}",
-  ],
+  content: ["../../packages/ui/src/**/*.{html,js,tsx,ts,jsx}"],
   safelist: [],
   theme: {
     extend: {
@@ -37,6 +34,14 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        sidebar: "hsl(var(--sidebar))",
+        "sidebar-foreground": "hsl(var(--sidebar-foreground))",
+        "sidebar-border": "hsl(var(--sidebar-border))",
+        "sidebar-primary": "hsl(var(--sidebar-primary))",
+        "sidebar-primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+        "sidebar-accent": "hsl(var(--sidebar-accent))",
+        "sidebar-accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+        "sidebar-ring": "hsl(var(--sidebar-ring))",
         background: "hsl(var(--background))",
         "dark-background": "hsl(var(--dark-background))",
         foreground: "hsl(var(--foreground))",
