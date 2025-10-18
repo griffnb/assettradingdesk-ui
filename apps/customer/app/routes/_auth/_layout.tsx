@@ -1,10 +1,6 @@
 import { CustomerAuthLeftNav } from "@/ui/customer/auth/nav/CustomerAuthLeftNav";
 import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/ui/shadcn/ui/sidebar3";
+import { SidebarInset, SidebarProvider } from "@/ui/shadcn/ui/sidebar3";
 import { Outlet } from "react-router";
 
 export default function RootIndex() {
@@ -12,9 +8,10 @@ export default function RootIndex() {
     <InAppLayout>
       <SidebarProvider>
         <CustomerAuthLeftNav />
-        <SidebarInset className="overflow-hidden">
-          <SidebarTrigger />
-          <Outlet />
+        <SidebarInset className="!m-0">
+          <main className="flex h-full flex-col overflow-auto">
+            <Outlet />
+          </main>
         </SidebarInset>
       </SidebarProvider>
     </InAppLayout>

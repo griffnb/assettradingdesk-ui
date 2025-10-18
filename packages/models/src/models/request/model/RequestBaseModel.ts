@@ -1,5 +1,6 @@
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
+import { Dayjs } from "dayjs";
 
 export class RequestMetaData {
   legacy_id: number = 0;
@@ -22,5 +23,5 @@ export class RequestBaseModel extends BaseModel {
   @attr("decimal") min_price: number = 0;
   @attr("decimal") max_price: number = 0;
   @attr("number") time_frame: number = 0;
-  @attr("number") expire_at_ts: number = 0;
+  @attr("ts-dayjs") expire_at_ts: Dayjs | null = null;
 }

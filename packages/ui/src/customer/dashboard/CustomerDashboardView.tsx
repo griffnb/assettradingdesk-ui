@@ -1,16 +1,9 @@
-import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes } from "react";
 import { CustomerDashboardHeader } from "./CustomerDashboardHeader";
-import {
-  CustomerDashboardListingsTable,
-  ListingData,
-} from "./CustomerDashboardListingsTable";
-import {
-  CustomerDashboardOffersTable,
-  OfferData,
-} from "./CustomerDashboardOffersTable";
+import { CustomerDashboardListingsTable } from "./CustomerDashboardListingsTable";
+import { CustomerDashboardRequestsTable } from "./CustomerDashboardRequestsTable";
 import {
   CustomerDashboardStatsGrid,
   DashboardStat,
@@ -21,14 +14,6 @@ export interface CustomerDashboardViewProps
   extends HTMLAttributes<HTMLDivElement> {
   userName?: string;
   stats: DashboardStat[];
-  suggestedTools: AssetModel[];
-  offers: OfferData[];
-  listings: ListingData[];
-  badge?: ReactNode;
-  onViewAllTools?: () => void;
-  onViewAllOffers?: () => void;
-  onViewAllListings?: () => void;
-  onManageListing?: (id: string) => void;
 }
 
 export const CustomerDashboardView = observer(function CustomerDashboardView(
@@ -38,37 +23,22 @@ export const CustomerDashboardView = observer(function CustomerDashboardView(
     className,
     userName,
     stats,
-    suggestedTools,
-    offers,
-    listings,
-    badge,
-    onViewAllTools,
-    onViewAllOffers,
-    onViewAllListings,
-    onManageListing,
+
     ...props
   } = fullProps;
 
   return (
-    <div className={cn("flex w-full flex-col gap-6 p-8", className)} {...props}>
+    <div
+      className={cn("@container flex w-full flex-col gap-6 p-8", className)}
+      {...props}
+    >
       <CustomerDashboardHeader userName={userName} />
       <CustomerDashboardStatsGrid stats={stats} />
       <div className="flex w-full flex-col gap-7">
-        <CustomerDashboardSuggestedTools
-          assets={suggestedTools}
-          onViewAll={onViewAllTools}
-          badge={badge}
-        />
-        <div className="flex w-full gap-10">
-          <CustomerDashboardOffersTable
-            offers={offers}
-            onViewAll={onViewAllOffers}
-          />
-          <CustomerDashboardListingsTable
-            listings={listings}
-            onViewAll={onViewAllListings}
-            onManage={onManageListing}
-          />
+        <CustomerDashboardSuggestedTools />
+        <div className="@md:flex-row flex w-full flex-col gap-10">
+          <CustomerDashboardRequestsTable />
+          <CustomerDashboardListingsTable />
         </div>
       </div>
     </div>

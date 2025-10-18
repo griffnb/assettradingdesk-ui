@@ -17,13 +17,11 @@ export interface CustomerDashboardSuggestedToolsProps
   extends HTMLAttributes<HTMLDivElement> {}
 
 export const CustomerDashboardSuggestedTools = observer(
-  function CustomerDashboardSuggestedTools(
-    fullProps: CustomerDashboardSuggestedToolsProps,
-  ) {
+  function CustomerDashboardSuggestedTools() {
     const [assets, setAssests] = useState<AssetModel[]>([]);
 
     useEffect(() => {
-      Store.asset.query({ limit: "5" }).then((resp) => {
+      Store.asset.query({ limit: "20" }).then((resp) => {
         if (resp.success && resp.data) {
           setAssests(resp.data);
         }
@@ -31,7 +29,7 @@ export const CustomerDashboardSuggestedTools = observer(
     }, []);
 
     return (
-      <div>
+      <div className="flex flex-col gap-4 self-stretch">
         <div className="flex items-start justify-between p-0">
           <div className="flex items-center gap-2">
             <BadgeCheck className="size-8" />
@@ -49,12 +47,20 @@ export const CustomerDashboardSuggestedTools = observer(
             <ArrowUpRight className="size-4" />
           </Button>
         </div>
-        <div className="flex flex-wrap items-center gap-5">
-          <Carousel className="">
+        <div className="flex flex-col items-center px-10">
+          <Carousel className="flex w-full">
             <CarouselContent>
               {assets.map((asset, index) => (
-                <CarouselItem className="basis-1/4" key={index}>
-                  <AssetCard key={asset.id} asset={asset} />
+                <CarouselItem
+                  className="@[30rem]:basis-1/2 @[44rem]:basis-1/3 @[59rem]:basis-1/4 @[71rem]:basis-1/5 basis-full"
+                  key={index}
+                >
+                  <AssetCard
+                    key={asset.id}
+                    asset={asset}
+                    size="skinny"
+                    variant={"full"}
+                  />
                 </CarouselItem>
               ))}
             </CarouselContent>

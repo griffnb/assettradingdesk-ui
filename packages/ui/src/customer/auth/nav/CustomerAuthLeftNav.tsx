@@ -1,9 +1,9 @@
 import { Button } from "@/ui/shadcn/ui/button";
 import { Separator } from "@/ui/shadcn/ui/separator";
+import { SidebarTrigger } from "@/ui/shadcn/ui/sidebar";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
@@ -63,6 +63,7 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
       variant="inset"
       collapsible="icon"
     >
+      <SidebarTrigger />
       <SidebarContent>
         <SidebarGroup className="flex-1 p-2">
           <SidebarMenu>
@@ -103,21 +104,6 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
           </div>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="p-2">
-        <Separator className="mb-2" />
-        <SidebarMenu>
-          {footerItems.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <Link to={item.url}>
-                  <item.icon className="size-4" />
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarFooter>
     </Sidebar>
   );
 });

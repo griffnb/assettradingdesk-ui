@@ -1,3 +1,5 @@
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Table,
@@ -10,7 +12,7 @@ import {
 import { cn } from "@/utils/cn";
 import { ArrowUpRight, Tag } from "lucide-react";
 import { observer } from "mobx-react-lite";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { Link } from "react-router";
 
 export interface ListingData {
@@ -23,17 +25,23 @@ export interface ListingData {
 }
 
 export interface CustomerDashboardListingsTableProps
-  extends HTMLAttributes<HTMLDivElement> {
-  listings: ListingData[];
-  onViewAll?: () => void;
-  onManage?: (id: string) => void;
-}
+  extends HTMLAttributes<HTMLDivElement> {}
 
 export const CustomerDashboardListingsTable = observer(
   function CustomerDashboardListingsTable(
     fullProps: CustomerDashboardListingsTableProps,
   ) {
-    const { className, listings, onViewAll, onManage, ...props } = fullProps;
+    const { className, ...props } = fullProps;
+    const [assets, setAssests] = useState<AssetModel[]>([]);
+
+    useEffect(() => {
+      Store.asset.query({ limit: "10" }).then((resp) => {
+        if (resp.success && resp.data) {
+          setAssests(resp.data);
+        }
+      });
+    }, []);
+
     return (
       <div
         className={cn(
@@ -46,15 +54,10 @@ export const CustomerDashboardListingsTable = observer(
           <div className="flex items-center gap-2">
             <Tag className="size-8" />
             <h2 className="text-2xl font-semibold leading-8 text-foreground">
-              Listings
+              Assets
             </h2>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-2"
-            onClick={onViewAll}
-          >
+          <Button variant="outline" size="sm" className="gap-2">
             <span>View All</span>
             <ArrowUpRight className="size-4" />
           </Button>
@@ -64,53 +67,46 @@ export const CustomerDashboardListingsTable = observer(
             <TableHeader>
               <TableRow>
                 <TableHead className="min-w-[85px]">Listing</TableHead>
-                <TableHead className="min-w-[85px]">
-                  Destination Country
-                </TableHead>
+                <TableHead className="min-w-[85px]">Facility</TableHead>
                 <TableHead className="min-w-[85px]">Price</TableHead>
                 <TableHead className="min-w-[85px]">Pipelines</TableHead>
                 <TableHead className="min-w-[85px]">Date</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {listings.slice(0, 5).map((listing) => (
-                <TableRow key={listing.id}>
+              {assets.map((asset) => (
+                <TableRow key={asset.id}>
                   <TableCell>
-                    {listing.listingUrl ? (
+                    {asset.publicLink ? (
                       <Link
-                        to={listing.listingUrl}
+                        to={asset.publicLink}
                         className="truncate font-semibold text-primary"
                       >
-                        {listing.listing}
+                        {asset.label}
                       </Link>
                     ) : (
                       <span className="truncate font-semibold text-primary">
-                        {listing.listing}
+                        {asset.label}
                       </span>
                     )}
                   </TableCell>
                   <TableCell>
                     <span className="truncate text-sm text-foreground">
-                      {listing.destinationCountry}
+                      USA
                     </span>
                   </TableCell>
                   <TableCell>
                     <span className="truncate text-sm font-semibold text-foreground">
-                      {listing.price}
+                      {asset.price}
                     </span>
                   </TableCell>
                   <TableCell>
                     <span className="truncate text-sm font-semibold text-foreground">
-                      {listing.pipelines}
+                      5
                     </span>
                   </TableCell>
                   <TableCell>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 text-xs"
-                      onClick={() => onManage?.(listing.id)}
-                    >
+                    <Button variant="outline" size="sm" className="h-8 text-xs">
                       Manage
                     </Button>
                   </TableCell>

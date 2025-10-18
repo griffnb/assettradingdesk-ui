@@ -10,13 +10,17 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 const styleVariants = cva(
-  "h-[340px] w-[310px] gap-2 overflow-hidden shadow-sm hover:bg-gray-50 cursor-pointer",
+  "gap-2 overflow-hidden shadow-sm hover:bg-gray-50 cursor-pointer",
   {
     variants: {
       variant: {
         default: "",
         full: "py-0",
         custom: "",
+      },
+      size: {
+        default: "h-[340px] w-[310px]",
+        skinny: "h-[240px] w-[210px] flex-none",
       },
     },
     defaultVariants: {
@@ -31,6 +35,10 @@ const imageVariant = cva("relative h-52 w-full overflow-auto", {
       default: "",
       full: "p-0",
       custom: "",
+    },
+    size: {
+      default: "",
+      skinny: " max-h-[40%]",
     },
   },
   defaultVariants: {
@@ -47,7 +55,7 @@ export interface AssetCardProps extends VariantProps<typeof styleVariants> {
 export const AssetCard = observer(function AssetCard(
   fullProps: AssetCardProps,
 ) {
-  const { className, asset, variant, badge, onClick } = fullProps;
+  const { className, asset, variant, size, badge, onClick } = fullProps;
   const nav = useNavigate();
 
   const onClickHandler = () => {
@@ -60,10 +68,10 @@ export const AssetCard = observer(function AssetCard(
 
   return (
     <Card
-      className={cn(styleVariants({ variant, className }))}
+      className={cn(styleVariants({ variant, size, className }))}
       onClick={onClickHandler}
     >
-      <CardContent className={cn(imageVariant({ variant }))}>
+      <CardContent className={cn(imageVariant({ variant, size }))}>
         <div className="relative size-full">
           <div className="absolute left-1 top-1">{badge}</div>
           <div className="absolute right-1 top-1">
