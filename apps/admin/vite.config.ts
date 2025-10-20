@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ["assets-local"],
+    allowedHosts: true,
   },
   resolve: {
     alias: {

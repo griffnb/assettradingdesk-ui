@@ -25,7 +25,7 @@ label {
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 14.5%;
     --primary: 243.4 75.4% 58.6%;
-    --primary-foreground: 0 0%, 98.5%;
+    --primary-foreground: 0 0% 98.5%;
     --secondary: 0 0% 97%;
     --secondary-foreground: 0 0% 20.5%;
     --muted: 0 0% 97%;
@@ -36,11 +36,11 @@ label {
     --border: 0 0% 92.2%;
     --input: 0 0% 92.2%;
     --ring: 0 0% 70.8%;
-    --chart-1: 25 95%, 53%;
-    --chart-2: 173 58%, 39%;
-    --chart-3: 221 39%, 11%;
-    --chart-4: 60 9%, 97%;
-    --chart-5: 48 96%, 89%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 221 39% 11%;
+    --chart-4: 60 9% 97%;
+    --chart-5: 48 96% 89%;
     --sidebar: 0 0% 98.5%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;

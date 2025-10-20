@@ -27,6 +27,8 @@ module.exports = {
         "glow-xs": "0 0 5px 1px var(--tw-shadow-color)",
         "glow-sm": "0 0 10px 2px var(--tw-shadow-color)",
         "glow-md": "0 0 15px 3px var(--tw-shadow-color)",
+        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "2xs": "0 1px rgb(0 0 0 / 0.05)",
       },
       borderRadius: {
         lg: "var(--radius)",

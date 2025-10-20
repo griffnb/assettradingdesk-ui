@@ -25,6 +25,7 @@ const styleVariants = cva(
     },
     defaultVariants: {
       variant: "default",
+      size: "default",
     },
   },
 );
