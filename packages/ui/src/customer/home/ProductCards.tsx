@@ -1,6 +1,13 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/ui/shadcn/ui/carousel";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
@@ -42,7 +49,7 @@ export const ProductCards = observer(function ProductCards(
       const resp = await Store.asset.query({
         disabled: "0",
         "_c:has_pictures": "1",
-        limit: "4",
+        limit: "10",
       });
       if (resp.success && resp.data) {
         setAssets(resp.data);
@@ -79,9 +86,24 @@ export const ProductCards = observer(function ProductCards(
 
           {/* Product Cards Grid */}
           <div className="relative flex w-full shrink-0 flex-wrap content-center items-center gap-6">
-            {assets.map((asset) => (
-              <AssetCard key={asset.id} asset={asset} variant={"full"} />
-            ))}
+            <Carousel className="mx-auto w-full">
+              <CarouselContent>
+                {assets.map((asset) => (
+                  <CarouselItem
+                    className="basis-full overflow-hidden md:basis-1/4"
+                    key={asset.id}
+                  >
+                    <AssetCard key={asset.id} asset={asset} variant={"full"} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {assets.length > 4 && (
+                <>
+                  <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
+                  <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
+                </>
+              )}
+            </Carousel>
           </div>
         </div>
       </div>

@@ -3,16 +3,19 @@ import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 
-const styleVariants = cva("h-32 relative w-full", {
-  variants: {
-    variant: {
-      default: "",
+const styleVariants = cva(
+  "flex w-full flex-col  items-center md:flex-row bg-white divide-x divide-y",
+  {
+    variants: {
+      variant: {
+        default: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+);
 
 /**
  * Manufacturer Logos Component
@@ -38,21 +41,21 @@ export const ManufacturerLogos = observer(function ManufacturerLogos(
 
   return (
     <div className={cn(styleVariants({ variant, className }))} {...props}>
-      <div className="relative flex h-32 w-full content-stretch items-center rounded-[inherit]">
-        {/* Premium Tools Text Section */}
-        <div className="relative box-border flex h-full w-96 shrink-0 flex-col content-stretch items-start justify-center gap-1 whitespace-pre-wrap bg-white px-10 py-0">
-          <h2 className="relative shrink-0 text-xl font-semibold leading-7 text-neutral-700">
-            Premium tools. Proven brands.
-          </h2>
-          <p className="relative w-min min-w-full shrink-0 text-base font-normal leading-6 text-neutral-500">
-            Trusted OEMs—ensuring quality, compatibility, and high resale value.
-          </p>
-        </div>
-
+      {/* Premium Tools Text Section */}
+      <div className="flex size-full flex-col content-stretch items-start justify-center gap-1 whitespace-pre-wrap !border-y bg-white p-5 shadow-sm md:h-32 md:w-[30rem]">
+        <h2 className="flex shrink-0 text-xl font-semibold leading-7 text-neutral-700">
+          Premium tools. Proven brands.
+        </h2>
+        <p className="relative w-min min-w-full shrink-0 text-base font-normal leading-6 text-neutral-500">
+          Trusted OEMs—ensuring quality, compatibility, and high resale value.
+        </p>
+      </div>
+      {/* Logos Section */}
+      <div className="grid w-full grid-cols-2 divide-x divide-y md:flex md:flex-row md:divide-inherit md:!border-y">
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="relative h-full min-h-px min-w-px flex-1 shrink-0 border-l border-neutral-200 bg-white shadow-sm"
+            className="relative flex-1 shrink-0 bg-white shadow-sm first:border-t md:h-32 md:border-y"
           >
             <div className="flex size-full flex-col items-center justify-center rounded-[inherit]">
               <div className="relative box-border flex size-full flex-col content-stretch items-center justify-center px-6 py-10">
@@ -64,9 +67,6 @@ export const ManufacturerLogos = observer(function ManufacturerLogos(
           </div>
         ))}
       </div>
-
-      {/* Top and bottom borders */}
-      <div className="pointer-events-none absolute inset-0 border-x-0 border-y border-solid border-neutral-200" />
     </div>
   );
 });

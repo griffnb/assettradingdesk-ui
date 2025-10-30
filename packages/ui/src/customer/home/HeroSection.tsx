@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useState } from "react";
 import { useNavigate } from "react-router";
 
-const styleVariants = cva("bg-white relative w-full", {
+const styleVariants = cva("bg-white relative w-full flex mb-2", {
   variants: {
     variant: {
       default: "",
@@ -43,7 +43,7 @@ export const HeroSection = observer(function HeroSection(
   return (
     <div className={cn(styleVariants({ variant, className }))} {...props}>
       {/* Hero Background with gradient and blur effect */}
-      <div className="absolute left-0 top-0 isolate h-[554px] w-full overflow-hidden">
+      <div className="absolute left-0 top-0 isolate size-full overflow-hidden md:h-[554px]">
         <img
           className="absolute -z-10 size-full object-cover"
           src="/img/hero2.png"
@@ -52,22 +52,22 @@ export const HeroSection = observer(function HeroSection(
 
       <div className="relative">
         <div className="flex size-full flex-row items-center rounded-[inherit]">
-          <div className="flex h-[544px] w-full content-stretch items-center px-24 py-10">
-            <div className="flex w-full max-w-4xl shrink-0 flex-col content-stretch items-start justify-center gap-10">
+          <div className="flex w-full content-stretch items-center p-4 md:h-[544px] md:px-24 md:py-10">
+            <div className="flex w-full shrink-0 flex-col content-stretch items-start justify-center gap-10 md:max-w-4xl">
               {/* Title Section */}
               <div className="flex w-full shrink-0 flex-col content-stretch items-start gap-4 whitespace-pre-wrap">
                 <div className="flex w-full shrink-0 flex-col content-stretch items-start">
-                  <p className="shrink-0 text-sm font-semibold leading-5 text-violet-400">
+                  <p className="shrink-0 text-xs font-semibold leading-5 text-violet-400 md:visible md:text-sm">
                     Global platform
                   </p>
-                  <div className="justify-start self-stretch font-serif text-6xl font-normal italic leading-[60px] text-primary-foreground">
+                  <div className="justify-start self-stretch font-serif text-5xl font-normal italic text-primary-foreground md:text-6xl md:leading-[60px]">
                     Simplify
                   </div>
-                  <div className="justify-start self-stretch text-7xl font-bold leading-[72px] text-primary-foreground">
+                  <div className="justify-start self-stretch text-5xl font-bold text-primary-foreground md:text-7xl md:leading-[72px]">
                     Semiconductor Trading
                   </div>
                 </div>
-                <div className="justify-start text-xl font-light leading-7 text-primary-foreground">
+                <div className="justify-start text-base font-light leading-7 text-primary-foreground md:text-xl">
                   Second-hand equipment, first class service. Transact with
                   confidence with verified, up-to-date information on the tools
                   you need.
@@ -75,7 +75,7 @@ export const HeroSection = observer(function HeroSection(
               </div>
 
               {/* Search Bar */}
-              <div className="relative box-border flex w-full max-w-3xl content-stretch items-center gap-1 rounded-lg border-2 border-black bg-white p-3 shadow-lg">
+              <div className="relative box-border hidden w-full content-stretch items-center gap-1 rounded-lg border-black bg-white p-1 shadow-lg md:flex md:max-w-3xl md:border-2 md:p-3">
                 <div className="relative flex min-h-px min-w-px flex-1 shrink-0 content-stretch items-center gap-2">
                   <Search className="size-5 text-neutral-500" />
                   <Input
@@ -94,7 +94,7 @@ export const HeroSection = observer(function HeroSection(
               </div>
 
               {/* Statistics Section */}
-              <div className="relative flex shrink-0 content-stretch items-start gap-4">
+              <div className="relative flex shrink-0 flex-col content-stretch items-start gap-4 md:flex-row">
                 <div className="relative flex shrink-0 flex-col content-stretch items-start justify-center">
                   <p className="relative shrink-0 text-base font-extrabold leading-6 text-violet-400">
                     40,417

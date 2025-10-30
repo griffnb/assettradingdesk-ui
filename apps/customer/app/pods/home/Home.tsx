@@ -16,7 +16,7 @@ export const Home = observer(function Home() {
       {/* Manufacturer Logos Section */}
       <ManufacturerLogos />
       <div className="flex w-full flex-col bg-white">
-        <div className="mx-auto flex w-full max-w-[1500px] flex-col">
+        <div className="mx-auto flex w-full flex-col md:max-w-[1500px]">
           {/* Hot Products Section */}
           <ProductCards />
 

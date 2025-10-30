@@ -1,146 +1,92 @@
-import { UserButton } from "@clerk/clerk-react";
-import { ChevronDown, Search, Settings, Wand2, X } from "lucide-react";
-
-import { cn } from "@/utils/cn";
+import { LayerService } from "@/common_lib/services/LayerService";
+import { TakeoverPanelWrap } from "@/ui/common/components/takeover-panel/TakeoverPanelWrap";
+import { Button } from "@/ui/shadcn/ui/button";
+import {
+  ViewSidebarGroup,
+  ViewSidebarMenu,
+  ViewSidebarMenuButton,
+  ViewSidebarMenuItem,
+} from "@/ui/shadcn/ui/sidebarview";
+import { X } from "lucide-react";
 import { observer } from "mobx-react-lite";
-import { Badge } from "../../shadcn/ui/badge";
-import { Button } from "../../shadcn/ui/button";
-import { Input } from "../../shadcn/ui/input";
-import { ScrollArea } from "../../shadcn/ui/scroll-area";
-import { sidebarItems } from "./InAppLayout";
+import { Link, useLocation } from "react-router";
 
-interface MobileMenuProps {
-  mobileMenuOpen: boolean;
-  setMobileMenuOpen: (open: boolean) => void;
-  expandedItems: Record<string, boolean>;
-  toggleExpanded: (title: string) => void;
-}
-export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
-  const { mobileMenuOpen, setMobileMenuOpen, expandedItems, toggleExpanded } =
-    props;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface MobileMenuProps {}
+
+const sidebarItems = [
+  {
+    title: "Home",
+    url: "/",
+    icon: null,
+  },
+  {
+    title: "Categories",
+    url: "/categories",
+    icon: null,
+  },
+  {
+    title: "Manufacturers",
+    url: "/manufacturers",
+    icon: null,
+  },
+  {
+    title: "Models",
+    url: "/models",
+    icon: null,
+  },
+  {
+    title: "Assets",
+    url: "/assets",
+    icon: null,
+  },
+];
+
+export const MobileMenuID = "mobile-menu";
+
+export const MobileMenu = observer(function MobileMenu() {
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
-    <>
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 md:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* Sidebar - Mobile */}
-      <div
-        className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 transform bg-white transition-transform duration-300 ease-in-out md:hidden",
-          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <div className="flex h-full flex-col border-r">
-          <div className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex aspect-square size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-                <Wand2 className="size-5" />
-              </div>
-              <div>
-                <h2 className="font-semibold">Techboss</h2>
-              </div>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
-
-          <div className="px-3 py-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-2xl bg-gray-200 pl-9 pr-4 py-2"
-              />
-            </div>
-          </div>
-
-          <ScrollArea className="flex-1 px-3 py-2">
-            <div className="space-y-1">
-              {sidebarItems.map((item) => (
-                <div key={item.title} className="mb-1">
-                  <button
-                    className={cn(
-                      "flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium cursor-pointer",
-                      item.isActive
-                        ? "bg-primary/10 text-primary"
-                        : "hover:bg-gray-200"
-                    )}
-                    onClick={() => item.items && toggleExpanded(item.title)}
-                  >
-                    <div className="flex items-center gap-3">
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </div>
-                    {item.badge && (
-                      <Badge
-                        variant="outline"
-                        className="ml-auto rounded-full px-2 py-0.5 text-xs"
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                    {item.items && (
-                      <ChevronDown
-                        className={cn(
-                          "ml-2 h-4 w-4 transition-transform",
-                          expandedItems[item.title] ? "rotate-180" : ""
-                        )}
-                      />
-                    )}
-                  </button>
-
-                  {item.items && expandedItems[item.title] && (
-                    <div className="mt-1 ml-6 space-y-1 border-l pl-3">
-                      {item.items.map((subItem) => (
-                        <a
-                          key={subItem.title}
-                          href={subItem.url}
-                          className="flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer"
-                        >
-                          {subItem.title}
-                          {subItem.badge && (
-                            <Badge
-                              variant="outline"
-                              className="ml-auto rounded-full px-2 py-0.5 text-xs"
-                            >
-                              {subItem.badge}
-                            </Badge>
-                          )}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </ScrollArea>
-
-          <div className="border-t p-3">
-            <div className="space-y-1">
-              <button className="flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-                <Settings className="h-5 w-5" />
-                <span>Settings</span>
-              </button>
-              <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-                <div className="flex items-center gap-3">
-                  <UserButton showName={true} />
-                </div>
-              </button>
-            </div>
-          </div>
+    <TakeoverPanelWrap
+      id={MobileMenuID}
+      title="Menu"
+      size={"full"}
+      hideBack={true}
+    >
+      <div className="flex flex-row items-center justify-between group-data-[state=collapsed]:flex-col group-data-[state=collapsed]:justify-center">
+        <div className="flex flex-col items-center group-data-[state=collapsed]:hidden">
+          <img src="/img/logo.png" className="h-10" alt="Logo" />
         </div>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="ml-auto size-7 cursor-pointer group-data-[state=collapsed]:ml-0"
+          onClick={() => LayerService.remove(MobileMenuID)}
+        >
+          <X className="size-4" />
+          <span className="sr-only">Toggle Sidebar</span>
+        </Button>
       </div>
-    </>
+      <ViewSidebarGroup className="flex-1 p-2">
+        <ViewSidebarMenu>
+          {sidebarItems.map((item) => (
+            <ViewSidebarMenuItem key={item.title}>
+              <ViewSidebarMenuButton
+                asChild
+                isActive={currentPath === item.url}
+              >
+                <Link to={item.url} key={item.url}>
+                  {item.icon && item.icon}
+                  <span>{item.title}</span>
+                </Link>
+              </ViewSidebarMenuButton>
+            </ViewSidebarMenuItem>
+          ))}
+        </ViewSidebarMenu>
+      </ViewSidebarGroup>
+    </TakeoverPanelWrap>
   );
 });

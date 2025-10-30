@@ -89,14 +89,14 @@ export const SearchFlyout = observer(function SearchFlyout() {
   }, [show]);
 
   return (
-    <div className="relative mx-6 flex w-full max-w-sm flex-row items-center overflow-visible">
-      <div className="flex w-full max-w-sm items-center rounded-lg border bg-white">
+    <div className="relative flex w-full flex-row items-center overflow-visible md:mx-6 md:max-w-sm">
+      <div className="flex w-full items-center rounded-lg border bg-white md:max-w-sm">
         <Search className="ml-3 size-5 text-gray-400" />
         <Input
           type="text"
           value={searchQuery}
           placeholder="Search equipment, manufacturers, models..."
-          className="flex-1 border-0 bg-transparent text-lg placeholder:text-gray-700 focus-visible:ring-0"
+          className="flex-1 border-0 bg-transparent placeholder:text-gray-700 focus-visible:ring-0 md:text-lg"
           onChange={(e) => {
             setSearchQuery(e.target.value);
             debouncedSearch(e.target.value);
@@ -106,11 +106,11 @@ export const SearchFlyout = observer(function SearchFlyout() {
       </div>
       {results && show && (
         <div
-          className="absolute left-5 top-10 z-nav-bar-over w-full min-w-fit overflow-visible bg-white"
+          className="absolute left-0 top-10 z-nav-bar-over w-full min-w-fit overflow-visible bg-white md:left-5 md:top-10"
           ref={flyoutRef}
         >
           <div className="flex flex-col gap-2 rounded-lg border border-b-2 p-4 shadow-lg">
-            <div className="flex flex-row gap-10">
+            <div className="flex flex-col gap-10 md:flex-row">
               {results.models && results.models.length > 0 && (
                 <div className="flex flex-1 flex-col">
                   <div className="flex items-center justify-start gap-2 self-stretch rounded-md py-1.5 text-sm font-semibold leading-none text-foreground">
