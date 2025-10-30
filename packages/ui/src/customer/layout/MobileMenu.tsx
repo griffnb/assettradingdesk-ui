@@ -7,6 +7,7 @@ import {
   ViewSidebarMenuButton,
   ViewSidebarMenuItem,
 } from "@/ui/shadcn/ui/sidebarview";
+import { SignedIn, SignOutButton, useAuth } from "@clerk/clerk-react";
 import { X } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
@@ -21,22 +22,7 @@ const sidebarItems = [
     icon: null,
   },
   {
-    title: "Categories",
-    url: "/categories",
-    icon: null,
-  },
-  {
-    title: "Manufacturers",
-    url: "/manufacturers",
-    icon: null,
-  },
-  {
-    title: "Models",
-    url: "/models",
-    icon: null,
-  },
-  {
-    title: "Assets",
+    title: "Browse Assets",
     url: "/assets",
     icon: null,
   },
@@ -46,7 +32,24 @@ export const MobileMenuID = "mobile-menu";
 
 export const MobileMenu = observer(function MobileMenu() {
   const location = useLocation();
+  const { isSignedIn } = useAuth();
   const currentPath = location.pathname;
+
+  const menu = !isSignedIn
+    ? [
+        ...sidebarItems,
+        {
+          title: "Signup",
+          url: "/signup",
+          icon: null,
+        },
+        {
+          title: "Login",
+          url: "/login",
+          icon: null,
+        },
+      ]
+    : [...sidebarItems];
 
   return (
     <TakeoverPanelWrap
@@ -72,19 +75,36 @@ export const MobileMenu = observer(function MobileMenu() {
       </div>
       <ViewSidebarGroup className="flex-1 p-2">
         <ViewSidebarMenu>
-          {sidebarItems.map((item) => (
+          {menu.map((item) => (
             <ViewSidebarMenuItem key={item.title}>
               <ViewSidebarMenuButton
                 asChild
                 isActive={currentPath === item.url}
               >
-                <Link to={item.url} key={item.url}>
+                <Link
+                  to={item.url}
+                  key={item.url}
+                  onClick={() => LayerService.remove(MobileMenuID)}
+                >
                   {item.icon && item.icon}
                   <span>{item.title}</span>
                 </Link>
               </ViewSidebarMenuButton>
             </ViewSidebarMenuItem>
           ))}
+          <div className="flex w-full flex-col border-t py-3">
+            <SignedIn>
+              <SignOutButton>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => LayerService.remove(MobileMenuID)}
+                >
+                  Sign Out
+                </Button>
+              </SignOutButton>
+            </SignedIn>
+          </div>
         </ViewSidebarMenu>
       </ViewSidebarGroup>
     </TakeoverPanelWrap>
