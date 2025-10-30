@@ -96,7 +96,7 @@ export const SearchFlyout = observer(function SearchFlyout() {
           type="text"
           value={searchQuery}
           placeholder="Search equipment, manufacturers, models..."
-          className="flex-1 border-0 bg-transparent placeholder:text-gray-700 focus-visible:ring-0 md:text-lg"
+          className="flex-1 border-0 bg-transparent placeholder:text-gray-700 focus-visible:ring-0"
           onChange={(e) => {
             setSearchQuery(e.target.value);
             debouncedSearch(e.target.value);
