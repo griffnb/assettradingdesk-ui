@@ -44,21 +44,23 @@ export const SearchFlyout = observer(function SearchFlyout() {
   useEffect(() => {
     if (debouncedQueryValue === null) return;
 
-    ServerService.callGet("model", "search", { q: debouncedQueryValue }).then(
-      (res: IJSONAPIType<Response>) => {
-        if (res.success && res.data) {
-          const results: Response = {
-            models: Store.model.loadMany(res.data.models || []),
-            manufacturers: Store.manufacturer.loadMany(
-              res.data.manufacturers || [],
-            ),
-            categories: Store.category.loadMany(res.data.categories || []),
-          };
-          setResults(results);
-        }
-        setShow(true);
-      },
-    );
+    ServerService.callGet("model", "search", {
+      q: debouncedQueryValue,
+      disabled: "0",
+      "cte:gt:asset_count": "0",
+    }).then((res: IJSONAPIType<Response>) => {
+      if (res.success && res.data) {
+        const results: Response = {
+          models: Store.model.loadMany(res.data.models || []),
+          manufacturers: Store.manufacturer.loadMany(
+            res.data.manufacturers || [],
+          ),
+          categories: Store.category.loadMany(res.data.categories || []),
+        };
+        setResults(results);
+      }
+      setShow(true);
+    });
   }, [debouncedQueryValue]);
   // Debounce the callback. The search will be triggered after 500ms of inactivity.
   const debouncedSearch = useCallback(
@@ -106,7 +108,7 @@ export const SearchFlyout = observer(function SearchFlyout() {
       </div>
       {results && show && (
         <div
-          className="absolute left-0 top-10 z-nav-bar-over w-full min-w-fit overflow-visible bg-white md:left-5 md:top-10"
+          className="absolute left-0 top-10 z-nav-bar-over w-full min-w-fit overflow-visible bg-white"
           ref={flyoutRef}
         >
           <div className="flex flex-col gap-2 rounded-lg border border-b-2 p-4 shadow-lg">

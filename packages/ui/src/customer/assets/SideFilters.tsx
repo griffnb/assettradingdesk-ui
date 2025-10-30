@@ -40,7 +40,10 @@ export const SideFilters = observer(function SideFilters<T extends object>(
 
   useEffect(() => {
     Store.category
-      .query({ disabled: "0" }, { customTTL: 1000 * 60 * 10 })
+      .query(
+        { disabled: "0", "cte:gt:asset_count": "0" },
+        { customTTL: 1000 * 60 * 10 },
+      )
       .then((resp) => {
         if (resp.success && resp.data) {
           const grouped = groupRecords(resp.data, "parent_name");
