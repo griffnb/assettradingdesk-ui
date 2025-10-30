@@ -89,7 +89,7 @@ export const StandardTableWrap = observer(
     }, [props.appliedFilters]);
 
     return (
-      <div className={cn(className)}>
+      <div className={cn("relative flex min-h-0 flex-1 flex-col", className)}>
         {tableState.loading && (
           <div className="absolute z-modal-popover flex size-full flex-row items-center justify-center bg-gray-500/50">
             <i className="fa fa-spinner fa-spin text-7xl text-gray-800"></i>

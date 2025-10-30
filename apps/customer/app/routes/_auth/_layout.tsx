@@ -1,6 +1,6 @@
 import { CustomerAuthLeftNav } from "@/ui/customer/auth/nav/CustomerAuthLeftNav";
 import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
-import { SidebarInset, SidebarProvider } from "@/ui/shadcn/ui/sidebar3";
+import { SidebarInset, SidebarProvider } from "@/ui/shadcn/ui/sidebar";
 import { Outlet } from "react-router";
 
 export default function RootIndex() {

@@ -1,12 +1,13 @@
 "use client";
-import { ChevronDown, Settings } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/utils/cn";
+import { UserButton } from "@clerk/clerk-react";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router";
 import { Badge } from "../../shadcn/ui/badge";
 import { ScrollArea } from "../../shadcn/ui/scroll-area";
-import { sidebarItems } from "./AdminLayout";
+import { sidebarItems } from "./sidebarItems";
 
 interface DesktopSidebarProps {
   sidebarOpen: boolean;
@@ -15,7 +16,7 @@ interface DesktopSidebarProps {
   toggleExpanded: (title: string) => void;
 }
 export const DesktopSidebar = observer(function DesktopSidebar(
-  props: DesktopSidebarProps
+  props: DesktopSidebarProps,
 ) {
   const { sidebarOpen, expandedItems, toggleExpanded } = props;
   const location = useLocation();
@@ -25,7 +26,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
     <div
       className={cn(
         "fixed inset-y-0 left-0 z-30 hidden w-64 transform border-r bg-background transition-transform duration-300 ease-in-out md:block",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        sidebarOpen ? "translate-x-0" : "-translate-x-full",
       )}
     >
       <div className="flex h-full flex-col">
@@ -41,10 +42,10 @@ export const DesktopSidebar = observer(function DesktopSidebar(
               <div key={item.title} className="mb-1">
                 <button
                   className={cn(
-                    "flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium cursor-pointer",
+                    "flex w-full cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium",
                     item.url && location.pathname == item.url
                       ? "bg-bg-brand-primary/10 text-text-brand-primary"
-                      : "hover:bg-gray-200"
+                      : "hover:bg-gray-200",
                   )}
                   onClick={() => {
                     if (item.url) {
@@ -54,7 +55,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                     }
                   }}
                 >
-                  <div className="flex items-center gap-3 cursor-pointer">
+                  <div className="flex cursor-pointer items-center gap-3">
                     {item.icon}
                     <span>{item.title}</span>
                   </div>
@@ -70,22 +71,22 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                     <ChevronDown
                       className={cn(
                         "ml-2 h-4 w-4 transition-transform",
-                        expandedItems[item.title] ? "rotate-180" : ""
+                        expandedItems[item.title] ? "rotate-180" : "",
                       )}
                     />
                   )}
                 </button>
 
                 {item.items && expandedItems[item.title] && (
-                  <div className="mt-1 ml-6 space-y-1 border-l pl-3">
+                  <div className="ml-6 mt-1 space-y-1 border-l pl-3">
                     {item.items.map((subItem) => (
                       <span
                         key={subItem.title}
                         className={cn(
-                          "flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer",
+                          "flex cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200",
                           item.url && location.pathname == item.url
                             ? "bg-bg-brand-primary/10 text-text-brand-primary"
-                            : "hover:bg-gray-200"
+                            : "hover:bg-gray-200",
                         )}
                         onClick={() => {
                           if (subItem.url) {
@@ -113,12 +114,10 @@ export const DesktopSidebar = observer(function DesktopSidebar(
 
         <div className="border-t p-3">
           <div className="space-y-1">
-            <button className="flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-              <Settings className="h-5 w-5" />
-              <span>Settings</span>
-            </button>
             <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-              <div className="flex items-center gap-3"></div>
+              <div className="flex items-center gap-3">
+                <UserButton showName={true} />
+              </div>
             </button>
           </div>
         </div>

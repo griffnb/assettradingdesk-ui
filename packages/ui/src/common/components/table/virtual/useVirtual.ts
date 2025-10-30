@@ -288,6 +288,7 @@ export const useVirtualization = (props: VirtualizationProps) => {
     findEndIndex,
     cumulativeHeights,
     props.height,
+    scrollRef.current?.getBoundingClientRect().height,
   ]);
 
   const { start, end, topPad, bottomPad } = calculations;

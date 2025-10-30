@@ -8,7 +8,7 @@ import { Badge } from "../../shadcn/ui/badge";
 import { Button } from "../../shadcn/ui/button";
 import { Input } from "../../shadcn/ui/input";
 import { ScrollArea } from "../../shadcn/ui/scroll-area";
-import { sidebarItems } from "./AdminLayout";
+import { sidebarItems } from "./sidebarItems";
 
 interface MobileMenuProps {
   mobileMenuOpen: boolean;
@@ -33,7 +33,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
       <div
         className={cn(
           "fixed inset-y-0 left-0 z-50 w-64 transform bg-white transition-transform duration-300 ease-in-out md:hidden",
-          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex h-full flex-col border-r">
@@ -61,7 +61,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
               <Input
                 type="search"
                 placeholder="Search..."
-                className="w-full rounded-2xl bg-gray-200 pl-9 pr-4 py-2"
+                className="w-full rounded-2xl bg-gray-200 py-2 pl-9 pr-4"
               />
             </div>
           </div>
@@ -72,10 +72,10 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
                 <div key={item.title} className="mb-1">
                   <button
                     className={cn(
-                      "flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium cursor-pointer",
+                      "flex w-full cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium",
                       item.isActive
                         ? "bg-primary/10 text-primary"
-                        : "hover:bg-gray-200"
+                        : "hover:bg-gray-200",
                     )}
                     onClick={() => item.items && toggleExpanded(item.title)}
                   >
@@ -95,19 +95,19 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
                       <ChevronDown
                         className={cn(
                           "ml-2 h-4 w-4 transition-transform",
-                          expandedItems[item.title] ? "rotate-180" : ""
+                          expandedItems[item.title] ? "rotate-180" : "",
                         )}
                       />
                     )}
                   </button>
 
                   {item.items && expandedItems[item.title] && (
-                    <div className="mt-1 ml-6 space-y-1 border-l pl-3">
+                    <div className="ml-6 mt-1 space-y-1 border-l pl-3">
                       {item.items.map((subItem) => (
                         <a
                           key={subItem.title}
                           href={subItem.url}
-                          className="flex items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200 cursor-pointer"
+                          className="flex cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200"
                         >
                           {subItem.title}
                           {subItem.badge && (

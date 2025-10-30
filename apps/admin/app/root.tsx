@@ -6,15 +6,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
-  useNavigate,
 } from "react-router";
 
 import { SessionService } from "@/common_lib/services/SessionService";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { getPublicEnvVar } from "@/utils/env";
-import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react";
-import { observer } from "mobx-react-lite";
+import { ClerkProvider, useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import type { Route } from "../.react-router/types/app/+types/root";
 import "./app.css";
@@ -78,55 +75,21 @@ export default function App() {
   );
 }
 
-const Auth = observer(function Auth() {
+function Auth() {
   const [ready, setReady] = useState(false);
-  const { getToken } = useAuth();
-  const { isSignedIn, isLoaded } = useUser();
-  const navigate = useNavigate();
-  const location = useLocation();
-
+  // Only need this if we need bearer tokens for our API
+  const { getToken, isLoaded } = useAuth();
   useEffect(() => {
     SessionService.tokenFetch = getToken;
+    setReady(true);
   }, [getToken]);
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && getToken) {
-      getToken().then((token) => {
-        if (token) {
-          SessionService.setSessionToken(token);
-        }
-      });
-    }
-  }, [isLoaded, isSignedIn, getToken]);
-
-  // Handle navigation in useEffect to avoid navigation during render
-  useEffect(() => {
-    if (isLoaded) {
-      const isAuthPage =
-        location.pathname === "/login" || location.pathname === "/signup";
-
-      console.log("In auth", location);
-
-      if (!isSignedIn && !isAuthPage) {
-        console.log("Navigating to login");
-        //navigate("/login");
-      } else {
-        setReady(true);
-      }
-    }
-  }, [isLoaded, ready, isSignedIn, location.pathname, navigate]);
-
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/signup";
-
-  if ((!isLoaded && !isAuthPage) || !ready) {
-    console.log("Loading...");
+  if (!isLoaded || !ready) {
     return <Skeleton />;
   }
 
-  console.log("Rendering outlet");
   return <Outlet />;
-});
+}
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";

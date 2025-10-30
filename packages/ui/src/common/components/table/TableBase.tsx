@@ -26,7 +26,7 @@ const styleVariants = cva(
   },
 );
 
-const wrapVariants = cva("relative flex flex-col", {
+const wrapVariants = cva("relative flex flex-col min-h-0", {
   variants: {
     variant: {
       compact: "px-4 bg-white",
