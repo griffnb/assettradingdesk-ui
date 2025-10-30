@@ -23,9 +23,9 @@ export const AssetImageGallery = observer(function AssetImageGallery({
   const displayImages = asset.images(true);
 
   return (
-    <div className={cn("flex max-w-[500px] flex-col gap-5", className)}>
+    <div className={cn("flex flex-col gap-5 md:max-w-[500px]", className)}>
       {/* Main large image */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+      <div className="relative hidden aspect-square w-full overflow-hidden rounded-xl md:block">
         <ZoomableImage
           src={asset.largeImage}
           largeSrc={asset.largeImage}
@@ -34,17 +34,17 @@ export const AssetImageGallery = observer(function AssetImageGallery({
       </div>
 
       {displayImages.length > 0 && (
-        <Carousel className="mx-auto w-[500px]">
+        <Carousel className="mx-auto w-full md:w-[500px]">
           <CarouselContent>
             {displayImages.map((image, index) => (
               <CarouselItem
-                className="max-h-[100px] basis-1/3 overflow-hidden"
+                className="max-h-[300px] basis-full overflow-hidden md:max-h-[100px] md:basis-1/3"
                 key={index}
               >
                 <ZoomableImage
                   src={image.mediumImage}
                   largeSrc={image.largeImage}
-                  className="h-[100px] w-full rounded-xl object-cover"
+                  className="h-[300px] w-full rounded-xl object-cover md:h-[100px]"
                 />
               </CarouselItem>
             ))}

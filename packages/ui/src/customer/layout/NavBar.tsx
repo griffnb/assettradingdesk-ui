@@ -55,14 +55,14 @@ export const NavBar = observer(function NavBar() {
 
   return (
     <div className="sticky flex w-full flex-1 flex-col items-center gap-3 border-b p-3 shadow-md md:flex-row md:px-6">
-      <div className="flex w-full flex-row items-center justify-between gap-3 md:justify-normal">
-        <Link to="/">
-          <img src="/img/logo.png" className="h-10" />
+      <div className="flex w-full flex-row items-center justify-between gap-3 md:w-fit md:justify-normal">
+        <Link to="/" className="w-[170px] flex-none">
+          <img src="/img/logo.png" className="w-[170px] flex-none" />
         </Link>
         <Menu className="md:hidden" onClick={toggleSidebar} />
       </div>
       <SearchFlyout />
-      <div className="hidden flex-row items-center gap-3 md:flex">
+      <div className="hidden flex-row items-center gap-3 md:flex md:flex-1">
         <NavigationMenu
           viewport={false}
           delayDuration={1}

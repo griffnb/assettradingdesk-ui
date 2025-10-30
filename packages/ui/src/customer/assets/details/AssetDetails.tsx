@@ -48,15 +48,15 @@ export const AssetDetails = observer(function AssetDetails({
       <AssetBreadCrumb asset={asset} />
       <div
         className={cn(
-          "mx-auto flex w-[1200px] flex-col items-center gap-16 bg-white p-6",
+          "mx-auto flex flex-col items-center gap-16 bg-white p-6 md:w-[1200px]",
         )}
       >
         {/* Main product section */}
-        <div className="flex w-full items-start gap-12 rounded-xl border-2 border-gray-200 p-12">
+        <div className="flex w-full flex-col items-start gap-12 rounded-xl border-2 border-gray-200 p-4 md:flex-row md:p-12">
           {/* Left side - Image gallery */}
           <AssetImageGallery
             asset={asset}
-            className="flex w-1/2 shrink-0 flex-col items-start justify-center gap-5"
+            className="flex w-full shrink-0 flex-col items-start justify-center gap-5 md:w-1/2"
           />
 
           {/* Right side - Product information */}
@@ -66,7 +66,7 @@ export const AssetDetails = observer(function AssetDetails({
             onFavorite={handleFavorite}
             onPrimaryAction={handlePrimaryAction}
             onSecondaryAction={handleSecondaryAction}
-            className="w-1/2"
+            className="w-full md:w-1/2"
           />
         </div>
 

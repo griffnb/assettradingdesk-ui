@@ -63,10 +63,10 @@ export const SideFilters = observer(function SideFilters<T extends object>(
     tableState.appliedFilters[type]?.includes(id.toString()) ?? false;
 
   return (
-    <div className="flex w-[360px] flex-none flex-col overflow-y-auto border-r border-border-neutral-primary bg-bg-neutral-primary py-4">
+    <div className="flex w-full flex-none flex-col overflow-y-auto border-r border-border-neutral-primary bg-bg-neutral-primary py-4 md:w-[360px]">
       <div className="mb-4 flex items-center px-4">
         <span className="sticky text-lg font-semibold text-text-neutral-secondary">
-          Filters
+          Filters{" "}
         </span>
 
         <Button
@@ -84,6 +84,14 @@ export const SideFilters = observer(function SideFilters<T extends object>(
           Clear Filters
           <i className="u u-x-circle ml-auto cursor-pointer" />
         </Button>
+      </div>
+      <div className="px-4 pb-4 text-lg md:hidden">
+        Showing{" "}
+        {tableState.loading ? (
+          <i className="fa fa-spinner fa-spin" />
+        ) : (
+          `(${tableState.totalCount} Results)`
+        )}
       </div>
 
       <ScrollArea className="h-[calc(100svh-5px-var(--customer-top-nav-h))] px-4">

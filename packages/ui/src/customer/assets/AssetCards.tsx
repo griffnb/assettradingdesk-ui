@@ -21,6 +21,7 @@ import { NoResults } from "./NoResults";
 interface AssetCardsProps {
   rowClickAction?: (record: AssetModel, clearSelectedRowID: () => void) => void; // Function to call when a row is clicked
   tableState: TableState<AssetModel>;
+  filterButton?: React.ReactNode;
 }
 export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
   const { tableState } = props;
@@ -67,6 +68,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
           </span>
           <span> results</span>
         </div>
+
         <Select
           onValueChange={(value) => {
             if (value === "_") {
@@ -92,6 +94,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
           </SelectContent>
         </Select>
       </div>
+      {props.filterButton}
       <div
         ref={scrollRef}
         onScroll={onScroll}
@@ -118,7 +121,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
             )}
             {topPad > 0 && <div style={topSpacerStyle} />}
             <div
-              className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_320px))] gap-4"
+              className="grid grid-cols-1 gap-4 md:grid-cols-[repeat(auto-fit,_minmax(320px,_320px))]"
               ref={ref}
             >
               {visibleIndexes.flatMap((rowIndex) => {
@@ -133,6 +136,7 @@ export const AssetCards = observer(function AssetCards(props: AssetCardsProps) {
                     key={record.id}
                     asset={record}
                     onClick={rowClickAction}
+                    className="mx-auto md:mx-0"
                   />
                 ));
               })}

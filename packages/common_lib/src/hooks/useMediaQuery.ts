@@ -20,6 +20,7 @@ export const isMobileDevice = () => {
 
 function useMediaQuery(breakpoint = BREAKPOINTS.MD) {
   const [isMediaQuery, setMediaQuery] = useState(false);
+  const [ready, setReady] = useState(false);
   const [isMobile] = useState(isMobileDevice());
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function useMediaQuery(breakpoint = BREAKPOINTS.MD) {
           }
           return prev; // No update if the value is the same
         });
+        setReady(true);
       }
     };
 
@@ -42,7 +44,7 @@ function useMediaQuery(breakpoint = BREAKPOINTS.MD) {
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
 
-  return { isMediaQuery, isMobile };
+  return { isMediaQuery, isMobile, ready };
 }
 
 export default useMediaQuery;
