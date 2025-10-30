@@ -3,6 +3,7 @@
 module.exports = {
   content: ["../../packages/ui/src/**/*.{html,js,tsx,ts,jsx}"],
   safelist: [],
+  darkMode: "false",
   theme: {
     extend: {
       fontFamily: {

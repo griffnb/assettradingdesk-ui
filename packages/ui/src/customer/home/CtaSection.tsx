@@ -36,11 +36,11 @@ export const CtaSection = observer(function CtaSection(
   return (
     <div className={cn(styleVariants({ variant, className }))} {...props}>
       <div className="size-full">
-        <div className="relative box-border flex w-full flex-col content-stretch items-start gap-5 px-10 py-12">
+        <div className="relative box-border flex w-full flex-col content-stretch items-start gap-5 p-2 md:px-10 md:py-12">
           <Card className="relative w-full shrink-0 rounded-[10px] bg-white shadow-xl">
             <div className="flex size-full flex-row items-center">
               <div className="relative box-border flex w-full content-stretch items-center gap-1 p-14">
-                <div className="relative flex w-full max-w-3xl shrink-0 flex-col content-stretch items-start justify-center gap-4">
+                <div className="relative flex w-full shrink-0 flex-col content-stretch items-start justify-center gap-4 md:max-w-3xl">
                   {/* CTA Content */}
                   <div className="relative flex w-full shrink-0 flex-col content-stretch items-start gap-1 whitespace-pre-wrap">
                     <p className="relative shrink-0 text-sm font-semibold leading-5 text-indigo-600">
@@ -57,9 +57,9 @@ export const CtaSection = observer(function CtaSection(
                   </div>
 
                   {/* CTA Buttons */}
-                  <div className="relative flex shrink-0 content-stretch items-start gap-3">
+                  <div className="relative flex w-full shrink-0 flex-col content-stretch items-start gap-3 md:flex-row">
                     <Button
-                      className="h-10 bg-indigo-600 px-6 py-2 hover:bg-indigo-700"
+                      className="h-10 w-full bg-indigo-600 px-6 py-2 hover:bg-indigo-700 md:w-auto"
                       onClick={() => nav("/signup")}
                     >
                       <span className="text-sm font-medium text-neutral-50">
@@ -69,7 +69,7 @@ export const CtaSection = observer(function CtaSection(
 
                     <Button
                       variant="outline"
-                      className="h-10 border-neutral-200 bg-white px-6 py-2 shadow-sm"
+                      className="h-10 w-full border-neutral-200 bg-white px-6 py-2 shadow-sm md:w-auto"
                       onClick={() => nav("/signup")}
                     >
                       <span className="text-sm font-medium text-neutral-700">
