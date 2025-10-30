@@ -9,7 +9,7 @@ export interface TableSettings<T extends object> {
   expandRows?: boolean; // Whether or not to expand rows
   expandedComponent?: ExpandedComponent<T>; // The component to display when a row is expanded
   rowClickAction?: (record: T, tableState: TableState<T>) => void; // Function to call when a row is clicked
-  newComponent?: ReactNode | (() => void); // The component to render when the "Create New" button is clicked
+  newComponent?: ReactNode | ((tableState: TableState<T>) => void); // The component to render when the "Create New" button is clicked
   pageSizes?: number[]; // The page sizes to display in the dropdown
   hideTotalRow?: boolean; // Whether or not to hide the total row
   hideFooter?: boolean; // Whether or not to hide the footer

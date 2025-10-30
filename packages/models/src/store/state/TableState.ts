@@ -226,7 +226,8 @@ export class TableState<T extends object> {
   applyRouteFilters(params: URLParams) {
     // Check if the incoming params are different from current applied filters
     const noChange = deepEqual(this.appliedFilters, params);
-    if (!noChange) {
+    if (!noChange || params["reload"]) {
+      delete params["reload"];
       this.loadFilters(params);
       this.reloadData();
     }

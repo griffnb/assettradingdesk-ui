@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/ui/shadcn/ui/sidebar3";
+} from "@/ui/shadcn/ui/sidebar";
 import { BookOpen, Bot, PanelLeft, Plus, SquareTerminal } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";

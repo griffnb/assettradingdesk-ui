@@ -1,6 +1,7 @@
 import { ServerService } from "@/common_lib/services/ServerService";
 import { StoreModel } from "@/models/store/StoreModel";
 import { BreadCrumb } from "@/ui/common/components/nav/BreadCrumb";
+import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ReactNode, useEffect, useState } from "react";
@@ -29,7 +30,9 @@ interface TitleBarProps extends VariantProps<typeof styleVariants> {
 }
 
 export const AdminTitleBar = (props: TitleBarProps) => {
-  const [noteCount, setNoteCount] = useState(0);
+  const { ref } = useMeasureVariable("admin-title-bar", "height");
+
+  const [, setNoteCount] = useState(0);
 
   useEffect(() => {
     if (!props.objectURN) return;
@@ -47,8 +50,9 @@ export const AdminTitleBar = (props: TitleBarProps) => {
     <>
       <div
         className={cn(
-          styleVariants({ variant: props.variant, className: props.className })
+          styleVariants({ variant: props.variant, className: props.className }),
         )}
+        ref={ref}
       >
         {!props.hideCrumbs ? (
           <BreadCrumb record={props.record} title={props.title} />

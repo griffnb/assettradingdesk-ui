@@ -79,7 +79,7 @@ export const StandardTableWrap = observer(
       ...props
     } = rawProps;
     const [tableState] = useState<TableState<T>>(
-      () => new TableState<T>(props)
+      () => new TableState<T>(props),
     );
 
     useEffect(() => {
@@ -105,5 +105,5 @@ export const StandardTableWrap = observer(
         />
       </div>
     );
-  }
+  },
 );

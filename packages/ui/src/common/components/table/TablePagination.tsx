@@ -1,4 +1,5 @@
 import { TableState } from "@/models/store/state/TableState";
+import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
 import { cn } from "@/utils/cn";
 import { formatNumber } from "@/utils/numbers";
 import { cva, VariantProps } from "class-variance-authority";
@@ -34,10 +35,13 @@ interface TablePaginationProps<T extends object>
 export const TablePagination = observer(
   <T extends object>(fullProps: TablePaginationProps<T>) => {
     const { className, variant, tableState, ...props } = fullProps;
+    const { ref } = useMeasureVariable("table-footer", "height");
+
     return (
       <div
         data-slot="table-pagination"
         className={cn(styleVariants({ variant, className }))}
+        ref={ref}
       >
         <div className="flex items-center justify-end gap-x-2 px-6 py-3">
           {props.infiniteScroll ? (

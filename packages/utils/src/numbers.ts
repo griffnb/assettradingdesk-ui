@@ -20,7 +20,7 @@ export function equals(a: number | string, b: number | string): boolean {
 // Safe checking of array that could be string or number
 export function inArray(
   array: (number | string)[],
-  value: number | string
+  value: number | string,
 ): boolean {
   for (const item of array) {
     if (equals(item, value)) {

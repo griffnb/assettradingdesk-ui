@@ -8,6 +8,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 
+import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
 import {
   isValidElement,
   ReactNode,
@@ -36,13 +37,13 @@ const styleVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 interface TableNavProps<T extends object>
   extends VariantProps<typeof styleVariants> {
   tableState: TableState<T>;
-  newComponent?: string | ReactNode | (() => void); // The component to render when the "Create New" button is clicked
+  newComponent?: string | ReactNode | ((tableState: TableState<T>) => void); // The component to render when the "Create New" button is clicked
 
   //Search filters
   tableSearch?: boolean; // Whether or not to display the table search
@@ -88,6 +89,7 @@ export const TableNav = observer(
       string | null
     >(null);
     const nav = useNavigate();
+    const { ref } = useMeasureVariable("table-nav", "height");
 
     // need this use effect cause if you debounce the parent function, it wont retain the filter/sort values
     useEffect(() => {
@@ -99,8 +101,19 @@ export const TableNav = observer(
       debounce((query: string) => {
         setDebouncedQueryValue(query);
       }, 500),
-      []
+      [],
     );
+
+    const handleNewComponent = useCallback(() => {
+      if (typeof props.newComponent === "function") {
+        props.newComponent(tableState);
+        return;
+      }
+
+      if (typeof props.newComponent === "string") {
+        nav(props.newComponent);
+      }
+    }, [props.newComponent]);
 
     if (Object.keys(tableState.checked_row_ids).length > 0) {
       return null;
@@ -110,6 +123,7 @@ export const TableNav = observer(
       <div
         className={cn(styleVariants({ variant, className }))}
         data-slot="table-nav"
+        ref={ref}
       >
         <div
           data-slot="table-nav-left"
@@ -117,7 +131,7 @@ export const TableNav = observer(
             "mt-0 flex flex-1 flex-row items-center justify-start gap-x-2 text-sm font-medium text-gray-700",
             {
               "mr-6": variant != "compact",
-            }
+            },
           )}
         >
           {props.title && (
@@ -131,15 +145,9 @@ export const TableNav = observer(
           {variant === "compact" && <div className="flex flex-1"></div>}
           {props.newComponent && (
             <>
-              {typeof props.newComponent === "string" ? (
-                <Button
-                  variant={"primary"}
-                  onClick={() => nav(props.newComponent as string)}
-                >
-                  <i className="fa fa-add"></i>
-                </Button>
-              ) : typeof props.newComponent === "function" ? (
-                <Button onClick={props.newComponent} variant={"primary"}>
+              {typeof props.newComponent === "string" ||
+              typeof props.newComponent === "function" ? (
+                <Button variant={"primary"} onClick={handleNewComponent}>
                   <i className="fa fa-add"></i>
                 </Button>
               ) : (
@@ -215,5 +223,5 @@ export const TableNav = observer(
         </div>
       </div>
     );
-  }
+  },
 );
