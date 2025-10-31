@@ -22,53 +22,52 @@ interface DetailFieldModelSelectProps<
 }
 
 // Define the component with correct generic syntax
-const DetailFieldModelSelect = observer(
-  <T extends StoreModel & ValidationType, V extends StoreModel>(
-    props: DetailFieldModelSelectProps<T, V>
-  ) => {
-    const [validate, setValidate] = useState<boolean>(false);
+export const DetailFieldModelSelect = observer(function DetailFieldModelSelect<
+  T extends StoreModel & ValidationType,
+  V extends StoreModel,
+>(props: DetailFieldModelSelectProps<T, V>) {
+  const [validate, setValidate] = useState<boolean>(false);
 
-    let errorMessages: string[] = [];
-    if (props.record.tryValidation || validate) {
-      errorMessages = isFieldValid<T>(
-        props.record,
-        props.field,
-        props.validationRule
-      );
-    }
-
-    const handleChange = (value: V | undefined) => {
-      runInAction(() => {
-        const key = props.field as keyof T;
-        const idField = props.idField || "id";
-
-        if (value) {
-          props.record[key] = value[idField] as T[keyof T];
-        } else {
-          props.record[key] = null as T[keyof T];
-        }
-        setValidate(true);
-      });
-    };
-
-    const value = props.displayField
-      ? (props.record[props.displayField] as string)
-      : (props.record[props.field] as string);
-
-    return (
-      <DetailFieldWrap {...props} value={value}>
-        {({ append }) => (
-          <ModelSelectInput<V>
-            {...props}
-            value={props.record[props.field] as string}
-            handleChange={handleChange}
-            errorMessages={errorMessages}
-            append={append}
-          />
-        )}
-      </DetailFieldWrap>
+  let errorMessages: string[] = [];
+  if (props.record.tryValidation || validate) {
+    errorMessages = isFieldValid<T>(
+      props.record,
+      props.field,
+      props.validationRule,
     );
   }
-);
+
+  const handleChange = (value: V | undefined) => {
+    runInAction(() => {
+      const key = props.field as keyof T;
+      const idField = props.idField || "id";
+
+      if (value) {
+        props.record[key] = value[idField] as T[keyof T];
+      } else {
+        props.record[key] = null as T[keyof T];
+      }
+      setValidate(true);
+    });
+  };
+
+  const value = props.displayField
+    ? (props.record[props.displayField] as string)
+    : (props.record[props.field] as string);
+
+  return (
+    <DetailFieldWrap {...props} value={value}>
+      {({ append }) => (
+        <ModelSelectInput<V>
+          {...props}
+          value={props.record[props.field] as string}
+          handleChange={handleChange}
+          errorMessages={errorMessages}
+          append={append}
+        />
+      )}
+    </DetailFieldWrap>
+  );
+});
 
 export default DetailFieldModelSelect;

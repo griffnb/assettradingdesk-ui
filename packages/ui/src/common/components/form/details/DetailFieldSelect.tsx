@@ -16,52 +16,52 @@ interface DetailFieldSelectProps<T extends StoreModel & ValidationType>
   as?: "select" | "combobox";
   showClear?: boolean;
 }
-const DetailFieldSelect = observer(
-  <T extends StoreModel & ValidationType>(props: DetailFieldSelectProps<T>) => {
-    const [validate, setValidate] = useState<boolean>(false);
-    let errorMessages: string[] = [];
-    if (props.record.tryValidation || validate) {
-      errorMessages = isFieldValid<T>(
-        props.record,
-        props.field,
-        props.validationRule
-      );
-    }
-
-    const handleChange = (value: IConstant | undefined) => {
-      runInAction(() => {
-        const key = props.field as keyof T;
-        if (value) {
-          props.record[key] = value.id as T[keyof T];
-        } else {
-          props.record[key] = undefined as T[keyof T];
-        }
-        setValidate(true);
-      });
-    };
-
-    const value = props.displayField
-      ? (props.record[props.displayField] as string)
-      : (props.record[props.field] as string);
-
-    return (
-      <DetailFieldWrap {...props} value={value}>
-        {({ append }) => (
-          <SelectInput
-            value={props.record[props.field] as string | number}
-            options={props.options}
-            placeholder={props.placeholder}
-            handleChange={handleChange}
-            errorMessages={errorMessages}
-            append={append}
-            noSearch={props.noSearch}
-            showClear={props.showClear}
-            as={props.as}
-          />
-        )}
-      </DetailFieldWrap>
+export const DetailFieldSelect = observer(function DetailFieldSelect<
+  T extends StoreModel & ValidationType,
+>(props: DetailFieldSelectProps<T>) {
+  const [validate, setValidate] = useState<boolean>(false);
+  let errorMessages: string[] = [];
+  if (props.record.tryValidation || validate) {
+    errorMessages = isFieldValid<T>(
+      props.record,
+      props.field,
+      props.validationRule,
     );
   }
-);
+
+  const handleChange = (value: IConstant | undefined) => {
+    runInAction(() => {
+      const key = props.field as keyof T;
+      if (value) {
+        props.record[key] = value.id as T[keyof T];
+      } else {
+        props.record[key] = undefined as T[keyof T];
+      }
+      setValidate(true);
+    });
+  };
+
+  const value = props.displayField
+    ? (props.record[props.displayField] as string)
+    : (props.record[props.field] as string);
+
+  return (
+    <DetailFieldWrap {...props} value={value}>
+      {({ append }) => (
+        <SelectInput
+          value={props.record[props.field] as string | number}
+          options={props.options}
+          placeholder={props.placeholder}
+          handleChange={handleChange}
+          errorMessages={errorMessages}
+          append={append}
+          noSearch={props.noSearch}
+          showClear={props.showClear}
+          as={props.as}
+        />
+      )}
+    </DetailFieldWrap>
+  );
+});
 
 export default DetailFieldSelect;
