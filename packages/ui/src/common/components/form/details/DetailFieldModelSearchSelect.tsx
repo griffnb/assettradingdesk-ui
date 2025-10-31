@@ -5,7 +5,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldModelSearchSelectProps<

@@ -1,40 +1,49 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/asset-file/columns";
-import { filters } from "@/pods/asset-file/filters";
-import AssetFileModel from "@/pods/asset-file/model/AssetFileModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
-import { useState } from "react";
-import AssetModel from "../../model/AssetModel";
+import { columns } from "@/admin/pods/asset_file/columns";
+import { filters } from "@/admin/pods/asset_file/filters";
+import { URLParams } from "@/common_lib/types/url";
+import { constants } from "@/models/constants";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
+import { useCallback, useState } from "react";
 
 interface AssetFileTableProps {
   asset: AssetModel;
 }
-const AssetFileTable = observer((props: AssetFileTableProps) => {
-  const [appliedFilters, setAppliedFilters] = useState<{
-    [key: string]: string | string[];
-  }>({
+
+export const AssetFileTable = observer(function AssetFileTable(
+  props: AssetFileTableProps,
+) {
+  const { asset } = props;
+  const [appliedFilters, setAppliedFilters] = useState<URLParams>({
     status: ["100"],
     limit: "20",
-    asset_id: props.asset.id?.toString() as string,
+    asset_id: asset.id || "",
   });
 
+  const applyFilters = useCallback(
+    (filters: URLParams) => {
+      setAppliedFilters(filters);
+    },
+    [asset.id],
+  );
+
   return (
-    <div className="border-y-1 relative my-3 rounded-md bg-white py-2">
-      <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Assets</div>
-      </h1>
-      <ServerTableWrap<AssetFileModel>
+    <div className="p-10">
+      <StandardTableWrap<AssetFileModel>
+        title="Files"
+        modelType="asset_file"
         columns={columns}
-        statuses={constants["asset-file"].status}
-        modelType="asset-file"
         filters={filters}
-        applyFilters={setAppliedFilters}
+        statuses={constants.asset_file.status}
         appliedFilters={appliedFilters}
+        applyFilters={applyFilters}
         selectRows={false}
+        hideTotalRow={true}
+        tableSearch={false}
+        tableExport={false}
       />
     </div>
   );
 });
-
-export default AssetFileTable;

@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import FormFieldCheckbox from "./FormFieldCheckbox";
+import { FormFieldCheckbox } from "./FormFieldCheckbox";
 
 const meta = {
   title: "Common/Form/Fields/FormFieldCheckbox",

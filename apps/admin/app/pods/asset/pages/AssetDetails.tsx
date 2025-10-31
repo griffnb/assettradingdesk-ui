@@ -28,11 +28,11 @@ export const AssetDetails = observer(function AssetDetails() {
   return (
     <>
       <AdminTitleBar objectURN={record.urn} title="Asset" />
-      <AssetMatches asset={asset} />
-      <AssetInfo asset={asset} />
-      <AssetGallery asset={asset} />
-      <AssetFileTable asset={asset} />
-      <AssetUpload asset={asset} />
+      <AssetMatches asset={record} />
+      <AssetInfo asset={record} />
+      <AssetGallery asset={record} />
+      <AssetFileTable asset={record} />
+      <AssetUpload asset={record} />
     </>
   );
 });

@@ -1,7 +1,7 @@
 import { ValidationRules } from "@/utils/validations";
 import type { Meta, StoryObj } from "@storybook/react";
 import { makeAutoObservable } from "mobx";
-import FormFieldArray from "./FormFieldArray";
+import { FormFieldArray } from "./FormFieldArray";
 
 const meta: Meta<typeof FormFieldArray<Example>> = {
   title: "Common/Form/Fields/FormFieldArray",

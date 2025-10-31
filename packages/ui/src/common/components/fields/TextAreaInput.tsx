@@ -70,7 +70,9 @@ export interface TextAreaInputProps
  * @slot {"text-area-field"} data-slot="text-area-field"
  *
  **/
-const TextAreaInput = observer((rawProps: TextAreaInputProps) => {
+export const TextAreaInput = observer(function TextAreaInput(
+  rawProps: TextAreaInputProps,
+) {
   const hasErrors = rawProps.errorMessages && rawProps.errorMessages.length > 0;
 
   const {
@@ -119,7 +121,7 @@ const TextAreaInput = observer((rawProps: TextAreaInputProps) => {
             value={props.value ?? ""}
             onChange={(e) => handleChange(e.target.value)}
             className={cn(
-              inputStyles({ variant: props.variant, size: props.size })
+              inputStyles({ variant: props.variant, size: props.size }),
             )}
             onKeyDown={handleKeyDown}
             style={expandStyle}

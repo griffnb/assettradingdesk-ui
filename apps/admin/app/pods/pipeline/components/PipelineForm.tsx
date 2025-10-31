@@ -1,5 +1,5 @@
 import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";

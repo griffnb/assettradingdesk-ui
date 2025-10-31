@@ -2,7 +2,7 @@ import { IConstant } from "@/models/types/constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { makeAutoObservable } from "mobx";
 import { useState } from "react";
-import FormFieldSelect from "./FormFieldSelect";
+import { FormFieldSelect } from "./FormFieldSelect";
 
 class SimpleObject {
   string_field: string = "";

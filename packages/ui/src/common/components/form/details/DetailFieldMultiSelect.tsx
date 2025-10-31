@@ -5,7 +5,7 @@ import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldMultiSelectProps<T extends StoreModel & ValidationType>
@@ -14,7 +14,7 @@ interface DetailFieldMultiSelectProps<T extends StoreModel & ValidationType>
 }
 const DetailFieldMultiSelect = observer(
   <T extends StoreModel & ValidationType>(
-    props: DetailFieldMultiSelectProps<T>
+    props: DetailFieldMultiSelectProps<T>,
   ) => {
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -23,7 +23,7 @@ const DetailFieldMultiSelect = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -41,7 +41,7 @@ const DetailFieldMultiSelect = observer(
           .map((option) => {
             const key = props.field as keyof T;
             return (props.record[key] as (string | number)[])?.includes(
-              option.id
+              option.id,
             )
               ? option.label
               : "";
@@ -63,7 +63,7 @@ const DetailFieldMultiSelect = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );
 
 export default DetailFieldMultiSelect;

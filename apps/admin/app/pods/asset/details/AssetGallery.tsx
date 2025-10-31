@@ -1,54 +1,103 @@
-import { AppStore } from "@/common_lib/store/AppStore";
-import AssetFileModel from "@/pods/asset-file/model/AssetFileModel";
-import { observer } from "mobx-react";
+import { URLParams } from "@/common_lib/types/url";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { AssetFileTypes } from "@/models/models/asset_file/_constants/file_type";
+import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
+import { Store } from "@/models/store/Store";
+import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
+import { Lightbox } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import AssetModel from "../../model/AssetModel";
 
 interface AssetGalleryProps {
   asset: AssetModel;
   public?: boolean;
 }
-const AssetGallery = observer((props: AssetGalleryProps) => {
+
+export const AssetGallery = observer(function AssetGallery(
+  props: AssetGalleryProps,
+) {
+  const { asset, public: isPublic = false } = props;
   const [assetFiles, setAssetFiles] = useState<AssetFileModel[]>([]);
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (props.public) {
-      AppStore.queryRecords<AssetFileModel>(
-        "asset-file",
-        `share/${props.asset.key}`,
-        {},
-      ).then((assetFiles) => {
-        setAssetFiles(assetFiles);
-      });
-    } else {
-      AppStore.query<AssetFileModel>("asset-file", {
-        asset_id: props.asset.id?.toString() as string,
-        file_type: 1,
-      }).then((assetFiles) => {
-        setAssetFiles(assetFiles);
-      });
+    let isMounted = true;
+
+    const filterImages = (files: AssetFileModel[]) =>
+      files.filter((file) => file.file_type === AssetFileTypes.Image);
+
+    const fromAsset = filterImages(asset.asset_files || []);
+    if (fromAsset.length > 0) {
+      setAssetFiles(fromAsset);
+      return () => {
+        isMounted = false;
+      };
     }
-  }, [props.asset.id]);
+
+    const loadFiles = async () => {
+      if (!isMounted) {
+        return;
+      }
+
+      const path = isPublic && asset.urn ? `share/${asset.urn}` : "";
+      const params: URLParams = {};
+
+      if (!isPublic) {
+        const assetId = asset.id;
+        if (!assetId) {
+          setAssetFiles([]);
+          return;
+        }
+
+        params.asset_id = assetId;
+        params.file_type = "1";
+      } else if (!asset.urn) {
+        setAssetFiles([]);
+        return;
+      }
+
+      try {
+        const response = await Store.asset_file.queryRecords(path, params);
+        if (!isMounted) {
+          return;
+        }
+
+        if (response.success && response.data) {
+          setAssetFiles(filterImages(response.data));
+        } else {
+          setAssetFiles([]);
+        }
+      } catch (error) {
+        console.error("Failed to load asset files", error);
+        if (isMounted) {
+          setAssetFiles([]);
+        }
+      }
+    };
+
+    void loadFiles();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [asset.id, asset.asset_files?.length, asset.urn, isPublic]);
 
   if (assetFiles.length === 0) {
     return null;
   }
 
   return (
-    <>
-      <div className="grid grid-cols-4 gap-x-3 gap-y-3 border-1 p-3">
-        {assetFiles.map((asset, i) => (
+    <div className="px-10">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {assetFiles.map((assetFile, assetIndex) => (
           <img
-            key={asset.id}
-            src={asset.file_location}
-            alt={asset.file_name}
-            className="cursor-pointer rounded-lg"
+            key={assetFile.id ?? `${assetFile.file_location}-${assetIndex}`}
+            src={assetFile.file_location}
+            alt={assetFile.file_name}
+            className="h-48 w-full cursor-pointer rounded-lg object-cover"
             onClick={() => {
-              setIndex(i);
+              setIndex(assetIndex);
               setOpen(true);
             }}
           />
@@ -58,12 +107,10 @@ const AssetGallery = observer((props: AssetGalleryProps) => {
         open={open}
         close={() => setOpen(false)}
         index={index}
-        slides={assetFiles.map((asset) => {
-          return { src: asset.file_location };
-        })}
+        slides={assetFiles.map((assetFile) => ({
+          src: assetFile.file_location,
+        }))}
       />
-    </>
+    </div>
   );
 });
-
-export default AssetGallery;

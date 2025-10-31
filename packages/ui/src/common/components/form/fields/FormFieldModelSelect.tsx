@@ -6,7 +6,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldModelSelectProps<
@@ -37,7 +37,7 @@ export const FormFieldModelSelect = observer(function FormFieldModelSelect<
     errorMessages = isFieldValid<T>(
       props.record,
       props.field,
-      props.validationRule
+      props.validationRule,
     );
   }
 

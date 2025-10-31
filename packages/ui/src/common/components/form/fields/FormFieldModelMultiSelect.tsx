@@ -5,7 +5,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldModelMultiSelectProps<
@@ -22,17 +22,18 @@ interface FormFieldModelMultiSelectProps<
 }
 
 // Define the component with correct generic syntax
-const FormFieldModelMultiSelect = observer(
-  <T extends ValidationType, V extends StoreModel>(
-    props: FormFieldModelMultiSelectProps<T, V>
-  ) => {
+export const FormFieldModelMultiSelect = observer(
+  function FormFieldModelMultiSelect<
+    T extends ValidationType,
+    V extends StoreModel,
+  >(props: FormFieldModelMultiSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
     let errorMessages: string[] = [];
     if (props.record.tryValidation || validate) {
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -56,7 +57,5 @@ const FormFieldModelMultiSelect = observer(
         />
       </FormFieldWrap>
     );
-  }
+  },
 );
-
-export default FormFieldModelMultiSelect;

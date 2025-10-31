@@ -6,7 +6,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldModelSearchSelectProps<
@@ -26,10 +26,11 @@ interface FormFieldModelSearchSelectProps<
 }
 
 // Define the component with correct generic syntax
-const FormFieldModelSearchSelect = observer(
-  <T extends ValidationType, V extends StoreModel>(
-    props: FormFieldModelSearchSelectProps<T, V>
-  ) => {
+export const FormFieldModelSearchSelect = observer(
+  function FormFieldModelSearchSelect<
+    T extends ValidationType,
+    V extends StoreModel,
+  >(props: FormFieldModelSearchSelectProps<T, V>) {
     const [selected, setSelected] = useState<V | undefined>(undefined);
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -38,7 +39,7 @@ const FormFieldModelSearchSelect = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -71,7 +72,5 @@ const FormFieldModelSearchSelect = observer(
         />
       </FormFieldWrap>
     );
-  }
+  },
 );
-
-export default FormFieldModelSearchSelect;

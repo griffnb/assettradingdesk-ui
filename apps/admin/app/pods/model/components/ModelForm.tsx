@@ -1,10 +1,10 @@
+import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { ModelModel } from "@/models/models/model/model/ModelModel";
+import { useNavigate } from "react-router";
 
 interface ModelFormProps {
   record: ModelModel;
@@ -59,8 +59,6 @@ export const ModelForm = observer(function ModelForm(props: ModelFormProps) {
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +66,6 @@ export const ModelForm = observer(function ModelForm(props: ModelFormProps) {
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

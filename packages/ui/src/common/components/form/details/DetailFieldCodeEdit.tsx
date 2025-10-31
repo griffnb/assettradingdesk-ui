@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
 import CodeEdit, { CodeEditProps } from "../CodeEdit";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldCodeEditProps<T extends StoreModel & ValidationType>
@@ -17,7 +17,7 @@ interface DetailFieldCodeEditProps<T extends StoreModel & ValidationType>
 // Define the component with correct generic syntax
 export const DetailFieldCodeEdit = observer(
   <T extends StoreModel & ValidationType>(
-    props: DetailFieldCodeEditProps<T>
+    props: DetailFieldCodeEditProps<T>,
   ) => {
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -26,7 +26,7 @@ export const DetailFieldCodeEdit = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -86,5 +86,5 @@ export const DetailFieldCodeEdit = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );

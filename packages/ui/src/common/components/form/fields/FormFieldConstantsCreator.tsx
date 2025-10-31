@@ -7,7 +7,7 @@ import { isNumeric } from "@/utils/numbers";
 import { isFieldValid, ValidationType } from "@/utils/validations";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
 import { HelpText } from "../../fields/base/HelpText";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldConstantsCreatorProps<T extends ValidationType>
@@ -20,7 +20,9 @@ interface FormFieldConstantsCreatorProps<T extends ValidationType>
 }
 
 export const FormFieldConstantsCreator = observer(
-  <T extends ValidationType>(props: FormFieldConstantsCreatorProps<T>) => {
+  function FormFieldConstantsCreator<T extends ValidationType>(
+    props: FormFieldConstantsCreatorProps<T>,
+  ) {
     const [validate, setValidate] = useState<boolean>(false);
     const [rows, setRows] = useState<IConstant[]>([]);
 
@@ -57,7 +59,7 @@ export const FormFieldConstantsCreator = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -172,5 +174,5 @@ export const FormFieldConstantsCreator = observer(
         {props.helpText ? <HelpText>{props.helpText}</HelpText> : null}
       </FormFieldWrap>
     );
-  }
+  },
 );

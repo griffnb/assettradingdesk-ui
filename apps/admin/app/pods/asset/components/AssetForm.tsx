@@ -1,6 +1,6 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";

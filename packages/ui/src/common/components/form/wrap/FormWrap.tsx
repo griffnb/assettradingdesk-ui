@@ -21,7 +21,7 @@ const wrapVariants = cva(
       variant: "default",
       width: "full",
     },
-  }
+  },
 );
 
 const buttonBoxVariants = cva("flex flex-row items-center w-full", {
@@ -76,7 +76,7 @@ export type FormWrapVariantProps = VariantProps<typeof wrapVariants> &
   VariantProps<typeof buttonBoxVariants>;
 
 // Define the component with correct generic syntax
-const FormWrap = observer((rawProps: FormWrapProps) => {
+export const FormWrap = observer(function FormWrap(rawProps: FormWrapProps) {
   const { variant, buttonBox, className, ...props } = rawProps;
   const handleKeyDown = (event: React.KeyboardEvent<HTMLFormElement>) => {
     const target = event.target as HTMLElement;
@@ -133,5 +133,3 @@ const FormWrap = observer((rawProps: FormWrapProps) => {
     </form>
   );
 });
-
-export default FormWrap;

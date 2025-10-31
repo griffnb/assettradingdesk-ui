@@ -1,41 +1,43 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/request/columns";
-import { filters } from "@/pods/request/filters";
-import RequestModel from "@/pods/request/model/RequestModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
+import { columns } from "@/admin/pods/request/columns";
+import { filters } from "@/admin/pods/request/filters";
+import { URLParams } from "@/common_lib/types/url";
+import { constants } from "@/models/constants";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { RequestModel } from "@/models/models/request/model/RequestModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import AssetModel from "../../model/AssetModel";
 
 interface AssetMatchesProps {
   asset: AssetModel;
 }
-const AssetMatches = observer((props: AssetMatchesProps) => {
-  const [appliedFilters, setAppliedFilters] = useState<{
-    [key: string]: string | string[];
-  }>({
+
+export const AssetMatches = observer(function AssetMatches(
+  props: AssetMatchesProps,
+) {
+  const { asset } = props;
+  const [appliedFilters, setAppliedFilters] = useState<URLParams>({
     status: ["100"],
     limit: "20",
   });
 
   return (
-    <div className="relative my-3 rounded-md border-y-1 bg-white py-2">
-      <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Matching Requests</div>
-      </h1>
-      <ServerTableWrap<RequestModel>
-        columns={columns}
-        statuses={constants.request.status}
+    <div className="p-10">
+      <StandardTableWrap<RequestModel>
+        title="Matching Requests"
         modelType="request"
+        columns={columns}
         filters={filters}
-        applyFilters={setAppliedFilters}
+        statuses={constants.request.status}
         appliedFilters={appliedFilters}
+        applyFilters={setAppliedFilters}
         selectRows={false}
-        customPath={`matches/${props.asset.id}`}
-        parent={props.asset}
+        hideTotalRow={true}
+        tableSearch={false}
+        tableExport={false}
+        customPath={`matches/${asset.id}`}
+        parent={asset}
       />
     </div>
   );
 });
-
-export default AssetMatches;

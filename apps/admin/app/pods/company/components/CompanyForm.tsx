@@ -1,10 +1,10 @@
+import { CompanyModel } from "@/models/models/company/model/CompanyModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { CompanyModel } from "@/models/models/company/model/CompanyModel";
+import { useNavigate } from "react-router";
 
 interface CompanyFormProps {
   record: CompanyModel;
@@ -12,7 +12,9 @@ interface CompanyFormProps {
   onCancel?: () => void;
 }
 
-export const CompanyForm = observer(function CompanyForm(props: CompanyFormProps) {
+export const CompanyForm = observer(function CompanyForm(
+  props: CompanyFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,8 +61,6 @@ export const CompanyForm = observer(function CompanyForm(props: CompanyFormProps
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +68,6 @@ export const CompanyForm = observer(function CompanyForm(props: CompanyFormProps
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

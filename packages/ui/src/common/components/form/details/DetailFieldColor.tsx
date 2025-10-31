@@ -4,7 +4,7 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { CSSProperties, useState } from "react";
 import { ColorInput } from "../../fields/ColorInput";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface CustomCSSProperties extends CSSProperties {
@@ -24,7 +24,7 @@ export const DetailFieldColor = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -90,5 +90,5 @@ export const DetailFieldColor = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );

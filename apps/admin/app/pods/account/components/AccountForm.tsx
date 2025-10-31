@@ -1,6 +1,6 @@
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
@@ -13,7 +13,7 @@ interface AccountFormProps {
 }
 
 export const AccountForm = observer(function AccountForm(
-  props: AccountFormProps
+  props: AccountFormProps,
 ) {
   const nav = useNavigate();
 

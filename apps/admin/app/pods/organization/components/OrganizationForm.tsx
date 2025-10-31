@@ -1,10 +1,10 @@
+import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
+import { useNavigate } from "react-router";
 
 interface OrganizationFormProps {
   record: OrganizationModel;
@@ -12,7 +12,9 @@ interface OrganizationFormProps {
   onCancel?: () => void;
 }
 
-export const OrganizationForm = observer(function OrganizationForm(props: OrganizationFormProps) {
+export const OrganizationForm = observer(function OrganizationForm(
+  props: OrganizationFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,8 +61,6 @@ export const OrganizationForm = observer(function OrganizationForm(props: Organi
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +68,6 @@ export const OrganizationForm = observer(function OrganizationForm(props: Organi
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

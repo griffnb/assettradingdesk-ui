@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 import { HTMLInputTypeAttribute, useEffect, useState } from "react";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
 import { ModelSelectInput } from "../../fields/ModelSelectInput";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldMapModelSelectProps<
@@ -30,10 +30,11 @@ interface KeyValue {
   value: any;
 }
 
-const FormFieldMapModelSelect = observer(
-  <T extends ValidationType, V extends StoreModel>(
-    props: FormFieldMapModelSelectProps<T, V>
-  ) => {
+export const FormFieldMapModelSelect = observer(
+  function FormFieldMapModelSelect<
+    T extends ValidationType,
+    V extends StoreModel,
+  >(props: FormFieldMapModelSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
     const [rows, setRows] = useState<KeyValue[]>([]);
 
@@ -67,7 +68,7 @@ const FormFieldMapModelSelect = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -169,7 +170,5 @@ const FormFieldMapModelSelect = observer(
         )}
       </FormFieldWrap>
     );
-  }
+  },
 );
-
-export default FormFieldMapModelSelect;

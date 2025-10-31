@@ -3,7 +3,7 @@ import {
   TextInputProps,
 } from "@/ui/common/components/fields/TextInput";
 import { observer } from "mobx-react-lite";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldReadOnlyProps<T>
@@ -30,7 +30,7 @@ const DetailFieldReadOnly = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );
 
 export default DetailFieldReadOnly;

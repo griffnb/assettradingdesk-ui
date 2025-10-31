@@ -1,10 +1,10 @@
+import { ClientModel } from "@/models/models/client/model/ClientModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { ClientModel } from "@/models/models/client/model/ClientModel";
+import { useNavigate } from "react-router";
 
 interface ClientFormProps {
   record: ClientModel;
@@ -59,8 +59,6 @@ export const ClientForm = observer(function ClientForm(props: ClientFormProps) {
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +66,6 @@ export const ClientForm = observer(function ClientForm(props: ClientFormProps) {
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

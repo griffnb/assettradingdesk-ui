@@ -4,14 +4,14 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Tag, TagInputBase } from "../../fields/base/TagInputBase";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldTagInputProps<T extends StoreModel & ValidationType>
   extends DetailFieldProps<T> {}
 const DetailFieldTagInput = observer(
   <T extends StoreModel & ValidationType>(
-    props: DetailFieldTagInputProps<T>
+    props: DetailFieldTagInputProps<T>,
   ) => {
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -20,7 +20,7 @@ const DetailFieldTagInput = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -49,7 +49,7 @@ const DetailFieldTagInput = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );
 
 export default DetailFieldTagInput;

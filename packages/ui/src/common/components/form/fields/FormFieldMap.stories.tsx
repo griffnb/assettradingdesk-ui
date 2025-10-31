@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { makeAutoObservable } from "mobx";
 import { useState } from "react";
-import FormFieldMap from "./FormFieldMap";
+import { FormFieldMap } from "./FormFieldMap";
 
 class SimpleObject {
   string_field: string = "";

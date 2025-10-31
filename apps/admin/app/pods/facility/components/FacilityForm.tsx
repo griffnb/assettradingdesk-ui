@@ -1,10 +1,10 @@
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
+import { useNavigate } from "react-router";
 
 interface FacilityFormProps {
   record: FacilityModel;
@@ -12,7 +12,9 @@ interface FacilityFormProps {
   onCancel?: () => void;
 }
 
-export const FacilityForm = observer(function FacilityForm(props: FacilityFormProps) {
+export const FacilityForm = observer(function FacilityForm(
+  props: FacilityFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,8 +61,6 @@ export const FacilityForm = observer(function FacilityForm(props: FacilityFormPr
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +68,6 @@ export const FacilityForm = observer(function FacilityForm(props: FacilityFormPr
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

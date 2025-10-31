@@ -17,7 +17,9 @@ interface DetailInputProps {
 }
 
 // Define the component with correct generic syntax
-const DetailInput = observer((props: DetailInputProps) => {
+export const DetailInput = observer(function DetailInput(
+  props: DetailInputProps,
+) {
   return (
     <div className="flex-1">
       <div
@@ -58,5 +60,3 @@ const DetailInput = observer((props: DetailInputProps) => {
     </div>
   );
 });
-
-export default DetailInput;

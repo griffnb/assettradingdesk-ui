@@ -4,9 +4,9 @@ import { MetaData } from "./MetaData";
 
 export class AssetFileBaseModel extends BaseModel {
   // Organization and Company references
-  @attr("uuid") organization_id: string = "";
-  @attr("uuid") company_id: string = "";
-  @attr("uuid") asset_id: string = "";
+  @attr("uuid") organization_id: string | null = null;
+  @attr("uuid") company_id: string | null = null;
+  @attr("uuid") asset_id: string | null = null;
 
   // File-specific properties
   @attr("number") file_type: number = 0;

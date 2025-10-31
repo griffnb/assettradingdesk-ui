@@ -87,7 +87,9 @@ interface FieldWrapProps
 
 export type WrapVariantKeys = VariantProps<typeof wrapStyles>["variant"];
 // Define the component with correct generic syntax
-const FormFieldWrap = observer((rawProps: FieldWrapProps) => {
+export const FormFieldWrap = observer(function FormFieldWrap(
+  rawProps: FieldWrapProps,
+) {
   const {
     variant,
     className,
@@ -125,7 +127,7 @@ const FormFieldWrap = observer((rawProps: FieldWrapProps) => {
 
       <div
         className={cn(
-          inputWrapStyles({ inputWrapStyle, wrapSize: props.wrapSize })
+          inputWrapStyles({ inputWrapStyle, wrapSize: props.wrapSize }),
         )}
         data-slot="field-wrap-input"
       >
@@ -134,5 +136,3 @@ const FormFieldWrap = observer((rawProps: FieldWrapProps) => {
     </div>
   );
 });
-
-export default FormFieldWrap;

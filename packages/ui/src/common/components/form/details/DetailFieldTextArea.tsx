@@ -3,8 +3,8 @@ import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import TextAreaInput from "../../fields/TextAreaInput";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { TextAreaInput } from "../../fields/TextAreaInput";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldTextAreaProps<T extends StoreModel & ValidationType>
@@ -55,5 +55,3 @@ export const DetailFieldTextArea = observer(function DetailFieldTextArea<
     </DetailFieldWrap>
   );
 });
-
-export default DetailFieldTextArea;

@@ -8,7 +8,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldModelSearchMultiSelectProps<
@@ -25,7 +25,7 @@ interface DetailFieldModelSearchMultiSelectProps<
 // Define the component with correct generic syntax
 const DetailFieldModelSearchMultiSelect = observer(
   <T extends StoreModel & ValidationType, V extends StoreModel>(
-    props: DetailFieldModelSearchMultiSelectProps<T, V>
+    props: DetailFieldModelSearchMultiSelectProps<T, V>,
   ) => {
     const [validate, setValidate] = useState<boolean>(false);
     const [selected, setSelected] = useState<V[] | undefined>(undefined);
@@ -49,7 +49,7 @@ const DetailFieldModelSearchMultiSelect = observer(
             setValues(
               ((response.data as unknown as V[]) || []).map((item) => {
                 return item[props.modelDisplayField];
-              }) as string[]
+              }) as string[],
             );
           }
         });
@@ -60,7 +60,7 @@ const DetailFieldModelSearchMultiSelect = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -71,7 +71,7 @@ const DetailFieldModelSearchMultiSelect = observer(
         const key = props.field as keyof T;
         props.record[key] = values.map((value) => value[idField]) as T[keyof T];
         setValues(
-          values.map((value) => value[props.modelDisplayField]) as string[]
+          values.map((value) => value[props.modelDisplayField]) as string[],
         );
         setSelected(values);
         setValidate(true);
@@ -101,7 +101,7 @@ const DetailFieldModelSearchMultiSelect = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );
 
 export default DetailFieldModelSearchMultiSelect;

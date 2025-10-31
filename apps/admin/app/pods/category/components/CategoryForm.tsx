@@ -1,10 +1,10 @@
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormWrap from "@/ui/common/components/form/wrap/FormWrap";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { useNavigate } from "react-router";
 
 interface CategoryFormProps {
   record: CategoryModel;
@@ -12,7 +12,9 @@ interface CategoryFormProps {
   onCancel?: () => void;
 }
 
-export const CategoryForm = observer(function CategoryForm(props: CategoryFormProps) {
+export const CategoryForm = observer(function CategoryForm(
+  props: CategoryFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,8 +61,6 @@ export const CategoryForm = observer(function CategoryForm(props: CategoryFormPr
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
       <FormFieldText
         record={props.record}
         field="name"
@@ -68,8 +68,6 @@ export const CategoryForm = observer(function CategoryForm(props: CategoryFormPr
         label="Name"
         placeholder="Name"
       />
-
     </FormWrap>
   );
 });
-

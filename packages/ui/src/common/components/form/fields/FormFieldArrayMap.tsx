@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldArrayMapProps<T extends ValidationType>
@@ -26,184 +26,182 @@ interface KeyValue {
   value: string;
 }
 
-const FormFieldArrayMap = observer(
-  <T extends ValidationType>(props: FormFieldArrayMapProps<T>) => {
-    const [validate, setValidate] = useState<boolean>(false);
-    const [rows, setRows] = useState<KeyValue[]>([]);
+export const FormFieldArrayMap = observer(function FormFieldArrayMap<
+  T extends ValidationType,
+>(props: FormFieldArrayMapProps<T>) {
+  const [validate, setValidate] = useState<boolean>(false);
+  const [rows, setRows] = useState<KeyValue[]>([]);
 
-    useEffect(() => {
-      const recordValues = props.record[props.field] as Record<string, any>[];
+  useEffect(() => {
+    const recordValues = props.record[props.field] as Record<string, any>[];
 
-      const list: KeyValue[] = [];
+    const list: KeyValue[] = [];
 
-      recordValues.forEach((row) => {
-        for (const key in row) {
-          if (Object.prototype.hasOwnProperty.call(row, key)) {
-            if (!isEmpty(key))
-              list.push({
-                key: key,
-                value: row[key] as string,
-              });
-          }
+    recordValues.forEach((row) => {
+      for (const key in row) {
+        if (Object.prototype.hasOwnProperty.call(row, key)) {
+          if (!isEmpty(key))
+            list.push({
+              key: key,
+              value: row[key] as string,
+            });
         }
-      });
-
-      if (list.length == 0) {
-        list.push({
-          key: "",
-          value: "",
-        });
       }
+    });
 
-      setRows(list);
-    }, [props.record, props.field]);
-
-    let errorMessages: string[] = [];
-    if (props.record.tryValidation || validate) {
-      errorMessages = isFieldValid<T>(
-        props.record,
-        props.field,
-        props.validationRule
-      );
+    if (list.length == 0) {
+      list.push({
+        key: "",
+        value: "",
+      });
     }
 
-    const updateRecord = () => {
-      const keyValueData: any = [];
+    setRows(list);
+  }, [props.record, props.field]);
 
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        if (row && row.key != "" && row.value != "") {
-          keyValueData.push({ [row.key]: row.value });
-        }
+  let errorMessages: string[] = [];
+  if (props.record.tryValidation || validate) {
+    errorMessages = isFieldValid<T>(
+      props.record,
+      props.field,
+      props.validationRule,
+    );
+  }
+
+  const updateRecord = () => {
+    const keyValueData: any = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      if (row && row.key != "" && row.value != "") {
+        keyValueData.push({ [row.key]: row.value });
       }
+    }
 
-      runInAction(() => {
-        props.record[props.field as keyof T] = keyValueData as T[keyof T];
-        setValidate(true);
-        if (props.onRecordUpdate) props.onRecordUpdate(props.record);
-      });
-    };
+    runInAction(() => {
+      props.record[props.field as keyof T] = keyValueData as T[keyof T];
+      setValidate(true);
+      if (props.onRecordUpdate) props.onRecordUpdate(props.record);
+    });
+  };
 
-    const addRow = () => {
-      setRows([
-        ...rows,
-        {
-          key: "",
-          value: props.defaultValue || "",
-        },
-      ]);
-    };
+  const addRow = () => {
+    setRows([
+      ...rows,
+      {
+        key: "",
+        value: props.defaultValue || "",
+      },
+    ]);
+  };
 
-    const updateRow = (index: number, key: keyof KeyValue, value: any) => {
-      if (rows && rows[index]) {
-        const row = rows[index] as KeyValue;
+  const updateRow = (index: number, key: keyof KeyValue, value: any) => {
+    if (rows && rows[index]) {
+      const row = rows[index] as KeyValue;
 
-        row[key] = value;
-        rows[index] = row as KeyValue;
-        setRows([...rows]);
-        updateRecord();
-      }
-    };
+      row[key] = value;
+      rows[index] = row as KeyValue;
+      setRows([...rows]);
+      updateRecord();
+    }
+  };
 
-    // remove row at index
-    const removeRow = (index: number) => {
-      if (rows.length > 1) {
-        rows.splice(index, 1);
-        setRows([...rows]);
-        updateRecord();
-      }
-    };
+  // remove row at index
+  const removeRow = (index: number) => {
+    if (rows.length > 1) {
+      rows.splice(index, 1);
+      setRows([...rows]);
+      updateRecord();
+    }
+  };
 
-    const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-      if (event.key === "Enter") {
-        // Prevent default form submit behavior
-        event.stopPropagation();
-      }
-    };
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      // Prevent default form submit behavior
+      event.stopPropagation();
+    }
+  };
 
-    return (
-      <FormFieldWrap {...props} variant={props.wrapVariant}>
-        {rows.map((row, index) => (
-          <div
-            key={index}
-            className="mb-2 flex w-full items-start justify-between gap-x-3 whitespace-nowrap"
-          >
-            <div className="flex-none">
+  return (
+    <FormFieldWrap {...props} variant={props.wrapVariant}>
+      {rows.map((row, index) => (
+        <div
+          key={index}
+          className="mb-2 flex w-full items-start justify-between gap-x-3 whitespace-nowrap"
+        >
+          <div className="flex-none">
+            <input
+              type={props.keyType}
+              value={row.key}
+              placeholder={props.keyPlaceholder}
+              className="w-full min-w-[160px] flex-1 rounded-lg border-gray-200 px-4 py-[9px] text-gray-700 !ring-0 placeholder:text-gray-500 disabled:text-gray-300"
+              onChange={(event) => {
+                updateRow(index, "key", event.target.value);
+              }}
+              onBlur={(event) => {
+                if (event.target.value != event.target.value.trim()) {
+                  updateRow(index, "key", event.target.value.trim());
+                }
+              }}
+            />
+          </div>
+          <div className="flex-1">
+            {props.valueType !== "textarea" ? (
               <input
-                type={props.keyType}
-                value={row.key}
-                placeholder={props.keyPlaceholder}
+                type={props.valueType}
+                value={row.value}
+                placeholder={props.valuePlaceholder}
                 className="w-full min-w-[160px] flex-1 rounded-lg border-gray-200 px-4 py-[9px] text-gray-700 !ring-0 placeholder:text-gray-500 disabled:text-gray-300"
                 onChange={(event) => {
-                  updateRow(index, "key", event.target.value);
+                  updateRow(index, "value", event.target.value);
                 }}
                 onBlur={(event) => {
                   if (event.target.value != event.target.value.trim()) {
-                    updateRow(index, "key", event.target.value.trim());
+                    updateRow(index, "value", event.target.value.trim());
                   }
                 }}
               />
-            </div>
-            <div className="flex-1">
-              {props.valueType !== "textarea" ? (
-                <input
-                  type={props.valueType}
-                  value={row.value}
-                  placeholder={props.valuePlaceholder}
-                  className="w-full min-w-[160px] flex-1 rounded-lg border-gray-200 px-4 py-[9px] text-gray-700 !ring-0 placeholder:text-gray-500 disabled:text-gray-300"
-                  onChange={(event) => {
-                    updateRow(index, "value", event.target.value);
-                  }}
-                  onBlur={(event) => {
-                    if (event.target.value != event.target.value.trim()) {
-                      updateRow(index, "value", event.target.value.trim());
-                    }
-                  }}
-                />
-              ) : (
-                <textarea
-                  value={row.value}
-                  placeholder={props.valuePlaceholder}
-                  className="w-full min-w-[160px] flex-1 rounded-lg border-gray-200 px-4 py-[9px] text-gray-700 !ring-0 placeholder:text-gray-500 disabled:text-gray-300"
-                  rows={5}
-                  onKeyDown={handleKeyDown}
-                  onChange={(event) => {
-                    updateRow(index, "value", event.target.value);
-                  }}
-                  onBlur={(event) => {
-                    if (event.target.value != event.target.value.trim()) {
-                      updateRow(index, "value", event.target.value.trim());
-                    }
-                  }}
-                />
-              )}
-            </div>
-            <div className="w-fit">
-              <button
-                type="button"
-                className="size-11 rounded-lg border bg-blue-dark-500 text-white hover:bg-blue-dark-600"
-                onClick={addRow}
-              >
-                <i className="fa fa-plus" />
-              </button>
-              <button
-                type="button"
-                className="size-11 rounded-lg border bg-gray-400 text-white hover:bg-gray-500"
-                onClick={() => {
-                  removeRow(index);
+            ) : (
+              <textarea
+                value={row.value}
+                placeholder={props.valuePlaceholder}
+                className="w-full min-w-[160px] flex-1 rounded-lg border-gray-200 px-4 py-[9px] text-gray-700 !ring-0 placeholder:text-gray-500 disabled:text-gray-300"
+                rows={5}
+                onKeyDown={handleKeyDown}
+                onChange={(event) => {
+                  updateRow(index, "value", event.target.value);
                 }}
-              >
-                <i className="fa fa-minus" />
-              </button>
-            </div>
+                onBlur={(event) => {
+                  if (event.target.value != event.target.value.trim()) {
+                    updateRow(index, "value", event.target.value.trim());
+                  }
+                }}
+              />
+            )}
           </div>
-        ))}
-        {errorMessages.length > 0 && (
-          <ErrorMessages errorMessages={errorMessages} />
-        )}
-      </FormFieldWrap>
-    );
-  }
-);
-
-export default FormFieldArrayMap;
+          <div className="w-fit">
+            <button
+              type="button"
+              className="size-11 rounded-lg border bg-blue-dark-500 text-white hover:bg-blue-dark-600"
+              onClick={addRow}
+            >
+              <i className="fa fa-plus" />
+            </button>
+            <button
+              type="button"
+              className="size-11 rounded-lg border bg-gray-400 text-white hover:bg-gray-500"
+              onClick={() => {
+                removeRow(index);
+              }}
+            >
+              <i className="fa fa-minus" />
+            </button>
+          </div>
+        </div>
+      ))}
+      {errorMessages.length > 0 && (
+        <ErrorMessages errorMessages={errorMessages} />
+      )}
+    </FormFieldWrap>
+  );
+});

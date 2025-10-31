@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Button } from "../../buttons/Button";
 import { ArrayInput, ArrayInputProps } from "../../fields/ArrayInput";
-import DetailFieldWrap from "./DetailFieldWrap";
+import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldArrayProps<T extends StoreModel & ValidationType>
@@ -22,7 +22,7 @@ export const DetailFieldArray = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -95,5 +95,5 @@ export const DetailFieldArray = observer(
         )}
       </DetailFieldWrap>
     );
-  }
+  },
 );

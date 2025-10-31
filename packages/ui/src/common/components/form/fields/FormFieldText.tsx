@@ -12,7 +12,7 @@ import {
   HTMLInputTypeAttribute,
   useState,
 } from "react";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldTextProps<T extends ValidationType>
@@ -42,7 +42,7 @@ export const FormFieldText = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -101,5 +101,5 @@ export const FormFieldText = observer(
         />
       </FormFieldWrap>
     );
-  }
+  },
 );

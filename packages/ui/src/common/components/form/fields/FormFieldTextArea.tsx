@@ -5,7 +5,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { FocusEvent, useState } from "react";
-import FormFieldWrap from "./FormFieldWrap";
+import { FormFieldWrap } from "./FormFieldWrap";
 import { BaseFormFieldProps } from "./types";
 
 interface FormFieldTextAreaProps<T extends ValidationType>
@@ -30,7 +30,7 @@ const FormFieldTextArea = observer(
       errorMessages = isFieldValid<T>(
         props.record,
         props.field,
-        props.validationRule
+        props.validationRule,
       );
     }
 
@@ -67,7 +67,7 @@ const FormFieldTextArea = observer(
         />
       </FormFieldWrap>
     );
-  }
+  },
 );
 
 export default FormFieldTextArea;
