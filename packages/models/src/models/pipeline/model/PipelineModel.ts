@@ -1,6 +1,8 @@
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
+
+import { constants, findConstant } from "@/models/constants";
 import { PipelineBaseModel } from "./PipelineBaseModel";
 import { validationRules } from "./validation_rules";
 
@@ -11,8 +13,9 @@ export class PipelineModel extends PipelineBaseModel {
   }
 
   // Search Result Values
-  get label(): string {
-    return `Pipeline ${this.id}`;
+
+  get label() {
+    return `${this.name} | ${this.buyer_client_name} ${this.buyer_company_name} | ${this.seller_client_name} ${this.seller_company_name}`;
   }
 
   get icon(): string {
@@ -21,6 +24,14 @@ export class PipelineModel extends PipelineBaseModel {
 
   get link(): string {
     return `/pipelines/details/${this.id}`;
+  }
+
+  get stageFmt(): string {
+    if (this.stage !== null) {
+      const val = findConstant(constants.pipeline.stage, this.stage);
+      return val.label;
+    }
+    return "";
   }
 
   getParent(): ParentInfo | null {

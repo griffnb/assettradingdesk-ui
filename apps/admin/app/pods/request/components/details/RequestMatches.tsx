@@ -1,17 +1,16 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/asset/columns";
-import { filters } from "@/pods/asset/filters";
-import AssetModel from "@/pods/asset/model/AssetModel";
-
-import RequestModel from "@/pods/request/model/RequestModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
+import { columns } from "@/admin/pods/asset/columns";
+import { filters } from "@/admin/pods/asset/filters";
+import { constants } from "@/models/constants";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { RequestModel } from "@/models/models/request/model/RequestModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
 
 interface RequestMatchesProps {
   request: RequestModel;
 }
-const RequestMatches = observer((props: RequestMatchesProps) => {
+export const RequestMatches = observer((props: RequestMatchesProps) => {
   const [appliedFilters, setAppliedFilters] = useState<{
     [key: string]: string | string[];
   }>({
@@ -20,13 +19,13 @@ const RequestMatches = observer((props: RequestMatchesProps) => {
   });
 
   return (
-    <div className="relative my-3 rounded-md border-y-1 bg-white py-2">
+    <div className="relative my-3 rounded-md border-y bg-white py-2">
       <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Matching Assets</div>
+        <div className="flex grow">Matching Assets</div>
       </h1>
-      <ServerTableWrap<AssetModel>
+      <StandardTableWrap<AssetModel>
         columns={columns}
-        statuses={constants.request.status}
+        statuses={constants.asset.status}
         modelType="asset"
         filters={filters}
         applyFilters={setAppliedFilters}

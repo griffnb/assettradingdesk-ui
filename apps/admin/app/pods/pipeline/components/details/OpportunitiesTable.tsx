@@ -1,16 +1,16 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/opportunity/columns";
-import { filters } from "@/pods/opportunity/filters";
-import OpportunityModel from "@/pods/opportunity/model/OpportunityModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
+import { columns } from "@/admin/pods/opportunity/columns";
+import { filters } from "@/admin/pods/opportunity/filters";
+import { constants } from "@/models/constants";
+import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
+import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import PipelineModel from "../../model/PipelineModel";
 
 interface OpportunitiesTableProps {
   pipeline: PipelineModel;
 }
-const OpportunitiesTable = observer((props: OpportunitiesTableProps) => {
+export const OpportunitiesTable = observer((props: OpportunitiesTableProps) => {
   const [appliedFilters, setAppliedFilters] = useState<{
     [key: string]: string | string[];
   }>({
@@ -20,11 +20,11 @@ const OpportunitiesTable = observer((props: OpportunitiesTableProps) => {
   });
 
   return (
-    <div className="relative my-3 rounded-md border-y-1 bg-white py-2">
+    <div className="relative my-3 rounded-md border-y bg-white py-2">
       <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Opportunities</div>
+        <div className="flex grow">Opportunities</div>
       </h1>
-      <ServerTableWrap<OpportunityModel>
+      <StandardTableWrap<OpportunityModel>
         columns={columns}
         statuses={constants.opportunity.status}
         modelType="opportunity"
@@ -38,5 +38,3 @@ const OpportunitiesTable = observer((props: OpportunitiesTableProps) => {
     </div>
   );
 });
-
-export default OpportunitiesTable;

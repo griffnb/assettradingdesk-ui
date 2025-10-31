@@ -9,47 +9,43 @@ import { DetailFieldProps } from "./types";
 
 interface DetailFieldTagInputProps<T extends StoreModel & ValidationType>
   extends DetailFieldProps<T> {}
-const DetailFieldTagInput = observer(
-  <T extends StoreModel & ValidationType>(
-    props: DetailFieldTagInputProps<T>,
-  ) => {
-    const [validate, setValidate] = useState<boolean>(false);
+export const DetailFieldTagInput = observer(function DetailFieldTagInput<
+  T extends StoreModel & ValidationType,
+>(props: DetailFieldTagInputProps<T>) {
+  const [validate, setValidate] = useState<boolean>(false);
 
-    let errorMessages: string[] = [];
-    if (props.record.tryValidation || validate) {
-      errorMessages = isFieldValid<T>(
-        props.record,
-        props.field,
-        props.validationRule,
-      );
-    }
-
-    const handleChange = (value: Tag[]) => {
-      runInAction(() => {
-        const key = props.field as keyof T;
-        props.record[key] = value as T[keyof T];
-        setValidate(true);
-      });
-    };
-
-    const value = props.displayField
-      ? (props.record[props.displayField] as string)
-      : (props.record[props.field] as string);
-
-    return (
-      <DetailFieldWrap {...props} value={value}>
-        {({ append }) => (
-          <TagInputBase
-            tags={props.record[props.field] as Tag[]}
-            placeholder={props.placeholder}
-            handleChange={handleChange}
-            errorMessages={errorMessages}
-            append={append}
-          />
-        )}
-      </DetailFieldWrap>
+  let errorMessages: string[] = [];
+  if (props.record.tryValidation || validate) {
+    errorMessages = isFieldValid<T>(
+      props.record,
+      props.field,
+      props.validationRule,
     );
-  },
-);
+  }
 
-export default DetailFieldTagInput;
+  const handleChange = (value: Tag[]) => {
+    runInAction(() => {
+      const key = props.field as keyof T;
+      props.record[key] = value as T[keyof T];
+      setValidate(true);
+    });
+  };
+
+  const value = props.displayField
+    ? (props.record[props.displayField] as string)
+    : (props.record[props.field] as string);
+
+  return (
+    <DetailFieldWrap {...props} value={value}>
+      {({ append }) => (
+        <TagInputBase
+          tags={props.record[props.field] as Tag[]}
+          placeholder={props.placeholder}
+          handleChange={handleChange}
+          errorMessages={errorMessages}
+          append={append}
+        />
+      )}
+    </DetailFieldWrap>
+  );
+});

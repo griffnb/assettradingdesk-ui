@@ -23,10 +23,11 @@ interface DetailFieldModelSearchMultiSelectProps<
 }
 
 // Define the component with correct generic syntax
-const DetailFieldModelSearchMultiSelect = observer(
-  <T extends StoreModel & ValidationType, V extends StoreModel>(
-    props: DetailFieldModelSearchMultiSelectProps<T, V>,
-  ) => {
+export const DetailFieldModelSearchMultiSelect = observer(
+  function DetailFieldModelSearchMultiSelect<
+    T extends StoreModel & ValidationType,
+    V extends StoreModel,
+  >(props: DetailFieldModelSearchMultiSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
     const [selected, setSelected] = useState<V[] | undefined>(undefined);
     const [values, setValues] = useState<string[]>([]);
@@ -103,5 +104,3 @@ const DetailFieldModelSearchMultiSelect = observer(
     );
   },
 );
-
-export default DetailFieldModelSearchMultiSelect;

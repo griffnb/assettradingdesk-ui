@@ -1,16 +1,17 @@
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
+import { ValidationClass } from "@/utils/validations";
 
-export class FacilityAddress {
+export class FacilityAddress extends ValidationClass {
   raw_address: string = "";
   city: string = "";
   state: string = "";
   zip: string = "";
 }
 
-export class FacilityMetaData {
-  legacy_id: number = 0;
-  legacy_key: string = "";
+export class FacilityMetaData extends ValidationClass {
+  wafer_sizes: number[] = [];
+  company_types: number[] = [];
 }
 
 export class FacilityBaseModel extends BaseModel {

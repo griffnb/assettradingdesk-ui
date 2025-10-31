@@ -1,18 +1,22 @@
-import DetailFieldModelSearchSelect from "@/common_lib/components/form/details/DetailFieldModelSearchSelect";
-import DetailFieldModelSelect from "@/common_lib/components/form/details/DetailFieldModelSelect";
-import DetailFieldMultiSelect from "@/common_lib/components/form/details/DetailFieldMultiSelect";
-import DetailFieldText from "@/common_lib/components/form/details/DetailFieldText";
-import DetailFieldTextArea from "@/common_lib/components/form/details/DetailFieldTextArea";
-import ClientModel from "@/pods/client/model/ClientModel";
-import ModelModel from "@/pods/model/model/ModelModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
-import RequestModel from "../../model/RequestModel";
+import { SafeBaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
+import { ClientModel } from "@/models/models/client/model/ClientModel";
+import { ModelModel } from "@/models/models/model/model/ModelModel";
+import { RequestMetaData } from "@/models/models/request/model/RequestBaseModel";
+import { RequestModel } from "@/models/models/request/model/RequestModel";
+import DetailFieldModelSearchSelect from "@/ui/common/components/form/details/DetailFieldModelSearchSelect";
+import DetailFieldModelSelect from "@/ui/common/components/form/details/DetailFieldModelSelect";
+import { DetailFieldMultiSelect } from "@/ui/common/components/form/details/DetailFieldMultiSelect";
+import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
+import { DetailFieldTextArea } from "@/ui/common/components/form/details/DetailFieldTextArea";
+import { observer } from "mobx-react-lite";
 
-interface RequestDetailsProps {
+interface RequestInfoProps {
   request: RequestModel;
 }
-const RequestDetails = observer((props: RequestDetailsProps) => {
+export const RequestInfo = observer(function RequestInfo(
+  props: RequestInfoProps,
+) {
   return (
     <div className="p-10">
       <h2 className="text-lg font-semibold">Asset Info</h2>
@@ -38,21 +42,23 @@ const RequestDetails = observer((props: RequestDetailsProps) => {
           modelDisplayField="label"
           modelSearchFilters={{
             disabled: "0",
-            company_id: props.request.company_id.toString(),
+            company_id: props.request.company_id || "",
           }}
           modelSearchField="name"
           link={`/clients/details/${props.request.client_id}`}
         />
 
         <DetailFieldText
-          record={props.request}
+          record={props.request.meta_data as SafeBaseModel<RequestMetaData>}
+          parentRecord={props.request}
           field="min_year"
           type="number"
           label="Min Year"
           placeholder="Year"
         />
         <DetailFieldText
-          record={props.request}
+          record={props.request.meta_data as SafeBaseModel<RequestMetaData>}
+          parentRecord={props.request}
           field="max_year"
           type="number"
           label="Max Year"
@@ -65,7 +71,7 @@ const RequestDetails = observer((props: RequestDetailsProps) => {
           type="number"
           label="Min Price"
           placeholder="Price"
-          prependVal="$"
+          prepend="$"
         />
         <DetailFieldText
           record={props.request}
@@ -73,18 +79,20 @@ const RequestDetails = observer((props: RequestDetailsProps) => {
           type="number"
           label="Max Price"
           placeholder="Price"
-          prependVal="$"
+          prepend="$"
         />
 
         <DetailFieldMultiSelect
-          record={props.request}
+          record={props.request.meta_data as SafeBaseModel<RequestMetaData>}
+          parentRecord={props.request}
           field="install_statuses"
           label="Install Status"
           displayField="install_statusesFmt"
           options={constants.asset.install_status}
         />
         <DetailFieldMultiSelect
-          record={props.request}
+          record={props.request.meta_data as SafeBaseModel<RequestMetaData>}
+          parentRecord={props.request}
           field="operational_statuses"
           label="Operational Status"
           displayField="operational_statusesFmt"
@@ -105,5 +113,3 @@ const RequestDetails = observer((props: RequestDetailsProps) => {
     </div>
   );
 });
-
-export default RequestDetails;

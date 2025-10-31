@@ -1,16 +1,18 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/client/columns";
-import { filters } from "@/pods/client/filters";
-import ClientModel from "@/pods/client/model/ClientModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
+import { columns } from "@/admin/pods/client/columns";
+import { filters } from "@/admin/pods/client/filters";
+import { constants } from "@/models/constants";
+import { ClientModel } from "@/models/models/client/model/ClientModel";
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import FacilityModel from "../../model/FacilityModel";
 
 interface FacilityClientsProps {
   facility: FacilityModel;
 }
-const FacilityClients = observer((props: FacilityClientsProps) => {
+export const FacilityClients = observer(function FacilityClients(
+  props: FacilityClientsProps,
+) {
   const [appliedFilters, setAppliedFilters] = useState<{
     [key: string]: string | string[];
   }>({
@@ -20,11 +22,11 @@ const FacilityClients = observer((props: FacilityClientsProps) => {
   });
 
   return (
-    <div className="relative my-3 rounded-md border-y-1 bg-white py-2">
+    <div className="relative my-3 rounded-md border-y bg-white py-2">
       <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Clients</div>
+        <div className="flex grow">Clients</div>
       </h1>
-      <ServerTableWrap<ClientModel>
+      <StandardTableWrap<ClientModel>
         columns={columns}
         statuses={constants.client.status}
         modelType="client"

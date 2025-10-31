@@ -1,3 +1,16 @@
+import { SafeBaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
+import {
+  CompanyAddress,
+  CompanyMetaData,
+} from "@/models/models/company/model/CompanyBaseModel";
+import { CompanyModel } from "@/models/models/company/model/CompanyModel";
+import { DetailFieldMultiSelect } from "@/ui/common/components/form/details/DetailFieldMultiSelect";
+import { DetailFieldSelect } from "@/ui/common/components/form/details/DetailFieldSelect";
+import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
+import { DetailFieldTextArea } from "@/ui/common/components/form/details/DetailFieldTextArea";
+import { observer } from "mobx-react-lite";
+
 interface CompanyInfoProps {
   company: CompanyModel;
 }
@@ -17,16 +30,18 @@ export const CompanyInfo = observer(function CompanyInfo(
         />
         <DetailFieldMultiSelect
           label="Types"
-          record={props.company}
+          record={props.company.meta_data as SafeBaseModel<CompanyMetaData>}
+          parentRecord={props.company}
           field="company_types"
-          displayField="company_typesFmt"
+          displayField="company_types"
           options={constants.company.company_type}
         />
         <DetailFieldMultiSelect
           label="Wafer Sizes"
-          record={props.company}
+          record={props.company.meta_data as SafeBaseModel<CompanyMetaData>}
+          parentRecord={props.company}
           field="wafer_sizes"
-          displayField="wafer_sizesFmt"
+          displayField="wafer_sizes"
           options={constants.asset.wafer_size}
         />
         <DetailFieldSelect
@@ -38,21 +53,21 @@ export const CompanyInfo = observer(function CompanyInfo(
         <DetailFieldSelect
           label="State"
           parentRecord={props.company}
-          record={props.company.address as any}
+          record={props.company.address as SafeBaseModel<CompanyAddress>}
           field="state"
           options={constants.states}
         />
         <DetailFieldText
           label="City"
           parentRecord={props.company}
-          record={props.company.address as any}
+          record={props.company.address as SafeBaseModel<CompanyAddress>}
           field="city"
           type="text"
         />
         <DetailFieldText
           label="Zip"
           parentRecord={props.company}
-          record={props.company.address as any}
+          record={props.company.address as SafeBaseModel<CompanyAddress>}
           field="zip"
           type="text"
         />

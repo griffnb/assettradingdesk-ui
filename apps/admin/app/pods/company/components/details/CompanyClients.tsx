@@ -1,16 +1,18 @@
-import ServerTableWrap from "@/common_lib/components/table/ServerTableWrap";
-import { columns } from "@/pods/client/columns";
-import { filters } from "@/pods/client/filters";
-import ClientModel from "@/pods/client/model/ClientModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
+import { columns } from "@/admin/pods/client/columns";
+import { filters } from "@/admin/pods/client/filters";
+import { constants } from "@/models/constants";
+import { ClientModel } from "@/models/models/client/model/ClientModel";
+import { CompanyModel } from "@/models/models/company/model/CompanyModel";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import CompanyModel from "../../model/CompanyModel";
 
 interface CompanyClientsProps {
   company: CompanyModel;
 }
-export const CompanyClients = observer((props: CompanyClientsProps) => {
+export const CompanyClients = observer(function CompanyClients(
+  props: CompanyClientsProps,
+) {
   const [appliedFilters, setAppliedFilters] = useState<{
     [key: string]: string | string[];
   }>({
@@ -20,12 +22,12 @@ export const CompanyClients = observer((props: CompanyClientsProps) => {
   });
 
   return (
-    <div className="border-y-1 relative my-3 rounded-md bg-white py-2">
+    <div className="relative my-3 rounded-md border-y bg-white py-2">
       <h1 className="flex flex-row pb-1 pl-3 text-xl">
-        <div className="flex flex-grow">Clients</div>
+        <div className="flex grow">Clients</div>
       </h1>
-      <ServerTableWrap<ClientModel>
-        newRoute={`/clients/new?company_id=${props.company.id}`}
+      <StandardTableWrap<ClientModel>
+        newComponent={`/clients/new?company_id=${props.company.id}`}
         columns={columns}
         statuses={constants.client.status}
         modelType="client"
@@ -39,5 +41,3 @@ export const CompanyClients = observer((props: CompanyClientsProps) => {
     </div>
   );
 });
-
-export default CompanyClients;

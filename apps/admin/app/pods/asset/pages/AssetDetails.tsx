@@ -4,7 +4,11 @@ import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { AssetFileTable } from "../details/AssetFileTable";
+import { AssetGallery } from "../details/AssetGallery";
 import { AssetInfo } from "../details/AssetInfo";
+import { AssetMatches } from "../details/AssetMatches";
+import { AssetUpload } from "../details/AssetUpload";
 
 //interface AssetDetailProps {}
 

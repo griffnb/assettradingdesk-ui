@@ -21,10 +21,11 @@ interface DetailFieldModelMultiSelectProps<
 }
 
 //TODO need to make this load in the models properly to display them, along with the Search Multi Select
-const DetailFieldModelMultiSelect = observer(
-  <T extends StoreModel & ValidationType, V extends StoreModel>(
-    props: DetailFieldModelMultiSelectProps<T, V>,
-  ) => {
+export const DetailFieldModelMultiSelect = observer(
+  function DetailFieldModelMultiSelect<
+    T extends StoreModel & ValidationType,
+    V extends StoreModel,
+  >(props: DetailFieldModelMultiSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
 
     const [values, setValues] = useState<string[]>([]);
@@ -94,5 +95,3 @@ const DetailFieldModelMultiSelect = observer(
     );
   },
 );
-
-export default DetailFieldModelMultiSelect;

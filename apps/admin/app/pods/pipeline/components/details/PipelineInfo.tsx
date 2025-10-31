@@ -1,14 +1,17 @@
-import DetailFieldModelSearchSelect from "@/common_lib/components/form/details/DetailFieldModelSearchSelect";
-import DetailFieldSelect from "@/common_lib/components/form/details/DetailFieldSelect";
-import ClientModel from "@/pods/client/model/ClientModel";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
-import PipelineModel from "../../model/PipelineModel";
+import { constants } from "@/models/constants";
+import { ClientModel } from "@/models/models/client/model/ClientModel";
+import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
+import DetailFieldModelSearchSelect from "@/ui/common/components/form/details/DetailFieldModelSearchSelect";
+import DetailFieldSelect from "@/ui/common/components/form/details/DetailFieldSelect";
 
-interface PipelineDetailsProps {
+import { observer } from "mobx-react-lite";
+
+interface PipelineInfoProps {
   pipeline: PipelineModel;
 }
-const PipelineDetails = observer((props: PipelineDetailsProps) => {
+export const PipelineInfo = observer(function PipelineInfo(
+  props: PipelineInfoProps,
+) {
   return (
     <div className="p-10">
       <h2 className="text-lg font-semibold">Pipeline Info</h2>
@@ -18,8 +21,8 @@ const PipelineDetails = observer((props: PipelineDetailsProps) => {
             record={props.pipeline}
             field="stage"
             label="Stage"
-            displayField="stageFmt"
-            options={constants.pipeline.stages}
+            displayField="stage"
+            options={constants.pipeline.stage}
           />
         </div>
 
@@ -51,5 +54,3 @@ const PipelineDetails = observer((props: PipelineDetailsProps) => {
     </div>
   );
 });
-
-export default PipelineDetails;

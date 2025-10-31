@@ -1,18 +1,25 @@
-import DetailFieldMultiSelect from "@/common_lib/components/form/details/DetailFieldMultiSelect";
-import DetailFieldSelect from "@/common_lib/components/form/details/DetailFieldSelect";
-import DetailFieldText from "@/common_lib/components/form/details/DetailFieldText";
-import DetailFieldTextArea from "@/common_lib/components/form/details/DetailFieldTextArea";
-import { constants } from "@/utils/constants";
-import { observer } from "mobx-react";
-import FacilityModel from "../../model/FacilityModel";
+import { SafeBaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
+import {
+  FacilityAddress,
+  FacilityMetaData,
+} from "@/models/models/facility/model/FacilityBaseModel";
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
+import { DetailFieldMultiSelect } from "@/ui/common/components/form/details/DetailFieldMultiSelect";
+import DetailFieldSelect from "@/ui/common/components/form/details/DetailFieldSelect";
+import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
+import { DetailFieldTextArea } from "@/ui/common/components/form/details/DetailFieldTextArea";
+import { observer } from "mobx-react-lite";
 
 interface FacilityDetailsProps {
   facility: FacilityModel;
 }
-const FacilityDetails = observer((props: FacilityDetailsProps) => {
+export const FacilityInfo = observer(function FacilityInfo(
+  props: FacilityDetailsProps,
+) {
   return (
     <div className="p-10">
-      <h2 className="text-lg font-semibold">Company Info</h2>
+      <h2 className="text-lg font-semibold">Facility Info</h2>
       <div className="grid grid-cols-2 gap-x-5 gap-y-3">
         <DetailFieldText
           record={props.facility}
@@ -23,9 +30,10 @@ const FacilityDetails = observer((props: FacilityDetailsProps) => {
         />
         <DetailFieldMultiSelect
           label="Wafer Sizes"
-          record={props.facility}
+          record={props.facility.meta_data as SafeBaseModel<FacilityMetaData>}
+          parentRecord={props.facility}
           field="wafer_sizes"
-          displayField="wafer_sizesFmt"
+          displayField="wafer_sizes"
           options={constants.asset.wafer_size}
         />
 
@@ -38,21 +46,21 @@ const FacilityDetails = observer((props: FacilityDetailsProps) => {
         <DetailFieldSelect
           label="State"
           parentRecord={props.facility}
-          record={props.facility.address as any}
+          record={props.facility.address as SafeBaseModel<FacilityAddress>}
           field="state"
           options={constants.states}
         />
         <DetailFieldText
           label="City"
           parentRecord={props.facility}
-          record={props.facility.address as any}
+          record={props.facility.address as SafeBaseModel<FacilityAddress>}
           field="city"
           type="text"
         />
         <DetailFieldText
           label="Zip"
           parentRecord={props.facility}
-          record={props.facility.address as any}
+          record={props.facility.address as SafeBaseModel<FacilityAddress>}
           field="zip"
           type="text"
         />
@@ -74,5 +82,3 @@ const FacilityDetails = observer((props: FacilityDetailsProps) => {
     </div>
   );
 });
-
-export default FacilityDetails;
