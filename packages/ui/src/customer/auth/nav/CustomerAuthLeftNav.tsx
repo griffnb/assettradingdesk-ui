@@ -29,6 +29,11 @@ const platformItems = [
     icon: Bot,
   },
   {
+    title: "Requests",
+    url: "/requests",
+    icon: BookOpen,
+  },
+  {
     title: "Offers",
     url: "/offers",
     icon: BookOpen,

@@ -21,4 +21,5 @@ export interface FormFieldProps<T> extends BaseFormFieldProps {
   field: string & keyof T;
   label: string;
   onRecordUpdate?: (record: T) => void;
+  labelButton?: ReactNode;
 }

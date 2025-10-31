@@ -15,7 +15,7 @@ import { ClerkProvider, useAuth } from "@clerk/react-router";
 import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
 import type { Route } from "../.react-router/types/app/+types/root";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./app.css";
 
 export const middleware: Route.MiddlewareFunction[] = [clerkMiddleware()];
@@ -43,10 +43,16 @@ export default function App({ loaderData }: Route.ComponentProps) {
 
 function Auth() {
   // Only need this if we need bearer tokens for our API
-  const { getToken } = useAuth();
+  const { getToken, isLoaded } = useAuth();
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     SessionService.tokenFetch = getToken;
+    setReady(true);
   }, [getToken]);
+
+  if (!isLoaded || !ready) {
+    return <Skeleton />;
+  }
 
   return <Outlet />;
 }
