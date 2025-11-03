@@ -8,7 +8,7 @@ import {
 
 import { status } from "@/models/models/account/_constants/status";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
@@ -25,7 +25,7 @@ export const AccountIndex = observer(() => {
         status: [],
         limit: "100",
       }),
-    [searchParams]
+    [searchParams],
   );
 
   const applyFilters = (params: { [key: string]: string | string[] }) => {

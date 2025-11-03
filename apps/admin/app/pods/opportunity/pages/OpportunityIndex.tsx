@@ -1,25 +1,22 @@
-import {StandardTableWrap} from "@/ui/common/components/table/StandardTableWrap";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { status } from "@/models/models/opportunity/_constants/status";
+import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
+import { observer } from "mobx-react-lite";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router";
+import { columns } from "../columns";
 import {
   OpportunityFormModal,
   OpportunityFormModalId,
 } from "../components/OpportunityFormModal";
-import { useSearchParams } from "react-router";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
-import { MassActionProps } from "@/ui/common/components/types/mass-actions";
-import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
-import { observer } from "mobx-react-lite";
-import { status } from "@/models/models/opportunity/_constants/status";
-import { columns } from "../columns";
 import { filters } from "../filters";
-import { useMemo } from "react";
-
-
 
 export const OpportunityIndex = observer(function OpportunityIndex() {
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const appliedFilters = useMemo(
     () =>
@@ -29,7 +26,6 @@ export const OpportunityIndex = observer(function OpportunityIndex() {
       }),
     [searchParams],
   );
- 
 
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     setSearchParams(params);
@@ -39,13 +35,10 @@ export const OpportunityIndex = observer(function OpportunityIndex() {
       <AdminTitleBar title="Opportunities" />
       <StandardTableWrap<OpportunityModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
-
         newComponent={() => {
-          LayerService.add(
-            OpportunityFormModalId,
-            OpportunityFormModal,
-            {onSave: () => applyFilters({...appliedFilters})},
-          );
+          LayerService.add(OpportunityFormModalId, OpportunityFormModal, {
+            onSave: () => applyFilters({ ...appliedFilters }),
+          });
         }}
         columns={columns}
         statuses={status}
@@ -56,13 +49,10 @@ export const OpportunityIndex = observer(function OpportunityIndex() {
         selectRows={true}
         tableSearch={true}
         tableExport={true}
- hideTotalRow={true}
-infiniteScroll={true}
-        massActions={[
-          (props) => <DefaultMassActions {...props} />,
-        ]}
+        hideTotalRow={true}
+        infiniteScroll={true}
+        massActions={[(props) => <DefaultMassActions {...props} />]}
       />
     </>
   );
 });
-
