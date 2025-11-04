@@ -3,9 +3,10 @@ import { status } from "@/models/models/request/_constants/status";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { cn } from "@/utils/cn";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "./columns";
 import {
@@ -26,24 +27,30 @@ export const RequestsIndex = observer(function RequestsIndex() {
     [searchParams],
   );
 
-  const applyFilters = (params: { [key: string]: string | string[] }) => {
-    setSearchParams(params);
-  };
+  const applyFilters = useCallback(
+    (params: { [key: string]: string | string[] }) => {
+      setSearchParams(params);
+    },
+    [setSearchParams],
+  );
+
+  const openNewRequest = useCallback(() => {
+    LayerService.add(RequestFormModalId, RequestFormModal, {
+      onSave: () => {
+        LayerService.remove(RequestFormModalId);
+        applyFilters({ ...appliedFilters, reload: "true" });
+      },
+      onCancel: () => {
+        LayerService.remove(RequestFormModalId);
+      },
+    });
+  }, [appliedFilters, applyFilters]);
+
   return (
-    <>
+    <div className={cn("relative flex h-full min-h-0 flex-1 flex-col")}>
       <StandardTableWrap<RequestModel>
-        className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
-        newComponent={() => {
-          LayerService.add(RequestFormModalId, RequestFormModal, {
-            onSave: () => {
-              LayerService.remove(RequestFormModalId);
-              applyFilters({ ...appliedFilters });
-            },
-            onCancel: () => {
-              LayerService.remove(RequestFormModalId);
-            },
-          });
-        }}
+        className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
+        newComponent={openNewRequest}
         columns={columns}
         statuses={status}
         modelType="request"
@@ -57,6 +64,6 @@ export const RequestsIndex = observer(function RequestsIndex() {
         infiniteScroll={true}
         massActions={[(props) => <DefaultMassActions {...props} />]}
       />
-    </>
+    </div>
   );
 });

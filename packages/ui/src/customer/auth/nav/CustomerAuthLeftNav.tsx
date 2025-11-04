@@ -24,12 +24,12 @@ const platformItems = [
     icon: SquareTerminal,
   },
   {
-    title: "Suggested Tools",
-    url: "/suggested-tools",
+    title: "Suggested Assets",
+    url: "/opportunities",
     icon: Bot,
   },
   {
-    title: "Requests",
+    title: "Manage Requests",
     url: "/requests",
     icon: BookOpen,
   },

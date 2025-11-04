@@ -60,6 +60,12 @@ export const SelectAllNav = observer(
       }
     }, [allRows]);
 
+    useEffect(() => {
+      if (!tableState.allChecked) {
+        setAllRows(false);
+      }
+    }, [tableState.allChecked]);
+
     if (Object.keys(tableState.checked_row_ids).length === 0 && !allRows) {
       return null;
     }

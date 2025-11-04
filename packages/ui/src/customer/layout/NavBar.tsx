@@ -13,8 +13,9 @@ import { LayerService } from "@/common_lib/services/LayerService";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
+import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
-import { Bell, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -24,6 +25,7 @@ import { MobileMenu, MobileMenuID } from "./MobileMenu";
 import { SearchFlyout } from "./SearchFlyout";
 
 export const NavBar = observer(function NavBar() {
+  const { ref, variable } = useMeasureVariable("customer-nav-bar", "height");
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
   useEffect(() => {
@@ -54,7 +56,11 @@ export const NavBar = observer(function NavBar() {
   };
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center gap-3 border-b p-3 shadow-md md:flex-row md:px-6">
+    <div
+      className="flex w-full flex-1 flex-col items-center gap-3 border-b p-3 shadow-md md:flex-row md:px-6"
+      ref={ref}
+      style={variable}
+    >
       <div className="flex w-full flex-row items-center justify-between gap-3 md:w-fit md:justify-normal">
         <Link to="/" className="w-[170px] flex-none">
           <img src="/img/logo.png" className="w-[170px] flex-none" />
@@ -93,10 +99,12 @@ export const NavBar = observer(function NavBar() {
         </NavigationMenu>
         <div className="ml-auto flex flex-row items-center gap-2">
           <SignedIn>
+            {/*
             <Button variant="outline" size="icon" aria-label="Submit">
               <Bell />
             </Button>
-            <UserButton />
+            */}
+            <UserButton showName={true} />
           </SignedIn>
           <SignedOut>
             <Link to="/signup">
