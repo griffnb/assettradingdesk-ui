@@ -28,12 +28,15 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn(
-        "bg-white group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent dark:bg-neutral-950",
+      className={cn([
+        "bg-white group/calendar p-3",
+        "[--cell-size:--spacing(8)]",
+        "[[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+        "dark:bg-neutral-950",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
-        className
-      )}
+        className,
+      ])}
       captionLayout={captionLayout}
       formatters={{
         formatMonthDropdown: (date) =>
@@ -42,25 +45,29 @@ function Calendar({
       }}
       classNames={{
         root: cn("w-fit", defaultClassNames.root),
-        months: cn(
+        months: cn([
           "flex gap-4 flex-col md:flex-row relative",
-          defaultClassNames.months
-        ),
-        month: cn("flex flex-col w-full gap-4", defaultClassNames.month),
-        nav: cn(
-          "flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between",
-          defaultClassNames.nav
-        ),
-        button_previous: cn(
+          defaultClassNames.months,
+        ]),
+        month: cn(["flex flex-col w-full gap-4", defaultClassNames.month]),
+        nav: cn([
+          "flex items-center gap-1 w-full",
+          "absolute top-0 inset-x-0",
+          "justify-between",
+          defaultClassNames.nav,
+        ]),
+        button_previous: cn([
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
-          defaultClassNames.button_previous
-        ),
-        button_next: cn(
+          "size-(--cell-size) p-0 select-none",
+          "aria-disabled:opacity-50",
+          defaultClassNames.button_previous,
+        ]),
+        button_next: cn([
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
-          defaultClassNames.button_next
-        ),
+          "size-(--cell-size) p-0 select-none",
+          "aria-disabled:opacity-50",
+          defaultClassNames.button_next,
+        ]),
         month_caption: cn(
           "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
           defaultClassNames.month_caption

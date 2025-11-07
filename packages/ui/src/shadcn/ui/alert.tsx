@@ -4,14 +4,36 @@ import * as React from "react";
 import { cn } from "@/ui/shadcn/utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current dark:border-neutral-800",
+  [
+    // Layout & Display
+    "relative w-full grid",
+    "has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr]",
+    "items-start",
+    // Spacing
+    "has-[>svg]:gap-x-3 gap-y-0.5",
+    "px-4 py-3",
+    // Borders
+    "border border-neutral-200 rounded-lg",
+    // Typography
+    "text-sm",
+    // SVG Styles
+    "[&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+    // Dark Mode
+    "dark:border-neutral-800",
+  ],
   {
     variants: {
       variant: {
-        default:
-          "bg-white text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50",
-        destructive:
-          "text-red-500 bg-white [&>svg]:text-current *:data-[slot=alert-description]:text-red-500/90 dark:text-red-900 dark:bg-neutral-950 dark:*:data-[slot=alert-description]:text-red-900/90",
+        default: [
+          "bg-white text-neutral-950",
+          "dark:bg-neutral-950 dark:text-neutral-50",
+        ],
+        destructive: [
+          "text-red-500 bg-white [&>svg]:text-current",
+          "*:data-[slot=alert-description]:text-red-500/90",
+          "dark:text-red-900 dark:bg-neutral-950",
+          "dark:*:data-[slot=alert-description]:text-red-900/90",
+        ],
       },
     },
     defaultVariants: {
@@ -39,10 +61,12 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
-      className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
-        className
-      )}
+      className={cn([
+        "col-start-2",
+        "line-clamp-1 min-h-4",
+        "font-medium tracking-tight",
+        className,
+      ])}
       {...props}
     />
   );
@@ -55,10 +79,14 @@ function AlertDescription({
   return (
     <div
       data-slot="alert-description"
-      className={cn(
-        "text-neutral-500 col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed dark:text-neutral-400",
-        className
-      )}
+      className={cn([
+        "col-start-2",
+        "grid justify-items-start gap-1",
+        "text-sm text-neutral-500",
+        "[&_p]:leading-relaxed",
+        "dark:text-neutral-400",
+        className,
+      ])}
       {...props}
     />
   );

@@ -10,7 +10,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(["w-full caption-bottom text-sm", className])}
         {...props}
       />
     </div>
@@ -21,7 +21,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
+      className={cn(["[&_tr]:border-b", className])}
       {...props}
     />
   );
@@ -31,7 +31,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
+      className={cn(["[&_tr:last-child]:border-0", className])}
       {...props}
     />
   );
@@ -41,10 +41,15 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   return (
     <tfoot
       data-slot="table-footer"
-      className={cn(
-        "bg-neutral-100/50 border-t font-medium [&>tr]:last:border-b-0 dark:bg-neutral-800/50",
-        className
-      )}
+      className={cn([
+        /* Colors & Typography */
+        "bg-neutral-100/50 font-medium",
+        /* Borders */
+        "border-t [&>tr]:last:border-b-0",
+        /* Dark Mode */
+        "dark:bg-neutral-800/50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -54,10 +59,17 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
       data-slot="table-row"
-      className={cn(
-        "hover:bg-neutral-100/50 data-[state=selected]:bg-neutral-100 border-b transition-colors dark:hover:bg-neutral-800/50 dark:data-[state=selected]:bg-neutral-800",
-        className
-      )}
+      className={cn([
+        /* Borders & Transitions */
+        "border-b transition-colors",
+        /* Hover State */
+        "hover:bg-neutral-100/50",
+        /* Selected State */
+        "data-[state=selected]:bg-neutral-100",
+        /* Dark Mode */
+        "dark:hover:bg-neutral-800/50 dark:data-[state=selected]:bg-neutral-800",
+        className,
+      ])}
       {...props}
     />
   );
@@ -67,10 +79,17 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
       data-slot="table-head"
-      className={cn(
-        "text-neutral-950 h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] dark:text-neutral-50",
-        className
-      )}
+      className={cn([
+        /* Layout & Typography */
+        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap",
+        /* Colors */
+        "text-neutral-950",
+        /* Checkbox Handling */
+        "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        /* Dark Mode */
+        "dark:text-neutral-50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -80,10 +99,13 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
       data-slot="table-cell"
-      className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className
-      )}
+      className={cn([
+        /* Layout */
+        "p-2 align-middle whitespace-nowrap",
+        /* Checkbox Handling */
+        "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className,
+      ])}
       {...props}
     />
   );
@@ -96,10 +118,13 @@ function TableCaption({
   return (
     <caption
       data-slot="table-caption"
-      className={cn(
-        "text-neutral-500 mt-4 text-sm dark:text-neutral-400",
-        className
-      )}
+      className={cn([
+        /* Typography & Colors */
+        "text-neutral-500 mt-4 text-sm",
+        /* Dark Mode */
+        "dark:text-neutral-400",
+        className,
+      ])}
       {...props}
     />
   );

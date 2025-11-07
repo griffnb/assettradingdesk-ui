@@ -15,7 +15,7 @@ export class CompanyMetaData extends ValidationClass {
 }
 
 export class CompanyBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) organization_id: string | null = null;
+  @attr("uuid") organization_id: string | null = null;
   @attr("string") name: string = "";
   @attr("string") country: string = "";
   @attr("json", { classType: CompanyAddress }) address: CompanyAddress =

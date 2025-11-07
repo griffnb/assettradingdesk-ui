@@ -26,14 +26,14 @@ export class RequestMetaData extends ValidationClass {
 }
 
 export class RequestBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) organization_id: string | null = null;
-  @attr("uuid", { nullable: true }) company_id: string | null = null;
-  @attr("uuid", { nullable: true }) client_id: string | null = null;
-  @attr("uuid", { nullable: true }) account_id: string | null = null;
-  @attr("uuid", { nullable: true }) source_request_id: string | null = null;
-  @attr("uuid", { nullable: true }) model_id: string | null = null;
-  @attr("uuid", { nullable: true }) manufacturer_id: string | null = null;
-  @attr("uuid", { nullable: true }) category_id: string | null = null;
+  @attr("uuid") organization_id: string | null = null;
+  @attr("uuid") company_id: string | null = null;
+  @attr("uuid") client_id: string | null = null;
+  @attr("uuid") account_id: string | null = null;
+  @attr("uuid") source_request_id: string | null = null;
+  @attr("uuid") model_id: string | null = null;
+  @attr("uuid") manufacturer_id: string | null = null;
+  @attr("uuid") category_id: string | null = null;
   @attr("string") description: string = "";
   @attr("string") configuration_notes: string = "";
   @attr("json", { classType: RequestMetaData }) meta_data: RequestMetaData =

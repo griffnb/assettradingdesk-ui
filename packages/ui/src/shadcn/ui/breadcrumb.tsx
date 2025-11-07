@@ -12,10 +12,13 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
   return (
     <ol
       data-slot="breadcrumb-list"
-      className={cn(
-        "text-neutral-500 flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5 dark:text-neutral-400",
-        className
-      )}
+      className={cn([
+        "flex flex-wrap items-center",
+        "gap-1.5 sm:gap-2.5",
+        "text-sm text-neutral-500 break-words",
+        "dark:text-neutral-400",
+        className,
+      ])}
       {...props}
     />
   );
@@ -25,7 +28,7 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
       data-slot="breadcrumb-item"
-      className={cn("inline-flex items-center gap-1.5", className)}
+      className={cn(["inline-flex items-center gap-1.5", className])}
       {...props}
     />
   );
@@ -43,10 +46,12 @@ function BreadcrumbLink({
   return (
     <Comp
       data-slot="breadcrumb-link"
-      className={cn(
-        "hover:text-neutral-950 transition-colors dark:hover:text-neutral-50",
-        className
-      )}
+      className={cn([
+        "transition-colors",
+        "hover:text-neutral-950",
+        "dark:hover:text-neutral-50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -59,10 +64,11 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
       role="link"
       aria-disabled="true"
       aria-current="page"
-      className={cn(
-        "text-neutral-950 font-normal dark:text-neutral-50",
-        className
-      )}
+      className={cn([
+        "font-normal text-neutral-950",
+        "dark:text-neutral-50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -78,7 +84,7 @@ function BreadcrumbSeparator({
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      className={cn("[&>svg]:size-3.5", className)}
+      className={cn(["[&>svg]:size-3.5", className])}
       {...props}
     >
       {children ?? <ChevronRight />}
@@ -95,7 +101,7 @@ function BreadcrumbEllipsis({
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn(["flex size-9 items-center justify-center", className])}
       {...props}
     >
       <MoreHorizontal className="size-4" />

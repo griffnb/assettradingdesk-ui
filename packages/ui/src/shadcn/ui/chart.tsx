@@ -54,10 +54,7 @@ function ChartContainer({
       <div
         data-slot="chart"
         data-chart={chartId}
-        className={cn(
-          "[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
-          className
-        )}
+        className={cn([\n          // Layout\n          \"flex aspect-video justify-center\",\n          // Typography\n          \"text-xs\",\n          // Recharts Styles - Axis & Grid\n          \"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground\",\n          \"[&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50\",\n          \"[&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border\",\n          \"[&_.recharts-reference-line_[stroke='#ccc']]:stroke-border\",\n          // Recharts Styles - Curves & Shapes\n          \"[&_.recharts-curve.recharts-tooltip-cursor]:stroke-border\",\n          \"[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted\",\n          \"[&_.recharts-radial-bar-background-sector]:fill-muted\",\n          // Recharts Styles - Dots & Strokes\n          \"[&_.recharts-dot[stroke='#fff']]:stroke-transparent\",\n          \"[&_.recharts-sector[stroke='#fff']]:stroke-transparent\",\n          // Recharts Styles - Outlines\n          \"[&_.recharts-layer]:outline-hidden\",\n          \"[&_.recharts-sector]:outline-hidden\",\n          \"[&_.recharts-surface]:outline-hidden\",\n          className,\n        ])}  
         {...props}
       >
         <ChartStyle id={chartId} config={config} />

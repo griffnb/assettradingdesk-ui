@@ -1,10 +1,9 @@
-import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import {FormWrap} from "@/ui/common/components/form/wrap/FormWrap";
+import { MessageModel } from "@/models/models/message/model/MessageModel";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
-import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { MessageModel } from "@/models/models/message/model/MessageModel";
+import { useNavigate } from "react-router";
 
 interface MessageFormProps {
   record: MessageModel;
@@ -12,7 +11,9 @@ interface MessageFormProps {
   onCancel?: () => void;
 }
 
-export const MessageForm = observer(function MessageForm(props: MessageFormProps) {
+export const MessageForm = observer(function MessageForm(
+  props: MessageFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -59,17 +60,7 @@ export const MessageForm = observer(function MessageForm(props: MessageFormProps
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      
-
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
-
+      <></>
     </FormWrap>
   );
 });
-

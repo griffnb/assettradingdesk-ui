@@ -1,3 +1,4 @@
+import { useAccount } from "@/common_lib/authentication/useAccount";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
@@ -15,6 +16,9 @@ export interface AssetDetailsProps {
 export const AssetDetails = observer(function AssetDetails({
   asset,
 }: AssetDetailsProps) {
+  const { account } = useAccount();
+  const isAuthenticated = !!account;
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -34,8 +38,11 @@ export const AssetDetails = observer(function AssetDetails({
   };
 
   const handlePrimaryAction = () => {
-    // TODO: Implement primary action (e.g., contact seller)
-    console.log("Primary action clicked for asset:", asset.id);
+    // If not authenticated, redirect to login
+    if (!isAuthenticated) {
+      console.log("Redirecting to login...");
+      // TODO: Implement redirect to login
+    }
   };
 
   const handleSecondaryAction = () => {
@@ -62,6 +69,7 @@ export const AssetDetails = observer(function AssetDetails({
           {/* Right side - Product information */}
           <ProductInfo
             asset={asset}
+            isAuthenticated={isAuthenticated}
             onShare={handleShare}
             onFavorite={handleFavorite}
             onPrimaryAction={handlePrimaryAction}

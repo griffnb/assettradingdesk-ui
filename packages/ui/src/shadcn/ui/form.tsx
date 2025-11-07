@@ -80,7 +80,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        className={cn(["grid gap-2", className])}
         {...props}
       />
     </FormItemContext.Provider>
@@ -97,10 +97,13 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn(
-        "data-[error=true]:text-red-500 dark:data-[error=true]:text-red-900",
-        className
-      )}
+      className={cn([
+        /* Error State */
+        "data-[error=true]:text-red-500",
+        /* Dark Mode */
+        "dark:data-[error=true]:text-red-900",
+        className,
+      ])}
       htmlFor={formItemId}
       {...props}
     />
@@ -133,10 +136,13 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-description"
       id={formDescriptionId}
-      className={cn(
-        "text-neutral-500 text-sm dark:text-neutral-400",
-        className
-      )}
+      className={cn([
+        /* Typography & Colors */
+        "text-neutral-500 text-sm",
+        /* Dark Mode */
+        "dark:text-neutral-400",
+        className,
+      ])}
       {...props}
     />
   );
@@ -154,7 +160,13 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-red-500 text-sm dark:text-red-900", className)}
+      className={cn([
+        /* Typography & Colors */
+        "text-red-500 text-sm",
+        /* Dark Mode */
+        "dark:text-red-900",
+        className,
+      ])}
       {...props}
     >
       {body}

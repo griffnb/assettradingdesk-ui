@@ -8,7 +8,7 @@ import {
   ViewSidebarMenuItem,
 } from "@/ui/shadcn/ui/sidebarview";
 import { SignedIn, SignOutButton, useAuth } from "@clerk/clerk-react";
-import { X } from "lucide-react";
+import { MessageSquare, X } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
 
@@ -25,6 +25,14 @@ const sidebarItems = [
     title: "Browse Assets",
     url: "/assets",
     icon: null,
+  },
+];
+
+const authenticatedItems = [
+  {
+    title: "Messages",
+    url: "/messages",
+    icon: <MessageSquare className="size-4" />,
   },
 ];
 
@@ -49,7 +57,7 @@ export const MobileMenu = observer(function MobileMenu() {
           icon: null,
         },
       ]
-    : [...sidebarItems];
+    : [...sidebarItems, ...authenticatedItems];
 
   return (
     <TakeoverPanelWrap

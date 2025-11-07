@@ -9,11 +9,13 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
   return (
     <fieldset
       data-slot="field-set"
-      className={cn(
+      className={cn([
+        /* Layout */
         "flex flex-col gap-6",
+        /* Conditional Gaps */
         "has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
-        className
-      )}
+        className,
+      ])}
       {...props}
     />
   );
@@ -28,12 +30,14 @@ function FieldLegend({
     <legend
       data-slot="field-legend"
       data-variant={variant}
-      className={cn(
+      className={cn([
+        /* Spacing & Typography */
         "mb-3 font-medium",
+        /* Variant Sizes */
         "data-[variant=legend]:text-base",
         "data-[variant=label]:text-sm",
-        className
-      )}
+        className,
+      ])}
       {...props}
     />
   );
@@ -43,21 +47,34 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-group"
-      className={cn(
-        "group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4",
-        className
-      )}
+      className={cn([
+        /* Layout & Container */
+        "group/field-group @container/field-group flex w-full flex-col gap-7",
+        /* Conditional Gaps */
+        "data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4",
+        className,
+      ])}
       {...props}
     />
   );
 }
 
 const fieldVariants = cva(
-  "group/field flex w-full gap-3 data-[invalid=true]:text-red-500 dark:data-[invalid=true]:text-red-900",
+  [
+    /* Layout & Spacing */
+    "group/field flex w-full gap-3",
+    /* Invalid State */
+    "data-[invalid=true]:text-red-500",
+    /* Dark Mode */
+    "dark:data-[invalid=true]:text-red-900",
+  ],
   {
     variants: {
       orientation: {
-        vertical: ["flex-col [&>*]:w-full [&>.sr-only]:w-auto"],
+        vertical: [
+          /* Layout */
+          "flex-col [&>*]:w-full [&>.sr-only]:w-auto",
+        ],
         horizontal: [
           "flex-row items-center",
           "[&>[data-slot=field-label]]:flex-auto",
@@ -96,10 +113,11 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-content"
-      className={cn(
+      className={cn([
+        /* Layout & Typography */
         "group/field-content flex flex-1 flex-col gap-1.5 leading-snug",
-        className
-      )}
+        className,
+      ])}
       {...props}
     />
   );
@@ -112,12 +130,19 @@ function FieldLabel({
   return (
     <Label
       data-slot="field-label"
-      className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50",
+      className={cn([
+        /* Layout & Typography */
+        "group/field-label peer/field-label flex w-fit gap-2 leading-snug",
+        /* Disabled State */
+        "group-data-[disabled=true]/field:opacity-50",
+        /* Conditional Nested Field Styles */
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&>*]:data-[slot=field]:p-4",
-        "has-data-[state=checked]:bg-neutral-900/5 has-data-[state=checked]:border-neutral-900 dark:has-data-[state=checked]:bg-neutral-900/10 dark:has-data-[state=checked]:bg-neutral-50/5 dark:has-data-[state=checked]:border-neutral-50 dark:dark:has-data-[state=checked]:bg-neutral-50/10",
-        className
-      )}
+        /* Checked State */
+        "has-data-[state=checked]:bg-neutral-900/5 has-data-[state=checked]:border-neutral-900",
+        /* Dark Mode Checked */
+        "dark:has-data-[state=checked]:bg-neutral-900/10 dark:has-data-[state=checked]:bg-neutral-50/5 dark:has-data-[state=checked]:border-neutral-50 dark:dark:has-data-[state=checked]:bg-neutral-50/10",
+        className,
+      ])}
       {...props}
     />
   );
@@ -127,10 +152,13 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-label"
-      className={cn(
-        "flex w-fit items-center gap-2 text-sm leading-snug font-medium group-data-[disabled=true]/field:opacity-50",
-        className
-      )}
+      className={cn([
+        /* Layout & Typography */
+        "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
+        /* Disabled State */
+        "group-data-[disabled=true]/field:opacity-50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -140,12 +168,18 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="field-description"
-      className={cn(
-        "text-neutral-500 text-sm leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance dark:text-neutral-400",
+      className={cn([
+        /* Typography & Colors */
+        "text-neutral-500 text-sm leading-normal font-normal",
+        "group-has-[[data-orientation=horizontal]]/field:text-balance",
+        /* Spacing */
         "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
-        "[&>a:hover]:text-neutral-900 [&>a]:underline [&>a]:underline-offset-4 dark:[&>a:hover]:text-neutral-50",
-        className
-      )}
+        /* Link Styles */
+        "[&>a:hover]:text-neutral-900 [&>a]:underline [&>a]:underline-offset-4",
+        /* Dark Mode */
+        "dark:text-neutral-400 dark:[&>a:hover]:text-neutral-50",
+        className,
+      ])}
       {...props}
     />
   );
@@ -162,16 +196,26 @@ function FieldSeparator({
     <div
       data-slot="field-separator"
       data-content={!!children}
-      className={cn(
-        "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
-        className
-      )}
+      className={cn([
+        /* Layout & Spacing */
+        "relative -my-2 h-5 text-sm",
+        /* Conditional Group Styles */
+        "group-data-[variant=outline]/field-group:-mb-2",
+        className,
+      ])}
       {...props}
     >
       <Separator className="absolute inset-0 top-1/2" />
       {children && (
         <span
-          className="bg-white text-neutral-500 relative mx-auto block w-fit px-2 dark:bg-neutral-950 dark:text-neutral-400"
+          className={cn([
+            /* Layout & Spacing */
+            "relative mx-auto block w-fit px-2",
+            /* Colors */
+            "bg-white text-neutral-500",
+            /* Dark Mode */
+            "dark:bg-neutral-950 dark:text-neutral-400",
+          ])}
           data-slot="field-separator-content"
         >
           {children}
@@ -220,10 +264,13 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn(
-        "text-red-500 text-sm font-normal dark:text-red-900",
-        className
-      )}
+      className={cn([
+        /* Typography & Colors */
+        "text-red-500 text-sm font-normal",
+        /* Dark Mode */
+        "dark:text-red-900",
+        className,
+      ])}
       {...props}
     >
       {content}

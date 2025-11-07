@@ -10,7 +10,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       role="list"
       data-slot="item-group"
-      className={cn("group/item-group flex flex-col", className)}
+      className={cn(["group/item-group flex flex-col", className])}
       {...props}
     />
   );
@@ -24,14 +24,30 @@ function ItemSeparator({
     <Separator
       data-slot="item-separator"
       orientation="horizontal"
-      className={cn("my-0", className)}
+      className={cn(["my-0", className])}
       {...props}
     />
   );
 }
 
 const itemVariants = cva(
-  "group/item flex items-center border border-neutral-200 border-transparent text-sm rounded-md transition-colors [a]:hover:bg-neutral-100/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px] dark:border-neutral-800 dark:[a]:hover:bg-neutral-800/50 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
+  [
+    // Layout
+    "group/item flex items-center flex-wrap",
+    // Borders & Shape
+    "border border-neutral-200 border-transparent rounded-md",
+    // Typography
+    "text-sm",
+    // States & Transitions
+    "outline-none transition-colors duration-100",
+    "[a]:hover:bg-neutral-100/50 [a]:transition-colors",
+    // Focus States
+    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+    // Dark Mode
+    "dark:border-neutral-800",
+    "dark:[a]:hover:bg-neutral-800/50",
+    "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
+  ],
   {
     variants: {
       variant: {

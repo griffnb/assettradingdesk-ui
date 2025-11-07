@@ -7,8 +7,8 @@ export class CategoryMetaData {
 }
 
 export class CategoryBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) industry_id: string | null = null;
-  @attr("uuid", { nullable: true }) parent_category_id: string | null = null;
+  @attr("uuid") industry_id: string | null = null;
+  @attr("uuid") parent_category_id: string | null = null;
   @attr("string") name: string = "";
   @attr("string") description: string = "";
   @attr("string") category_hierarchy: string = "";

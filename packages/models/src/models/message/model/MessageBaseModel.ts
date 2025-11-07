@@ -7,14 +7,14 @@ export class MessageMetaData {
 }
 
 export class MessageBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) from_account_id: string | null = null;
-  @attr("uuid", { nullable: true }) to_account_id: string | null = null;
+  @attr("uuid") from_account_id: string | null = null;
+  @attr("uuid") to_account_id: string | null = null;
   @attr("string") body: string = "";
   @attr("json", { classType: MessageMetaData }) meta_data: MessageMetaData =
     new MessageMetaData();
-  @attr("uuid", { nullable: true }) asset_id: string | null = null;
-  @attr("uuid", { nullable: true }) opportunity_id: string | null = null;
-  @attr("uuid", { nullable: true }) pipeline_id: string | null = null;
+  @attr("uuid") asset_id: string | null = null;
+  @attr("uuid") opportunity_id: string | null = null;
+  @attr("uuid") pipeline_id: string | null = null;
   @attr("number") is_read: number = 0;
 
   // Join fields (read-only)

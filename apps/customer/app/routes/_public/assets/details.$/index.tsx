@@ -1,7 +1,7 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
-import { AssetDetails } from "@/ui/customer/assets/details";
+import { AssetDetails } from "@/ui/customer/assets/details/AssetDetails";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";

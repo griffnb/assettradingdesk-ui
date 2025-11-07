@@ -13,7 +13,7 @@ function RadioGroup({
   return (
     <RadioGroupPrimitive.Root
       data-slot="radio-group"
-      className={cn("grid gap-3", className)}
+      className={cn(["grid gap-3", className])}
       {...props}
     />
   );
@@ -26,10 +26,30 @@ function RadioGroupItem({
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
-      className={cn(
-        "border-neutral-200 text-neutral-900 focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 aria-invalid:ring-red-500/20 dark:aria-invalid:ring-red-500/40 aria-invalid:border-red-500 dark:bg-neutral-200/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:text-neutral-50 dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50 dark:aria-invalid:ring-red-900/20 dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900 dark:dark:bg-neutral-800/30",
-        className
-      )}
+      className={cn([
+        // Base Styles
+        "aspect-square size-4 shrink-0 rounded-full",
+        "border border-neutral-200 shadow-xs outline-none",
+        // Colors
+        "text-neutral-900",
+        // Transitions
+        "transition-[color,box-shadow]",
+        // Focus States
+        "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+        // Invalid States
+        "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
+        // Disabled State
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        // Dark Mode - Base
+        "dark:bg-neutral-200/30 dark:border-neutral-800 dark:text-neutral-50",
+        "dark:dark:bg-neutral-800/30",
+        // Dark Mode - Focus
+        "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
+        // Dark Mode - Invalid States
+        "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20",
+        "dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900",
+        className,
+      ])}
       {...props}
     >
       <RadioGroupPrimitive.Indicator

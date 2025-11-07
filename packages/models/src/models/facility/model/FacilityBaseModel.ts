@@ -15,8 +15,8 @@ export class FacilityMetaData extends ValidationClass {
 }
 
 export class FacilityBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) organization_id: string | null = null;
-  @attr("uuid", { nullable: true }) company_id: string | null = null;
+  @attr("uuid") organization_id: string | null = null;
+  @attr("uuid") company_id: string | null = null;
   @attr("string") name: string = "";
   @attr("string") country: string = "";
   @attr("json", { classType: FacilityAddress }) address: FacilityAddress =

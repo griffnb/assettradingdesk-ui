@@ -13,31 +13,50 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="input-group"
       role="group"
-      className={cn(
-        "group/input-group border-neutral-200 dark:bg-neutral-200/30 relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none dark:border-neutral-800 dark:dark:bg-neutral-800/30",
+      className={cn([
+        /* Layout & Display */
+        "group/input-group relative flex w-full items-center rounded-md",
+        /* Borders & Shadows */
+        "border-neutral-200 border shadow-xs",
+        /* Sizing */
         "h-9 min-w-0 has-[>textarea]:h-auto",
-
-        // Variants based on alignment.
+        /* Transitions */
+        "transition-[color,box-shadow] outline-none",
+        /* Alignment Variants */
         "has-[>[data-align=inline-start]]:[&>input]:pl-2",
         "has-[>[data-align=inline-end]]:[&>input]:pr-2",
         "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3",
         "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3",
-
-        // Focus state.
-        "has-[[data-slot=input-group-control]:focus-visible]:border-neutral-950 has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-950/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] dark:has-[[data-slot=input-group-control]:focus-visible]:border-neutral-300 dark:has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-300/50",
-
-        // Error state.
-        "has-[[data-slot][aria-invalid=true]]:ring-red-500/20 has-[[data-slot][aria-invalid=true]]:border-red-500  dark:has-[[data-slot][aria-invalid=true]]:ring-red-900/20 dark:has-[[data-slot][aria-invalid=true]]:border-red-900 dark:dark:has-[[data-slot][aria-invalid=true]]:ring-red-900/40",
-
-        className
-      )}
+        /* Focus State */
+        "has-[[data-slot=input-group-control]:focus-visible]:border-neutral-950 has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-950/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px]",
+        /* Error State */
+        "has-[[data-slot][aria-invalid=true]]:ring-red-500/20 has-[[data-slot][aria-invalid=true]]:border-red-500",
+        /* Dark Mode Base */
+        "dark:bg-neutral-200/30 dark:border-neutral-800 dark:dark:bg-neutral-800/30",
+        /* Dark Mode Focus */
+        "dark:has-[[data-slot=input-group-control]:focus-visible]:border-neutral-300 dark:has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-300/50",
+        /* Dark Mode Error */
+        "dark:has-[[data-slot][aria-invalid=true]]:ring-red-900/20 dark:has-[[data-slot][aria-invalid=true]]:border-red-900 dark:dark:has-[[data-slot][aria-invalid=true]]:ring-red-900/40",
+        className,
+      ])}
       {...props}
     />
   );
 }
 
 const inputGroupAddonVariants = cva(
-  "text-neutral-500 flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium select-none [&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)] group-data-[disabled=true]/input-group:opacity-50 dark:text-neutral-400",
+  [
+    /* Layout & Typography */
+    "flex h-auto items-center justify-center gap-2 py-1.5 text-sm font-medium",
+    /* Colors & Interaction */
+    "text-neutral-500 cursor-text select-none",
+    /* SVG & KBD Styles */
+    "[&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)]",
+    /* Disabled State */
+    "group-data-[disabled=true]/input-group:opacity-50",
+    /* Dark Mode */
+    "dark:text-neutral-400",
+  ],
   {
     variants: {
       align: {
@@ -80,7 +99,12 @@ function InputGroupAddon({
 }
 
 const inputGroupButtonVariants = cva(
-  "text-sm shadow-none flex gap-2 items-center",
+  [
+    /* Layout & Typography */
+    "flex gap-2 items-center text-sm",
+    /* Shadow */
+    "shadow-none",
+  ],
   {
     variants: {
       size: {
@@ -119,10 +143,17 @@ function InputGroupButton({
 function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
-      className={cn(
-        "text-neutral-500 flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 dark:text-neutral-400",
-        className
-      )}
+      className={cn([
+        /* Layout & Typography */
+        "flex items-center gap-2 text-sm",
+        /* Colors */
+        "text-neutral-500",
+        /* SVG Styles */
+        "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        /* Dark Mode */
+        "dark:text-neutral-400",
+        className,
+      ])}
       {...props}
     />
   );
@@ -135,10 +166,17 @@ function InputGroupInput({
   return (
     <Input
       data-slot="input-group-control"
-      className={cn(
-        "flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent",
-        className
-      )}
+      className={cn([
+        /* Layout */
+        "flex-1 rounded-none border-0",
+        /* Colors */
+        "bg-transparent",
+        /* Shadows & Focus */
+        "shadow-none focus-visible:ring-0",
+        /* Dark Mode */
+        "dark:bg-transparent",
+        className,
+      ])}
       {...props}
     />
   );
@@ -151,10 +189,17 @@ function InputGroupTextarea({
   return (
     <Textarea
       data-slot="input-group-control"
-      className={cn(
-        "flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent",
-        className
-      )}
+      className={cn([
+        /* Layout */
+        "flex-1 resize-none rounded-none border-0 py-3",
+        /* Colors */
+        "bg-transparent",
+        /* Shadows & Focus */
+        "shadow-none focus-visible:ring-0",
+        /* Dark Mode */
+        "dark:bg-transparent",
+        className,
+      ])}
       {...props}
     />
   );

@@ -10,7 +10,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/ui/shadcn/ui/sidebar";
-import { BookOpen, Bot, PanelLeft, Plus, SquareTerminal } from "lucide-react";
+import {
+  BookOpen,
+  Bot,
+  MessageSquare,
+  PanelLeft,
+  Plus,
+  SquareTerminal,
+} from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
 
@@ -22,6 +29,11 @@ const platformItems = [
     title: "Dashboard",
     url: "/dashboard",
     icon: SquareTerminal,
+  },
+  {
+    title: "Messages",
+    url: "/messages",
+    icon: MessageSquare,
   },
   {
     title: "Suggested Assets",

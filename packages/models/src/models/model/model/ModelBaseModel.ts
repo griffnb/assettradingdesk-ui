@@ -4,8 +4,8 @@ import { ModelMetaData } from "./ModelMetaData";
 
 export class ModelBaseModel extends BaseModel {
   // UUID fields for relationships (nullable as indicated in Go with null:"true")
-  @attr("uuid", { nullable: true }) manufacturer_id: string | null = null;
-  @attr("uuid", { nullable: true }) category_id: string | null = null;
+  @attr("uuid") manufacturer_id: string | null = null;
+  @attr("uuid") category_id: string | null = null;
 
   // String fields
   @attr("string") name: string = "";
