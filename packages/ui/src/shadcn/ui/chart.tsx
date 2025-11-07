@@ -54,7 +54,29 @@ function ChartContainer({
       <div
         data-slot="chart"
         data-chart={chartId}
-        className={cn([\n          // Layout\n          \"flex aspect-video justify-center\",\n          // Typography\n          \"text-xs\",\n          // Recharts Styles - Axis & Grid\n          \"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground\",\n          \"[&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50\",\n          \"[&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border\",\n          \"[&_.recharts-reference-line_[stroke='#ccc']]:stroke-border\",\n          // Recharts Styles - Curves & Shapes\n          \"[&_.recharts-curve.recharts-tooltip-cursor]:stroke-border\",\n          \"[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted\",\n          \"[&_.recharts-radial-bar-background-sector]:fill-muted\",\n          // Recharts Styles - Dots & Strokes\n          \"[&_.recharts-dot[stroke='#fff']]:stroke-transparent\",\n          \"[&_.recharts-sector[stroke='#fff']]:stroke-transparent\",\n          // Recharts Styles - Outlines\n          \"[&_.recharts-layer]:outline-hidden\",\n          \"[&_.recharts-sector]:outline-hidden\",\n          \"[&_.recharts-surface]:outline-hidden\",\n          className,\n        ])}  
+        className={cn([
+          // Layout
+          "flex aspect-video justify-center",
+          // Typography
+          "text-xs",
+          // Recharts Styles - Axis & Grid
+          "[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground",
+          "[&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50",
+          "[&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border",
+          "[&_.recharts-reference-line_[stroke='#ccc']]:stroke-border",
+          // Recharts Styles - Curves & Shapes
+          "[&_.recharts-curve.recharts-tooltip-cursor]:stroke-border",
+          "[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted",
+          "[&_.recharts-radial-bar-background-sector]:fill-muted",
+          // Recharts Styles - Dots & Strokes
+          "[&_.recharts-dot[stroke='#fff']]:stroke-transparent",
+          "[&_.recharts-sector[stroke='#fff']]:stroke-transparent",
+          // Recharts Styles - Outlines
+          "[&_.recharts-layer]:outline-hidden",
+          "[&_.recharts-sector]:outline-hidden",
+          "[&_.recharts-surface]:outline-hidden",
+          className,
+        ])}
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
@@ -68,7 +90,7 @@ function ChartContainer({
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([, config]) => config.theme || config.color
+    ([, config]) => config.theme || config.color,
   );
 
   if (!colorConfig.length) {
@@ -91,7 +113,7 @@ ${colorConfig
   })
   .join("")}
 }
-`
+`,
           )
           .join(""),
       }}
@@ -170,8 +192,8 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        "border-neutral-200/50 bg-white grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-neutral-200 px-2.5 py-1.5 text-xs shadow-xl dark:border-neutral-800/50 dark:bg-neutral-950 dark:border-neutral-800",
-        className
+        "dark:border-neutral-800/50 dark:bg-neutral-950 dark:border-neutral-800 grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-neutral-200 border-neutral-200/50 bg-white px-2.5 py-1.5 text-xs shadow-xl",
+        className,
       )}
     >
       {!nestLabel ? tooltipLabel : null}
@@ -187,8 +209,8 @@ function ChartTooltipContent({
               <div
                 key={item.dataKey}
                 className={cn(
-                  "[&>svg]:text-neutral-500 flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 dark:[&>svg]:text-neutral-400",
-                  indicator === "dot" && "items-center"
+                  "dark:[&>svg]:text-neutral-400 flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-neutral-500",
+                  indicator === "dot" && "items-center",
                 )}
               >
                 {formatter && item?.value !== undefined && item.name ? (
@@ -201,14 +223,14 @@ function ChartTooltipContent({
                       !hideIndicator && (
                         <div
                           className={cn(
-                            "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
+                            "border-(--color-border) bg-(--color-bg) shrink-0 rounded-[2px]",
                             {
                               "h-2.5 w-2.5": indicator === "dot",
                               "w-1": indicator === "line",
                               "w-0 border-[1.5px] border-dashed bg-transparent":
                                 indicator === "dashed",
                               "my-0.5": nestLabel && indicator === "dashed",
-                            }
+                            },
                           )}
                           style={
                             {
@@ -222,17 +244,17 @@ function ChartTooltipContent({
                     <div
                       className={cn(
                         "flex flex-1 justify-between leading-none",
-                        nestLabel ? "items-end" : "items-center"
+                        nestLabel ? "items-end" : "items-center",
                       )}
                     >
                       <div className="grid gap-1.5">
                         {nestLabel ? tooltipLabel : null}
-                        <span className="text-neutral-500 dark:text-neutral-400">
+                        <span className="dark:text-neutral-400 text-neutral-500">
                           {itemConfig?.label || item.name}
                         </span>
                       </div>
                       {item.value && (
-                        <span className="text-neutral-950 font-mono font-medium tabular-nums dark:text-neutral-50">
+                        <span className="dark:text-neutral-50 font-mono font-medium tabular-nums text-neutral-950">
                           {item.value.toLocaleString()}
                         </span>
                       )}
@@ -271,7 +293,7 @@ function ChartLegendContent({
       className={cn(
         "flex items-center justify-center gap-4",
         verticalAlign === "top" ? "pb-3" : "pt-3",
-        className
+        className,
       )}
     >
       {payload
@@ -284,7 +306,7 @@ function ChartLegendContent({
             <div
               key={item.value}
               className={cn(
-                "[&>svg]:text-neutral-500 flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 dark:[&>svg]:text-neutral-400"
+                "dark:[&>svg]:text-neutral-400 flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-neutral-500",
               )}
             >
               {itemConfig?.icon && !hideIcon ? (
@@ -309,7 +331,7 @@ function ChartLegendContent({
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,
-  key: string
+  key: string,
 ) {
   if (typeof payload !== "object" || payload === null) {
     return undefined;
