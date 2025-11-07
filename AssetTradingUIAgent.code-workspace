@@ -1,0 +1,33 @@
+{
+  "folders": [
+    {
+      "name": "assettradingdesk-ui",
+      "path": ".",
+    },
+    {
+      "name": "customer",
+      "path": "apps/customer",
+    },
+    {
+      "name": "admin",
+      "path": "apps/admin",
+    },
+    {
+      "name": "common_lib",
+      "path": "packages/common_lib",
+    },
+    {
+      "name": "models",
+      "path": "packages/models",
+    },
+    {
+      "name": "utils",
+      "path": "packages/utils",
+    },
+    {
+      "name": "ui",
+      "path": "packages/ui",
+    },
+  ],
+  "settings": {},
+}
