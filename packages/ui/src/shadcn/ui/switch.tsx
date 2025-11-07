@@ -15,7 +15,7 @@ function Switch({
       className={cn([
         // Base Styles
         "peer inline-flex h-[1.15rem] w-8 shrink-0 items-center",
-        "border border-neutral-200 border-transparent rounded-full shadow-xs outline-none",
+        "rounded-full border border-neutral-200 border-transparent shadow-xs outline-none",
         // Transitions
         "transition-all",
         // Focus States

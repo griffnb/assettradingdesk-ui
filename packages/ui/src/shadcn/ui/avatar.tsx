@@ -42,7 +42,7 @@ function AvatarFallback({
       data-slot="avatar-fallback"
       className={cn([
         "flex size-full items-center justify-center",
-        "bg-neutral-100 rounded-full",
+        "rounded-full bg-neutral-100",
         "dark:bg-neutral-800",
         className,
       ])}

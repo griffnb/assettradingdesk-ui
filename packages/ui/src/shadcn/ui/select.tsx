@@ -36,13 +36,13 @@ function SelectTrigger({
       data-size={size}
       className={cn([
         /* Layout & Display */
-        "flex w-fit items-center justify-between gap-2 rounded-md px-3 py-2 whitespace-nowrap",
+        "flex w-fit items-center justify-between gap-2 whitespace-nowrap rounded-md px-3 py-2",
         /* Typography */
         "text-sm",
         /* Colors & Borders */
-        "border-neutral-200 border bg-transparent shadow-xs",
+        "border border-neutral-200 bg-transparent shadow-xs",
         /* Transitions */
-        "transition-[color,box-shadow] outline-none",
+        "outline-none transition-[color,box-shadow]",
         /* Sizing */
         "data-[size=default]:h-9 data-[size=sm]:h-8",
         /* Placeholder */
@@ -56,7 +56,7 @@ function SelectTrigger({
         /* Select Value Styles */
         "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
         /* SVG Styles */
-        "[&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         /* Dark Mode Base */
         "dark:bg-neutral-200/30 dark:border-neutral-800 dark:dark:bg-neutral-800/30",
         /* Dark Mode Placeholder */
@@ -94,11 +94,11 @@ function SelectContent({
         data-slot="select-content"
         className={cn([
           /* Layout & Display */
-          "relative z-50 min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md p-1",
+          "relative z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md p-1",
           /* Max Height & Origin */
           "max-h-(--radix-select-content-available-height) origin-(--radix-select-content-transform-origin)",
           /* Colors & Borders */
-          "bg-white text-neutral-950 border border-neutral-200 shadow-md",
+          "border border-neutral-200 bg-white text-neutral-950 shadow-md",
           /* Animations */
           "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           /* Popper Position */
@@ -117,7 +117,7 @@ function SelectContent({
           className={cn(
             "p-1",
             position === "popper" &&
-              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1"
+              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1",
           )}
         >
           {children}
@@ -137,7 +137,7 @@ function SelectLabel({
       data-slot="select-label"
       className={cn([
         /* Typography & Colors */
-        "text-neutral-500 px-2 py-1.5 text-xs",
+        "px-2 py-1.5 text-xs text-neutral-500",
         /* Dark Mode */
         "dark:text-neutral-400",
         className,
@@ -157,7 +157,7 @@ function SelectItem({
       data-slot="select-item"
       className={cn([
         /* Layout & Display */
-        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2",
+        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pl-2 pr-8",
         /* Typography */
         "text-sm",
         /* Interaction */
@@ -167,7 +167,7 @@ function SelectItem({
         /* Disabled State */
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         /* SVG Styles */
-        "[&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         /* Span Styles */
         "*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         /* Dark Mode */
@@ -195,7 +195,7 @@ function SelectSeparator({
       data-slot="select-separator"
       className={cn([
         /* Layout & Colors */
-        "bg-neutral-200 pointer-events-none -mx-1 my-1 h-px",
+        "pointer-events-none -mx-1 my-1 h-px bg-neutral-200",
         /* Dark Mode */
         "dark:bg-neutral-800",
         className,

@@ -62,7 +62,7 @@ function DialogContent({
         data-slot="dialog-content"
         className={cn([
           // Positioning
-          "fixed top-[50%] left-[50%] z-50",
+          "fixed left-[50%] top-[50%] z-50",
           "translate-x-[-50%] translate-y-[-50%]",
           // Layout & Sizing
           "grid w-full max-w-[calc(100%-2rem)]",
@@ -70,7 +70,7 @@ function DialogContent({
           // Spacing
           "gap-4 p-6",
           // Colors & Borders
-          "bg-white border border-neutral-200",
+          "border border-neutral-200 bg-white",
           "rounded-lg shadow-lg",
           // Animations
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
@@ -88,16 +88,16 @@ function DialogContent({
           <DialogPrimitive.Close
             data-slot="dialog-close"
             className={[
-              "absolute top-4 right-4",
+              "absolute right-4 top-4",
               "rounded-xs opacity-70",
               "transition-opacity",
               "hover:opacity-100",
-              "focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
+              "focus:outline-hidden focus:ring-2 focus:ring-offset-2",
               "focus:ring-neutral-950",
               "ring-offset-white",
               "data-[state=open]:bg-neutral-100 data-[state=open]:text-neutral-500",
               "disabled:pointer-events-none",
-              "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+              "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
               "dark:ring-offset-neutral-950",
               "dark:focus:ring-neutral-300",
               "dark:data-[state=open]:bg-neutral-800 dark:data-[state=open]:text-neutral-400",
@@ -147,7 +147,7 @@ function DialogTitle({
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn(["text-lg leading-none font-semibold", className])}
+      className={cn(["text-lg font-semibold leading-none", className])}
       {...props}
     />
   );

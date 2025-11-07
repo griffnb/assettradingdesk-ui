@@ -57,11 +57,11 @@ function InputOTPSlot({
         /* Typography */
         "text-sm",
         /* Borders & Shadows */
-        "border-neutral-200 border-y border-r shadow-xs",
+        "border-y border-r border-neutral-200 shadow-xs",
         /* Border Radius */
         "first:rounded-l-md first:border-l last:rounded-r-md",
         /* Transitions */
-        "transition-all outline-none",
+        "outline-none transition-all",
         /* Active State */
         "data-[active=true]:z-10 data-[active=true]:border-neutral-950 data-[active=true]:ring-[3px] data-[active=true]:ring-neutral-950/50",
         /* Active Invalid State */
@@ -82,17 +82,23 @@ function InputOTPSlot({
     >
       {char}
       {hasFakeCaret && (
-        <div className={cn(["pointer-events-none absolute inset-0 flex items-center justify-center"])}>
-          <div className={cn([
-            /* Layout & Sizing */
-            "h-4 w-px",
-            /* Colors */
-            "bg-neutral-950",
-            /* Animation */
-            "animate-caret-blink duration-1000",
-            /* Dark Mode */
-            "dark:bg-neutral-50",
-          ])} />
+        <div
+          className={cn([
+            "pointer-events-none absolute inset-0 flex items-center justify-center",
+          ])}
+        >
+          <div
+            className={cn([
+              /* Layout & Sizing */
+              "h-4 w-px",
+              /* Colors */
+              "bg-neutral-950",
+              /* Animation */
+              "animate-caret-blink duration-1000",
+              /* Dark Mode */
+              "dark:bg-neutral-50",
+            ])}
+          />
         </div>
       )}
     </div>

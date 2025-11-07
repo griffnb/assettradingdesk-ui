@@ -15,7 +15,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
       className={cn([
         "flex flex-wrap items-center",
         "gap-1.5 sm:gap-2.5",
-        "text-sm text-neutral-500 break-words",
+        "break-words text-sm text-neutral-500",
         "dark:text-neutral-400",
         className,
       ])}

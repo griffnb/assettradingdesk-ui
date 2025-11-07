@@ -17,11 +17,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn([
-        "border-b",
-        "last:border-b-0",
-        className,
-      ])}
+      className={cn(["border-b", "last:border-b-0", className])}
       {...props}
     />
   );
@@ -49,7 +45,7 @@ function AccordionTrigger({
           "transition-all",
           // States
           "hover:underline",
-          "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+          "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
           "disabled:pointer-events-none disabled:opacity-50",
           // Data States
           "[&[data-state=open]>svg]:rotate-180",
@@ -60,13 +56,15 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon className={cn([
-          "pointer-events-none size-4 shrink-0",
-          "translate-y-0.5",
-          "text-neutral-500",
-          "transition-transform duration-200",
-          "dark:text-neutral-400",
-        ])} />
+        <ChevronDownIcon
+          className={cn([
+            "pointer-events-none size-4 shrink-0",
+            "translate-y-0.5",
+            "text-neutral-500",
+            "transition-transform duration-200",
+            "dark:text-neutral-400",
+          ])}
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -87,7 +85,7 @@ function AccordionContent({
       ])}
       {...props}
     >
-      <div className={cn(["pt-0 pb-4", className])}>{children}</div>
+      <div className={cn(["pb-4 pt-0", className])}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }

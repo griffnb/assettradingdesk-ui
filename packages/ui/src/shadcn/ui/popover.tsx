@@ -35,8 +35,8 @@ function PopoverContent({
           "origin-(--radix-popover-content-transform-origin)",
           // Colors & Borders
           "bg-white text-neutral-950",
-          "border border-neutral-200 rounded-md shadow-md",
-          "p-4 outline-hidden",
+          "rounded-md border border-neutral-200 shadow-md",
+          "outline-hidden p-4",
           // Animations
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",

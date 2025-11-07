@@ -30,7 +30,7 @@ const buttonGroupVariants = cva(
     defaultVariants: {
       orientation: "horizontal",
     },
-  }
+  },
 );
 
 function ButtonGroup({
@@ -64,9 +64,9 @@ function ButtonGroupText({
         "flex items-center gap-2",
         "px-4",
         "text-sm font-medium",
-        "bg-neutral-100 border border-neutral-200",
+        "border border-neutral-200 bg-neutral-100",
         "rounded-md shadow-xs",
-        "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none",
         "dark:bg-neutral-800 dark:border-neutral-800",
         className,
       ])}

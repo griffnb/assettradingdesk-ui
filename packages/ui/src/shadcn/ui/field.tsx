@@ -90,7 +90,7 @@ const fieldVariants = cva(
     defaultVariants: {
       orientation: "vertical",
     },
-  }
+  },
 );
 
 function Field({
@@ -154,7 +154,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="field-label"
       className={cn([
         /* Layout & Typography */
-        "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
+        "flex w-fit items-center gap-2 text-sm font-medium leading-snug",
         /* Disabled State */
         "group-data-[disabled=true]/field:opacity-50",
         className,
@@ -170,10 +170,10 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
       data-slot="field-description"
       className={cn([
         /* Typography & Colors */
-        "text-neutral-500 text-sm leading-normal font-normal",
+        "text-sm font-normal leading-normal text-neutral-500",
         "group-has-[[data-orientation=horizontal]]/field:text-balance",
         /* Spacing */
-        "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
+        "nth-last-2:-mt-1 last:mt-0 [[data-variant=legend]+&]:-mt-1.5",
         /* Link Styles */
         "[&>a:hover]:text-neutral-900 [&>a]:underline [&>a]:underline-offset-4",
         /* Dark Mode */
@@ -250,7 +250,7 @@ function FieldError({
       <ul className="ml-4 flex list-disc flex-col gap-1">
         {errors.map(
           (error, index) =>
-            error?.message && <li key={index}>{error.message}</li>
+            error?.message && <li key={index}>{error.message}</li>,
         )}
       </ul>
     );
@@ -266,7 +266,7 @@ function FieldError({
       data-slot="field-error"
       className={cn([
         /* Typography & Colors */
-        "text-red-500 text-sm font-normal",
+        "text-sm font-normal text-red-500",
         /* Dark Mode */
         "dark:text-red-900",
         className,

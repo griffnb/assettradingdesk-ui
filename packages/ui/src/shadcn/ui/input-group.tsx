@@ -17,20 +17,20 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
         /* Layout & Display */
         "group/input-group relative flex w-full items-center rounded-md",
         /* Borders & Shadows */
-        "border-neutral-200 border shadow-xs",
+        "border border-neutral-200 shadow-xs",
         /* Sizing */
         "h-9 min-w-0 has-[>textarea]:h-auto",
         /* Transitions */
-        "transition-[color,box-shadow] outline-none",
+        "outline-none transition-[color,box-shadow]",
         /* Alignment Variants */
         "has-[>[data-align=inline-start]]:[&>input]:pl-2",
         "has-[>[data-align=inline-end]]:[&>input]:pr-2",
         "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3",
         "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3",
         /* Focus State */
-        "has-[[data-slot=input-group-control]:focus-visible]:border-neutral-950 has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-950/50 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px]",
+        "has-[[data-slot=input-group-control]:focus-visible]:border-neutral-950 has-[[data-slot=input-group-control]:focus-visible]:ring-[3px] has-[[data-slot=input-group-control]:focus-visible]:ring-neutral-950/50",
         /* Error State */
-        "has-[[data-slot][aria-invalid=true]]:ring-red-500/20 has-[[data-slot][aria-invalid=true]]:border-red-500",
+        "has-[[data-slot][aria-invalid=true]]:border-red-500 has-[[data-slot][aria-invalid=true]]:ring-red-500/20",
         /* Dark Mode Base */
         "dark:bg-neutral-200/30 dark:border-neutral-800 dark:dark:bg-neutral-800/30",
         /* Dark Mode Focus */
@@ -73,7 +73,7 @@ const inputGroupAddonVariants = cva(
     defaultVariants: {
       align: "inline-start",
     },
-  }
+  },
 );
 
 function InputGroupAddon({
@@ -118,7 +118,7 @@ const inputGroupButtonVariants = cva(
     defaultVariants: {
       size: "xs",
     },
-  }
+  },
 );
 
 function InputGroupButton({
@@ -149,7 +149,7 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
         /* Colors */
         "text-neutral-500",
         /* SVG Styles */
-        "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none",
         /* Dark Mode */
         "dark:text-neutral-400",
         className,

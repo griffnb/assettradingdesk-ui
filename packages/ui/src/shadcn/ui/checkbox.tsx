@@ -23,7 +23,7 @@ function Checkbox({
         "data-[state=checked]:bg-neutral-900 data-[state=checked]:text-neutral-50",
         "data-[state=checked]:border-neutral-900",
         // Focus States
-        "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+        "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
         // Invalid States
         "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
         // Disabled State

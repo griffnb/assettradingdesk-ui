@@ -370,7 +370,7 @@ const SidebarInset = React.forwardRef<
         /* Layout & Display */
         "relative flex w-full flex-1 flex-col",
         /* Colors & Backgrounds */
-        "bg-white dark:bg-neutral-950",
+        "dark:bg-neutral-950 bg-white",
         /* Peer Variant States */
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow",
         className,
@@ -393,7 +393,7 @@ const SidebarInput = React.forwardRef<
         /* Sizing */
         "h-8 w-full",
         /* Colors & Backgrounds */
-        "bg-white dark:bg-neutral-950",
+        "dark:bg-neutral-950 bg-white",
         /* Focus States */
         "shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
         className,
@@ -590,36 +590,38 @@ const SidebarMenuItem = React.forwardRef<
 ));
 SidebarMenuItem.displayName = "SidebarMenuItem";
 
-const sidebarMenuButtonVariants = cva([
-  /* Layout & Display */
-  "peer/menu-button flex w-full items-center gap-2 rounded-md p-2",
-  /* Typography */
-  "text-left text-sm",
-  /* Overflow */
-  "overflow-hidden",
-  /* Focus & Interaction */
-  "outline-none ring-sidebar-ring focus-visible:ring-2",
-  /* Transitions */
-  "transition-[width,height,padding]",
-  /* Hover States */
-  "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-  /* Active States */
-  "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
-  /* Disabled States */
-  "disabled:pointer-events-none disabled:opacity-50",
-  /* Aria Disabled */
-  "aria-disabled:pointer-events-none aria-disabled:opacity-50",
-  /* Data Active States */
-  "data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground",
-  /* Data State Open */
-  "data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground",
-  /* Group Conditions */
-  "group-has-[[data-sidebar=menu-action]]/menu-item:pr-8",
-  /* Collapsible Icon State */
-  "group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2",
-  /* Child Styles */
-  "[&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
-], {
+const sidebarMenuButtonVariants = cva(
+  [
+    /* Layout & Display */
+    "peer/menu-button flex w-full items-center gap-2 rounded-md p-2",
+    /* Typography */
+    "text-left text-sm",
+    /* Overflow */
+    "overflow-hidden",
+    /* Focus & Interaction */
+    "outline-none ring-sidebar-ring focus-visible:ring-2",
+    /* Transitions */
+    "transition-[width,height,padding]",
+    /* Hover States */
+    "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+    /* Active States */
+    "active:bg-sidebar-accent active:text-sidebar-accent-foreground",
+    /* Disabled States */
+    "disabled:pointer-events-none disabled:opacity-50",
+    /* Aria Disabled */
+    "aria-disabled:pointer-events-none aria-disabled:opacity-50",
+    /* Data Active States */
+    "data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground",
+    /* Data State Open */
+    "data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground",
+    /* Group Conditions */
+    "group-has-[[data-sidebar=menu-action]]/menu-item:pr-8",
+    /* Collapsible Icon State */
+    "group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2",
+    /* Child Styles */
+    "[&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  ],
+  {
     variants: {
       variant: {
         default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

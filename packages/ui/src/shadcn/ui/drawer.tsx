@@ -64,7 +64,7 @@ function DrawerContent({
           /* Layout & Display */
           "group/drawer-content fixed z-50 flex h-auto flex-col",
           /* Colors */
-          "bg-white dark:bg-neutral-950",
+          "dark:bg-neutral-950 bg-white",
           /* Top Direction */
           "data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-lg data-[vaul-drawer-direction=top]:border-b",
           /* Bottom Direction */
@@ -77,14 +77,16 @@ function DrawerContent({
         ])}
         {...props}
       >
-        <div className={cn([
-          /* Layout & Display */
-          "mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full",
-          /* Colors */
-          "bg-neutral-100 dark:bg-neutral-800",
-          /* Visibility */
-          "group-data-[vaul-drawer-direction=bottom]/drawer-content:block",
-        ])} />
+        <div
+          className={cn([
+            /* Layout & Display */
+            "mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full",
+            /* Colors */
+            "dark:bg-neutral-800 bg-neutral-100",
+            /* Visibility */
+            "group-data-[vaul-drawer-direction=bottom]/drawer-content:block",
+          ])}
+        />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -132,7 +134,7 @@ function DrawerTitle({
       data-slot="drawer-title"
       className={cn([
         /* Typography & Colors */
-        "text-neutral-950 font-semibold",
+        "font-semibold text-neutral-950",
         /* Dark Mode */
         "dark:text-neutral-50",
         className,
@@ -151,7 +153,7 @@ function DrawerDescription({
       data-slot="drawer-description"
       className={cn([
         /* Typography & Colors */
-        "text-neutral-500 text-sm",
+        "text-sm text-neutral-500",
         /* Dark Mode */
         "dark:text-neutral-400",
         className,

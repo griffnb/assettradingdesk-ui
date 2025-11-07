@@ -50,10 +50,10 @@ function TooltipContent({
           "z-50 w-fit",
           "origin-(--radix-tooltip-content-transform-origin)",
           // Colors & Shape
-          "bg-neutral-950 text-white rounded-md",
+          "rounded-md bg-neutral-950 text-white",
           "px-3 py-1.5",
           // Typography
-          "text-xs text-balance",
+          "text-balance text-xs",
           // Animations
           "animate-in fade-in-0 zoom-in-95",
           "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
@@ -68,12 +68,14 @@ function TooltipContent({
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className={[
-          "z-50 size-2.5",
-          "bg-neutral-950 fill-foreground",
-          "translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]",
-          "dark:bg-neutral-50",
-        ].join(" ")} />
+        <TooltipPrimitive.Arrow
+          className={[
+            "z-50 size-2.5",
+            "bg-neutral-950 fill-foreground",
+            "translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]",
+            "dark:bg-neutral-50",
+          ].join(" ")}
+        />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );

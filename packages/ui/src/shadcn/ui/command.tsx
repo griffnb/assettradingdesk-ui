@@ -53,7 +53,7 @@ function CommandDialog({
         className={cn(["overflow-hidden p-0", className])}
         showCloseButton={showCloseButton}
       >
-        <Command className="[&_[cmdk-group-heading]]:text-neutral-500 **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5 dark:[&_[cmdk-group-heading]]:text-neutral-400">
+        <Command className="**:data-[slot=command-input-wrapper]:h-12 dark:[&_[cmdk-group-heading]]:text-neutral-400 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-neutral-500 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
         </Command>
       </DialogContent>
@@ -75,9 +75,9 @@ function CommandInput({
         data-slot="command-input"
         className={cn([
           "flex h-10 w-full",
-          "bg-transparent rounded-md",
+          "rounded-md bg-transparent",
           "py-3",
-          "text-sm outline-hidden",
+          "outline-hidden text-sm",
           "placeholder:text-neutral-500",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "dark:placeholder:text-neutral-400",
@@ -98,7 +98,7 @@ function CommandList({
       data-slot="command-list"
       className={cn([
         "max-h-[300px] scroll-py-1",
-        "overflow-x-hidden overflow-y-auto",
+        "overflow-y-auto overflow-x-hidden",
         className,
       ])}
       {...props}
@@ -171,12 +171,12 @@ function CommandItem({
         "px-2 py-1.5",
         "rounded-sm",
         // Typography & States
-        "text-sm cursor-default select-none outline-hidden",
+        "outline-hidden cursor-default select-none text-sm",
         // Data States
         "data-[selected=true]:bg-neutral-100 data-[selected=true]:text-neutral-900",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
         // SVG Styles
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         "[&_svg:not([class*='text-'])]:text-neutral-500",
         // Dark Mode
         "dark:data-[selected=true]:bg-neutral-800 dark:data-[selected=true]:text-neutral-50",

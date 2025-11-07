@@ -13,7 +13,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         // Spacing
         "px-3 py-1",
         // Colors & Borders
-        "border border-neutral-200 bg-transparent rounded-md shadow-xs",
+        "rounded-md border border-neutral-200 bg-transparent shadow-xs",
         // Typography
         "text-base md:text-sm",
         // States

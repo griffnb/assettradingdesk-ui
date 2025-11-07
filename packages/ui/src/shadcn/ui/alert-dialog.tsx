@@ -56,7 +56,7 @@ function AlertDialogContent({
         data-slot="alert-dialog-content"
         className={cn([
           // Positioning
-          "fixed top-[50%] left-[50%] z-50",
+          "fixed left-[50%] top-[50%] z-50",
           "translate-x-[-50%] translate-y-[-50%]",
           // Layout & Sizing
           "grid w-full max-w-[calc(100%-2rem)]",
@@ -64,7 +64,7 @@ function AlertDialogContent({
           // Spacing
           "gap-4 p-6",
           // Colors & Borders
-          "bg-white border border-neutral-200",
+          "border border-neutral-200 bg-white",
           "rounded-lg shadow-lg",
           // Animations
           "data-[state=open]:animate-in data-[state=closed]:animate-out",

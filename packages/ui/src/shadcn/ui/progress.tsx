@@ -13,7 +13,7 @@ function Progress({
       data-slot="progress"
       className={cn([
         "relative h-2 w-full",
-        "bg-neutral-900/20 overflow-hidden rounded-full",
+        "overflow-hidden rounded-full bg-neutral-900/20",
         "dark:bg-neutral-50/20",
         className,
       ])}

@@ -15,7 +15,7 @@ function Menubar({
         /* Layout & Display */
         "flex h-9 items-center gap-1 rounded-md p-1",
         /* Colors & Borders */
-        "bg-white border border-neutral-200 shadow-xs",
+        "border border-neutral-200 bg-white shadow-xs",
         /* Dark Mode */
         "dark:bg-neutral-950 dark:border-neutral-800",
         className,
@@ -98,7 +98,7 @@ function MenubarContent({
           /* Origin */
           "origin-(--radix-menubar-content-transform-origin)",
           /* Colors & Borders */
-          "bg-white text-neutral-950 border border-neutral-200 shadow-md",
+          "border border-neutral-200 bg-white text-neutral-950 shadow-md",
           /* Animations */
           "data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           /* Dark Mode */
@@ -139,9 +139,9 @@ function MenubarItem({
         /* Inset Variant */
         "data-[inset]:pl-8",
         /* Destructive Variant */
-        "data-[variant=destructive]:text-red-500 data-[variant=destructive]:focus:bg-red-500/10 data-[variant=destructive]:focus:text-red-500 data-[variant=destructive]:*:[svg]:!text-destructive",
+        "data-[variant=destructive]:*:[svg]:!text-destructive data-[variant=destructive]:text-red-500 data-[variant=destructive]:focus:bg-red-500/10 data-[variant=destructive]:focus:text-red-500",
         /* SVG Styles */
-        "[&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         /* Dark Mode */
         "dark:focus:bg-neutral-800 dark:focus:text-neutral-50 dark:data-[variant=destructive]:text-red-900 dark:data-[variant=destructive]:focus:bg-red-900/10 dark:dark:data-[variant=destructive]:focus:bg-red-900/20 dark:data-[variant=destructive]:focus:text-red-900 dark:[&_svg:not([class*='text-'])]:text-neutral-400",
         className,
@@ -162,7 +162,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       className={cn([
         /* Layout & Display */
-        "relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8",
+        "rounded-xs relative flex cursor-default items-center gap-2 py-1.5 pl-8 pr-2",
         /* Typography */
         "text-sm",
         /* Interaction */
@@ -172,7 +172,7 @@ function MenubarCheckboxItem({
         /* Disabled State */
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         /* SVG Styles */
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         /* Dark Mode */
         "dark:focus:bg-neutral-800 dark:focus:text-neutral-50",
         className,
@@ -200,7 +200,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       className={cn([
         /* Layout & Display */
-        "relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8",
+        "rounded-xs relative flex cursor-default items-center gap-2 py-1.5 pl-8 pr-2",
         /* Typography */
         "text-sm",
         /* Interaction */
@@ -210,7 +210,7 @@ function MenubarRadioItem({
         /* Disabled State */
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         /* SVG Styles */
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         /* Dark Mode */
         "dark:focus:bg-neutral-800 dark:focus:text-neutral-50",
         className,
@@ -259,7 +259,7 @@ function MenubarSeparator({
       data-slot="menubar-separator"
       className={cn([
         /* Layout & Colors */
-        "bg-neutral-200 -mx-1 my-1 h-px",
+        "-mx-1 my-1 h-px bg-neutral-200",
         /* Dark Mode */
         "dark:bg-neutral-800",
         className,
@@ -278,7 +278,7 @@ function MenubarShortcut({
       data-slot="menubar-shortcut"
       className={cn([
         /* Typography & Colors */
-        "text-neutral-500 ml-auto text-xs tracking-widest",
+        "ml-auto text-xs tracking-widest text-neutral-500",
         /* Dark Mode */
         "dark:text-neutral-400",
         className,
@@ -312,7 +312,7 @@ function MenubarSubTrigger({
         /* Typography */
         "text-sm",
         /* Interaction */
-        "outline-none select-none",
+        "select-none outline-none",
         /* Inset Variant */
         "data-[inset]:pl-8",
         /* Focus States */
@@ -344,7 +344,7 @@ function MenubarSubContent({
         /* Origin */
         "origin-(--radix-menubar-content-transform-origin)",
         /* Colors & Borders */
-        "bg-white text-neutral-950 border border-neutral-200 shadow-lg",
+        "border border-neutral-200 bg-white text-neutral-950 shadow-lg",
         /* Animations */
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         /* Dark Mode */

@@ -26,7 +26,7 @@ type FormFieldContextValue<
 };
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {} as FormFieldContextValue,
 );
 
 const FormField = <
@@ -70,7 +70,7 @@ type FormItemContextValue = {
 };
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {} as FormItemContextValue,
 );
 
 function FormItem({ className, ...props }: React.ComponentProps<"div">) {
@@ -138,7 +138,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
       id={formDescriptionId}
       className={cn([
         /* Typography & Colors */
-        "text-neutral-500 text-sm",
+        "text-sm text-neutral-500",
         /* Dark Mode */
         "dark:text-neutral-400",
         className,
@@ -162,7 +162,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
       id={formMessageId}
       className={cn([
         /* Typography & Colors */
-        "text-red-500 text-sm",
+        "text-sm text-red-500",
         /* Dark Mode */
         "dark:text-red-900",
         className,
