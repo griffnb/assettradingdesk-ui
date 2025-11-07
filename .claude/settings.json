@@ -1,0 +1,20 @@
+{
+  "enabledMcpjsonServers": [
+    "ui_code_tools",
+    "shadcn",
+    "context7",
+    "playwright",
+    "figma"
+  ],
+  "enableAllProjectMcpServers": true,
+  "permissions": {
+    "allow": ["ui_code_tools", "context7", "Read(./**)"],
+    "deny": [
+      "Bash(curl:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.configs/**)"
+    ],
+    "ask": []
+  }
+}
