@@ -47,6 +47,10 @@ watch-cf-logs: ## Watch Cloudflare logs
 
 .PHONY: storybook
 storybook: ## Run the storybook
+	@if lsof -Pi :6006 -sTCP:LISTEN -t >/dev/null 2>&1; then \
+		echo "Storybook is already running on port 6006"; \
+		exit 0; \
+	fi; \
 	pnpm -F ui storybook
 
 

@@ -1,13 +1,18 @@
----
-applyTo: "**/!(*.stories).ts?(x)"
----
-
 PRD Located at
 `./docs/PRD.md`
 
-Be sure to reference your skills for detailed explainations of components
+## REQUIRED
 
-When starting with a new component, always use `#ui-code-tools` to generate the component, it will stub everything for you
+- When creating components, **ALWAYS** create a storybook file to verify how it looks.
+
+- Use `#ui_code_tools storybook` to launch storybook if its not already available on `http://localhost:6006`
+- **When creating Storybook stories with models, always reference the storybook-creation skill first** to ensure the correct Store.create() pattern is used instead of manually instantiating models
+
+- Be sure to always reference your skills for detailed explainations
+
+- When starting with a new component, always use `#ui-code-tools` to generate the component, it will stub everything for you
+
+- Use sub agents as much as possible
 
 **NOTE**
 This project uses shadcn and already has all of the components installed. They are in `./packages/ui/src/shadcn/ui`
