@@ -19,7 +19,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn([
-        "flex h-full w-full flex-col",
+        "flex size-full flex-col",
         "bg-white text-neutral-950",
         "overflow-hidden rounded-md",
         "dark:bg-neutral-950 dark:text-neutral-50",

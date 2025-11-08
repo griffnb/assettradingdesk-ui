@@ -907,6 +907,9 @@ importers:
       '@storybook/addon-links':
         specifier: ^10.0.6
         version: 10.0.6(react@19.2.0)(storybook@10.0.6)
+      '@storybook/addon-mcp':
+        specifier: ^0.1.3
+        version: 0.1.3(storybook@10.0.6)(typescript@5.9.3)
       '@storybook/react-vite':
         specifier: ^10.0.6
         version: 10.0.6(react-dom@19.2.0)(react@19.2.0)(storybook@10.0.6)(typescript@5.9.3)(vite@6.3.6)(webpack@5.102.1)
@@ -8841,6 +8844,10 @@ packages:
     resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
     dev: false
 
+  /@standard-schema/spec@1.0.0:
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+    dev: true
+
   /@standard-schema/utils@0.3.0:
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
     dev: false
@@ -8878,6 +8885,22 @@ packages:
       '@storybook/global': 5.0.0
       react: 19.2.0
       storybook: 10.0.6(@testing-library/dom@10.4.1)(msw@2.11.5)(prettier@3.6.2)(react-dom@19.2.0)(react@19.2.0)(vite@6.3.6)
+    dev: true
+
+  /@storybook/addon-mcp@0.1.3(storybook@10.0.6)(typescript@5.9.3):
+    resolution: {integrity: sha512-7lPSFkK0RmVIVlq+yNBg65m8GAih8IsOx61DeUQaKUSSSQlLFOFmtLHms/A1Noz2oMZ0wm/d3p5z2U/gYi+9dg==}
+    peerDependencies:
+      storybook: ^9.1.16 || ^10.0.0
+    dependencies:
+      '@storybook/mcp': 0.0.6(typescript@5.9.3)
+      '@tmcp/adapter-valibot': 0.1.4(tmcp@1.16.4)(valibot@1.1.0)
+      '@tmcp/transport-http': 0.8.1(tmcp@1.16.4)
+      storybook: 10.0.6(@testing-library/dom@10.4.1)(msw@2.11.5)(prettier@3.6.2)(react-dom@19.2.0)(react@19.2.0)(vite@6.3.6)
+      tmcp: 1.16.4(typescript@5.9.3)
+      valibot: 1.1.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@tmcp/auth'
+      - typescript
     dev: true
 
   /@storybook/addon-webpack5-compiler-babel@3.0.6(webpack@5.102.1):
@@ -8944,6 +8967,18 @@ packages:
     dependencies:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
+    dev: true
+
+  /@storybook/mcp@0.0.6(typescript@5.9.3):
+    resolution: {integrity: sha512-sCLU9jvCjCDFHOTSOa/3jUZ/HKTQQ5UrBC52mpBFEfgs6jUcspUC5DZSwsFqrcNi6jB4pi6MARLNlsimeGPsJg==}
+    dependencies:
+      '@tmcp/adapter-valibot': 0.1.4(tmcp@1.16.4)(valibot@1.1.0)
+      '@tmcp/transport-http': 0.8.1(tmcp@1.16.4)
+      tmcp: 1.16.4(typescript@5.9.3)
+      valibot: 1.1.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@tmcp/auth'
+      - typescript
     dev: true
 
   /@storybook/react-dom-shim@10.0.6(react-dom@19.2.0)(react@19.2.0)(storybook@10.0.6):
@@ -9114,6 +9149,40 @@ packages:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
       '@testing-library/dom': 10.4.1
+    dev: true
+
+  /@tmcp/adapter-valibot@0.1.4(tmcp@1.16.4)(valibot@1.1.0):
+    resolution: {integrity: sha512-/fGCUz/L5RLCYC4L0Mo6s9Z9cSIIPztuHfIkhyo3WjMPTjQWUkFulA47sZSWRTaz5eKQxm5fV1qcfT7zHSuY3Q==}
+    peerDependencies:
+      tmcp: ^1.10.2
+      valibot: ^1.1.0
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      '@valibot/to-json-schema': 1.3.0(valibot@1.1.0)
+      tmcp: 1.16.4(typescript@5.9.3)
+      valibot: 1.1.0(typescript@5.9.3)
+    dev: true
+
+  /@tmcp/session-manager@0.2.1(tmcp@1.16.4):
+    resolution: {integrity: sha512-DOGy9LfufXCy1wfpGHZ6qPSDQtRnTVwOb71+41ffovTqzLMZlK3iLK/LIsekHxIiku+iIAUiqEKN+DHbqEm8IA==}
+    peerDependencies:
+      tmcp: ^1.16.3
+    dependencies:
+      tmcp: 1.16.4(typescript@5.9.3)
+    dev: true
+
+  /@tmcp/transport-http@0.8.1(tmcp@1.16.4):
+    resolution: {integrity: sha512-gquyjtY34qqa1e6FF/IOSVz4g3GIMcnWM28gkrn0aJLKL9dtBjfLmfGbXg1Yc42O3oay4nsAlrb0W9ec592q3A==}
+    peerDependencies:
+      '@tmcp/auth': ^0.3.3
+      tmcp: ^1.16.3
+    peerDependenciesMeta:
+      '@tmcp/auth':
+        optional: true
+    dependencies:
+      '@tmcp/session-manager': 0.2.1(tmcp@1.16.4)
+      esm-env: 1.2.2
+      tmcp: 1.16.4(typescript@5.9.3)
     dev: true
 
   /@tokenlens/core@1.3.0:
@@ -9924,6 +9993,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@valibot/to-json-schema@1.3.0(valibot@1.1.0):
+    resolution: {integrity: sha512-82Vv6x7sOYhv5YmTRgSppSqj1nn2pMCk5BqCMGWYp0V/fq+qirrbGncqZAtZ09/lrO40ne/7z8ejwE728aVreg==}
+    peerDependencies:
+      valibot: ^1.1.0
+    dependencies:
+      valibot: 1.1.0(typescript@5.9.3)
+    dev: true
 
   /@vitejs/plugin-react@4.7.0(vite@6.3.6):
     resolution: {integrity: sha512-gUu9hwfWvvEDBBmgtAowQCojwZmJ5mcLn3aufeCsitijs3+f2NsrPtlAWIR6OPiqljl96GVCUbLe0HyqIpVaoA==}
@@ -12897,6 +12974,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /esm-env@1.2.2:
+    resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
+    dev: true
+
   /espree@10.4.0:
     resolution: {integrity: sha512-j6PAQ2uUr79PZhBjP5C5fhl8e39FmRnOjsD5lGnWrFU8i2G776tBK7+nP8KuQUTTyAZUwfQqXAgrVH5MbH9CYQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -14779,6 +14860,10 @@ packages:
   /json-parse-even-better-errors@3.0.2:
     resolution: {integrity: sha512-fi0NG4bPjCHunUJffmLd0gxssIgkNmArMvis4iNah6Owg1MCJjWhEcDLmsK6iGkJq3tHwbDkTlce70/tmXN4cQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  /json-rpc-2.0@1.7.1:
+    resolution: {integrity: sha512-JqZjhjAanbpkXIzFE7u8mE/iFblawwlXtONaCvRqI+pyABVz7B4M1EUNpyVW+dZjqgQ2L5HFmZCmOCgUKm00hg==}
+    dev: true
 
   /json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
@@ -18675,6 +18760,10 @@ packages:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: false
 
+  /sqids@0.3.0:
+    resolution: {integrity: sha512-lOQK1ucVg+W6n3FhRwwSeUijxe93b51Bfz5PMRMihVf1iVkl82ePQG7V5vwrhzB11v0NtsR25PSZRGiSomJaJw==}
+    dev: true
+
   /ssf@0.11.2:
     resolution: {integrity: sha512-+idbmIXoYET47hH+d7dfm2epdOMUDjqcB4648sTZ+t2JwoyBFL/insLfB/racrDmsKB3diwsDA696pZMieAC5g==}
     engines: {node: '>=0.8'}
@@ -19222,6 +19311,18 @@ packages:
     hasBin: true
     dependencies:
       tldts-core: 7.0.17
+    dev: true
+
+  /tmcp@1.16.4(typescript@5.9.3):
+    resolution: {integrity: sha512-coV3ChCclQwI9hTQDRb5uQaq7JY/zKQZ764Yhk0DkLiJEGLhckKTV8TNjuoCgt87zbqXe2v+ORih9sCJaaZ+1A==}
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      json-rpc-2.0: 1.7.1
+      sqids: 0.3.0
+      uri-template-matcher: 1.1.2
+      valibot: 1.1.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
     dev: true
 
   /to-regex-range@5.0.1:
@@ -19772,6 +19873,10 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.1
+
+  /uri-template-matcher@1.1.2:
+    resolution: {integrity: sha512-uZc1h12jdO3m/R77SfTEOuo6VbMhgWznaawKpBjRGSJb7i91x5PgI37NQJtG+Cerxkk0yr1pylBY2qG1kQ+aEQ==}
+    dev: true
 
   /use-callback-ref@1.3.3(@types/react@19.2.2)(react@19.2.0):
     resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}

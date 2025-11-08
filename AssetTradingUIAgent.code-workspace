@@ -29,5 +29,12 @@
       "path": "packages/ui",
     },
   ],
-  "settings": {},
+  "settings": {
+    "githubPullRequests.ignoredPullRequestBranches": ["development"],
+    "project-link.linkAliases": {
+      "go": "./assettradingdesk-go",
+      "ui": "./assettradingdesk-ui/packages/ui",
+      "models": "./assettradingdesk-ui/packages/models",
+    },
+  },
 }

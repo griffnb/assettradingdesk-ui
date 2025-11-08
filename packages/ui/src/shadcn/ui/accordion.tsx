@@ -45,7 +45,7 @@ function AccordionTrigger({
           "transition-all",
           // States
           "hover:underline",
-          "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+          "focus-visible:border-neutral-950 focus-visible:ring focus-visible:ring-neutral-950/50",
           "disabled:pointer-events-none disabled:opacity-50",
           // Data States
           "[&[data-state=open]>svg]:rotate-180",

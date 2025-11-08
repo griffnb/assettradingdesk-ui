@@ -2,7 +2,7 @@
 
 ## When Creating New Components
 
-1. Start with `#ui-code-tools` scaffold so `cva`, `data-slot`, and Tailwind patterns are pre-wired.
+1. Start with `#ui_code_tools` scaffold so `cva`, `data-slot`, and Tailwind patterns are pre-wired.
 2. Define base styles via `cva`, expose variant props sparingly, and merge user classes with `cn`.
 3. Provide `data-slot` attributes around key regions to keep overrides consistent.
 4. Keep utility strings readable—split long class lists across lines/arrays if needed for clarity.

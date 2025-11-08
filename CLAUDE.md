@@ -10,7 +10,7 @@ PRD Located at
 
 - Be sure to always reference your skills for detailed explainations
 
-- When starting with a new component, always use `#ui-code-tools` to generate the component, it will stub everything for you
+- When starting with a new component, always use `#ui_code_tools` to generate the component, it will stub everything for you
 
 - Use sub agents as much as possible
 

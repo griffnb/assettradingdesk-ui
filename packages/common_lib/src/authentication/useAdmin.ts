@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 type UseAdminProps = {
   minRole?: number;
   redirectLocation?: string;
+  checkOnly?: boolean;
 };
 
 export const useAdmin = (props?: UseAdminProps) => {
@@ -17,13 +18,17 @@ export const useAdmin = (props?: UseAdminProps) => {
       if (!admin) {
         setAdminLoading(false); // Auth check is complete
         setAdmin(null);
-        nav(props?.redirectLocation || "/login");
+        if (!props?.checkOnly) {
+          nav(props?.redirectLocation || "/login");
+        }
         return;
       }
       setAdmin(admin); // User is authenticated
       setAdminLoading(false); // Auth check is complete
       if (props?.minRole && admin.role && admin.role < props.minRole) {
-        nav(props?.redirectLocation || "/login");
+        if (!props?.checkOnly) {
+          nav(props?.redirectLocation || "/login");
+        }
       }
     });
   }, [SessionService.isAuthenticated]);

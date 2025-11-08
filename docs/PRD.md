@@ -29,6 +29,7 @@ Asset Trading Desk is a **B2B SaaS marketplace platform** that connects buyers a
 ### 2.1 Multi-Tenant SaaS Platform
 
 Asset Trading Desk operates as a **shared marketplace** where:
+
 - Multiple organizations can sign up independently
 - Organizations can interact across boundaries (Org A can buy from Org B)
 - Data isolation is manually enforced through queries.
@@ -58,12 +59,14 @@ The platform consists of two primary interfaces:
 ### 3.1 User Management Hierarchy
 
 #### Organizations
+
 - **Definition:** Top-level tenant representing a business entity with a paid subscription
 - **Created When:** A company signs up for the platform
 - **Capabilities:** Full platform access, can create users, manage assets and requests
 - **Relationship:** Can be linked to a Company entity if that company becomes a platform user
 
 #### Accounts (Users)
+
 - **Definition:** Individual login credentials for platform access
 - **Types:**
   - **End Users:** Buyers/sellers managing their own assets/requests
@@ -80,29 +83,32 @@ The platform consists of two primary interfaces:
 These entities represent people and organizations managed **within the CRM**, not necessarily platform users.
 
 #### Companies
+
 - **Definition:** Business entities tracked in the CRM (e.g., "Intel", "Boeing")
 - **Purpose:** Organize clients under corporate umbrellas
 - **Data:** Name, address, contact info, website, description, metadata
-- **Relationship:** 
+- **Relationship:**
   - Belongs to one Organization (the CRM owner)
   - Can be linked to an Organization entity if they become a platform user
   - Parent of Facilities
   - Parent of Clients
 
 #### Facilities
+
 - **Definition:** Physical locations under a Company (e.g., "Intel Chandler Campus")
 - **Purpose:** Track assets and clients at specific locations
 - **Data:** Name, address, contact info, description
-- **Relationship:** 
+- **Relationship:**
   - Belongs to one Company
   - Belongs to one Organization (inherited from Company)
   - Parent of Clients
 
 #### Clients
+
 - **Definition:** Individual contacts within Companies/Facilities that traders interact with
 - **Purpose:** CRM contact management
 - **Data:** Name, title, email, phone, decision-maker status, contact preferences
-- **Relationship:** 
+- **Relationship:**
   - Belongs to one Company
   - Belongs to one Facility (optional)
   - May have a supervisor (another Client)
@@ -128,13 +134,15 @@ Asset (individual items)
 ```
 
 #### Industries
+
 - **Definition:** Top-level categorization of asset types
 - **Management:** Admin-created and curated
 - **Examples:** Manufacturing, Healthcare, Transportation, Energy
 
 #### Categories
+
 - **Definition:** Hierarchical classification within industries
-- **Features:** 
+- **Features:**
   - Support parent-child relationships (subcategories)
   - Automatically generate hierarchy codes for efficient querying
   - Track category slugs for SEO-friendly URLs
@@ -142,6 +150,7 @@ Asset (individual items)
 - **Examples:** "Medical Imaging" → "MRI Machines" → "High-Field MRI"
 
 #### Manufacturers (Make)
+
 - **Definition:** Companies that produce equipment
 - **Features:**
   - Unique slug for URLs
@@ -150,6 +159,7 @@ Asset (individual items)
 - **Examples:** Siemens, GE, Caterpillar, John Deere
 
 #### Models
+
 - **Definition:** Specific equipment models from manufacturers
 - **Features:**
   - Linked to one Manufacturer and one Category
@@ -162,8 +172,9 @@ Asset (individual items)
 ### 3.4 Core Transaction Entities
 
 #### Assets
+
 - **Definition:** Physical equipment available for sale or tracking
-- **Created By:** 
+- **Created By:**
   - Accounts (self-listing)
   - Admins on behalf of Clients (CRM workflow)
 - **Key Data:**
@@ -180,6 +191,7 @@ Asset (individual items)
 - **Lifecycle:** Can be matched to multiple Requests
 
 #### Requests
+
 - **Definition:** Equipment needs submitted by buyers
 - **Created By:**
   - **Automatically:** When an Account views a Model page (indicates interest)
@@ -194,6 +206,7 @@ Asset (individual items)
 - **Lifecycle:** Can be matched to multiple Assets
 
 #### Opportunities
+
 - **Definition:** A potential match between an Asset and a Request
 - **Creation:** **Automatically generated** by the matching system when:
   - A Request matches an available Asset
@@ -220,6 +233,7 @@ Asset (individual items)
   ```
 
 #### Pipelines
+
 - **Definition:** Active deals in progress between buyer and seller
 - **Created By:** Converting an Opportunity into an active deal
 - **Key Data:**
@@ -245,18 +259,21 @@ Asset (individual items)
 ### 4.1 Buyer Journey (Customer App)
 
 #### A. Discovery & Browsing
+
 1. User browses asset catalog by Industry → Category → Manufacturer → Model
 2. User views specific Model page
 3. **System automatically creates a Request** for that Model (indicates interest)
 4. User can refine Request (add specs, price range, timeframe)
 
 #### B. Direct Request Submission
+
 1. User navigates to "Submit Request" flow
 2. User selects Model/Manufacturer/Category
 3. User enters specifications, price range, timeframe
 4. Request is created and enters matching system
 
 #### C. Opportunity Management
+
 1. Matching system identifies Assets that fit user's Requests
 2. System creates Opportunities and notifies user
 3. User reviews Opportunities:
@@ -267,6 +284,7 @@ Asset (individual items)
 ### 4.2 Seller Journey (Customer App)
 
 #### A. Asset Listing
+
 1. User creates account (or logs in)
 2. User navigates to "List Asset" flow
 3. User selects Model from catalog
@@ -278,6 +296,7 @@ Asset (individual items)
 5. Asset is created and enters matching system
 
 #### B. Opportunity Management
+
 1. Matching system identifies Requests that fit user's Assets
 2. System creates Opportunities and notifies user
 3. User reviews Opportunities (same workflow as buyers)
@@ -285,6 +304,7 @@ Asset (individual items)
 ### 4.3 Trader/CRM Workflow (Admin App - Future)
 
 #### A. Client Management
+
 1. Create Companies (e.g., "Intel", "Boeing")
 2. Create Facilities under Companies
 3. Create Clients (contacts) under Companies/Facilities
@@ -292,12 +312,14 @@ Asset (individual items)
 5. Link Clients to Accounts if they create platform logins
 
 #### B. Asset/Request Management on Behalf of Clients
+
 1. Trader creates Asset or Request
 2. Associates it with Client, Company, Facility
 3. Asset/Request enters matching system
 4. Opportunities are created
 
 #### C. Pipeline Management
+
 1. View all active Pipelines
 2. Filter by stage, client, company, owner
 3. Update Pipeline stage as deal progresses
@@ -306,6 +328,7 @@ Asset (individual items)
 6. Close deals or mark as lost
 
 #### D. Opportunity Review
+
 1. View Opportunities for managed Clients
 2. Kill irrelevant matches
 3. Convert promising matches to Pipelines
@@ -340,6 +363,7 @@ Create Opportunities
 ```
 
 **Matching Criteria:**
+
 - Model must match (or Request allows broader match via Manufacturer/Category)
 - Asset price within Request price range (if specified)
 - Request not expired
@@ -354,12 +378,13 @@ Create Opportunities
 
 Require elevated permissions (Admin or Read-Only Admin):
 
-| Role | Permissions |
-|------|-------------|
-| `ROLE_ADMIN (100)` | Full CRUD on all entities, system configuration |
-| `ROLE_READ_ADMIN (90)` | Read-only access to all entities |
+| Role                   | Permissions                                     |
+| ---------------------- | ----------------------------------------------- |
+| `ROLE_ADMIN (100)`     | Full CRUD on all entities, system configuration |
+| `ROLE_READ_ADMIN (90)` | Read-only access to all entities                |
 
 **Available Endpoints (per entity):**
+
 - `GET /admin/{entity}` - List with advanced filtering
 - `GET /admin/{entity}/{id}` - Get single record
 - `POST /admin/{entity}` - Create new record
@@ -378,6 +403,7 @@ Require authentication (`ROLE_ANY_AUTHORIZED`):
 ### 5.3 Data Isolation (Future)
 
 Currently, the platform operates as a **shared marketplace**:
+
 - All users can see all marketplace data (Assets, Requests in discovery)
 - CRM data (Companies, Clients, Pipelines) is organization-scoped
 - Future enhancement: Full multi-tenant data isolation per organization
@@ -395,6 +421,7 @@ Currently, the platform operates as a **shared marketplace**:
 - **API Pattern:** RESTful with auto-generated CRUD endpoints
 
 **Key Design Patterns:**
+
 - Thread-safe models with internal mutexes
 - Code generation for boilerplate (models, controllers, migrations)
 - Struct tags control database schema and API visibility
@@ -404,6 +431,7 @@ Currently, the platform operates as a **shared marketplace**:
 ### 6.2 Frontend
 
 #### Customer App (React + Vite)
+
 - **Framework:** React with React Router
 - **State Management:** MobX
 - **Styling:** Tailwind CSS + shadcn/ui components
@@ -411,6 +439,7 @@ Currently, the platform operates as a **shared marketplace**:
 - **Purpose:** Public marketplace interface
 
 #### Admin App (React + Vite)
+
 - **Framework:** React with React Router
 - **State Management:** MobX
 - **Styling:** Tailwind CSS + shadcn/ui components
@@ -429,23 +458,27 @@ Currently, the platform operates as a **shared marketplace**:
 The platform heavily uses code generation:
 
 **Go Backend:**
+
 ```bash
 #code-tools make_object ModelName    # Internal model
 #code-tools make_public_object ModelName  # Public-facing model
 ```
 
 Generates:
+
 - Model structs with typed fields
 - Database migrations
 - CRUD controllers
 - Repository query methods
 
 **TypeScript Frontend:**
+
 ```bash
-#ui-code-tools plop_vite_pod model_name model_names
+#ui_code_tools plop_vite_pod model_name model_names
 ```
 
 Generates:
+
 - Model classes
 - Service classes
 - CRUD pages (Index, New, Edit, Details)
@@ -522,6 +555,7 @@ Generates:
 All entities follow consistent patterns:
 
 **Admin Endpoints:**
+
 ```
 GET    /admin/{entity}           # List with filters
 GET    /admin/{entity}/{id}      # Get single
@@ -531,6 +565,7 @@ GET    /admin/{entity}/count     # Count
 ```
 
 **Public Endpoints:**
+
 ```
 GET    /{entity}                 # List (org-scoped)
 GET    /{entity}/{id}            # Get single (org-scoped)
@@ -542,33 +577,37 @@ PUT    /{entity}/{id}            # Update (org-scoped)
 
 Auto-parsed from URL query strings:
 
-| Pattern | Example | SQL Result |
-|---------|---------|------------|
-| Exact match | `?name=John` | `WHERE name = 'John'` |
-| IN clause | `?name[]=John&name[]=Jane` | `WHERE name IN('John','Jane')` |
-| Not equal | `?not:name=John` | `WHERE name != 'John'` |
-| Like search | `?q:name=John` | `WHERE LOWER(name) ILIKE '%john%'` |
-| Greater than | `?gt:price=100` | `WHERE price > 100` |
-| Less than | `?lt:price=500` | `WHERE price < 500` |
-| Between | `?between:price=100\|500` | `WHERE price >= 100 AND price <= 500` |
-| Ordering | `?order=name,created_at desc` | `ORDER BY name ASC, created_at DESC` |
-| Pagination | `?limit=20&offset=40` | `LIMIT 20 OFFSET 40` |
+| Pattern      | Example                       | SQL Result                            |
+| ------------ | ----------------------------- | ------------------------------------- |
+| Exact match  | `?name=John`                  | `WHERE name = 'John'`                 |
+| IN clause    | `?name[]=John&name[]=Jane`    | `WHERE name IN('John','Jane')`        |
+| Not equal    | `?not:name=John`              | `WHERE name != 'John'`                |
+| Like search  | `?q:name=John`                | `WHERE LOWER(name) ILIKE '%john%'`    |
+| Greater than | `?gt:price=100`               | `WHERE price > 100`                   |
+| Less than    | `?lt:price=500`               | `WHERE price < 500`                   |
+| Between      | `?between:price=100\|500`     | `WHERE price >= 100 AND price <= 500` |
+| Ordering     | `?order=name,created_at desc` | `ORDER BY name ASC, created_at DESC`  |
+| Pagination   | `?limit=20&offset=40`         | `LIMIT 20 OFFSET 40`                  |
 
 ### 8.3 Response Formatting
 
 **Success Response:**
+
 ```json
 {
-  "data": { /* entity or array */ },
+  "data": {
+    /* entity or array */
+  },
   "success": true
 }
 ```
 
 **Error Response:**
+
 ```json
 {
   "error": "Human-readable error message",
-  "success":false
+  "success": false
 }
 ```
 
@@ -686,6 +725,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 ## 11. Success Metrics
 
 ### 11.1 User Engagement
+
 - Active users (daily/weekly/monthly)
 - Assets listed per organization
 - Requests submitted per user
@@ -693,6 +733,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Pipeline win rate (Pipeline → Closed)
 
 ### 11.2 Marketplace Health
+
 - Total assets available
 - Total active requests
 - Average time to first match
@@ -700,6 +741,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Cross-organization transaction rate
 
 ### 11.3 Business Metrics
+
 - Monthly Recurring Revenue (MRR)
 - Customer Acquisition Cost (CAC)
 - Customer Lifetime Value (LTV)
@@ -707,6 +749,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Net Promoter Score (NPS)
 
 ### 11.4 Operational Metrics
+
 - Pipeline velocity (days per stage)
 - Average deal size
 - Assets per seller
@@ -718,28 +761,29 @@ Company ←→ Organization (Optional link when company becomes customer)
 
 ## 12. Glossary
 
-| Term | Definition |
-|------|------------|
-| **Account** | User login credentials for platform access |
-| **Asset** | Physical equipment available for sale or trade |
-| **Category** | Hierarchical classification of equipment types |
-| **Client** | CRM contact (may or may not have platform access) |
-| **Company** | Business entity in CRM (may or may not be platform customer) |
-| **Facility** | Physical location under a Company |
-| **Industry** | Top-level taxonomy category |
-| **Manufacturer** | Company that produces equipment |
-| **Model** | Specific equipment model from a manufacturer |
-| **Opportunity** | Auto-generated potential match between Asset and Request |
-| **Organization** | Paying customer (tenant) with platform subscription |
-| **Pipeline** | Active deal in progress through sales stages |
-| **Request** | Equipment need submitted by buyer |
-| **Trader** | CRM user managing client relationships and deals |
+| Term             | Definition                                                   |
+| ---------------- | ------------------------------------------------------------ |
+| **Account**      | User login credentials for platform access                   |
+| **Asset**        | Physical equipment available for sale or trade               |
+| **Category**     | Hierarchical classification of equipment types               |
+| **Client**       | CRM contact (may or may not have platform access)            |
+| **Company**      | Business entity in CRM (may or may not be platform customer) |
+| **Facility**     | Physical location under a Company                            |
+| **Industry**     | Top-level taxonomy category                                  |
+| **Manufacturer** | Company that produces equipment                              |
+| **Model**        | Specific equipment model from a manufacturer                 |
+| **Opportunity**  | Auto-generated potential match between Asset and Request     |
+| **Organization** | Paying customer (tenant) with platform subscription          |
+| **Pipeline**     | Active deal in progress through sales stages                 |
+| **Request**      | Equipment need submitted by buyer                            |
+| **Trader**       | CRM user managing client relationships and deals             |
 
 ---
 
 ## Appendix A: Model Field Reference
 
 ### Account
+
 - Identity: ID, URN, Email (unique)
 - Profile: FirstName, LastName, Phone
 - Organization: OrganizationID
@@ -748,6 +792,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Testing: TestUserType
 
 ### Asset
+
 - Identity: ID, URN
 - Taxonomy: ModelID → (ManufacturerID, CategoryID, IndustryID via joins)
 - Ownership: OrganizationID, CompanyID, ClientID
@@ -758,6 +803,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Media: AssetFiles (many)
 
 ### Request
+
 - Identity: ID, URN
 - Taxonomy: ModelID, ManufacturerID, CategoryID (flexible specificity)
 - Ownership: OrganizationID, CompanyID, ClientID, AccountID
@@ -766,6 +812,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Lifecycle: ExpireAtTS, SourceRequestID
 
 ### Opportunity
+
 - Identity: ID, URN
 - Matching: AssetID, RequestID
 - Type: OpportunityType
@@ -773,6 +820,7 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Context: OrganizationID, CompanyID, ClientID, PipelineID
 
 ### Pipeline
+
 - Identity: ID, URN, Name
 - Stage: Stage (1-7)
 - Buyer: BuyerOwnerAccountID, BuyerClientID
@@ -780,12 +828,14 @@ Company ←→ Organization (Optional link when company becomes customer)
 - Context: OrganizationID
 
 ### Company
+
 - Identity: ID, URN, Name
 - Location: Country, Address
 - Contact: Phone, Email, Website
 - Description: Description, MetaData
 
 ### Client
+
 - Identity: ID, URN, Name
 - Hierarchy: CompanyID, FacilityID, SupervisorClientID
 - Profile: Title, Email, Phone, Mobile

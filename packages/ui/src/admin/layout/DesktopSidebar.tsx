@@ -21,11 +21,10 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   const { sidebarOpen, expandedItems, toggleExpanded } = props;
   const location = useLocation();
   const navigate = useNavigate();
-  console.log({ location });
   return (
     <div
       className={cn(
-        "fixed inset-y-0 left-0 z-30 hidden w-64 transform border-r bg-background transition-transform duration-300 ease-in-out md:block",
+        "fixed inset-y-0 left-0 z-30 hidden w-64 border-r bg-background transition-transform duration-300 ease-in-out md:block",
         sidebarOpen ? "translate-x-0" : "-translate-x-full",
       )}
     >
@@ -70,7 +69,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                   {item.items && (
                     <ChevronDown
                       className={cn(
-                        "ml-2 h-4 w-4 transition-transform",
+                        "ml-2 size-4 transition-transform",
                         expandedItems[item.title] ? "rotate-180" : "",
                       )}
                     />

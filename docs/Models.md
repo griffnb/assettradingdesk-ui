@@ -2,7 +2,7 @@
 
 ## IMPORTANT
 
-**Never create a new database model adhoc unless asked for, use `#ui-code-tools` to built the skeleton**
+**Never create a new database model adhoc unless asked for, use `#ui_code_tools` to built the skeleton**
 
 ## Architecture Snapshot
 
@@ -12,7 +12,7 @@
 
 ## Folder & File Expectations
 
-- Directory layout: `packages/models/src/models/<entity>/` with `_constants/`, `model/`, `services/`, and a `constants.ts` re-export (`packages/models/src/models/company/constants.ts:1`). Use `#ui-code-tools` to scaffold the full pod.
+- Directory layout: `packages/models/src/models/<entity>/` with `_constants/`, `model/`, `services/`, and a `constants.ts` re-export (`packages/models/src/models/company/constants.ts:1`). Use `#ui_code_tools` to scaffold the full pod.
 - `model/<Entity>BaseModel.ts` mirrors the backend schema with nothing but `@attr` fields. Keep it pure data that comes form the API. Seperate out fields that can be changed from fields that are {readOnly:true} because they are just joined data
 - `model/<Entity>Model.ts` derives from the base to add computed getters, validation accessors, navigation helpers, etc.
 - Constants live under `_constants/` and roll up through `constants.ts` then `packages/models/src/constants.ts:1` for global access.

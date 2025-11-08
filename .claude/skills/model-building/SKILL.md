@@ -7,7 +7,7 @@ description: "Building MobX models with proper architecture, BaseModel patterns,
 
 ## Quick Reference
 
-**ALWAYS use `#ui-code-tools` to scaffold new models - never create manually**
+**ALWAYS use `#ui_code_tools` to scaffold new models - never create manually**
 
 ## Architecture Essentials
 

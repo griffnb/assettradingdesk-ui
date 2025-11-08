@@ -7,7 +7,7 @@ description: "Tailwind CSS styling with CVA variants, data-slots, layout pattern
 
 ## Quick Start
 
-1. **Always** start with `#ui-code-tools` scaffold for proper `cva` and `data-slot` setup
+1. **Always** start with `#ui_code_tools` scaffold for proper `cva` and `data-slot` setup
 2. Use Tailwind utilities - NO inline styles unless no Tailwind equivalent exists
 3. Merge classes with `cn()` helper (clsx + tailwind-merge)
 
@@ -95,7 +95,9 @@ Allow consumers to override specific parts:
 ## Layout Best Practices
 
 ### Spacing
+
 - Use `gap` over manual margins between siblings:
+
   ```typescript
   // Good
   <div className="flex gap-4">
@@ -111,10 +113,12 @@ Allow consumers to override specific parts:
   ```
 
 ### Padding & Alignment
+
 - Use consistent padding scales: `px-3`, `py-2.5`
 - Keep typography on grid with standard scales
 
 ### Heights for Scroll Containers
+
 - Use Tailwind calc with CSS variables
 - Use `useMeasureVariable` hook for auto-calculated heights
 - Avoid inline `style={{ height: ... }}`

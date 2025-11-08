@@ -83,6 +83,10 @@ export const sidebarItems: SidebarItem[] = [
         title: "Accounts",
         url: "/accounts",
       },
+      {
+        title: "Test Accounts",
+        url: "/accounts/testing",
+      },
     ],
   },
 

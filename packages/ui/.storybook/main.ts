@@ -8,9 +8,19 @@ const __filename = fileURLToPath(import.meta.url);
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
+    {
+      name: "@storybook/addon-mcp",
+      options: {
+        toolsets: {
+          dev: true, // Tools for story URL retrieval and UI building instructions (default: true)
+          docs: true, // Tools for component manifest and documentation (default: true, requires experimental feature)
+        },
+      },
+    },
     "@storybook/addon-links",
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
+    "@storybook/addon-mcp",
   ],
 
   staticDirs: ["../public"],

@@ -7,7 +7,7 @@ description: "Building shadcn/ui components with Radix UI primitives, CVA varian
 
 ## Quick Start
 
-1. **Always scaffold first** using `#ui-code-tools` plop generators
+1. **Always scaffold first** using `#ui_code_tools` plop generators
 2. **All shadcn components already installed** at `@/ui/shadcn/ui`
 3. **Use `#figma` tool** if given a Figma link
 4. **Wrap components in `observer()`** for MobX reactivity
@@ -200,7 +200,7 @@ When importing from Figma:
 
 ## Key Rules
 
-1. **Always use `#ui-code-tools`** to scaffold - never create manually
+1. **Always use `#ui_code_tools`** to scaffold - never create manually
 2. **Wrap with `observer()`** - all components need MobX reactivity
 3. **Use CVA for variants** - don't branch in JSX
 4. **Extend shadcn components** - don't rebuild from scratch
@@ -223,7 +223,7 @@ When importing from Figma:
 
 ## Checklist Before Implementation
 
-- [ ] Scaffolded with `#ui-code-tools`?
+- [ ] Scaffolded with `#ui_code_tools`?
 - [ ] Wrapped with `observer()`?
 - [ ] Using CVA for variants?
 - [ ] Using CSS variables for colors?

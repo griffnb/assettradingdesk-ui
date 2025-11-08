@@ -5,25 +5,35 @@
       "command": "./scripts/make_mcp.sh",
       "args": []
     },
-
     "shadcn": {
       "command": "npx",
-      "args": ["shadcn@latest", "mcp"]
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
     },
-
     "context7": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
     },
     "playwright": {
+      "type": "stdio",
       "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "type": "stdio"
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     },
     "figma": {
       "type": "http",
       "url": "https://mcp.figma.com/mcp"
+    },
+    "storybook-mcp": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
     }
   }
 }
