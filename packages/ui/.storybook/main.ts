@@ -37,6 +37,7 @@ const config: StorybookConfig = {
     return config;
   },
   // other Storybook config
+  // @ts-expect-error ignore this
   babel: async (options) => {
     options.plugins.push([
       "@babel/plugin-proposal-decorators",
@@ -46,6 +47,21 @@ const config: StorybookConfig = {
       "@babel/plugin-transform-class-properties",
       { loose: true },
     ]);
+
+    // Configure JSX runtime to use automatic transform
+    options.presets = options.presets || [];
+    const reactPresetIndex = options.presets.findIndex(
+      (preset: string | [string, unknown]) =>
+        (Array.isArray(preset) && preset[0]?.includes("@babel/preset-react")) ||
+        (typeof preset === "string" && preset.includes("@babel/preset-react")),
+    );
+
+    if (reactPresetIndex !== -1) {
+      options.presets[reactPresetIndex] = [
+        "@babel/preset-react",
+        { runtime: "automatic" },
+      ];
+    }
 
     return options;
   },
