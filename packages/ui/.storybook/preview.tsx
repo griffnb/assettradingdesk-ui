@@ -1,8 +1,7 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react-vite";
 import "../src/styles/code.css";
 import "../src/styles/datepicker.css";
 import "../src/styles/form-select.css";
-import "../src/styles/globals.css";
 import "../src/styles/icons.css";
 import "../src/styles/loading.css";
 import "../src/styles/table.css";
@@ -16,21 +15,27 @@ const preview: Preview = {
       </div>
     ),
   ],
+
   parameters: {
     backgrounds: {
-      values: [
+      options: {
         // 👇 Default values
-        { name: "Light", value: "#FFFFFF" },
-        { name: "Dark", value: "#4B5565" },
-      ],
-      // 👇 Specify which background is shown by default
-      default: "Light",
+        light: { name: "Light", value: "#FFFFFF" },
+
+        dark: { name: "Dark", value: "#4B5565" },
+      },
     },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+  },
+
+  initialGlobals: {
+    backgrounds: {
+      value: "light",
     },
   },
 };

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { makeAutoObservable } from "mobx";
 import { useState } from "react";
 import { Tag } from "../../fields/base/TagInputBase";

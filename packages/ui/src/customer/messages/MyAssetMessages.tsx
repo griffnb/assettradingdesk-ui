@@ -2,20 +2,23 @@ import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { MessageService } from "@/models/models/message/services/MessageService";
 import { Store } from "@/models/store/Store";
+import { Avatar, AvatarFallback } from "@/ui/shadcn/ui/avatar";
+import { Badge } from "@/ui/shadcn/ui/badge";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
+import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
+import { Separator } from "@/ui/shadcn/ui/separator";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { Textarea } from "@/ui/shadcn/ui/textarea";
 import { cn } from "@/utils/cn";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { MailOpen, MessageSquare, Send } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 
@@ -43,11 +46,12 @@ export const MyAssetMessages = observer(function MyAssetMessages({
 }: MyAssetMessagesProps) {
   const [conversations, setConversations] = useState<AssetConversation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedAssets, setExpandedAssets] = useState<Set<string>>(new Set());
+  const [selectedThread, setSelectedThread] =
+    useState<OpportunityThread | null>(null);
   const [selectedAsset, setSelectedAsset] = useState<AssetConversation | null>(
     null,
   );
-  const [selectedThread, setSelectedThread] =
-    useState<OpportunityThread | null>(null);
   const [replyText, setReplyText] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -158,218 +162,232 @@ export const MyAssetMessages = observer(function MyAssetMessages({
     }
   };
 
+  const toggleAsset = (assetId: string) => {
+    const newExpanded = new Set(expandedAssets);
+    if (newExpanded.has(assetId)) {
+      newExpanded.delete(assetId);
+    } else {
+      newExpanded.add(assetId);
+    }
+    setExpandedAssets(newExpanded);
+  };
+
+  const getAssetInitials = (assetName?: string | null) => {
+    if (!assetName) return "?";
+    return assetName
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  };
+
   if (loading) {
     return (
-      <div className={cn("container mx-auto p-6", className)}>
-        <Skeleton className="mb-4 h-8 w-64" />
-        <div className="grid gap-4 md:grid-cols-3">
-          <Skeleton className="h-96" />
-          <Skeleton className="col-span-2 h-96" />
-        </div>
+      <div className={cn("space-y-4", className)}>
+        <Skeleton className="h-12 w-full" />
+        <Skeleton className="h-96 w-full" />
       </div>
     );
   }
 
   return (
-    <div className={cn("container mx-auto p-6", className)}>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Asset Messages</h1>
-        <p className="text-gray-500">
-          View and respond to inquiries about your listed assets
-        </p>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-3">
-        {/* Asset List */}
-        <Card className="md:col-span-1">
+    <Card className={className}>
+      <CardContent className="grid gap-6 p-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+        {/* Left Panel - Asset List with Expandable Threads */}
+        <Card className="border-muted">
           <CardHeader>
-            <CardTitle>Your Assets ({conversations.length})</CardTitle>
-            <CardDescription>
-              Select an asset to view conversations
-            </CardDescription>
+            <CardTitle className="text-base">Your Assets</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            {conversations.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center">
-                <MailOpen className="mb-4 size-12 text-gray-400" />
-                <p className="text-sm text-gray-500">No messages yet</p>
-              </div>
-            ) : (
-              <div className="max-h-[600px] overflow-y-auto">
-                {conversations.map((conv) => (
-                  <button
-                    key={conv.assetId}
-                    onClick={() => {
-                      setSelectedAsset(conv);
-                      setSelectedThread(null);
-                    }}
-                    className={cn(
-                      "w-full border-b p-4 text-left transition-colors hover:bg-gray-50",
-                      selectedAsset?.assetId === conv.assetId && "bg-blue-50",
-                    )}
-                  >
-                    <div className="flex gap-3">
-                      {conv.asset?.mediumImage ? (
-                        <img
-                          src={conv.asset.mediumImage}
-                          alt={conv.asset.model_name || "Asset"}
-                          className="size-16 rounded object-cover"
-                        />
-                      ) : (
-                        <div className="flex size-16 items-center justify-center rounded bg-gray-200">
-                          <MailOpen className="size-8 text-gray-400" />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <p className="font-medium text-gray-900">
-                          {conv.asset?.model_name || "Unknown Asset"}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {conv.threads.length} conversation
-                          {conv.threads.length !== 1 ? "s" : ""}
-                        </p>
-                        {conv.totalUnread > 0 && (
-                          <span className="mt-1 inline-block rounded-full bg-blue-600 px-2 py-0.5 text-xs text-white">
-                            {conv.totalUnread} new
-                          </span>
+            <ScrollArea className="h-[600px]">
+              <div className="divide-y">
+                {conversations.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground">
+                    <p className="text-sm">No messages yet</p>
+                  </div>
+                ) : (
+                  conversations.map((conv) => {
+                    const isExpanded = expandedAssets.has(conv.assetId);
+                    return (
+                      <div key={conv.assetId}>
+                        <button
+                          onClick={() => toggleAsset(conv.assetId)}
+                          className="flex w-full items-center gap-3 bg-card/50 px-4 py-3 text-left hover:bg-muted"
+                        >
+                          <Avatar className="h-10 w-10">
+                            <AvatarFallback>
+                              {getAssetInitials(conv.asset?.model_name)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <p className="text-sm font-semibold">
+                              {conv.asset?.model_name || "Unknown Asset"}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {conv.threads.length} conversation
+                              {conv.threads.length !== 1 ? "s" : ""}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {conv.totalUnread > 0 && (
+                              <Badge
+                                className="bg-primary/20 text-primary"
+                                variant="secondary"
+                              >
+                                {conv.totalUnread}
+                              </Badge>
+                            )}
+                            {isExpanded ? (
+                              <ChevronDown className="size-4" />
+                            ) : (
+                              <ChevronRight className="size-4" />
+                            )}
+                          </div>
+                        </button>
+                        {isExpanded && (
+                          <div className="bg-muted/30">
+                            {conv.threads.map((thread, idx) => {
+                              const lastMessage =
+                                thread.messages[thread.messages.length - 1];
+                              const isSelected =
+                                selectedThread?.opportunityId ===
+                                  thread.opportunityId &&
+                                selectedAsset?.assetId === conv.assetId;
+                              return (
+                                <button
+                                  key={thread.opportunityId}
+                                  onClick={() => selectThread(conv, thread)}
+                                  className={cn(
+                                    "flex w-full items-start gap-3 border-t px-4 py-3 pl-16 text-left hover:bg-muted",
+                                    isSelected && "bg-muted",
+                                  )}
+                                >
+                                  <div className="flex-1">
+                                    <p className="text-xs font-medium">
+                                      Thread {idx + 1}
+                                    </p>
+                                    <p className="line-clamp-1 text-xs text-muted-foreground">
+                                      {lastMessage?.body || "No messages"}
+                                    </p>
+                                  </div>
+                                  <div className="text-right text-xs text-muted-foreground">
+                                    <p>
+                                      {lastMessage?.created_at
+                                        ? dayjs(
+                                            lastMessage.created_at.toDate(),
+                                          ).fromNow()
+                                        : ""}
+                                    </p>
+                                    {thread.unreadCount > 0 && (
+                                      <Badge
+                                        className="mt-1 bg-primary/20 text-primary"
+                                        variant="secondary"
+                                      >
+                                        {thread.unreadCount}
+                                      </Badge>
+                                    )}
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
                         )}
                       </div>
-                    </div>
-                  </button>
-                ))}
+                    );
+                  })
+                )}
               </div>
-            )}
+            </ScrollArea>
           </CardContent>
         </Card>
 
-        {/* Threads & Message Detail */}
-        <Card className="md:col-span-2">
+        {/* Right Panel - Message Thread */}
+        <Card className="border-muted">
           <CardHeader>
-            <CardTitle>
-              {selectedAsset
-                ? selectedThread
-                  ? "Conversation"
-                  : "Select a Conversation"
-                : "Select an Asset"}
-            </CardTitle>
-            <CardDescription>
-              {selectedAsset && !selectedThread
-                ? `${selectedAsset.threads.length} conversation${selectedAsset.threads.length !== 1 ? "s" : ""} for this asset`
-                : selectedThread
-                  ? "View messages and reply"
-                  : "Click an asset from the list"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {!selectedAsset ? (
-              <div className="flex h-64 items-center justify-center text-gray-400">
-                <div className="text-center">
-                  <MailOpen className="mx-auto mb-4 size-16" />
-                  <p>Select an asset to view conversations</p>
-                </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-base">
+                  {selectedThread && selectedAsset
+                    ? selectedAsset.asset?.model_name || "Conversation"
+                    : "Select a conversation"}
+                </CardTitle>
+                {selectedThread && (
+                  <p className="text-xs text-muted-foreground">
+                    Opportunity {selectedThread.opportunityId}
+                  </p>
+                )}
               </div>
-            ) : !selectedThread ? (
-              <div className="space-y-2">
-                {selectedAsset.threads.map((thread, idx) => {
-                  const lastMessage =
-                    thread.messages[thread.messages.length - 1];
-                  return (
-                    <button
-                      key={thread.opportunityId}
-                      onClick={() => selectThread(selectedAsset, thread)}
-                      className="w-full rounded-lg border p-4 text-left transition-colors hover:bg-gray-50"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <MessageSquare className="size-4 text-gray-500" />
-                          <span className="font-medium text-gray-900">
-                            Conversation {idx + 1}
-                          </span>
-                        </div>
-                        {thread.unreadCount > 0 && (
-                          <span className="rounded-full bg-blue-600 px-2 py-0.5 text-xs text-white">
-                            {thread.unreadCount} new
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-sm text-gray-600">
-                        {lastMessage?.body}
-                      </p>
-                      <p className="mt-1 text-xs text-gray-500">
-                        {lastMessage?.created_at
-                          ? dayjs(lastMessage.created_at.toDate()).fromNow()
-                          : ""}
-                      </p>
-                    </button>
-                  );
-                })}
+              {selectedThread && (
+                <Badge variant="outline">
+                  {selectedThread.messages.length} messages
+                </Badge>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            {!selectedThread ? (
+              <div className="flex h-[500px] items-center justify-center text-muted-foreground">
+                <p className="text-sm">
+                  Select a conversation to view messages
+                </p>
               </div>
             ) : (
-              <div className="space-y-6">
-                {/* Message Thread */}
-                <div className="max-h-[400px] space-y-4 overflow-y-auto">
-                  {selectedThread.messages
-                    .sort((a, b) => {
-                      if (!a.created_at || !b.created_at) return 0;
-                      return a.created_at.isBefore(b.created_at) ? -1 : 1;
-                    })
-                    .map((message) => (
-                      <div
-                        key={message.id}
-                        className="rounded-lg border border-gray-200 bg-white p-4"
-                      >
-                        <div className="mb-2 flex items-center justify-between">
-                          <span className="text-sm font-medium text-gray-700">
-                            {message.created_by_name || "Unknown"}
-                          </span>
-                          <span className="text-xs text-gray-500">
-                            {message.created_at
-                              ? dayjs(message.created_at.toDate()).format(
-                                  "MMM D, YYYY h:mm A",
-                                )
-                              : ""}
-                          </span>
+              <>
+                <ScrollArea className="h-[440px] px-6">
+                  <div className="space-y-6 py-6">
+                    {selectedThread.messages
+                      .sort((a, b) => {
+                        if (!a.created_at || !b.created_at) return 0;
+                        return a.created_at.isBefore(b.created_at) ? -1 : 1;
+                      })
+                      .map((message, idx) => (
+                        <div key={message.id || idx} className="space-y-1">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="font-medium">
+                              {message.created_by_name || "Unknown"}
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {message.created_at
+                                ? dayjs(message.created_at.toDate()).format(
+                                    "h:mm A",
+                                  )
+                                : ""}
+                            </span>
+                          </div>
+                          <div className="rounded-2xl border bg-muted px-4 py-3 text-sm">
+                            {message.body}
+                          </div>
                         </div>
-                        <p className="whitespace-pre-wrap text-gray-900">
-                          {message.body}
-                        </p>
-                      </div>
-                    ))}
-                </div>
-
-                {/* Reply Section */}
-                <div className="space-y-4">
-                  <div>
-                    <label
-                      htmlFor="reply"
-                      className="mb-2 block text-sm font-medium text-gray-700"
-                    >
-                      Reply
-                    </label>
-                    <Textarea
-                      id="reply"
-                      placeholder="Type your reply..."
-                      value={replyText}
-                      onChange={(e) => setReplyText(e.target.value)}
-                      className="min-h-[120px]"
-                      disabled={sending}
-                    />
+                      ))}
                   </div>
-                  <div className="flex justify-end">
+                </ScrollArea>
+                <Separator />
+                <div className="space-y-3 p-4">
+                  <Textarea
+                    placeholder="Type your reply..."
+                    rows={3}
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
+                    disabled={sending}
+                  />
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Reply to buyer inquiry</span>
                     <Button
+                      size="sm"
                       onClick={handleReply}
                       disabled={sending || !replyText.trim()}
                     >
-                      <Send className="mr-2 size-4" />
-                      {sending ? "Sending..." : "Send Reply"}
+                      {sending ? "Sending..." : "Send reply"}
                     </Button>
                   </div>
                 </div>
-              </div>
+              </>
             )}
           </CardContent>
         </Card>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 });

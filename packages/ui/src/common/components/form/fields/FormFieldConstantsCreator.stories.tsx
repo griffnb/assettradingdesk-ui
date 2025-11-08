@@ -1,5 +1,5 @@
 import { ValidationRules } from "@/utils/validations";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { makeAutoObservable } from "mobx";
 import { FormFieldConstantsCreator } from "./FormFieldConstantsCreator";
 

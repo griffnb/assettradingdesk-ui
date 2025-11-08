@@ -1,20 +1,24 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from "@storybook/react-vite";
+import { fileURLToPath } from "node:url";
 import { dirname, join } from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    "@storybook/addon-docs",
   ],
 
-  staticDirs: ["../../../apps/ai/public"],
+  staticDirs: ["../public"],
 
-  framework: {
-    name: "@storybook/react-vite",
-    options: {},
+  framework: "@storybook/react-vite",
+
+  core: {
+    builder: "@storybook/builder-vite", // 👈 The builder enabled here.
   },
 
   async viteFinal(config) {
@@ -24,12 +28,10 @@ const config: StorybookConfig = {
       ...config.resolve.alias,
       "@/utils": join(dirname(__filename), "../../../packages/utils/src"),
       "@/models": join(dirname(__filename), "../../../packages/models/src"),
-      "@/astro_ui": join(dirname(__filename), "../../../packages/astro_ui/src"),
       "@/ui": join(dirname(__filename), "../src"),
-      "@/sage": join(dirname(__filename), "../../../packages/sage/src"),
       "@/common_lib": join(
         dirname(__filename),
-        "../../../packages/common_lib/src"
+        "../../../packages/common_lib/src",
       ),
     };
     return config;

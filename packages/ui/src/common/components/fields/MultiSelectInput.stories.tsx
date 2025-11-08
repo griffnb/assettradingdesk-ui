@@ -1,5 +1,5 @@
 import { IConstant } from "@/models/types/constants";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { MultiSelectInput } from "./MultiSelectInput";
 

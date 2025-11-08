@@ -2,19 +2,21 @@ import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
 import { Store } from "@/models/store/Store";
+import { Avatar, AvatarFallback } from "@/ui/shadcn/ui/avatar";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
+import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
+import { Separator } from "@/ui/shadcn/ui/separator";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { cn } from "@/utils/cn";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { CheckCircle2, Clock, Mail, MessageSquare } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 
@@ -37,8 +39,12 @@ export const MySentMessages = observer(function MySentMessages({
 }: MySentMessagesProps) {
   const [requests, setRequests] = useState<RequestConversation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedRequests, setExpandedRequests] = useState<Set<string>>(
+    new Set(),
+  );
   const [selectedRequest, setSelectedRequest] =
     useState<RequestConversation | null>(null);
+  const [selectedAsset, setSelectedAsset] = useState<AssetModel | null>(null);
 
   useEffect(() => {
     loadSentMessages();
@@ -99,181 +105,232 @@ export const MySentMessages = observer(function MySentMessages({
     setLoading(false);
   };
 
-  const getRequestStatus = (request: RequestConversation) => {
-    if (request.messages.length > 1) {
-      return {
-        label: "Active",
-        icon: CheckCircle2,
-        color: "bg-green-500",
-        variant: "default" as const,
-      };
+  const toggleRequest = (opportunityId: string) => {
+    const newExpanded = new Set(expandedRequests);
+    if (newExpanded.has(opportunityId)) {
+      newExpanded.delete(opportunityId);
+    } else {
+      newExpanded.add(opportunityId);
     }
-    return {
-      label: "Pending",
-      icon: Clock,
-      color: "bg-yellow-500",
-      variant: "secondary" as const,
-    };
+    setExpandedRequests(newExpanded);
+  };
+
+  const selectAsset = (request: RequestConversation, asset: AssetModel) => {
+    setSelectedRequest(request);
+    setSelectedAsset(asset);
+  };
+
+  const getRequestInitials = (request: RequestConversation) => {
+    if (!request.opportunity?.id) return "?";
+    return `R${request.opportunity.id.slice(0, 2).toUpperCase()}`;
+  };
+
+  const getAssetInitials = (assetName?: string | null) => {
+    if (!assetName) return "?";
+    return assetName
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
   };
 
   if (loading) {
     return (
-      <div className={cn("container mx-auto p-6", className)}>
-        <Skeleton className="mb-4 h-8 w-64" />
-        <div className="grid gap-4 md:grid-cols-3">
-          <Skeleton className="h-96" />
-          <Skeleton className="col-span-2 h-96" />
-        </div>
+      <div className={cn("space-y-4", className)}>
+        <Skeleton className="h-12 w-full" />
+        <Skeleton className="h-96 w-full" />
       </div>
     );
   }
 
   return (
-    <div className={cn("container mx-auto p-6", className)}>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">My Sent Messages</h1>
-        <p className="text-gray-500">
-          Track your inquiries and responses from sellers
-        </p>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-3">
-        {/* Request List */}
-        <Card className="md:col-span-1">
+    <Card className={className}>
+      <CardContent className="grid gap-6 p-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+        {/* Left Panel - Request List with Expandable Assets */}
+        <Card className="border-muted">
           <CardHeader>
-            <CardTitle>My Requests ({requests.length})</CardTitle>
-            <CardDescription>Select a request to view messages</CardDescription>
+            <CardTitle className="text-base">My Requests</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            {requests.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center">
-                <Mail className="mb-4 size-12 text-gray-400" />
-                <p className="text-sm text-gray-500">No requests yet</p>
-                <p className="mt-2 text-xs text-gray-400">
-                  Contact sellers about assets you're interested in
-                </p>
-              </div>
-            ) : (
-              <div className="max-h-[600px] overflow-y-auto">
-                {requests.map((request) => {
-                  const status = getRequestStatus(request);
-                  const StatusIcon = status.icon;
-
-                  return (
-                    <button
-                      key={request.opportunityId}
-                      onClick={() => setSelectedRequest(request)}
-                      className={cn(
-                        "w-full border-b p-4 text-left transition-colors hover:bg-gray-50",
-                        selectedRequest?.opportunityId ===
-                          request.opportunityId && "bg-blue-50",
-                      )}
-                    >
-                      <div className="flex gap-3">
-                        {request.asset?.mediumImage ? (
-                          <img
-                            src={request.asset.mediumImage}
-                            alt={request.asset.model_name || "Asset"}
-                            className="size-16 rounded object-cover"
-                          />
-                        ) : (
-                          <div className="flex size-16 items-center justify-center rounded bg-gray-200">
-                            <Mail className="size-8 text-gray-400" />
-                          </div>
-                        )}
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-900">
-                            {request.asset?.model_name || "Request"}
-                          </p>
-                          <div className="mt-1 flex items-center gap-2">
-                            <Badge variant={status.variant} className="text-xs">
-                              <StatusIcon className="mr-1 size-3" />
-                              {status.label}
-                            </Badge>
-                            <span className="text-xs text-gray-500">
-                              {request.messages.length} message
-                              {request.messages.length !== 1 ? "s" : ""}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Message Thread */}
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle>
-              {selectedRequest ? "Conversation" : "Select a Request"}
-            </CardTitle>
-            <CardDescription>
-              {selectedRequest
-                ? "View your conversation with the seller"
-                : "Click a request from the list to view messages"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {selectedRequest ? (
-              <div className="space-y-4">
-                {/* Messages */}
-                <div className="max-h-[500px] space-y-4 overflow-y-auto">
-                  {selectedRequest.messages
-                    .sort((a, b) => {
-                      if (!a.created_at || !b.created_at) return 0;
-                      return a.created_at.isBefore(b.created_at) ? -1 : 1;
-                    })
-                    .map((message, index) => (
-                      <div
-                        key={message.id || index}
-                        className="rounded-lg border border-gray-200 bg-white p-4"
-                      >
-                        <div className="mb-2 flex items-center justify-between">
-                          <span className="text-sm font-medium text-gray-700">
-                            {message.created_by_name || "Unknown"}
-                          </span>
-                          <span className="text-xs text-gray-500">
-                            {message.created_at
-                              ? dayjs(message.created_at.toDate()).format(
-                                  "MMM D, YYYY h:mm A",
-                                )
-                              : ""}
-                          </span>
-                        </div>
-                        <p className="whitespace-pre-wrap text-gray-900">
-                          {message.body}
-                        </p>
-                      </div>
-                    ))}
-                </div>
-
-                {selectedRequest.messages.length === 1 && (
-                  <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 p-8 text-center">
-                    <Clock className="mb-2 size-12 text-gray-400" />
-                    <p className="text-sm font-medium text-gray-600">
-                      Waiting for seller response
-                    </p>
-                    <p className="mt-1 text-xs text-gray-500">
-                      You'll see the reply here when the seller responds
+            <ScrollArea className="h-[600px]">
+              <div className="divide-y">
+                {requests.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground">
+                    <p className="text-sm">No requests yet</p>
+                    <p className="mt-2 text-xs">
+                      Contact sellers about assets you&apos;re interested in
                     </p>
                   </div>
+                ) : (
+                  requests.map((request) => {
+                    const isExpanded = expandedRequests.has(
+                      request.opportunityId,
+                    );
+                    const hasMultipleAssets = request.asset !== null;
+                    return (
+                      <div key={request.opportunityId}>
+                        <button
+                          onClick={() => toggleRequest(request.opportunityId)}
+                          className="flex w-full items-center gap-3 bg-card/50 px-4 py-3 text-left hover:bg-muted"
+                        >
+                          <Avatar className="h-10 w-10">
+                            <AvatarFallback>
+                              {getRequestInitials(request)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <p className="text-sm font-semibold">
+                              Request {request.opportunityId.slice(0, 8)}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {request.messages.length} message
+                              {request.messages.length !== 1 ? "s" : ""}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {request.unreadCount > 0 && (
+                              <Badge
+                                className="bg-primary/20 text-primary"
+                                variant="secondary"
+                              >
+                                {request.unreadCount}
+                              </Badge>
+                            )}
+                            {hasMultipleAssets &&
+                              (isExpanded ? (
+                                <ChevronDown className="size-4" />
+                              ) : (
+                                <ChevronRight className="size-4" />
+                              ))}
+                          </div>
+                        </button>
+                        {isExpanded && request.asset && (
+                          <div className="bg-muted/30">
+                            <button
+                              onClick={() =>
+                                selectAsset(request, request.asset!)
+                              }
+                              className={cn(
+                                "flex w-full items-start gap-3 border-t px-4 py-3 pl-16 text-left hover:bg-muted",
+                                selectedRequest?.opportunityId ===
+                                  request.opportunityId &&
+                                  selectedAsset?.id === request.asset.id &&
+                                  "bg-muted",
+                              )}
+                            >
+                              <Avatar className="h-8 w-8">
+                                <AvatarFallback>
+                                  {getAssetInitials(request.asset.model_name)}
+                                </AvatarFallback>
+                              </Avatar>
+                              <div className="flex-1">
+                                <p className="text-xs font-medium">
+                                  {request.asset.model_name || "Asset"}
+                                </p>
+                                <p className="line-clamp-1 text-xs text-muted-foreground">
+                                  {request.messages[
+                                    request.messages.length - 1
+                                  ]?.body || "No messages"}
+                                </p>
+                              </div>
+                              <div className="text-right text-xs text-muted-foreground">
+                                <p>
+                                  {(() => {
+                                    const lastMsg =
+                                      request.messages[
+                                        request.messages.length - 1
+                                      ];
+                                    return lastMsg?.created_at
+                                      ? dayjs(lastMsg.created_at.toDate()).fromNow()
+                                      : "";
+                                  })()}
+                                </p>
+                              </div>
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })
                 )}
               </div>
-            ) : (
-              <div className="flex h-64 items-center justify-center text-gray-400">
-                <div className="text-center">
-                  <MessageSquare className="mx-auto mb-4 size-16" />
-                  <p>Select a request to view the conversation</p>
-                </div>
+            </ScrollArea>
+          </CardContent>
+        </Card>
+
+        {/* Right Panel - Message Thread */}
+        <Card className="border-muted">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-base">
+                  {selectedRequest && selectedAsset
+                    ? selectedAsset.model_name || "Conversation"
+                    : "Select a request"}
+                </CardTitle>
+                {selectedRequest && (
+                  <p className="text-xs text-muted-foreground">
+                    Request {selectedRequest.opportunityId.slice(0, 8)}
+                  </p>
+                )}
               </div>
+              {selectedRequest && (
+                <Badge variant="outline">
+                  {selectedRequest.messages.length} messages
+                </Badge>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            {!selectedRequest ? (
+              <div className="flex h-[500px] items-center justify-center text-muted-foreground">
+                <p className="text-sm">Select a request to view messages</p>
+              </div>
+            ) : (
+              <>
+                <ScrollArea className="h-[440px] px-6">
+                  <div className="space-y-6 py-6">
+                    {selectedRequest.messages
+                      .sort((a, b) => {
+                        if (!a.created_at || !b.created_at) return 0;
+                        return a.created_at.isBefore(b.created_at) ? -1 : 1;
+                      })
+                      .map((message, idx) => (
+                        <div key={message.id || idx} className="space-y-1">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="font-medium">
+                              {message.created_by_name || "Unknown"}
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {message.created_at
+                                ? dayjs(message.created_at.toDate()).format(
+                                    "h:mm A",
+                                  )
+                                : ""}
+                            </span>
+                          </div>
+                          <div className="rounded-2xl border bg-muted px-4 py-3 text-sm">
+                            {message.body}
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </ScrollArea>
+                <Separator />
+                <div className="space-y-3 p-4">
+                  <div className="flex items-center justify-center rounded-lg border-2 border-dashed border-muted p-6 text-center">
+                    <p className="text-xs text-muted-foreground">
+                      Waiting for seller response
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
           </CardContent>
         </Card>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 });
