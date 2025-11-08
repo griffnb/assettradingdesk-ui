@@ -103,7 +103,7 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link to="/listings">
+                <Link to="/assets/management">
                   <SquareTerminal className="size-4" />
                   <span>Assets</span>
                 </Link>
@@ -111,7 +111,7 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link to="/listings">
+                <Link to="/assets/management/new">
                   <Plus className="size-4" />
                   Create New Asset
                 </Link>
