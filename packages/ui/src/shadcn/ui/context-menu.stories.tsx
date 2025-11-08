@@ -1,34 +1,28 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
+import { CloudIcon, CopyIcon, EditIcon, TrashIcon } from "lucide-react";
+import React from "react";
+import { Button } from "./button";
 import {
   ContextMenu,
+  ContextMenuCheckboxItem,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuTrigger,
-  ContextMenuSeparator,
   ContextMenuLabel,
-  ContextMenuCheckboxItem,
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
+  ContextMenuSeparator,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-} from './context-menu';
-import { Button } from './button';
-import {
-  CopyIcon,
-  PasteIcon,
-  EditIcon,
-  TrashIcon,
-  CloudIcon
-} from 'lucide-react';
+  ContextMenuTrigger,
+} from "./context-menu";
 
 const meta: Meta = {
-  title: 'Components/Context Menu',
+  title: "Components/Context Menu",
   component: ContextMenu,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
@@ -46,10 +40,7 @@ export const DefaultContextMenu: Story = {
           <CopyIcon className="mr-2" />
           Copy
         </ContextMenuItem>
-        <ContextMenuItem>
-          <PasteIcon className="mr-2" />
-          Paste
-        </ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
         <ContextMenuSeparator />
         <ContextMenuItem variant="destructive">
           <TrashIcon className="mr-2" />
@@ -71,10 +62,7 @@ export const WithSubMenu: Story = {
           <CopyIcon className="mr-2" />
           Copy
         </ContextMenuItem>
-        <ContextMenuItem>
-          <PasteIcon className="mr-2" />
-          Paste
-        </ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
         <ContextMenuSub>
           <ContextMenuSubTrigger>
             <CloudIcon className="mr-2" />
@@ -128,7 +116,7 @@ export const WithCheckboxItems: Story = {
 
 export const WithRadioItems: Story = {
   render: (args) => {
-    const [theme, setTheme] = React.useState('system');
+    const [theme, setTheme] = React.useState("system");
 
     return (
       <ContextMenu {...args}>

@@ -1,27 +1,27 @@
-import React from 'react';
+import { type Meta, type StoryObj } from "@storybook/react";
+import React from "react";
+import { Card, CardContent } from "./card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
   CarouselPrevious,
-  CarouselNext
-} from './carousel';
-import { Card, CardContent } from '../card';
-import { type Meta, type StoryObj } from '@storybook/react';
+} from "./carousel";
 
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Carousel',
+  title: "Components/Carousel",
   component: Carousel,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     orientation: {
-      control: { type: 'radio' },
-      options: ['horizontal', 'vertical'],
-      defaultValue: 'horizontal'
-    }
+      control: { type: "radio" },
+      options: ["horizontal", "vertical"],
+      defaultValue: "horizontal",
+    },
   },
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
@@ -51,10 +51,10 @@ export const Default: Story = {
 
 export const VerticalCarousel: Story = {
   args: {
-    orientation: 'vertical',
+    orientation: "vertical",
   },
   render: (args) => (
-    <Carousel {...args} className="w-64 h-96">
+    <Carousel {...args} className="h-96 w-64">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
@@ -102,8 +102,8 @@ export const CarouselWithDisabledNavigation: Story = {
         {...args}
         className="w-full max-w-md"
         setApi={(api) => {
-          setCanScrollPrev(api.canScrollPrev());
-          setCanScrollNext(api.canScrollNext());
+          setCanScrollPrev(api?.canScrollPrev() || false);
+          setCanScrollNext(api?.canScrollNext() || false);
         }}
       >
         <CarouselContent>
