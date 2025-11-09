@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 
+import { useAdmin } from "@/common_lib/authentication/useAdmin";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router";
@@ -18,6 +19,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   props: DesktopSidebarProps,
 ) {
   const { sidebarOpen, expandedItems, toggleExpanded } = props;
+  const { admin } = useAdmin({ checkOnly: true });
   const location = useLocation();
   const navigate = useNavigate();
   return (
@@ -113,7 +115,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
         <div className="border-t p-3">
           <div className="space-y-1">
             <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-              <div className="flex items-center gap-3">user info here</div>
+              <div className="flex items-center gap-3">{admin?.name}</div>
             </button>
           </div>
         </div>

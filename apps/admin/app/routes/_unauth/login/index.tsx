@@ -1,6 +1,7 @@
 import { useAdmin } from "@/common_lib/authentication/useAdmin";
 import { ServerService } from "@/common_lib/services/ServerService";
 import { SessionService } from "@/common_lib/services/SessionService";
+import { Button } from "@/ui/shadcn/ui/button";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { observer } from "mobx-react-lite";
@@ -50,7 +51,7 @@ export default observer(function Login() {
             nav(SessionService.redirectLocation);
             SessionService.setRedirectLocation(null);
           } else {
-            nav("/home");
+            nav("/");
           }
         } else {
           setErrorMessage("Login failed. Please try again.");
@@ -66,15 +67,11 @@ export default observer(function Login() {
   }
 
   return (
-    <div className="flex min-h-full flex-col bg-gray-100">
+    <div className="flex h-dvh flex-1 flex-col bg-gray-100">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow-lg sm:rounded-lg sm:px-12">
           <div className="mb-10 sm:mx-auto sm:w-full sm:max-w-md">
-            <img
-              className="mx-auto w-auto"
-              src="/img/logo_box.png"
-              alt="Logo"
-            />
+            <img className="mx-auto w-auto" src="/img/logo.png" alt="Logo" />
           </div>
           {errorMessage ? (
             <div className="my-3 items-center rounded-md bg-error-200 px-6 py-2.5 text-center text-gray-700">
@@ -85,12 +82,13 @@ export default observer(function Login() {
           )}
 
           <div>
-            <button
-              className="w-full rounded-md border border-blue-dark-500 bg-white px-2 py-3 font-semibold text-blue-dark-500"
+            <Button
               onClick={() => loginWithGoogle()}
+              variant={"default"}
+              className="w-full"
             >
               Login
-            </button>
+            </Button>
           </div>
         </div>
       </div>

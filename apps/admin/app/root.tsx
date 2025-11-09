@@ -61,7 +61,7 @@ function Auth() {
   // Only need this if we need bearer tokens for our API
   const { adminLoading } = useAdmin({ checkOnly: true });
 
-  if (!adminLoading) {
+  if (adminLoading) {
     return <Skeleton />;
   }
 
