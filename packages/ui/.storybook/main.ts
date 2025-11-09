@@ -2,6 +2,7 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -33,6 +34,11 @@ const config: StorybookConfig = {
 
   async viteFinal(config) {
     // Add path aliases to match the monorepo structure
+    config.plugins = [
+      ...(config.plugins ?? []),
+      tsconfigPaths({ projects: ["storybook.tsconfig.json"] }),
+    ];
+
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,

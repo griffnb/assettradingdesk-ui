@@ -11,8 +11,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.47.0",
-    "@clerk/themes": "^2.4.26",
     "@headlessui/react": "^2.2.8",
     "@headlessui/tailwindcss": "^0.2.2",
     "@hookform/resolvers": "^5.2.2",

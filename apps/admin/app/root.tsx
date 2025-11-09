@@ -8,11 +8,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import { SessionService } from "@/common_lib/services/SessionService";
+import { useAdmin } from "@/common_lib/authentication/useAdmin";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
-import { getPublicEnvVar } from "@/utils/env";
-import { ClerkProvider, useAuth } from "@clerk/clerk-react";
-import { useEffect, useState } from "react";
 import type { Route } from "../.react-router/types/app/+types/root";
 import "./app.css";
 
@@ -57,34 +54,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  // Import your Publishable Key
-  const PUBLISHABLE_KEY = getPublicEnvVar("PUBLIC_CLERK_PUBLISHABLE_KEY");
-
-  if (!PUBLISHABLE_KEY) {
-    throw new Error("Add your Clerk Publishable Key to the .env file");
-  }
-  return (
-    <ClerkProvider
-      publishableKey={PUBLISHABLE_KEY}
-      appearance={{
-        theme: "simple",
-      }}
-    >
-      <Auth />
-    </ClerkProvider>
-  );
+  return <Auth />;
 }
 
 function Auth() {
-  const [ready, setReady] = useState(false);
   // Only need this if we need bearer tokens for our API
-  const { getToken, isLoaded } = useAuth();
-  useEffect(() => {
-    SessionService.tokenFetch = getToken;
-    setReady(true);
-  }, [getToken]);
+  const { adminLoading } = useAdmin({ checkOnly: true });
 
-  if (!isLoaded || !ready) {
+  if (!adminLoading) {
     return <Skeleton />;
   }
 

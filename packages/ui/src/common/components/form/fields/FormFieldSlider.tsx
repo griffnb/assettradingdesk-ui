@@ -5,7 +5,7 @@ import { ValidationType, isFieldValid } from "@/utils/validations";
 import { Slider } from "@/ui/shadcn/ui/slider";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
-import { FocusEvent, useState } from "react";
+import { useState } from "react";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
 import { HelpText } from "../../fields/base/HelpText";
 import { FormFieldWrap } from "./FormFieldWrap";
@@ -71,15 +71,6 @@ export const FormFieldSlider = observer(
       });
     };
 
-    const onBlur = (event: FocusEvent<HTMLInputElement>) => {
-      if (validateOn == "blur") {
-        setValidate(true);
-      }
-      if (props.onBlur) {
-        props.onBlur(event);
-      }
-    };
-
     if (props.errorMessages) {
       errorMessages = [...errorMessages, ...props.errorMessages];
     }
@@ -109,9 +100,9 @@ export const FormFieldSlider = observer(
             step={step}
             value={value}
             onValueChange={handleChange}
-            aria-label="Timeframe"
-            onBlur={onBlur}
+            aria-label={props.label}
           />
+
           {bottomLabels}
         </div>
         {helpText ? <HelpText>{helpText}</HelpText> : null}

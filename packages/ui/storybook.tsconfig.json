@@ -3,6 +3,6 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "jsx": "preserve" //"react-jsx" // recent change for storybook...
+    "jsx": "react-jsx"
   }
 }

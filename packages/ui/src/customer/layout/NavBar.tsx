@@ -7,7 +7,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/ui/shadcn/ui/navigation-menu";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 import { useAccount } from "@/common_lib/authentication/useAccount";
 import { LayerService } from "@/common_lib/services/LayerService";
@@ -100,29 +99,22 @@ export const NavBar = observer(function NavBar() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="ml-auto flex flex-row items-center gap-2">
-          {account && (
+          {account ? (
             <span className="text-sm">Welcome, {account.first_name}!</span>
+          ) : (
+            <>
+              <Link to="/signup">
+                <Button className="bg-primary text-primary-foreground">
+                  Register Now
+                </Button>
+              </Link>
+              <Link to="/login">
+                <Button className="bg-primary text-primary-foreground">
+                  Sign In
+                </Button>
+              </Link>
+            </>
           )}
-          <SignedIn>
-            {/*
-            <Button variant="outline" size="icon" aria-label="Submit">
-              <Bell />
-            </Button>
-            */}
-            <UserButton showName={true} />
-          </SignedIn>
-          <SignedOut>
-            <Link to="/signup">
-              <Button className="bg-primary text-primary-foreground">
-                Register Now
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button className="bg-primary text-primary-foreground">
-                Sign In
-              </Button>
-            </Link>
-          </SignedOut>
         </div>
       </div>
     </div>

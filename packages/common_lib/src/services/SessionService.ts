@@ -28,6 +28,10 @@ class SessionServiceClass {
     }
   }
 
+  setRedirectLocation(location: string | null) {
+    this.redirectLocation = location;
+  }
+
   setSessionToken(token: string) {
     if (!IS_SERVER_SIDE) {
       this.sessionToken = token;
@@ -126,7 +130,7 @@ class SessionServiceClass {
     const response = yield Store.admin.queryRecord(
       "me",
       {},
-      { skipCache: skipCache, silentError: true }
+      { skipCache: skipCache, silentError: true },
     );
     if (response.success && response.data) {
       this.admin = response.data as AdminModel;
@@ -147,7 +151,7 @@ class SessionServiceClass {
 
   loadAccount = flow(function* (
     this: SessionServiceClass,
-    skipCache?: boolean
+    skipCache?: boolean,
   ) {
     const response = yield Store.account.queryRecord(
       "me",
@@ -155,7 +159,7 @@ class SessionServiceClass {
       {
         skipCache: skipCache,
         silentError: true,
-      }
+      },
     );
     if (response.success && response.data) {
       this.account = response.data as AccountModel;

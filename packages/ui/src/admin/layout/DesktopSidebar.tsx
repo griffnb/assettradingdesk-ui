@@ -2,7 +2,6 @@
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/utils/cn";
-import { UserButton } from "@clerk/clerk-react";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router";
 import { Badge } from "../../shadcn/ui/badge";
@@ -114,9 +113,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
         <div className="border-t p-3">
           <div className="space-y-1">
             <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-              <div className="flex items-center gap-3">
-                <UserButton showName={true} />
-              </div>
+              <div className="flex items-center gap-3">user info here</div>
             </button>
           </div>
         </div>
