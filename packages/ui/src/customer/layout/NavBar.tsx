@@ -10,6 +10,8 @@ import {
 
 import { useAccount } from "@/common_lib/authentication/useAccount";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { ServerService } from "@/common_lib/services/ServerService";
+import { SessionService } from "@/common_lib/services/SessionService";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
@@ -18,7 +20,7 @@ import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import { Menu } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { CategoryFlyout } from "./CategoryFlyout";
 import { ManufacturerFlyout } from "./ManufacturerFlyout";
 import { MobileMenu, MobileMenuID } from "./MobileMenu";
@@ -29,6 +31,7 @@ export const NavBar = observer(function NavBar() {
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
   const { account } = useAccount();
+  const nav = useNavigate();
   useEffect(() => {
     Store.category
       .query(
@@ -54,6 +57,16 @@ export const NavBar = observer(function NavBar() {
 
   const toggleSidebar = () => {
     LayerService.addOnly({ id: MobileMenuID, component: MobileMenu });
+  };
+
+  const logout = async () => {
+    await ServerService.postRaw("/logout", {
+      token: SessionService.sessionToken,
+    });
+
+    SessionService.clearSessionToken();
+    SessionService.clearUser();
+    nav("/");
   };
 
   return (
@@ -100,7 +113,15 @@ export const NavBar = observer(function NavBar() {
         </NavigationMenu>
         <div className="ml-auto flex flex-row items-center gap-2">
           {account ? (
-            <span className="text-sm">Welcome, {account.first_name}!</span>
+            <>
+              <span className="text-sm">Welcome, {account.first_name}!</span>
+              <Button
+                className="bg-primary text-primary-foreground"
+                onClick={logout}
+              >
+                Sign Out
+              </Button>
+            </>
           ) : (
             <>
               <Link to="/signup">

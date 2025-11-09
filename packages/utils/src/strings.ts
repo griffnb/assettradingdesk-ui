@@ -11,7 +11,7 @@ export function isUUID(val: string): boolean {
 export function getUrlString(
   params: object,
   keys: string[] = [],
-  isArray = false
+  isArray = false,
 ): string {
   const p = Object.keys(params)
     .map((key) => {
@@ -201,7 +201,7 @@ export async function sha256Hex(input: string): Promise<string> {
 export function replaceURLValues(
   template: string,
   values: Record<string, string>,
-  removeFromValues?: boolean
+  removeFromValues?: boolean,
 ): string {
   // Use a more explicit type signature for the replacement function
   return template.replace(
@@ -216,7 +216,7 @@ export function replaceURLValues(
         return replacement.toString();
       }
       return match;
-    }
+    },
   );
 }
 
@@ -264,7 +264,7 @@ export function normalizePhoneNumber(phoneNumber: string): string {
 // Function to format the normalized phone number according to the given pattern
 export function formatPhoneNumber(
   normalizedNumber: string,
-  pattern: string
+  pattern: string,
 ): string {
   let result = "";
   let digitIndex = 0;
@@ -294,7 +294,7 @@ export function objectToQueryParams(obj: object) {
       // Encode the key and the value, and combine them into a key=value pair
       const encodedKey = encodeURIComponent(key);
       const encodedValue = encodeURIComponent(
-        obj[key as keyof typeof obj] as string
+        obj[key as keyof typeof obj] as string,
       );
       queryParams.push(encodedKey + "=" + encodedValue);
     }
@@ -314,7 +314,7 @@ export function sanitizeText(text: string) {
 
 // Parses query string into proper array objects
 export function getQueryParams(
-  search: string
+  search: string,
 ): Record<string, string | string[]> {
   const params = new URLSearchParams(search);
   const queryParams: Record<string, string | string[]> = {};
@@ -351,4 +351,14 @@ export function buildQueryString(params: Record<string, any>): string {
     .join("&");
 
   return queryString;
+}
+
+export function randomString(length: number): string {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters[randomIndex];
+  }
+  return result;
 }

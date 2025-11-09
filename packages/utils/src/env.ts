@@ -66,6 +66,12 @@ export function getPublicEnvVar(key: keyof Env): string {
   return value;
 }
 
+export function getOptionalPublicEnvVar(key: keyof Env): string | undefined {
+  const value = env[key];
+
+  return value;
+}
+
 export function getEnv(): Env {
   return env;
 }

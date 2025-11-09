@@ -33,8 +33,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-neutral-900 text-neutral-50",
-          "hover:bg-neutral-900/90",
+          "bg-primary text-primary-foreground",
+          "hover:bg-primary/90",
           "dark:bg-neutral-50 dark:text-neutral-900",
           "dark:hover:bg-neutral-50/90",
         ],
