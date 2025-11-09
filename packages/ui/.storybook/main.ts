@@ -28,15 +28,30 @@ const config: StorybookConfig = {
 
   framework: "@storybook/react-vite",
 
+  typescript: {
+    check: false,
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: "./storybook.tsconfig.json",
+    },
+  },
+
   core: {
     builder: "@storybook/builder-vite", // 👈 The builder enabled here.
   },
 
   async viteFinal(config) {
+    // Configure esbuild to use automatic JSX runtime
+    config.esbuild = {
+      ...config.esbuild,
+      jsx: "automatic",
+      jsxDev: true,
+    };
+
     // Add path aliases to match the monorepo structure
     config.plugins = [
       ...(config.plugins ?? []),
-      tsconfigPaths({ projects: ["storybook.tsconfig.json"] }),
+      tsconfigPaths({ root: ".", projects: ["storybook.tsconfig.json"] }),
     ];
 
     config.resolve = config.resolve || {};
@@ -50,6 +65,7 @@ const config: StorybookConfig = {
         "../../../packages/common_lib/src",
       ),
     };
+
     return config;
   },
   // other Storybook config
