@@ -9,6 +9,7 @@ import {
 } from "@/ui/shadcn/ui/navigation-menu";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
+import { useAccount } from "@/common_lib/authentication/useAccount";
 import { LayerService } from "@/common_lib/services/LayerService";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
@@ -28,6 +29,7 @@ export const NavBar = observer(function NavBar() {
   const { ref, variable } = useMeasureVariable("customer-nav-bar", "height");
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
+  const { account } = useAccount();
   useEffect(() => {
     Store.category
       .query(
@@ -98,6 +100,9 @@ export const NavBar = observer(function NavBar() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="ml-auto flex flex-row items-center gap-2">
+          {account && (
+            <span className="text-sm">Welcome, {account.first_name}!</span>
+          )}
           <SignedIn>
             {/*
             <Button variant="outline" size="icon" aria-label="Submit">

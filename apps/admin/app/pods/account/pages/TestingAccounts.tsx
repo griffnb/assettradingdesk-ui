@@ -8,7 +8,6 @@ import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AccountService } from "@/models/models/account/services/AccountService";
 import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { MenuOption } from "@/ui/common/components/menu/MenuOption";
-import { getPublicEnvVar } from "@/utils/env";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
@@ -37,8 +36,9 @@ export const TestingAccounts = observer(function TestingAccounts() {
     const resp = await AccountService.createTestUser({ login_as: true });
 
     if (resp.success) {
-      const customerURL = getPublicEnvVar("PUBLIC_CUSTOMER_URL");
-      window.open(`${customerURL}/`, "_blank");
+      //const customerURL = getPublicEnvVar("PUBLIC_CUSTOMER_URL");
+      //window.open(`${customerURL}/`, "_blank");
+      alert("Cookie should be set");
       return;
     } else {
       console.error(resp);
