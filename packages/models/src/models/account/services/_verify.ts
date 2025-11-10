@@ -30,3 +30,23 @@ export function verifyInvite(
     email,
   });
 }
+
+export function resendVerification(
+  cfToken: string,
+  email?: string,
+): Promise<IJSONAPIType<VerifyResponse>> {
+  return ServerService.callPost("account", `verify/resend`, {
+    cf_token: cfToken,
+    email,
+  });
+}
+
+export function updateVerifyEmail(
+  cfToken: string,
+  email?: string,
+): Promise<IJSONAPIType<VerifyResponse>> {
+  return ServerService.callPut("account", `verify/update`, {
+    cf_token: cfToken,
+    email,
+  });
+}

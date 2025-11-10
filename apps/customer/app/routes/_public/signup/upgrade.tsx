@@ -1,7 +1,7 @@
 import { NewUpgrade } from "@/ui/customer/onboarding";
+import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
-
-export default function SignupUpgrade() {
+export default observer(function SignupUpgrade() {
   const navigate = useNavigate();
 
   return (
@@ -12,4 +12,4 @@ export default function SignupUpgrade() {
       />
     </div>
   );
-}
+});

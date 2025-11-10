@@ -1,8 +1,8 @@
 import { Store } from "@/models/store/Store";
 import { NewRequests } from "@/ui/customer/onboarding";
+import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
-
-export default function SignupRequests() {
+export default observer(function SignupRequests() {
   const navigate = useNavigate();
   const request = Store.request.create();
 
@@ -15,4 +15,4 @@ export default function SignupRequests() {
       />
     </div>
   );
-}
+});

@@ -69,7 +69,7 @@ export const SignupForm = observer(function SignupForm() {
       if (resp.data.token) {
         SessionService.setSessionToken(resp.data.token);
         await SessionService.reloadAccount();
-        nav("/signup/verify");
+        nav("/signup/verify-email");
         return;
       }
     } else {
@@ -115,11 +115,7 @@ export const SignupForm = observer(function SignupForm() {
   }
 
   const turnstileKey = getOptionalPublicEnvVar("PUBLIC_TURNSTILE_KEY");
-
   const showTestData = getPublicEnvVar("PUBLIC_ENVIRONMENT") == "local";
-
-  console.log("ENV", getPublicEnvVar("PUBLIC_ENVIRONMENT"));
-
   const disabled = isObjectValid(signupRecord, true).length > 0;
 
   return (

@@ -1,8 +1,9 @@
 import { Store } from "@/models/store/Store";
 import { NewAssets } from "@/ui/customer/onboarding";
+import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
 
-export default function SignupAssets() {
+export default observer(function SignupAssets() {
   const navigate = useNavigate();
   const asset = Store.asset.create();
 
@@ -15,4 +16,4 @@ export default function SignupAssets() {
       />
     </div>
   );
-}
+});
