@@ -4,16 +4,21 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { AccountService } from "@/models/models/account/services/AccountService";
 import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { observer } from "mobx-react-lite";
-import { useRouter } from "next/router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
 
 export const VerifyEmailPage = observer(function VerifyEmailPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
   useEffect(() => {
-    if (router.query.verify) {
+    const verifyToken = searchParams.get("verify");
+    const email = searchParams.get("email");
+
+    if (verifyToken) {
       AccountService.verifyAccount(
-        router.query.verify as string,
-        (router.query.email as string) || "",
+        verifyToken,
+        email || "",
       ).then((response) => {
         if (response.success && response.data) {
           if (response.data.token && response.data.token != "") {
@@ -21,16 +26,16 @@ export const VerifyEmailPage = observer(function VerifyEmailPage() {
           }
           SessionService.loadAccount(true).then(() => {
             if (response?.data?.redirect_url) {
-              router.push(response.data.redirect_url);
+              navigate(response.data.redirect_url);
               NotificationService.addSuccess("Email verified successfully");
               return;
             }
-            router.push("/");
+            navigate("/");
           });
         }
       });
     }
-  }, [router, router.query.verify, router.query.email]);
+  }, [navigate, searchParams]);
 
   return <LoadingSkeleton />;
 });

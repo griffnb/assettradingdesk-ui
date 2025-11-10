@@ -69,7 +69,12 @@ export const SignupForm = observer(function SignupForm() {
       if (resp.data.token) {
         SessionService.setSessionToken(resp.data.token);
         await SessionService.reloadAccount();
-        nav("/signup/verify-email");
+        nav("/signup/verify/sent", {
+          state: {
+            verificationToken: resp.data.verification_token,
+            email: signupRecord.email,
+          },
+        });
         return;
       }
     } else {

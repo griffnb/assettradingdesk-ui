@@ -8,7 +8,7 @@
   ],
   "enableAllProjectMcpServers": true,
   "permissions": {
-    "allow": ["ui_code_tools", "context7", "Read(./**)"],
+    "allow": ["ui_code_tools", "context7", "Read(./**)", "playwright"],
     "deny": [
       "Bash(curl:*)",
       "Read(./.env)",

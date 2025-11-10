@@ -12,13 +12,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
+import { getPublicEnvVar } from "@/utils/env";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export const VerifyEmailSent = observer(function VerifyEmailSent() {
   const [isResending, setIsResending] = useState(false);
   const nav = useNavigate();
+  const location = useLocation();
+  const verificationToken = location.state?.verificationToken;
+  const email = location.state?.email;
+  const isDevMode = getPublicEnvVar("PUBLIC_ENVIRONMENT") === "local";
 
   const handleResendEmail = async () => {
     setIsResending(true);
@@ -42,6 +47,12 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
     SessionService.clearSessionToken();
     SessionService.clearUser();
     nav("/signup");
+  };
+
+  const handleDevVerify = () => {
+    if (verificationToken && email) {
+      nav(`/signup/verify?verify=${verificationToken}&email=${encodeURIComponent(email)}`);
+    }
   };
 
   return (
@@ -71,6 +82,16 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-2">
+        {isDevMode && verificationToken && (
+          <Button
+            onClick={handleDevVerify}
+            className="w-full"
+            variant="secondary"
+          >
+            <i className="u u-wrench mr-2" />
+            Dev: Verify Email Now
+          </Button>
+        )}
         <Button
           onClick={handleResendEmail}
           className="w-full"
