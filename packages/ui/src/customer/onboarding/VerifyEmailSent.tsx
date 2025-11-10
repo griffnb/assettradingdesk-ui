@@ -33,7 +33,7 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
         NotificationService.addSuccess("Verification email sent successfully");
       } else {
         NotificationService.addError(
-          resp.error || "Failed to resend verification email"
+          resp.error || "Failed to resend verification email",
         );
       }
     } catch {
@@ -51,9 +51,14 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
 
   const handleDevVerify = () => {
     if (verificationToken && email) {
-      nav(`/signup/verify?verify=${verificationToken}&email=${encodeURIComponent(email)}`);
+      nav(
+        `/signup/verify?verify=${verificationToken}&email=${encodeURIComponent(email)}`,
+      );
     }
   };
+
+  console.log("Verification Token:", verificationToken);
+  console.log("Email:", email);
 
   return (
     <Card className="w-2/5 shadow-lg">
@@ -100,7 +105,11 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
         >
           {isResending ? "Sending..." : "Resend Verification Email"}
         </Button>
-        <Button onClick={handleUpdateEmail} className="w-full" variant="outline">
+        <Button
+          onClick={handleUpdateEmail}
+          className="w-full"
+          variant="outline"
+        >
           Update Email Address
         </Button>
       </CardFooter>
