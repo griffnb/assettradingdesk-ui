@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import { NewAssets } from "@/ui/customer/onboarding";
+import { NewAssets } from "@/ui/customer/onboarding/NewAssets";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
 

@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import { NewRequests } from "@/ui/customer/onboarding";
+import { NewRequests } from "@/ui/customer/onboarding/NewRequests";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
 export default observer(function SignupRequests() {

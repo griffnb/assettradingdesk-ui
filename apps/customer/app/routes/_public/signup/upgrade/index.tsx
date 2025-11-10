@@ -1,4 +1,4 @@
-import { NewUpgrade } from "@/ui/customer/onboarding";
+import { NewUpgrade } from "@/ui/customer/onboarding/NewUpgrade";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
 export default observer(function SignupUpgrade() {
