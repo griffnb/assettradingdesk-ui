@@ -460,8 +460,8 @@ The platform heavily uses code generation:
 **Go Backend:**
 
 ```bash
-#code-tools make_object ModelName    # Internal model
-#code-tools make_public_object ModelName  # Public-facing model
+#code_tools make_object ModelName    # Internal model
+#code_tools make_public_object ModelName  # Public-facing model
 ```
 
 Generates:

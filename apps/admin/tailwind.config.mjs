@@ -7,6 +7,7 @@ export default {
     "./app/**/*.{js,jsx,ts,tsx}",
     "../../packages/ui/src/**/*.{js,jsx,ts,tsx}",
     "../../packages/common_lib/src/**/*.{js,jsx,ts,tsx}",
+    "../../packages/models/src/**/*.{js,jsx,ts,tsx}",
   ],
   plugins: [
     ...rootConfig.plugins,

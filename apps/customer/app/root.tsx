@@ -21,7 +21,6 @@ export default function App() {
 }
 
 function Auth() {
-  // Only need this if we need bearer tokens for our API
   const { accountLoading } = useAccount();
 
   if (accountLoading) {

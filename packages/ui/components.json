@@ -17,5 +17,14 @@
     "lib": "@/ui/shadcn/lib",
     "hooks": "@/ui/shadcn/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+  "registries": {
+    "@shadcn": "https://ui.shadcn.com/r/{name}.json",
+    "@techboss": {
+      "url": "https://raw.githubusercontent.com/griffnb/techboss-ui/refs/heads/main/public/r/{name}.json",
+      "headers": {
+        "Authorization": "token ${GITHUB_TOKEN}"
+      }
+    }
+  }
 }

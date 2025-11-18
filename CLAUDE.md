@@ -1,18 +1,36 @@
+---
+applyTo: "**/!(*.stories).ts?(x)"
+---
+
 PRD Located at
 `./docs/PRD.md`
 
+Instructions for models are in
+`./docs/Models.md`
+
+Instructions for styling are in
+`./docs/Styling.md`
+
+Instructions for utilites are in
+`./docs/Utilities.md`
+
+Specific component instructions are in `./.github/prompts/*`
+`./.github/prompts/columns.prompt.md` // how table columns should work
+`./.github/prompts/details.prompt.md` // how how a details page should be setup
+`./.github/prompts/filters.prompt.md` // how table filters should work
+`./.github/prompts/form.prompt.md` // how a form should be created
+`./.github/prompts/new-vite-pod.prompt.md` // how a new model pod should be created
+`./.github/prompts/shadcn.prompt.md` // how a shadcn component should work
+`./.github/prompts/slot.prompt.md` // how component slots should be created
+`./.github/prompts/storybook.prompt.md` // how to create a storybook file
+
+When starting with a new component, always use `#ui_code_tools` to generate the component, it will stub everything for you
+
 ## REQUIRED
 
-- When creating components, **ALWAYS** create a storybook file to verify how it looks.
+When creating components, **ALWAYS** create a storybook file to verify how it looks.
 
-- Use `#ui_code_tools storybook` to launch storybook if its not already available on `http://localhost:6006`
-- **When creating Storybook stories with models, always reference the storybook-creation skill first** to ensure the correct Store.create() pattern is used instead of manually instantiating models
-
-- Be sure to always reference your skills for detailed explainations
-
-- When starting with a new component, always use `#ui_code_tools` to generate the component, it will stub everything for you
-
-- Use sub agents as much as possible
+Use `#ui_code_tools storybook` to launch storybook if its not already available on `http://localhost:6006`
 
 **NOTE**
 This project uses shadcn and already has all of the components installed. They are in `./packages/ui/src/shadcn/ui`

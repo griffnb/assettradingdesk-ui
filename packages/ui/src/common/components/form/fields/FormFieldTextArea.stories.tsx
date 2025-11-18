@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { makeAutoObservable } from "mobx";
 import { useState } from "react";
-import FormFieldTextArea from "./FormFieldTextArea";
+import { FormFieldTextArea } from "./FormFieldTextArea";
 
 class SimpleObject {
   string_field: string = "";
