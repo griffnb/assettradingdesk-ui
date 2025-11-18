@@ -18,10 +18,10 @@
     "hooks": "@/ui/shadcn/hooks"
   },
   "iconLibrary": "lucide",
+
   "registries": {
-    "@shadcn": "https://ui.shadcn.com/r/{name}.json",
     "@techboss": {
-      "url": "https://raw.githubusercontent.com/griffnb/techboss-ui/refs/heads/main/public/r/{name}.json",
+      "url": "https://raw.githubusercontent.com/griffnb/techboss-ai/refs/heads/feature/claude-agent/_registry/{name}.json",
       "headers": {
         "Authorization": "token ${GITHUB_TOKEN}"
       }

@@ -69,7 +69,7 @@ add-component: ## adds one or more shadcn components
 	if [ -z "$$args" ]; then \
 		echo "Usage: make add-component <component...>"; exit 1; \
 	fi; \
-	cd packages/ui && pnpm dlx shadcn@latest add $$args
+	cd packages/ui && GITHUB_TOKEN=$$(gh auth token) pnpm dlx shadcn@latest add $$args
 
 # swallow extra goals so make doesn't complain
 %:
