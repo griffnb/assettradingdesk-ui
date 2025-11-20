@@ -84,3 +84,27 @@ pr:
 	fi; \
 	current_branch=$$(git rev-parse --abbrev-ref HEAD); \
 	gh pr create --base development --head $$current_branch --title "$(title)" --body "$(title)"
+
+
+
+.PHONY: sync-core-custom
+sync-core-custom: ## sync custom core packages with shadcn_builder
+	@echo "Syncing custom core packages"
+	@GITHUB_TOKEN=$$(gh auth token); \
+	for dir in packages/*/; do \
+		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
+			echo "Syncing custom registry in $$dir"; \
+			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder add -all); \
+		fi; \
+	done
+
+.PHONY: check-core-custom
+check-core-custom: ## sync custom core packages with shadcn_builder
+	@echo "Checking custom core packages"
+	@GITHUB_TOKEN=$$(gh auth token); \
+	for dir in packages/*/; do \
+		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
+			echo "Checking custom registry in $$dir"; \
+			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder check -all); \
+		fi; \
+	done

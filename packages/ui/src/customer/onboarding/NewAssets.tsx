@@ -4,7 +4,7 @@ import { constants } from "@/models/constants";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormFieldTextArea from "@/ui/common/components/form/fields/FormFieldTextArea";
+import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Card,

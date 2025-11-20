@@ -2,7 +2,7 @@
 
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import FormFieldTextArea from "@/ui/common/components/form/fields/FormFieldTextArea";
+import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Card,
@@ -52,8 +52,8 @@ export const NewRequests = observer(function NewRequests(
       <CardHeader>
         <CardTitle>Create Your First Request</CardTitle>
         <CardDescription>
-          Tell us what equipment you're looking for and we'll match you with
-          sellers.
+          Tell us what equipment you&apos;re looking for and we&apos;ll match
+          you with sellers.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
