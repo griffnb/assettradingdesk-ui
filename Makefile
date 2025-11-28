@@ -18,17 +18,17 @@ help: ## Show this help message
 .PHONY: assettradingdesk
 assettradingdesk: ## Run development server
 	@open -a "Google Chrome" http://assets-local:4321
-	pnpm -F assettradingdesk-com dev --host 0.0.0.0
+	bun -F assettradingdesk-com dev --host 0.0.0.0
 
 .PHONY: admin
 admin: ## Run development server
 	@open -a "Google Chrome" http://assets-local:5174
-	pnpm -F admin dev --host 0.0.0.0
+	bun -F admin dev --host 0.0.0.0
 
 .PHONY: customer
 customer: ## Run development server
 	@open -a "Google Chrome" http://assets-local:5173
-	pnpm -F customer dev --host 0.0.0.0
+	bun -F customer dev --host 0.0.0.0
 
 # Docker targets
 .PHONY: docker-up
@@ -51,7 +51,7 @@ storybook: ## Run the storybook
 		echo "Storybook is already running on port 6006"; \
 		exit 0; \
 	fi; \
-	pnpm -F ui storybook
+	bun -F ui storybook
 
 
 .PHONY: fix-mismatches
@@ -69,7 +69,7 @@ add-component: ## adds one or more shadcn components
 	if [ -z "$$args" ]; then \
 		echo "Usage: make add-component <component...>"; exit 1; \
 	fi; \
-	cd packages/ui && GITHUB_TOKEN=$$(gh auth token) pnpm dlx shadcn@latest add $$args
+	cd packages/ui && GITHUB_TOKEN=$$(gh auth token) bun dlx shadcn@latest add $$args
 
 # swallow extra goals so make doesn't complain
 %:
