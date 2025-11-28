@@ -3,14 +3,13 @@ compatibility_date = "2024-11-21"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./build/client"
 
-//
-//Build command:
-//bun run build
-//Build output:
-//build/client
-//Root directory:
-//apps/admin
-//Build comments:
+##Build command:
+##bun run build
+##Build output:
+##build/client
+##Root directory:
+##apps/admin
+##Build comments:
 
 [vars]
 VITE_PUBLIC_API_URL=https://api.assettradingdesk.com
