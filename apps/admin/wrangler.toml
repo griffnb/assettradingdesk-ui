@@ -12,6 +12,7 @@ pages_build_output_dir = "./build/client"
 ##Build comments:
 
 [vars]
+SKIP
 VITE_PUBLIC_API_URL="https://api.assettradingdesk.com"
 VITE_PUBLIC_API_HOST="api.assettradingdesk.com"
 VITE_PUBLIC_SESSION_KEY="session_id"

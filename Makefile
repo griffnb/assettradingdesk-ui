@@ -15,19 +15,14 @@ help: ## Show this help message
 # Development targets
 
 
-.PHONY: assettradingdesk
-assettradingdesk: ## Run development server
-	@open -a "Google Chrome" http://assets-local:4321
-	bun -F assettradingdesk-com dev --host 0.0.0.0
-
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://assets-local:5174
+	@open -a "Google Chrome" http://localhost:5174
 	bun -F admin dev --host 0.0.0.0
 
 .PHONY: customer
 customer: ## Run development server
-	@open -a "Google Chrome" http://assets-local:5173
+	@open -a "Google Chrome" http://localhost:5173
 	bun -F customer dev --host 0.0.0.0
 
 # Docker targets
