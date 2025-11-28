@@ -1,0 +1,26 @@
+name = "assettradingdesk-ui-admin"
+compatibility_date = "2024-11-21"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./build/client"
+
+##Build command:
+##bun run build
+##Build output:
+##build/client
+##Root directory:
+##apps/customer
+##Build comments:
+
+[vars]
+SKIP_DEPENDENCY_INSTALL="true"
+BUN_VERSION="1.3.2"
+VITE_PUBLIC_API_URL="https://api.assettradingdesk.com"
+VITE_PUBLIC_API_HOST="api.assettradingdesk.com"
+VITE_PUBLIC_SESSION_KEY="session_id"
+VITE_PUBLIC_SAGE_API_URL=""
+VITE_PUBLIC_SAGE_ADMIN_URL=""
+VITE_PUBLIC_ENVIRONMENT="production"
+VITE_PUBLIC_NAMESPACE="admin"
+VITE_PUBLIC_DECRYPT_KEY=""
+
+[env.production.vars]

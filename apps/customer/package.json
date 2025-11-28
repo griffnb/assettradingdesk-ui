@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.8.0",
+    "@react-router/cloudflare": "^7.9.6",
     "@openai/chatkit-react": "^0.0.0",
     "@react-router/fs-routes": "^7.9.1",
     "@react-router/node": "^7.9.1",
