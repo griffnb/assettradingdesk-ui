@@ -11,7 +11,7 @@ import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/F
 import FormFieldModelSelect from "@/ui/common/components/form/fields/FormFieldModelSelect";
 import { FormFieldMultiSelect } from "@/ui/common/components/form/fields/FormFieldMultiSelect";
 import { FormFieldSlider } from "@/ui/common/components/form/fields/FormFieldSlider";
-import FormFieldTextArea from "@/ui/common/components/form/fields/FormFieldTextArea";
+import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormFieldWrap } from "@/ui/common/components/form/fields/FormFieldWrap";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";

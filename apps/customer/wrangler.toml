@@ -4,12 +4,12 @@ compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./build/client"
 
 ##Build command:
-##bun run build
+##bun install && bun run build
 ##Build output:
 ##build/client
 ##Root directory:
 ##apps/customer
-##Build comments:
+##Add SKIP_DEPENDENCY_INSTALL="true"
 
 [vars]
 SKIP_DEPENDENCY_INSTALL="true"
