@@ -1,4 +1,5 @@
 import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
+import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { Footer } from "./Footer";
@@ -18,7 +19,7 @@ export const InAppLayout = observer(function InAppLayout(
       <LayerDisplay />
       <div className="relative flex flex-1 flex-col overflow-hidden bg-background">
         <NavBar />
-        <main className="flex h-full flex-col overflow-hidden min-h-dvh">
+        <main className={clsx("flex h-full flex-col overflow-hidden",{"min-h-dvh":!props.noFooter})}>
           {props.children}
           
         </main>

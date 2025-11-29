@@ -2,7 +2,8 @@
 
 import { constants } from "@/models/constants";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { FormFieldCheckbox } from "@/ui/common/components/form/fields/FormFieldCheckbox";
+import { ModelModel } from "@/models/models/model/model/ModelModel";
+import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
@@ -15,16 +16,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { Separator } from "@/ui/shadcn/ui/separator";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
+import { AssetImageUploader } from "./AssetImageUploader";
 
 interface AssetCreationFormProps {
   record: AssetModel;
   onSuccess?: (record: AssetModel) => void;
   onCancel?: () => void;
-  onImageUpload?: (record: AssetModel) => void;
 }
 
 export const AssetCreationForm = observer(function AssetCreationForm(
@@ -53,9 +53,9 @@ export const AssetCreationForm = observer(function AssetCreationForm(
   };
 
   return (
-    <Card className="shadow-lg">
+    <Card className="shadow-lg rounded-none flex flex-1 overflow-auto bg-gradient-to-br from-gray-50 to-white">
       <CardHeader>
-        <CardTitle>List an asset</CardTitle>
+        <CardTitle className="text-2xl">List an asset</CardTitle>
         <CardDescription>
           Provide technical details to help brokers match your equipment with
           qualified buyers.
@@ -64,29 +64,23 @@ export const AssetCreationForm = observer(function AssetCreationForm(
       <CardContent className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]">
         <div className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
-            <FormFieldText
+            <FormFieldModelSearchSelect<AssetModel,ModelModel>
               record={props.record}
               field="model_id"
-              type="text"
+              modelName="model"
+              modelDisplayField="label"
+              modelSearchParam={"q"}
+              modelSearchFilters={{"disabled":"0"}}
               label="Model"
-              placeholder="Search taxonomy…"
-              className="space-y-2"
+              placeholder="Search model…"
             />
-            <FormFieldText
-              record={props.record}
-              field="manufacturer_name"
-              type="text"
-              label="Manufacturer"
-              placeholder="Select OEM"
-              className="space-y-2"
-            />
+            
             <FormFieldText
               record={props.record}
               field="year"
               type="number"
-              label="Install year"
+              label="Model Year"
               placeholder="2020"
-              className="space-y-2"
             />
             <FormFieldText
               record={props.record}
@@ -94,105 +88,52 @@ export const AssetCreationForm = observer(function AssetCreationForm(
               type="text"
               label="Site location"
               placeholder="City, Country"
-              className="space-y-2"
-            />
-            <FormFieldText
-              record={props.record}
-              field="price"
-              type="number"
-              label="Asking price (USD)"
-              placeholder="0"
-              className="space-y-2 font-mono"
-            />
-            <FormFieldText
-              record={props.record}
-              field="notes"
-              type="text"
-              label="Preferred payment structure"
-              placeholder="e.g. 30 / 40 / 30 milestone"
-              className="space-y-2"
-            />
-          </div>
-
-          <FormFieldTextArea
-            record={props.record}
-            field="configuration_notes"
-            label="Configuration notes"
-            placeholder="List upgrades, beams, automation kits, retrofit work, service coverage, handoff requirements."
-            rows={5}
-            className="space-y-2"
-          />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <FormFieldText
-              record={props.record}
-              field="description"
-              type="text"
-              label="Rigging & de-install window"
-              placeholder="e.g. Q1 2026"
-              className="space-y-2"
+              
             />
             <FormFieldText
               record={props.record}
               field="serial_number"
               type="text"
-              label="Power / facilities requirements"
-              placeholder="Short summary"
-              className="space-y-2"
+              label="Serial Number"
+              placeholder="Serial Number"
+              
             />
+            
           </div>
+          
+          <FormFieldTextArea
+            record={props.record}
+            field="description"
+            label="Description"
+            placeholder="Condition / usage notes / maintenance history / etc."
+            rows={5}
+            className="space-y-2"
+          />
+          <FormFieldTextArea
+            record={props.record}
+            field="configuration_notes"
+            label="Configuration notes"
+            placeholder="Chambers / voltage / accessories / gases /  etc..."
+            rows={5}
+            className="space-y-2"
+          />
 
-          <div className="rounded-2xl border bg-muted/40 p-4">
-            <p className="text-sm font-medium">Disclosures</p>
-            <div className="mt-4 space-y-3 text-sm">
-              <label className="flex items-center justify-between">
-                <div>
-                  <p>Active production tool</p>
-                  <p className="text-muted-foreground">
-                    Ship 10 weeks after deposit
-                  </p>
-                </div>
-                <FormFieldCheckbox
-                  record={props.record}
-                  field="operational_status"
-                  label=""
-                  checkedValue={1}
-                  uncheckedValue={0}
-                  wrapVariant={null}
-                />
-              </label>
-              <Separator />
-              <label className="flex items-center justify-between">
-                <div>
-                  <p>OEM service transferable</p>
-                  <p className="text-muted-foreground">
-                    Signed consent on file
-                  </p>
-                </div>
-                <FormFieldCheckbox
-                  record={props.record}
-                  field="install_status"
-                  label=""
-                  checkedValue={1}
-                  uncheckedValue={0}
-                  wrapVariant={null}
-                />
-              </label>
-              <Separator />
-              <label className="flex items-center justify-between">
-                <div>
-                  <p>Financing assistance needed</p>
-                </div>
-                <FormFieldCheckbox
-                  record={props.record}
-                  field="quantity"
-                  label=""
-                  checkedValue={1}
-                  uncheckedValue={0}
-                  wrapVariant={null}
-                />
-              </label>
-            </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            
+            
+            <FormFieldSelect
+              record={props.record}
+              field="install_status"
+              label="Install Status"
+              options={constants.asset.install_status}
+            />
+            <FormFieldSelect
+              record={props.record}
+              field="operational_status"
+              label="Operational Status"
+              options={constants.asset.operational_status}
+            />
+            <AssetImageUploader asset={props.record} />
           </div>
         </div>
 
@@ -220,17 +161,13 @@ export const AssetCreationForm = observer(function AssetCreationForm(
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <FormFieldSelect
+              <FormFieldText
                 record={props.record}
-                field="install_status"
-                label="Installation status"
-                options={constants.asset.install_status}
-              />
-              <FormFieldSelect
-                record={props.record}
-                field="operational_status"
-                label="Operational status"
-                options={constants.asset.operational_status}
+                prepend="$"
+                field="price"
+                type="number"
+                label="Asking price (USD)"
+                placeholder="0"
               />
               <FormFieldText
                 record={props.record}
