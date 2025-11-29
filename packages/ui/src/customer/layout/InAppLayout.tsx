@@ -18,10 +18,11 @@ export const InAppLayout = observer(function InAppLayout(
       <LayerDisplay />
       <div className="relative flex flex-1 flex-col overflow-hidden bg-background">
         <NavBar />
-        <main className="flex h-full flex-col overflow-hidden">
+        <main className="flex h-full flex-col overflow-hidden min-h-dvh">
           {props.children}
-          {!props.noFooter && <Footer />}
+          
         </main>
+        {!props.noFooter && <Footer />}
       </div>
     </>
   );

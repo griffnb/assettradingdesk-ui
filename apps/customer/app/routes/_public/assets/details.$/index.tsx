@@ -27,6 +27,6 @@ export default observer(() => {
   if (!asset) {
     return <LoadingSkeleton />;
   }
-
+  
   return <AssetDetails asset={asset} />;
 });
