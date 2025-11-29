@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { Button } from "./button";
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof Tooltip> = {
   },
   decorators: [
     (Story) => (
-      <div className="flex justify-center items-center h-[300px] w-full p-4">
+      <div className="flex h-[300px] w-full items-center justify-center p-4">
         <Story />
       </div>
     ),
@@ -29,9 +29,7 @@ export const Default: Story = {
       <TooltipTrigger asChild>
         <Button variant="outline">Hover me</Button>
       </TooltipTrigger>
-      <TooltipContent>
-        This is a tooltip
-      </TooltipContent>
+      <TooltipContent>This is a tooltip</TooltipContent>
     </Tooltip>
   ),
 };
@@ -42,9 +40,7 @@ export const WithDelay: Story = {
       <TooltipTrigger asChild>
         <Button variant="outline">Hover with 500ms delay</Button>
       </TooltipTrigger>
-      <TooltipContent>
-        Delayed tooltip (500ms)
-      </TooltipContent>
+      <TooltipContent>Delayed tooltip (500ms)</TooltipContent>
     </Tooltip>
   ),
 };
@@ -56,18 +52,14 @@ export const MultipleTooltips: Story = {
         <TooltipTrigger asChild>
           <Button variant="outline">First Tooltip</Button>
         </TooltipTrigger>
-        <TooltipContent>
-          First tooltip content
-        </TooltipContent>
+        <TooltipContent>First tooltip content</TooltipContent>
       </Tooltip>
 
       <Tooltip>
         <TooltipTrigger asChild>
           <Button variant="secondary">Second Tooltip</Button>
         </TooltipTrigger>
-        <TooltipContent>
-          Second tooltip content
-        </TooltipContent>
+        <TooltipContent>Second tooltip content</TooltipContent>
       </Tooltip>
     </div>
   ),

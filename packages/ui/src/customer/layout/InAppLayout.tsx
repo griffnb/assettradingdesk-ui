@@ -1,4 +1,5 @@
 import { LayerDisplay } from "@/ui/common/components/layer/LayerDisplay";
+import { VariableService } from "@/ui/hooks/VariableService";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
@@ -10,8 +11,7 @@ const styleVariants = cva("", {
   variants: {
     variant: {
       default: "flex h-full flex-col overflow-hidden",
-      framed:
-        "flex flex-col overflow-hidden max-h-[calc(100dvh-var(--customer-nav-bar))]",
+      framed: "max-h-[calc(100dvh-var(--customer-nav-bar))]",
     },
   },
   defaultVariants: {
@@ -30,10 +30,14 @@ export const InAppLayout = observer(function InAppLayout(
   props: InAppLayoutProps,
 ) {
   const { className, variant } = props;
+
   return (
     <>
       <LayerDisplay />
-      <div className="relative flex flex-1 flex-col overflow-hidden bg-background">
+      <div
+        className="relative flex size-full flex-1 flex-col bg-background"
+        style={VariableService.getStyles()}
+      >
         <NavBar />
         <main
           className={cn(styleVariants({ variant, className }), {

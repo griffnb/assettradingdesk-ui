@@ -14,7 +14,7 @@ import {
 import { X } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation, useNavigate } from "react-router";
-import { platformItems } from "../auth/nav/CustomerAuthLeftNav";
+import { assetItems, platformItems } from "../auth/nav/CustomerAuthLeftNav";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MobileMenuProps {}
@@ -31,7 +31,6 @@ const sidebarItems = [
     icon: null,
   },
 ];
-
 
 export const MobileMenuID = "mobile-menu";
 
@@ -55,7 +54,7 @@ export const MobileMenu = observer(function MobileMenu() {
           icon: null,
         },
       ]
-    : [...sidebarItems, ...platformItems];
+    : [...sidebarItems, ...platformItems, ...assetItems];
 
   const logout = async () => {
     await ServerService.postRaw("/logout", {
@@ -102,7 +101,7 @@ export const MobileMenu = observer(function MobileMenu() {
                   key={item.url}
                   onClick={() => LayerService.remove(MobileMenuID)}
                 >
-                  {item.icon && <item.icon className="size-4" />}  
+                  {item.icon && <item.icon className="size-4" />}
                   <span>{item.title}</span>
                 </Link>
               </ViewSidebarMenuButton>
@@ -110,19 +109,19 @@ export const MobileMenu = observer(function MobileMenu() {
           ))}
           {account && (
             <>
-          <div className="flex w-full flex-col border-t py-3">
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={() => {
-                logout();
-                LayerService.remove(MobileMenuID);
-              }}
-            >
-              Sign Out
-            </Button>
-          </div>
-          </>
+              <div className="flex w-full flex-col border-t py-3">
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    logout();
+                    LayerService.remove(MobileMenuID);
+                  }}
+                >
+                  Sign Out
+                </Button>
+              </div>
+            </>
           )}
         </ViewSidebarMenu>
       </ViewSidebarGroup>

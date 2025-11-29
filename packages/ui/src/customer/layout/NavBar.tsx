@@ -27,7 +27,7 @@ import { MobileMenu, MobileMenuID } from "./MobileMenu";
 import { SearchFlyout } from "./SearchFlyout";
 
 export const NavBar = observer(function NavBar() {
-  const { ref, variable } = useMeasureVariable("customer-nav-bar", "height");
+  const { ref } = useMeasureVariable("customer-nav-bar", "height");
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
   const { account } = useAccount();
@@ -73,7 +73,6 @@ export const NavBar = observer(function NavBar() {
     <div
       className="flex w-full flex-1 flex-col items-center gap-3 border-b p-3 shadow-md md:flex-row md:px-6"
       ref={ref}
-      style={variable}
     >
       <div className="flex w-full flex-row items-center justify-between gap-3 md:w-fit md:justify-normal">
         <Link to="/" className="w-[170px] flex-none">
