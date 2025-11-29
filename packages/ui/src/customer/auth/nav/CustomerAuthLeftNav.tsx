@@ -4,11 +4,10 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  useSidebar
 } from "@/ui/shadcn/ui/sidebar";
 import {
   BookOpen,
@@ -24,7 +23,7 @@ import { Link, useLocation } from "react-router";
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CustomerAuthLeftNavProps {}
 
-const platformItems = [
+export const platformItems = [
   {
     title: "Dashboard",
     url: "/manage/dashboard",
@@ -52,6 +51,21 @@ const platformItems = [
   },
 ];
 
+export const assetItems = [
+  {
+    title: "Assets",
+    url: "/manage/assets",
+    icon: SquareTerminal,
+  },
+  {
+    title: "New Asset",
+    url: "/manage/assets/new",
+    icon: Plus,
+  },
+ 
+];
+
+
 export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -66,7 +80,8 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
       <SidebarContent>
         <SidebarGroup className="!py-0 pb-2">
           <SidebarMenu>
-            <SidebarMenuItem>
+            <SidebarMenuItem className="flex flex-row items-center">
+              <span className="group-data-[state='collapsed']:hidden">Manage</span>
               <SidebarMenuButton asChild>
                 <Button
                   variant="ghost"
@@ -83,10 +98,6 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
         </SidebarGroup>
         <SidebarGroup className="flex-1 p-2">
           <SidebarMenu>
-            <SidebarGroupLabel className="px-2 opacity-70">
-              Platform
-            </SidebarGroupLabel>
-
             {platformItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild isActive={currentPath === item.url}>
@@ -101,22 +112,16 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
           <Separator className="my-2" />
 
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link to="/assets/management">
-                  <SquareTerminal className="size-4" />
-                  <span>Assets</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link to="/assets/management/new">
-                  <Plus className="size-4" />
-                  Create New Asset
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {assetItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild isActive={currentPath === item.url}>
+                  <Link to={item.url}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

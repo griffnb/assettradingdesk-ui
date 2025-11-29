@@ -82,11 +82,12 @@ export const NavBar = observer(function NavBar() {
         <Menu className="md:hidden" onClick={toggleSidebar} />
       </div>
       <SearchFlyout />
-      <div className="hidden flex-row items-center gap-3 md:flex md:flex-1">
+      <div className="hidden flex-row items-center gap-3 md:flex md:w-full">
         <NavigationMenu
           viewport={false}
           delayDuration={1}
           skipDelayDuration={1}
+          className="w-full max-w-full [&>*:last-child]:w-full"
         >
           <NavigationMenuList>
             <NavigationMenuItem value="categories">
@@ -109,34 +110,52 @@ export const NavBar = observer(function NavBar() {
                 <Link to="/assets">Browse All Assets</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
+          
           </NavigationMenuList>
-        </NavigationMenu>
-        <div className="ml-auto flex flex-row items-center gap-2">
-          {account ? (
+          <NavigationMenuList className="w-full ml-auto justify-end">
+            {account ? (
             <>
-              <span className="text-sm">Welcome, {account.first_name}!</span>
+            <NavigationMenuItem value="manage-account" className="ml-auto">
+              <NavigationMenuTrigger>Manage Account</NavigationMenuTrigger>
+              <NavigationMenuContent className="z-10">
+               <span className="text-sm">Welcome, {account.first_name}!</span>
               <Button
                 className="bg-primary text-primary-foreground"
                 onClick={logout}
               >
                 Sign Out
               </Button>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+              
             </>
           ) : (
             <>
-              <Link to="/signup">
-                <Button className="bg-primary text-primary-foreground">
-                  Register Now
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button className="bg-primary text-primary-foreground">
-                  Sign In
-                </Button>
-              </Link>
+            <NavigationMenuItem value="signup" >
+               <NavigationMenuLink
+                asChild
+                className={navigationMenuTriggerStyle()}
+              >
+                <Link to="/signup">Signup Now</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem value="login">
+               <NavigationMenuLink
+                asChild
+                className={navigationMenuTriggerStyle()}
+              >
+                <Link to="/login">Sign In</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
             </>
           )}
-        </div>
+          </NavigationMenuList>          
+          
+        </NavigationMenu>
+        
+          
+       
       </div>
     </div>
   );

@@ -11,9 +11,10 @@ import {
   ViewSidebarMenuItem,
 } from "@/ui/shadcn/ui/sidebarview";
 
-import { MessageSquare, X } from "lucide-react";
+import { X } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation, useNavigate } from "react-router";
+import { platformItems } from "../auth/nav/CustomerAuthLeftNav";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MobileMenuProps {}
@@ -31,13 +32,6 @@ const sidebarItems = [
   },
 ];
 
-const authenticatedItems = [
-  {
-    title: "Messages",
-    url: "/messages",
-    icon: <MessageSquare className="size-4" />,
-  },
-];
 
 export const MobileMenuID = "mobile-menu";
 
@@ -61,7 +55,7 @@ export const MobileMenu = observer(function MobileMenu() {
           icon: null,
         },
       ]
-    : [...sidebarItems, ...authenticatedItems];
+    : [...sidebarItems, ...platformItems];
 
   const logout = async () => {
     await ServerService.postRaw("/logout", {
@@ -108,12 +102,14 @@ export const MobileMenu = observer(function MobileMenu() {
                   key={item.url}
                   onClick={() => LayerService.remove(MobileMenuID)}
                 >
-                  {item.icon && item.icon}
+                  {item.icon && <item.icon className="size-4" />}  
                   <span>{item.title}</span>
                 </Link>
               </ViewSidebarMenuButton>
             </ViewSidebarMenuItem>
           ))}
+          {account && (
+            <>
           <div className="flex w-full flex-col border-t py-3">
             <Button
               variant="outline"
@@ -126,6 +122,8 @@ export const MobileMenu = observer(function MobileMenu() {
               Sign Out
             </Button>
           </div>
+          </>
+          )}
         </ViewSidebarMenu>
       </ViewSidebarGroup>
     </TakeoverPanelWrap>

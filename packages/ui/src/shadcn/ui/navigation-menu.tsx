@@ -70,7 +70,7 @@ const navigationMenuTriggerStyle = cva([
   /* Hover States */
   "hover:bg-neutral-100 hover:text-neutral-900",
   /* Focus States */
-  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-neutral-950/50 outline-none focus-visible:ring-[3px] focus-visible:outline-1",
+  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-neutral-950/50 outline-none focus-visible:ring focus-visible:outline-1",
   /* Disabled State */
   "disabled:pointer-events-none disabled:opacity-50",
   /* Open States */
@@ -143,7 +143,7 @@ function NavigationMenuViewport({
           /* Height & Width */
           "h-[var(--radix-navigation-menu-viewport-height)] md:w-[var(--radix-navigation-menu-viewport-width)]",
           /* Origin */
-          "origin-top-center",
+          "origin-top",
           /* Colors & Borders */
           "border border-neutral-200 bg-white text-neutral-950 shadow",
           /* Animations */
@@ -175,7 +175,7 @@ function NavigationMenuLink({
         /* Transitions */
         "transition-all",
         /* Focus States */
-        "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+        "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:outline-1 focus-visible:ring focus-visible:ring-neutral-950/50",
         /* Hover States */
         "hover:bg-neutral-100 hover:text-neutral-900",
         /* Active States */
@@ -207,7 +207,7 @@ function NavigationMenuIndicator({
       ])}
       {...props}
     >
-      <div className="dark:bg-neutral-800 relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-neutral-200 shadow-md" />
+      <div className="dark:bg-neutral-800 relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-neutral-200 shadow-md" />
     </NavigationMenuPrimitive.Indicator>
   );
 }
@@ -221,5 +221,6 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  NavigationMenuViewport,
+  NavigationMenuViewport
 };
+
