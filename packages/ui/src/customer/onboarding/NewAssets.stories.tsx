@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { NewAssets } from "./NewAssets";
 
 const meta: Meta<typeof NewAssets> = {

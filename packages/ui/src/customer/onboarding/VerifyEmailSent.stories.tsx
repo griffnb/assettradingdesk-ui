@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { VerifyEmailSent } from "./VerifyEmailSent";
 
 const meta: Meta<typeof VerifyEmailSent> = {

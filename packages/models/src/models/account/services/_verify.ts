@@ -14,7 +14,7 @@ export function verifyAccount(
   verifyKey: string,
   email?: string,
 ): Promise<IJSONAPIType<VerifyResponse>> {
-  return ServerService.postRaw(`/account/verify`, {
+  return ServerService.callPost("account", `verify/email`, {
     verify: verifyKey,
     email,
   });
@@ -25,7 +25,7 @@ export function verifyInvite(
   verifyKey: string,
   email?: string,
 ): Promise<IJSONAPIType<VerifyResponse>> {
-  return ServerService.postRaw(`/account/verify/invite`, {
+  return ServerService.callPost("account", `verify/invite`, {
     verify: verifyKey,
     email,
   });

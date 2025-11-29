@@ -1,10 +1,10 @@
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
-import { NewOrganization } from "./NewOrganization";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { SetupOrganization } from "./SetupOrganization";
 
-const meta: Meta<typeof NewOrganization> = {
-  title: "Customer/Components/Onboarding/NewOrganization",
-  component: NewOrganization,
+const meta: Meta<typeof SetupOrganization> = {
+  title: "Customer/Components/Onboarding/SetupOrganization",
+  component: SetupOrganization,
   argTypes: {
     onSuccess: {
       action: "success",
@@ -28,7 +28,7 @@ export const Default: Story = {
     });
 
     return (
-      <NewOrganization
+      <SetupOrganization
         record={organization}
         onSuccess={(record) => console.log("Created:", record)}
         onCancel={() => console.log("Cancelled")}
@@ -45,7 +45,7 @@ export const WithPrefilledData: Story = {
     });
 
     return (
-      <NewOrganization
+      <SetupOrganization
         record={organization}
         onSuccess={(record) => console.log("Created:", record)}
         onCancel={() => console.log("Cancelled")}

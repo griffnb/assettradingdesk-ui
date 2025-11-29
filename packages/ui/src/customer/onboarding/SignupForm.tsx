@@ -66,7 +66,7 @@ export const SignupForm = observer(function SignupForm() {
     const resp = await AccountService.signup(signupRecord);
 
     if (resp.success) {
-      if (resp.data.token) {
+      if (resp.data?.token) {
         SessionService.setSessionToken(resp.data.token);
         await SessionService.reloadAccount();
         nav("/signup/verify/sent", {

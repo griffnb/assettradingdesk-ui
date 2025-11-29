@@ -16,4 +16,6 @@ export type StoreKeys =
   | "pipeline"
   | "request"
   | "global_config"
-  | "change_log";
+  | "change_log"
+  | "billing_plan"
+  | "subscription";

@@ -14,16 +14,25 @@ interface ExistingResponse {
   exists: boolean;
 }
 
+// @link {go}/internal/controllers/accounts/signup.go:231
 export function checkExisting(
   data: ExistingCheck,
 ): Promise<IJSONAPIType<ExistingResponse>> {
   return ServerService.callPost("account", `check`, data);
 }
 
+
+interface SignupResponse {
+  token:string
+	redirect_url?: string
+	verification_token?: string
+}
+
+// @link {go}/internal/controllers/accounts/signup.go:129
 export function signup(
   signupModel: Signup,
   oauth?: boolean,
-): Promise<IJSONAPIType<any>> {
+): Promise<IJSONAPIType<SignupResponse>> {
   return ServerService.callPost("account", oauth ? `signup/oauth` : "signup", {
     first_name: signupModel.first_name,
     last_name: signupModel.last_name,

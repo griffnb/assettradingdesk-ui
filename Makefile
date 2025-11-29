@@ -46,7 +46,7 @@ storybook: ## Run the storybook
 		echo "Storybook is already running on port 6006"; \
 		exit 0; \
 	fi; \
-	bun -F ui storybook
+	bun --bun -F ui storybook
 
 
 .PHONY: fix-mismatches

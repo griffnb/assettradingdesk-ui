@@ -15,14 +15,14 @@ import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 
-interface NewOrganizationProps {
+interface SetupOrganizationProps {
   record: OrganizationModel;
   onSuccess?: (record: OrganizationModel) => void;
   onCancel?: () => void;
 }
 
-export const NewOrganization = observer(function NewOrganization(
-  props: NewOrganizationProps,
+export const SetupOrganization = observer(function SetupOrganization(
+  props: SetupOrganizationProps,
 ) {
   const saveAction = async () => {
     runInAction(async () => {
@@ -63,14 +63,7 @@ export const NewOrganization = observer(function NewOrganization(
           placeholder="Enter organization name"
           className="space-y-2"
         />
-        <FormFieldText
-          record={props.record}
-          field="external_id"
-          type="text"
-          label="External ID"
-          placeholder="Enter external identifier"
-          className="space-y-2"
-        />
+       
       </CardContent>
       <CardFooter className="flex gap-2">
         <Button variant="outline" onClick={handleCancel} className="flex-1">
