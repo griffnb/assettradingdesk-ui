@@ -48,11 +48,11 @@ export const CustomerDashboardSuggestedTools = observer(
           </Button>
         </div>
         <div className="flex flex-col items-center px-10">
-          <Carousel className="flex w-full">
-            <CarouselContent>
+          <Carousel className="flex w-full"  opts={{ align: "start" }}>
+            <CarouselContent  className="last:mr-3">
               {assets.map((asset, index) => (
                 <CarouselItem
-                  className="@[30rem]:basis-1/2 @[44rem]:basis-1/3 @[59rem]:basis-1/4 @[71rem]:basis-1/5 basis-full"
+                  className="min-w-fit max-w-fit"
                   key={index}
                 >
                   <AssetCard

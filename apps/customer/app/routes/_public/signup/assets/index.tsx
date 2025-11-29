@@ -11,7 +11,7 @@ export default observer(function SignupAssets() {
     <div className="flex min-h-dvh flex-col items-center justify-center bg-[url('/img/hero.png')] bg-cover p-5">
       <NewAssets
         record={asset}
-        onSuccess={() => navigate("/dashboard")}
+        onSuccess={() => navigate("/manage/dashboard")}
         onCancel={() => navigate("/signup/upgrade")}
       />
     </div>

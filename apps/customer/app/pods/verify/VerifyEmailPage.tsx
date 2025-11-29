@@ -4,8 +4,8 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { AccountService } from "@/models/models/account/services/AccountService";
 import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { observer } from "mobx-react-lite";
-import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 
 export const VerifyEmailPage = observer(function VerifyEmailPage() {
   const navigate = useNavigate();

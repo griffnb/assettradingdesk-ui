@@ -27,27 +27,27 @@ export interface CustomerAuthLeftNavProps {}
 const platformItems = [
   {
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/manage/dashboard",
     icon: SquareTerminal,
   },
   {
     title: "Messages",
-    url: "/messages",
+    url: "/manage/messages",
     icon: MessageSquare,
   },
   {
     title: "Suggested Assets",
-    url: "/opportunities",
+    url: "/manage/opportunities",
     icon: Bot,
   },
   {
     title: "Manage Requests",
-    url: "/requests",
+    url: "/manage/requests",
     icon: BookOpen,
   },
   {
     title: "Offers",
-    url: "/offers",
+    url: "/manage/offers",
     icon: BookOpen,
   },
 ];

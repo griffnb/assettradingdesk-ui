@@ -30,7 +30,7 @@ export const Default: Story = {
       time_frame: 90,
     });
 
-    return <NewRequests record={request} />;
+    return <NewRequests record={request} onSuccess={() => {}} onCancel={() => {}} />;
   },
 };
 
@@ -45,7 +45,7 @@ export const WithInitialData: Story = {
       time_frame: 60,
     });
 
-    return <NewRequests record={request} />;
+    return <NewRequests record={request} onSuccess={() => {}} onCancel={() => {}} />;
   },
 };
 
@@ -60,7 +60,7 @@ export const BudgetRequest: Story = {
       time_frame: 30,
     });
 
-    return <NewRequests record={request} />;
+    return <NewRequests record={request} onSuccess={() => {}} onCancel={() => {}} />;
   },
 };
 
@@ -75,6 +75,6 @@ export const HighValueRequest: Story = {
       time_frame: 120,
     });
 
-    return <NewRequests record={request} />;
+    return <NewRequests record={request} onSuccess={() => {}} onCancel={() => {}} />;
   },
 };

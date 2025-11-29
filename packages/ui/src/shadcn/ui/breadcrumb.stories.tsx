@@ -1,14 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
+  BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbEllipsis,
+  BreadcrumbSeparator,
 } from "./breadcrumb";
-import React from "react";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Common/Components/Navigation/Breadcrumb",
@@ -77,7 +76,7 @@ export const CustomSeparator: Story = {
           <BreadcrumbSeparator>{'>'}</BreadcrumbSeparator>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+          <BreadcrumbLink href="/manage/dashboard">Dashboard</BreadcrumbLink>
           <BreadcrumbSeparator>{'>'}</BreadcrumbSeparator>
         </BreadcrumbItem>
         <BreadcrumbItem>

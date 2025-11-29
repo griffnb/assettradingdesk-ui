@@ -89,10 +89,10 @@ export const ExclusiveListings = observer(function ExclusiveListings(
           {/* Exclusive Product Cards Grid */}
           <div className="relative flex w-full shrink-0 flex-wrap content-center items-center gap-6">
             <Carousel className="mx-auto w-full">
-              <CarouselContent>
+              <CarouselContent className="last:mr-3">
                 {assets.map((asset) => (
                   <CarouselItem
-                    className="basis-full overflow-hidden md:basis-1/4"
+                    className="max-w-fit min-w-fit"
                     key={asset.id}
                   >
                     <AssetCard key={asset.id} asset={asset} variant={"full"} />
