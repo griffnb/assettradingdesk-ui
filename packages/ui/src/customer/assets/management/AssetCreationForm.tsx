@@ -1,8 +1,12 @@
 "use client";
 
+import { ServerService } from "@/common_lib/services/ServerService";
 import { constants } from "@/models/constants";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { AssetFileTypes } from "@/models/models/asset_file/_constants/file_type";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
+import { Store } from "@/models/store/Store";
+import { ImageHolder } from "@/ui/common/components/fields/files/types";
 import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
@@ -16,9 +20,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
+import { debugLog } from "@/utils/debug";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { ImageType } from "react-images-uploading";
 import { AssetImageUploader } from "./AssetImageUploader";
 
 interface AssetCreationFormProps {
@@ -30,6 +37,10 @@ interface AssetCreationFormProps {
 export const AssetCreationForm = observer(function AssetCreationForm(
   props: AssetCreationFormProps,
 ) {
+  const [wrappedImages, setWrappedImages] = useState<ImageHolder[]>([]);
+  const [images, setImages] = useState<ImageType[]>([]);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+
   const saveAction = async () => {
     runInAction(async () => {
       const messages = isObjectValid<AssetModel>(props.record);
@@ -39,8 +50,11 @@ export const AssetCreationForm = observer(function AssetCreationForm(
       }
       const resp = await props.record.save();
 
-      if (resp.success && props.onSuccess) {
-        props.onSuccess(props.record);
+      if (resp.success) {
+        await handleUpload();
+        if (props.onSuccess) {
+          props.onSuccess(props.record);
+        }
       }
     });
   };
@@ -52,8 +66,77 @@ export const AssetCreationForm = observer(function AssetCreationForm(
     }
   };
 
+  const getUploadData = async (file: File) => {
+    const results = await ServerService.callGet("asset-file", "presignedURL", {
+      name: file.name,
+      type: file.type,
+    });
+
+    return results.data.url;
+  };
+
+  const uploadToAWS = async (
+    file: File,
+    fileLocation: string,
+    index: number,
+  ) => {
+    const wrappedImage = wrappedImages[index];
+    if (!wrappedImage) {
+      return;
+    }
+    wrappedImage.uploading = true;
+    setWrappedImages([...wrappedImages]);
+
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": file.type },
+      body: file,
+    };
+    try {
+      await fetch(fileLocation, requestOptions);
+    } catch (error) {
+      debugLog(error);
+      wrappedImage.errored = true;
+    }
+    wrappedImage.uploading = false;
+    wrappedImage.finished = !wrappedImage.errored;
+    wrappedImage.assetURL = formatImageURL(
+      fileLocation.split("?")[0] as string,
+    );
+    setWrappedImages([...wrappedImages]);
+  };
+
+  const handleUpload = async () => {
+    setIsUploading(true);
+    for (let i = 0; i < images.length; i++) {
+      const img = images[i];
+      if (!img || !img.file) continue;
+      const fileLocation = await getUploadData(img.file);
+      await uploadToAWS(img.file, fileLocation, i);
+    }
+
+    wrappedImages.forEach((image) => {
+      if (image.finished && !image.errored) {
+        const assetFile = Store.asset_file.create();
+        assetFile.asset_id = props.record.id;
+        assetFile.file_name = image.file.name;
+        if (image.file.type.includes("image")) {
+          assetFile.file_type = AssetFileTypes.Image;
+        } else if (image.file.type.includes("video")) {
+          assetFile.file_type = AssetFileTypes.Video;
+        } else {
+          assetFile.file_type = AssetFileTypes.Document;
+        }
+        assetFile.file_location = image.assetURL;
+        assetFile.save();
+      }
+    });
+
+    setIsUploading(false);
+  };
+
   return (
-    <Card className="shadow-lg rounded-none flex flex-1 overflow-auto bg-gradient-to-br from-gray-50 to-white">
+    <Card className="flex flex-1 overflow-auto rounded-none bg-gradient-to-br from-gray-50 to-white shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">List an asset</CardTitle>
         <CardDescription>
@@ -61,137 +144,130 @@ export const AssetCreationForm = observer(function AssetCreationForm(
           qualified buyers.
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]">
-        <div className="space-y-6">
-          <div className="grid gap-4 md:grid-cols-2">
-            <FormFieldModelSearchSelect<AssetModel,ModelModel>
-              record={props.record}
-              field="model_id"
-              modelName="model"
-              modelDisplayField="label"
-              modelSearchParam={"q"}
-              modelSearchFilters={{"disabled":"0"}}
-              label="Model"
-              placeholder="Search model…"
-            />
-            
-            <FormFieldText
-              record={props.record}
-              field="year"
-              type="number"
-              label="Model Year"
-              placeholder="2020"
-            />
-            <FormFieldText
-              record={props.record}
-              field="location"
-              type="text"
-              label="Site location"
-              placeholder="City, Country"
-              
-            />
-            <FormFieldText
-              record={props.record}
-              field="serial_number"
-              type="text"
-              label="Serial Number"
-              placeholder="Serial Number"
-              
-            />
-            
-          </div>
-          
-          <FormFieldTextArea
-            record={props.record}
-            field="description"
-            label="Description"
-            placeholder="Condition / usage notes / maintenance history / etc."
-            rows={5}
-            className="space-y-2"
-          />
-          <FormFieldTextArea
-            record={props.record}
-            field="configuration_notes"
-            label="Configuration notes"
-            placeholder="Chambers / voltage / accessories / gases /  etc..."
-            rows={5}
-            className="space-y-2"
-          />
+      <CardContent className="space-y-6">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]">
+          <div className="space-y-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <FormFieldModelSearchSelect<AssetModel, ModelModel>
+                record={props.record}
+                field="model_id"
+                modelName="model"
+                modelDisplayField="label"
+                modelSearchParam={"q"}
+                modelSearchFilters={{ disabled: "0" }}
+                label="Model"
+                placeholder="Search model…"
+              />
 
-          <div className="grid gap-4 md:grid-cols-2">
-            
-            
-            <FormFieldSelect
-              record={props.record}
-              field="install_status"
-              label="Install Status"
-              options={constants.asset.install_status}
-            />
-            <FormFieldSelect
-              record={props.record}
-              field="operational_status"
-              label="Operational Status"
-              options={constants.asset.operational_status}
-            />
-            <AssetImageUploader asset={props.record} />
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <Card className="border-dashed bg-muted/30">
-            <CardHeader>
-              <CardTitle>Media upload</CardTitle>
-              <CardDescription>
-                Upload photos, BOM PDFs, service logs after creating the asset.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-muted-foreground/30 bg-background/80 p-6 text-center text-sm text-muted-foreground">
-                <p>Available after asset creation</p>
-                <p className="mt-2 text-xs">Max 5GB · auto-blur serials</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Asset details</CardTitle>
-              <CardDescription>
-                Additional specifications and status.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
               <FormFieldText
                 record={props.record}
-                prepend="$"
-                field="price"
+                field="year"
                 type="number"
-                label="Asking price (USD)"
-                placeholder="0"
+                label="Model Year"
+                placeholder="2020"
               />
               <FormFieldText
                 record={props.record}
-                field="quantity"
-                type="number"
-                label="Quantity"
-                placeholder="1"
+                field="location"
+                type="text"
+                label="Site location"
+                placeholder="City, Country"
               />
-            </CardContent>
-            <CardFooter className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={handleCancel}
-                className="flex-1"
-              >
-                Cancel
-              </Button>
-              <Button onClick={saveAction} className="flex-1">
-                Create Asset
-              </Button>
-            </CardFooter>
-          </Card>
+              <FormFieldText
+                record={props.record}
+                field="serial_number"
+                type="text"
+                label="Serial Number"
+                placeholder="Serial Number"
+              />
+            </div>
+
+            <FormFieldTextArea
+              record={props.record}
+              field="description"
+              label="Description"
+              placeholder="Condition / usage notes / maintenance history / etc."
+              rows={5}
+              className="space-y-2"
+            />
+            <FormFieldTextArea
+              record={props.record}
+              field="configuration_notes"
+              label="Configuration notes"
+              placeholder="Chambers / voltage / accessories / gases /  etc..."
+              rows={5}
+              className="space-y-2"
+            />
+          </div>
+
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Asset details</CardTitle>
+                <CardDescription>
+                  Additional specifications and status.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <FormFieldText
+                  record={props.record}
+                  prepend="$"
+                  field="price"
+                  type="number"
+                  label="Asking price (USD)"
+                  placeholder="0"
+                />
+                <FormFieldText
+                  record={props.record}
+                  field="quantity"
+                  type="number"
+                  label="Quantity"
+                  placeholder="1"
+                />
+                <FormFieldSelect
+                  record={props.record}
+                  field="install_status"
+                  label="Install Status"
+                  options={constants.asset.install_status}
+                />
+                <FormFieldSelect
+                  record={props.record}
+                  field="operational_status"
+                  label="Operational Status"
+                  options={constants.asset.operational_status}
+                />
+                <CardFooter className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={handleCancel}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                  <Button onClick={saveAction} className="flex-1">
+                    Create Asset
+                  </Button>
+                </CardFooter>
+              </CardContent>
+            </Card>
+          </div>
         </div>
+        <AssetImageUploader
+          asset={props.record}
+          images={images}
+          wrappedImages={wrappedImages}
+          setImages={(images, wrappedImages) => {
+            setImages(images);
+            setWrappedImages(wrappedImages);
+          }}
+          isUploading={isUploading}
+          uploadCount={0}
+        />
       </CardContent>
     </Card>
   );
 });
+
+const formatImageURL = (url: string) => {
+  return url.replace("https://s3.us-east-1.amazonaws.com/", "https://");
+};

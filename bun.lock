@@ -17,7 +17,7 @@
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "5.2.0",
         "eslint-plugin-tailwindcss": "^3.18.2",
-        "prettier": "^3.7.1",
+        "prettier": "3.6.2",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "^0.6.14",
         "tailwindcss": "^3.4.18",
@@ -65,7 +65,6 @@
         "postcss": "^8.5.6",
         "postcss-import": "^16.1.1",
         "postcss-nesting": "^13.0.2",
-        "prettier-plugin-tailwindcss": "^0.6.14",
         "tailwindcss": "^3.4.17",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "^5.9.2",
@@ -117,7 +116,6 @@
         "postcss": "^8.5.6",
         "postcss-import": "^16.1.1",
         "postcss-nesting": "^13.0.2",
-        "prettier-plugin-tailwindcss": "^0.6.14",
         "tailwindcss": "^3.4.17",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "^5.9.2",
@@ -167,7 +165,6 @@
         "jsdom": "^27.0.0",
         "msw": "^2.11.2",
         "plop": "^4.0.2",
-        "prettier": "^3.6.2",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.43.0",
         "vite": "^6.3.3",
@@ -325,8 +322,6 @@
         "postcss": "^8.5.6",
         "postcss-import": "^16.1.1",
         "postcss-nesting": "^13.0.2",
-        "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.14",
         "react-email": "^4.2.11",
         "shadcn": "^3.4.0",
         "storybook": "^10.0.6",
@@ -366,7 +361,6 @@
         "eslint": "^9.35.0",
         "eslint-plugin-import": "^2.32.0",
         "plop": "^4.0.2",
-        "prettier": "^3.6.2",
         "tailwindcss": "^3.4.17",
         "typescript": "^5.9.2",
         "vite": "^6.3.3",
@@ -1149,7 +1143,7 @@
 
     "@react-router/cloudflare": ["@react-router/cloudflare@7.9.6", "", { "peerDependencies": { "@cloudflare/workers-types": "^4.0.0", "react-router": "^7.9.6", "typescript": "^5.1.0" }, "optionalPeers": ["typescript"] }, "sha512-9d3WW7ebPMJHCbRt5SPkoFcwvbYQhq76Xdohen0NhrDKn1HWYPwvIJSPmfPhWij3IzEr5wOlMlIGkATHknybww=="],
 
-    "@react-router/dev": ["@react-router/dev@7.9.6", "", { "dependencies": { "@babel/core": "^7.27.7", "@babel/generator": "^7.27.5", "@babel/parser": "^7.27.7", "@babel/plugin-syntax-jsx": "^7.27.1", "@babel/preset-typescript": "^7.27.1", "@babel/traverse": "^7.27.7", "@babel/types": "^7.27.7", "@npmcli/package-json": "^4.0.1", "@react-router/node": "7.9.6", "@remix-run/node-fetch-server": "^0.9.0", "arg": "^5.0.1", "babel-dead-code-elimination": "^1.0.6", "chokidar": "^4.0.0", "dedent": "^1.5.3", "es-module-lexer": "^1.3.1", "exit-hook": "2.2.1", "isbot": "^5.1.11", "jsesc": "3.0.2", "lodash": "^4.17.21", "p-map": "^7.0.3", "pathe": "^1.1.2", "picocolors": "^1.1.1", "prettier": "^3.6.2", "react-refresh": "^0.14.0", "semver": "^7.3.7", "tinyglobby": "^0.2.14", "valibot": "^1.1.0", "vite-node": "^3.2.2" }, "peerDependencies": { "@react-router/serve": "^7.9.6", "@vitejs/plugin-rsc": "*", "react-router": "^7.9.6", "typescript": "^5.1.0", "vite": "^5.1.0 || ^6.0.0 || ^7.0.0", "wrangler": "^3.28.2 || ^4.0.0" }, "optionalPeers": ["@react-router/serve", "@vitejs/plugin-rsc", "typescript", "wrangler"], "bin": { "react-router": "bin.js" } }, "sha512-pBkbczGwI+NcZPcK8JPvWGWdjUpT/+okXYp6IXvt7zI3WLxr5hQLLRox5FkLiVxkykbqARO1hk9NRp9KFwJ2sA=="],
+    "@react-router/dev": ["@react-router/dev@7.9.6", "", { "dependencies": { "@babel/core": "^7.27.7", "@babel/generator": "^7.27.5", "@babel/parser": "^7.27.7", "@babel/plugin-syntax-jsx": "^7.27.1", "@babel/preset-typescript": "^7.27.1", "@babel/traverse": "^7.27.7", "@babel/types": "^7.27.7", "@npmcli/package-json": "^4.0.1", "@react-router/node": "7.9.6", "@remix-run/node-fetch-server": "^0.9.0", "arg": "^5.0.1", "babel-dead-code-elimination": "^1.0.6", "chokidar": "^4.0.0", "dedent": "^1.5.3", "es-module-lexer": "^1.3.1", "exit-hook": "2.2.1", "isbot": "^5.1.11", "jsesc": "3.0.2", "lodash": "^4.17.21", "p-map": "^7.0.3", "pathe": "^1.1.2", "picocolors": "^1.1.1", "prettier": "3.6.2", "react-refresh": "^0.14.0", "semver": "^7.3.7", "tinyglobby": "^0.2.14", "valibot": "^1.1.0", "vite-node": "^3.2.2" }, "peerDependencies": { "@react-router/serve": "^7.9.6", "@vitejs/plugin-rsc": "*", "react-router": "^7.9.6", "typescript": "^5.1.0", "vite": "^5.1.0 || ^6.0.0 || ^7.0.0", "wrangler": "^3.28.2 || ^4.0.0" }, "optionalPeers": ["@react-router/serve", "@vitejs/plugin-rsc", "typescript", "wrangler"], "bin": { "react-router": "bin.js" } }, "sha512-pBkbczGwI+NcZPcK8JPvWGWdjUpT/+okXYp6IXvt7zI3WLxr5hQLLRox5FkLiVxkykbqARO1hk9NRp9KFwJ2sA=="],
 
     "@react-router/express": ["@react-router/express@7.9.6", "", { "dependencies": { "@react-router/node": "7.9.6" }, "peerDependencies": { "express": "^4.17.1 || ^5", "react-router": "7.9.6", "typescript": "^5.1.0" }, "optionalPeers": ["typescript"] }, "sha512-YykIWqZSkcaOnC72k0BtPZJK9781Ge623pWkTn0svzFLsqWW2/tX/Y1/Le6eG2xWrGeGfaeTSzi9dy3agP0OIw=="],
 
@@ -3023,7 +3017,7 @@
 
     "prelude-ls": ["prelude-ls@1.2.1", "", {}, "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="],
 
-    "prettier": ["prettier@3.7.1", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ=="],
+    "prettier": ["prettier@3.6.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ=="],
 
     "prettier-plugin-astro": ["prettier-plugin-astro@0.14.1", "", { "dependencies": { "@astrojs/compiler": "^2.9.1", "prettier": "^3.0.0", "sass-formatter": "^0.7.6" } }, "sha512-RiBETaaP9veVstE4vUwSIcdATj6dKmXljouXc/DDNwBSPTp8FRkLGDSGFClKsAFeeg+13SB0Z1JZvbD76bigJw=="],
 
@@ -3791,7 +3785,11 @@
 
     "@react-email/markdown/marked": ["marked@15.0.12", "", { "bin": { "marked": "bin/marked.js" } }, "sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA=="],
 
+    "@react-email/render/prettier": ["prettier@3.7.1", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ=="],
+
     "@react-router/dev/chokidar": ["chokidar@4.0.3", "", { "dependencies": { "readdirp": "^4.0.1" } }, "sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA=="],
+
+    "@react-router/dev/prettier": ["prettier@3.7.1", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ=="],
 
     "@react-router/dev/semver": ["semver@7.7.3", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q=="],
 
@@ -4012,6 +4010,8 @@
     "postcss-nested/postcss-selector-parser": ["postcss-selector-parser@6.1.2", "", { "dependencies": { "cssesc": "^3.0.0", "util-deprecate": "^1.0.2" } }, "sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg=="],
 
     "postcss-nesting/postcss-selector-parser": ["postcss-selector-parser@7.1.1", "", { "dependencies": { "cssesc": "^3.0.0", "util-deprecate": "^1.0.2" } }, "sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg=="],
+
+    "prettier-plugin-astro/prettier": ["prettier@3.7.1", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ=="],
 
     "pretty-format/ansi-regex": ["ansi-regex@5.0.1", "", {}, "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="],
 
