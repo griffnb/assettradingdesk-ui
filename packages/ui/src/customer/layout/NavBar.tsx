@@ -110,52 +110,50 @@ export const NavBar = observer(function NavBar() {
                 <Link to="/assets">Browse All Assets</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
-          
           </NavigationMenuList>
-          <NavigationMenuList className="w-full ml-auto justify-end">
+          <NavigationMenuList className="ml-auto w-full justify-end">
             {account ? (
-            <>
-            <NavigationMenuItem value="manage-account" className="ml-auto">
-              <NavigationMenuTrigger>Manage Account</NavigationMenuTrigger>
-              <NavigationMenuContent className="z-10">
-               <span className="text-sm">Welcome, {account.first_name}!</span>
-              <Button
-                className="bg-primary text-primary-foreground"
-                onClick={logout}
-              >
-                Sign Out
-              </Button>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-              
-            </>
-          ) : (
-            <>
-            <NavigationMenuItem value="signup" >
-               <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link to="/signup">Signup Now</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem value="login">
-               <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link to="/login">Sign In</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            
-            </>
-          )}
-          </NavigationMenuList>          
-          
+              <>
+                <NavigationMenuItem value="manage-account" className="ml-auto">
+                  <NavigationMenuTrigger>Manage Account</NavigationMenuTrigger>
+                  <NavigationMenuContent className="left-auto right-0 z-10 flex !w-[400px] flex-col space-y-4 rounded-md border bg-white p-4 shadow-md">
+                    <span className="text-sm">
+                      Welcome, {account.first_name}!
+                    </span>
+                    <Link className="underline" to="/manage/dashboard">
+                      Go to Dashboard
+                    </Link>
+                    <Button
+                      className="bg-primary text-primary-foreground"
+                      onClick={logout}
+                    >
+                      Sign Out
+                    </Button>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </>
+            ) : (
+              <>
+                <NavigationMenuItem value="signup">
+                  <NavigationMenuLink
+                    asChild
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    <Link to="/signup">Signup Now</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem value="login">
+                  <NavigationMenuLink
+                    asChild
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    <Link to="/login">Sign In</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </>
+            )}
+          </NavigationMenuList>
         </NavigationMenu>
-        
-          
-       
       </div>
     </div>
   );

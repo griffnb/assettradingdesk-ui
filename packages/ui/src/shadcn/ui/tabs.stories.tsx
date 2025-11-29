@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
 import { UserIcon, SettingsIcon, CreditCardIcon } from "lucide-react";
 
@@ -26,15 +26,9 @@ export const Default: Story = {
         <TabsTrigger value="password">Password</TabsTrigger>
         <TabsTrigger value="team">Team</TabsTrigger>
       </TabsList>
-      <TabsContent value="account">
-        Manage your account settings.
-      </TabsContent>
-      <TabsContent value="password">
-        Change your password here.
-      </TabsContent>
-      <TabsContent value="team">
-        Manage your team members.
-      </TabsContent>
+      <TabsContent value="account">Manage your account settings.</TabsContent>
+      <TabsContent value="password">Change your password here.</TabsContent>
+      <TabsContent value="team">Manage your team members.</TabsContent>
     </Tabs>
   ),
 };
@@ -56,9 +50,7 @@ export const WithIcons: Story = {
           Billing
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="user">
-        User profile and information.
-      </TabsContent>
+      <TabsContent value="user">User profile and information.</TabsContent>
       <TabsContent value="settings">
         Application settings and preferences.
       </TabsContent>
@@ -74,18 +66,16 @@ export const DisabledTab: Story = {
     <Tabs defaultValue="active">
       <TabsList>
         <TabsTrigger value="active">Active Tab</TabsTrigger>
-        <TabsTrigger value="disabled" disabled>Disabled Tab</TabsTrigger>
+        <TabsTrigger value="disabled" disabled>
+          Disabled Tab
+        </TabsTrigger>
         <TabsTrigger value="another">Another Tab</TabsTrigger>
       </TabsList>
-      <TabsContent value="active">
-        This is the active tab content.
-      </TabsContent>
+      <TabsContent value="active">This is the active tab content.</TabsContent>
       <TabsContent value="disabled">
         This content should not be visible.
       </TabsContent>
-      <TabsContent value="another">
-        Another tab's content.
-      </TabsContent>
+      <TabsContent value="another">Another tab's content.</TabsContent>
     </Tabs>
   ),
 };

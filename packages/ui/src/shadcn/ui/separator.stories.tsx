@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Separator } from "./separator";
 
 const meta: Meta<typeof Separator> = {
@@ -31,7 +31,7 @@ export const Horizontal: Story = {
     decorative: true,
   },
   render: (args) => (
-    <div className="w-64 flex flex-col space-y-4">
+    <div className="flex w-64 flex-col space-y-4">
       <div>Content Above</div>
       <Separator {...args} />
       <div>Content Below</div>
@@ -46,7 +46,7 @@ export const Vertical: Story = {
     decorative: true,
   },
   render: (args) => (
-    <div className="h-32 flex flex-row space-x-4 items-center">
+    <div className="flex h-32 flex-row items-center space-x-4">
       <div>Left Content</div>
       <Separator {...args} />
       <div>Right Content</div>
@@ -62,7 +62,7 @@ export const CustomStyled: Story = {
     className: "bg-blue-500 h-1",
   },
   render: (args) => (
-    <div className="w-64 flex flex-col space-y-4">
+    <div className="flex w-64 flex-col space-y-4">
       <div>Custom Styled Section</div>
       <Separator {...args} />
       <div>Another Section</div>
@@ -77,7 +77,7 @@ export const NonDecorativeSeparator: Story = {
     decorative: false,
   },
   render: (args) => (
-    <div className="w-64 flex flex-col space-y-4">
+    <div className="flex w-64 flex-col space-y-4">
       <div>Section with Non-Decorative Separator</div>
       <Separator {...args} aria-label="Section divider" />
       <div>Next Section</div>

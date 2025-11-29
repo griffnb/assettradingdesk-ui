@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Table,
   TableBody,
@@ -21,7 +21,7 @@ const meta: Meta<typeof Table> = {
   },
   decorators: [
     (Story) => (
-      <div className="p-4 bg-white dark:bg-neutral-900">
+      <div className="dark:bg-neutral-900 bg-white p-4">
         <Story />
       </div>
     ),
@@ -82,8 +82,8 @@ export const LightMode: Story = {
     </Table>
   ),
   parameters: {
-    backgrounds: { default: 'light' }
-  }
+    backgrounds: { default: "light" },
+  },
 };
 
 export const DarkMode: Story = {
@@ -104,8 +104,8 @@ export const DarkMode: Story = {
     </Table>
   ),
   parameters: {
-    backgrounds: { default: 'dark' }
-  }
+    backgrounds: { default: "dark" },
+  },
 };
 
 export const SelectedRow: Story = {
@@ -143,7 +143,10 @@ export const LongContent: Story = {
       <TableBody>
         <TableRow>
           <TableCell>A very long name that might wrap</TableCell>
-          <TableCell>A very long description that could potentially extend beyond the normal table width</TableCell>
+          <TableCell>
+            A very long description that could potentially extend beyond the
+            normal table width
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>

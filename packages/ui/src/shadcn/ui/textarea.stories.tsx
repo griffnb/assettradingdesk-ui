@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Textarea } from "./textarea";
 
 const meta: Meta<typeof Textarea> = {
@@ -54,7 +54,8 @@ export const ReadOnly: Story = {
 
 export const LongPlaceholder: Story = {
   args: {
-    placeholder: "This is a very long placeholder text that demonstrates how the textarea handles extended placeholder content",
+    placeholder:
+      "This is a very long placeholder text that demonstrates how the textarea handles extended placeholder content",
   },
 };
 
@@ -75,7 +76,7 @@ export const Invalid: Story = {
 export const DarkMode: Story = {
   parameters: {
     backgrounds: {
-      default: 'dark',
+      default: "dark",
     },
   },
   args: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Drawer,
   DrawerClose,
@@ -73,7 +73,9 @@ export const RightSideDrawer: Story = {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Drawer from Right Side</DrawerTitle>
-          <DrawerDescription>This drawer slides in from the right.</DrawerDescription>
+          <DrawerDescription>
+            This drawer slides in from the right.
+          </DrawerDescription>
         </DrawerHeader>
         <div className="p-4">
           <p>Various content can be placed here.</p>
@@ -97,7 +99,9 @@ export const LeftSideDrawer: Story = {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Drawer from Left Side</DrawerTitle>
-          <DrawerDescription>This drawer slides in from the left.</DrawerDescription>
+          <DrawerDescription>
+            This drawer slides in from the left.
+          </DrawerDescription>
         </DrawerHeader>
         <div className="p-4">
           <p>Various content can be placed here.</p>

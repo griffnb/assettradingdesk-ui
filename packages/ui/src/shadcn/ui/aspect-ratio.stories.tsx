@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AspectRatio } from "./aspect-ratio";
 
 const meta: Meta<typeof AspectRatio> = {
@@ -26,7 +26,7 @@ export const Default: Story = {
         <img
           src="https://images.unsplash.com/photo-1535025183041-0991a958e6b7"
           alt="A person sitting on a chair"
-          className="rounded-md object-cover w-full h-full"
+          className="h-full w-full rounded-md object-cover"
         />
       </AspectRatio>
     </div>
@@ -43,7 +43,7 @@ export const SquareAspect: Story = {
         <img
           src="https://images.unsplash.com/photo-1444491741275-3747c833fc24"
           alt="A scenic landscape"
-          className="rounded-md object-cover w-full h-full"
+          className="h-full w-full rounded-md object-cover"
         />
       </AspectRatio>
     </div>
@@ -60,7 +60,7 @@ export const WideAspect: Story = {
         <img
           src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e"
           alt="A wide landscape"
-          className="rounded-md object-cover w-full h-full"
+          className="h-full w-full rounded-md object-cover"
         />
       </AspectRatio>
     </div>
@@ -77,7 +77,7 @@ export const TallAspect: Story = {
         <img
           src="https://images.unsplash.com/photo-1609916848962-e33f36115c10"
           alt="A portrait orientation image"
-          className="rounded-md object-cover w-full h-full"
+          className="h-full w-full rounded-md object-cover"
         />
       </AspectRatio>
     </div>

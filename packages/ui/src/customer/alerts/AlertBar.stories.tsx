@@ -1,5 +1,5 @@
 import { Button } from "@/ui/common/components/buttons/Button";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AlertBar } from "./AlertBar";
 
 const meta: Meta<typeof AlertBar> = {

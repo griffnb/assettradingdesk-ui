@@ -8,7 +8,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/ui/shadcn/ui/card";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
@@ -19,20 +19,18 @@ import ImageUploading, {
 
 interface AssetImageUploaderProps {
   asset: AssetModel;
-  
-  setImages: (images: ImageType[],wrappedImages: ImageHolder[]) => void;
+
+  setImages: (images: ImageType[], wrappedImages: ImageHolder[]) => void;
   isUploading: boolean;
-  uploadCount: number;
+
   wrappedImages: ImageHolder[];
   images: ImageType[];
 }
 
 export const AssetImageUploader = observer(function AssetImageUploader(
-  props: AssetImageUploaderProps
+  props: AssetImageUploaderProps,
 ) {
   const { wrappedImages, images } = props;
-  
-  
 
   const onChange = (imageList: ImageListType) => {
     const newImages = imageList.map((image) => {
@@ -45,17 +43,12 @@ export const AssetImageUploader = observer(function AssetImageUploader(
       } as ImageHolder;
     });
 
-    
     props.setImages(imageList as never[], newImages);
   };
-
-
-
 
   const uploadedCount = wrappedImages.filter((img) => img.finished).length;
   const totalCount = wrappedImages.length;
   const hasFiles = wrappedImages.length > 0;
-  
 
   return (
     <Card className="shadow-lg">
@@ -75,7 +68,12 @@ export const AssetImageUploader = observer(function AssetImageUploader(
             maxNumber={50}
             allowNonImageType={true}
           >
-            {({ onImageUpload, onImageRemoveAll, onImageRemove, dragProps }) => (
+            {({
+              onImageUpload,
+              onImageRemoveAll,
+              onImageRemove,
+              dragProps,
+            }) => (
               <div className="space-y-4">
                 <div
                   className={cn([
@@ -180,13 +178,8 @@ export const AssetImageUploader = observer(function AssetImageUploader(
                   ))}
                 </div>
               )}
-              
             </CardContent>
           </Card>
-
-          
-              
-     
         </div>
       </CardContent>
     </Card>
@@ -273,5 +266,3 @@ const FilePreviewCard = observer(function FilePreviewCard(props: {
     </div>
   );
 });
-
-

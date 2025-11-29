@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Slider } from "./slider";
 
@@ -9,19 +9,19 @@ const meta: Meta<typeof Slider> = {
   argTypes: {
     min: {
       control: { type: "number" },
-      description: "Minimum value of the slider"
+      description: "Minimum value of the slider",
     },
     max: {
       control: { type: "number" },
-      description: "Maximum value of the slider"
+      description: "Maximum value of the slider",
     },
     defaultValue: {
       control: { type: "object" },
-      description: "Default values for the slider"
+      description: "Default values for the slider",
     },
     disabled: {
       control: { type: "boolean" },
-      description: "Disable the slider"
+      description: "Disable the slider",
     },
   },
 };
@@ -61,11 +61,7 @@ export const Controlled: Story = {
 
     return (
       <div>
-        <Slider
-          {...args}
-          value={value}
-          onValueChange={setValue}
-        />
+        <Slider {...args} value={value} onValueChange={setValue} />
         <p className="mt-2">Current Value: {value[0]}</p>
       </div>
     );

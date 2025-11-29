@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Skeleton } from "./skeleton";
 
 const meta: Meta<typeof Skeleton> = {
@@ -10,10 +10,10 @@ const meta: Meta<typeof Skeleton> = {
   },
   argTypes: {
     className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply to the skeleton'
-    }
-  }
+      control: "text",
+      description: "Additional CSS classes to apply to the skeleton",
+    },
+  },
 };
 
 export default meta;
@@ -43,9 +43,9 @@ export const SmallSkeleton: Story = {
 export const SkeletonList: Story = {
   render: () => (
     <div className="space-y-3">
-      <Skeleton className="w-full h-[50px]" />
-      <Skeleton className="w-full h-[50px]" />
-      <Skeleton className="w-full h-[50px]" />
+      <Skeleton className="h-[50px] w-full" />
+      <Skeleton className="h-[50px] w-full" />
+      <Skeleton className="h-[50px] w-full" />
     </div>
   ),
 };

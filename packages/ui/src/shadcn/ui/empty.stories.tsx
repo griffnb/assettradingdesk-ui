@@ -1,18 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "./empty";
 
-import {
-  FileIcon,
-  MessageCircleIcon,
-  SearchIcon
-} from "lucide-react";
+import { FileIcon, MessageCircleIcon, SearchIcon } from "lucide-react";
 
 const meta: Meta = {
   title: "Common/Components/UI/Empty",
@@ -78,12 +74,10 @@ export const WithMessage: Story = {
 
 export const CustomStyle: Story = {
   render: () => (
-    <Empty className="bg-gray-50 border-2">
+    <Empty className="border-2 bg-gray-50">
       <EmptyContent>
         <EmptyHeader>
-          <EmptyMedia variant="default">
-            Custom styled empty state
-          </EmptyMedia>
+          <EmptyMedia variant="default">Custom styled empty state</EmptyMedia>
           <EmptyTitle>Custom Empty</EmptyTitle>
           <EmptyDescription>
             This empty state has a custom background and border.

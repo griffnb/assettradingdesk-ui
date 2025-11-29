@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SellerListingShowcase } from "./SellerListingShowcase";
 
 const meta: Meta<typeof SellerListingShowcase> = {

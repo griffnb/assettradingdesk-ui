@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   ViewSidebar,
   ViewSidebarContent,
@@ -39,7 +39,7 @@ const meta: Meta<typeof ViewSidebar> = {
     },
   },
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 

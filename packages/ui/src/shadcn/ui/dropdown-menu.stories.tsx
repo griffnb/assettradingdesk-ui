@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,7 +55,9 @@ export const WithRadioGroup: Story = {
         <DropdownMenuRadioGroup>
           <DropdownMenuRadioItem value="list">List View</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="grid">Grid View</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="compact">Compact View</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="compact">
+            Compact View
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

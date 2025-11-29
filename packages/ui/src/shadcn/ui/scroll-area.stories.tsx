@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ScrollArea, ScrollBar } from "./scroll-area";
 
 const meta: Meta<typeof ScrollArea> = {
@@ -12,7 +12,7 @@ const meta: Meta<typeof ScrollArea> = {
   },
   decorators: [
     (Story) => (
-      <div className="w-full h-64 border border-gray-200 rounded-lg p-4">
+      <div className="h-64 w-full rounded-lg border border-gray-200 p-4">
         <Story />
       </div>
     ),
@@ -39,7 +39,7 @@ const LongContentVertical = () => (
 const WideContentHorizontal = () => (
   <div className="inline-block min-w-[800px]">
     {Array.from({ length: 10 }, (_, i) => (
-      <span key={i} className="inline-block mr-4 p-2 bg-gray-100">
+      <span key={i} className="mr-4 inline-block bg-gray-100 p-2">
         Wide content block {i + 1}
       </span>
     ))}
@@ -50,11 +50,7 @@ export const Default: Story = {
   args: {
     children: <LongContentVertical />,
   },
-  render: (args) => (
-    <ScrollArea {...args}>
-      {args.children}
-    </ScrollArea>
-  ),
+  render: (args) => <ScrollArea {...args}>{args.children}</ScrollArea>,
 };
 
 export const HorizontalScroll: Story = {
@@ -63,16 +59,14 @@ export const HorizontalScroll: Story = {
   },
   render: (args) => (
     <div className="w-64">
-      <ScrollArea {...args}>
-        {args.children}
-      </ScrollArea>
+      <ScrollArea {...args}>{args.children}</ScrollArea>
     </div>
   ),
 };
 
 export const CustomScrollbar: Story = {
   render: () => (
-    <div className="w-64 h-64 border border-gray-200 rounded-lg p-4">
+    <div className="h-64 w-64 rounded-lg border border-gray-200 p-4">
       <ScrollArea>
         <LongContentVertical />
         <ScrollBar
@@ -87,14 +81,12 @@ export const CustomScrollbar: Story = {
 export const DarkModeScrollbar: Story = {
   parameters: {
     backgrounds: {
-      default: 'dark',
-      values: [
-        { name: 'dark', value: '#000000' },
-      ],
+      default: "dark",
+      values: [{ name: "dark", value: "#000000" }],
     },
   },
   render: () => (
-    <div className="dark w-64 h-64 border border-gray-800 rounded-lg p-4">
+    <div className="dark h-64 w-64 rounded-lg border border-gray-800 p-4">
       <ScrollArea>
         <LongContentVertical />
         <ScrollBar orientation="vertical" />

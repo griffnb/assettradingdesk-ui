@@ -51,7 +51,7 @@ export const AssetCreationForm = observer(function AssetCreationForm(
       const resp = await props.record.save();
 
       if (resp.success) {
-        await handleUpload();
+        await handleUpload(props.record.id as string);
         if (props.onSuccess) {
           props.onSuccess(props.record);
         }
@@ -67,7 +67,7 @@ export const AssetCreationForm = observer(function AssetCreationForm(
   };
 
   const getUploadData = async (file: File) => {
-    const results = await ServerService.callGet("asset-file", "presignedURL", {
+    const results = await ServerService.callGet("asset_file", "presignedURL", {
       name: file.name,
       type: file.type,
     });
@@ -106,7 +106,7 @@ export const AssetCreationForm = observer(function AssetCreationForm(
     setWrappedImages([...wrappedImages]);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (assetId: string) => {
     setIsUploading(true);
     for (let i = 0; i < images.length; i++) {
       const img = images[i];
@@ -118,7 +118,7 @@ export const AssetCreationForm = observer(function AssetCreationForm(
     wrappedImages.forEach((image) => {
       if (image.finished && !image.errored) {
         const assetFile = Store.asset_file.create();
-        assetFile.asset_id = props.record.id;
+        assetFile.asset_id = assetId;
         assetFile.file_name = image.file.name;
         if (image.file.type.includes("image")) {
           assetFile.file_type = AssetFileTypes.Image;
@@ -261,7 +261,6 @@ export const AssetCreationForm = observer(function AssetCreationForm(
             setWrappedImages(wrappedImages);
           }}
           isUploading={isUploading}
-          uploadCount={0}
         />
       </CardContent>
     </Card>

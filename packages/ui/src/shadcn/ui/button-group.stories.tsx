@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   ButtonGroup,
   ButtonGroupSeparator,
-  ButtonGroupText
+  ButtonGroupText,
 } from "./button-group";
 
 const meta: Meta<typeof ButtonGroup> = {

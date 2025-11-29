@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Menubar,
   MenubarContent,
@@ -137,9 +137,7 @@ export const FullMenubar: Story = {
           <MenubarItem>Copy</MenubarItem>
           <MenubarItem>Paste</MenubarItem>
           <MenubarSeparator />
-          <MenubarCheckboxItem checked>
-            Show Line Numbers
-          </MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>Show Line Numbers</MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

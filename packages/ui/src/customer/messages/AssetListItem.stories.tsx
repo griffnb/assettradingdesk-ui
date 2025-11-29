@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { AssetListItem } from "./AssetListItem";
 
@@ -121,7 +121,9 @@ export const SingleThread: Story = {
 
 export const Interactive = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedThreadId, setSelectedThreadId] = useState<string | undefined>();
+  const [selectedThreadId, setSelectedThreadId] = useState<
+    string | undefined
+  >();
 
   return (
     <div className="w-[400px] border">

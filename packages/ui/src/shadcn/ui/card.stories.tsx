@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Card,
   CardHeader,
@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-  CardAction
+  CardAction,
 } from "./card";
 import { Button } from "@/ui/shadcn/ui/button";
 
@@ -17,7 +17,7 @@ const meta: Meta<typeof Card> = {
     // Note: most props are passed through, so no specific argTypes needed
   },
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
@@ -32,7 +32,10 @@ export const Default: Story = {
         <CardDescription>This is a description of the card.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Some content goes here. This could be text, components, or any other React elements.</p>
+        <p>
+          Some content goes here. This could be text, components, or any other
+          React elements.
+        </p>
       </CardContent>
       <CardFooter>
         <p>Card footer content</p>
@@ -46,9 +49,13 @@ export const WithAction: Story = {
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Project Details</CardTitle>
-        <CardDescription>Overview of the current project status</CardDescription>
+        <CardDescription>
+          Overview of the current project status
+        </CardDescription>
         <CardAction>
-          <Button variant="outline" size="sm">Edit</Button>
+          <Button variant="outline" size="sm">
+            Edit
+          </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -70,10 +77,10 @@ export const LongContent: Story = {
       </CardHeader>
       <CardContent>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
         </p>
       </CardContent>
       <CardFooter>
@@ -86,7 +93,7 @@ export const LongContent: Story = {
 export const DarkMode: Story = {
   parameters: {
     backgrounds: {
-      default: 'dark',
+      default: "dark",
     },
   },
   render: () => (
@@ -94,10 +101,15 @@ export const DarkMode: Story = {
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Dark Mode Card</CardTitle>
-          <CardDescription>This is how the card looks in dark mode</CardDescription>
+          <CardDescription>
+            This is how the card looks in dark mode
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Dark mode provides a comfortable viewing experience in low-light environments.</p>
+          <p>
+            Dark mode provides a comfortable viewing experience in low-light
+            environments.
+          </p>
         </CardContent>
         <CardFooter>
           <Button variant="secondary">Dark Mode Action</Button>

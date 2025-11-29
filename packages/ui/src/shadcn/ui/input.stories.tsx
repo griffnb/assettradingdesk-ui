@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "./input";
 
 const meta: Meta<typeof Input> = {
@@ -7,7 +7,16 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     type: {
       control: "select",
-      options: ["text", "password", "email", "number", "tel", "search", "url", "file"],
+      options: [
+        "text",
+        "password",
+        "email",
+        "number",
+        "tel",
+        "search",
+        "url",
+        "file",
+      ],
       description: "Input type",
     },
     disabled: {
@@ -18,7 +27,7 @@ const meta: Meta<typeof Input> = {
       control: "text",
       description: "Placeholder text",
     },
-    'aria-invalid': {
+    "aria-invalid": {
       control: "boolean",
       description: "Set invalid state for form validation",
     },
@@ -57,7 +66,7 @@ export const Disabled: Story = {
 
 export const Invalid: Story = {
   args: {
-    'aria-invalid': true,
+    "aria-invalid": true,
     placeholder: "Invalid input",
   },
 };

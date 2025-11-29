@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OpportunitiesShowcase } from "./OpportunitiesShowcase";
 
 const meta: Meta<typeof OpportunitiesShowcase> = {

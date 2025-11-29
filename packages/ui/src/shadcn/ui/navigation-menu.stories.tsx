@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { UserIcon, SettingsIcon, HomeIcon, DollarSignIcon } from "lucide-react";
 import {
   NavigationMenu,
@@ -48,16 +48,12 @@ export const Default: Story = {
             <DollarSignIcon className="mr-2 size-4" /> Assets
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="p-4 space-y-2">
+            <div className="space-y-2 p-4">
               <NavigationMenuLink href="#assets">
-                <div className="flex items-center">
-                  Asset List
-                </div>
+                <div className="flex items-center">Asset List</div>
               </NavigationMenuLink>
               <NavigationMenuLink href="#create-asset">
-                <div className="flex items-center">
-                  Create Asset
-                </div>
+                <div className="flex items-center">Create Asset</div>
               </NavigationMenuLink>
             </div>
           </NavigationMenuContent>
@@ -68,11 +64,9 @@ export const Default: Story = {
             <UserIcon className="mr-2 size-4" /> Profile
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="p-4 space-y-2">
+            <div className="space-y-2 p-4">
               <NavigationMenuLink href="#profile">
-                <div className="flex items-center">
-                  View Profile
-                </div>
+                <div className="flex items-center">View Profile</div>
               </NavigationMenuLink>
               <NavigationMenuLink href="#settings">
                 <div className="flex items-center">
@@ -115,7 +109,7 @@ export const WithoutViewport: Story = {
 export const LightAndDarkMode: Story = {
   render: () => (
     <div className="flex flex-col space-y-4">
-      <div className="p-4 bg-white dark:bg-neutral-950">
+      <div className="dark:bg-neutral-950 bg-white p-4">
         <h3 className="mb-2 text-sm font-semibold">Light Mode</h3>
         <NavigationMenu>
           <NavigationMenuList>
@@ -128,8 +122,10 @@ export const LightAndDarkMode: Story = {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="p-4 bg-neutral-950 text-neutral-50">
-        <h3 className="mb-2 text-sm font-semibold text-neutral-50">Dark Mode</h3>
+      <div className="bg-neutral-950 p-4 text-neutral-50">
+        <h3 className="mb-2 text-sm font-semibold text-neutral-50">
+          Dark Mode
+        </h3>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>

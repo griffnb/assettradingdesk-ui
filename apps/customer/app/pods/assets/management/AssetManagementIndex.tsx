@@ -29,10 +29,11 @@ export const AssetManagementIndex = observer(function AssetManagementIndex() {
     <>
       <AdminTitleBar title="Assets" />
       <StandardTableWrap<AssetModel>
-        className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
+        className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
         columns={columns}
         statuses={status}
         modelType="asset"
+        //customPath="manage"
         filters={filters}
         applyFilters={applyFilters}
         appliedFilters={appliedFilters}

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Pagination,
   PaginationContent,
@@ -18,7 +18,8 @@ const meta: Meta = {
   argTypes: {
     className: {
       control: "text",
-      description: "Additional CSS classes to apply to the pagination container",
+      description:
+        "Additional CSS classes to apply to the pagination container",
     },
   },
 };

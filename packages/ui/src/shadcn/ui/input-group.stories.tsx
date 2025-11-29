@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
   InputGroupButton,
-  InputGroupTextarea
+  InputGroupTextarea,
 } from "./input-group";
 import { SearchIcon, SendIcon } from "lucide-react";
 
@@ -17,16 +17,16 @@ const meta: Meta<typeof InputGroup> = {
     InputGroupInput,
     InputGroupText,
     InputGroupButton,
-    InputGroupTextarea
+    InputGroupTextarea,
   },
   argTypes: {
     className: {
-      control: 'text',
-      description: 'Additional CSS classes for the input group',
+      control: "text",
+      description: "Additional CSS classes for the input group",
     },
   },
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
 };
 
@@ -98,10 +98,7 @@ export const ErrorState: Story = {
   render: () => (
     <InputGroup>
       <InputGroupAddon>@</InputGroupAddon>
-      <InputGroupInput
-        placeholder="Enter email"
-        aria-invalid="true"
-      />
+      <InputGroupInput placeholder="Enter email" aria-invalid="true" />
       <InputGroupText>Invalid email</InputGroupText>
     </InputGroup>
   ),
@@ -111,10 +108,7 @@ export const Disabled: Story = {
   render: () => (
     <InputGroup data-disabled="true">
       <InputGroupAddon>Username</InputGroupAddon>
-      <InputGroupInput
-        placeholder="Enter username"
-        disabled
-      />
+      <InputGroupInput placeholder="Enter username" disabled />
       <InputGroupButton disabled>
         <SendIcon />
       </InputGroupButton>

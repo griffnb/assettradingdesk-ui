@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { ReplyBox } from "./ReplyBox";
 
@@ -35,7 +35,8 @@ export const Default: Story = {
 
 export const WithText: Story = {
   args: {
-    value: "Thank you for your inquiry. The equipment is in excellent condition.",
+    value:
+      "Thank you for your inquiry. The equipment is in excellent condition.",
     placeholder: "Type your reply...",
     helperText: "Reply to buyer inquiry",
     disabled: false,

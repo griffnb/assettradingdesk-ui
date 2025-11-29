@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Item,
   ItemActions,
@@ -9,7 +9,7 @@ import {
   ItemHeader,
   ItemMedia,
   ItemSeparator,
-  ItemTitle
+  ItemTitle,
 } from "./item";
 import { Button } from "./button";
 import { HelpCircleIcon, StarIcon } from "lucide-react";
@@ -43,7 +43,9 @@ export const Default: Story = {
     <Item {...args}>
       <ItemContent>
         <ItemTitle>Default Item</ItemTitle>
-        <ItemDescription>This is a default item with standard styling.</ItemDescription>
+        <ItemDescription>
+          This is a default item with standard styling.
+        </ItemDescription>
       </ItemContent>
     </Item>
   ),
@@ -57,7 +59,9 @@ export const WithMedia: Story = {
       </ItemMedia>
       <ItemContent>
         <ItemTitle>Item with Icon Media</ItemTitle>
-        <ItemDescription>An item featuring an icon in the media section.</ItemDescription>
+        <ItemDescription>
+          An item featuring an icon in the media section.
+        </ItemDescription>
       </ItemContent>
     </Item>
   ),
@@ -76,15 +80,12 @@ export const FullItem: Story = {
         </ItemActions>
       </ItemHeader>
       <ItemMedia variant="image">
-        <img
-          src="https://via.placeholder.com/150"
-          alt="Placeholder"
-        />
+        <img src="https://via.placeholder.com/150" alt="Placeholder" />
       </ItemMedia>
       <ItemContent>
         <ItemDescription>
-          A comprehensive item with header, media, content, and actions.
-          It demonstrates the versatility of the Item component.
+          A comprehensive item with header, media, content, and actions. It
+          demonstrates the versatility of the Item component.
         </ItemDescription>
       </ItemContent>
       <ItemFooter>
@@ -127,7 +128,9 @@ export const Variants: Story = {
       <Item variant="default">
         <ItemContent>
           <ItemTitle>Default Variant</ItemTitle>
-          <ItemDescription>Default styling with transparent background</ItemDescription>
+          <ItemDescription>
+            Default styling with transparent background
+          </ItemDescription>
         </ItemContent>
       </Item>
       <Item variant="outline">

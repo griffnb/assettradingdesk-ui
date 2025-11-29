@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AssetImageUploader } from "./AssetImageUploader";
 
 const meta = {
@@ -24,12 +24,12 @@ export const Default: Story = {
       year: 2020,
       location: "Hsinchu, Taiwan",
     }),
-    onComplete: (asset) => {
-      console.log("Upload completed successfully:", asset);
+    setImages: () => {
+      console.log("Images set");
     },
-    onCancel: () => {
-      console.log("Upload cancelled");
-    },
+    images: [],
+    wrappedImages: [],
+    isUploading: false,
   },
 };
 
@@ -43,24 +43,11 @@ export const WithAssetLabel: Story = {
       year: 2019,
       location: "Singapore",
     }),
-    onComplete: (asset) => {
-      console.log("Upload completed successfully:", asset);
+    setImages: () => {
+      console.log("Images set");
     },
-    onCancel: () => {
-      console.log("Upload cancelled");
-    },
-  },
-};
-
-export const NoCallbacks: Story = {
-  args: {
-    asset: Store.asset.create({
-      id: "mock-asset-789",
-      model_name: "2300",
-      manufacturer_name: "Lam Research",
-      price: 5500000,
-      year: 2021,
-      location: "Portland, OR",
-    }),
+    images: [],
+    wrappedImages: [],
+    isUploading: false,
   },
 };

@@ -18,11 +18,11 @@ export default function RootIndex() {
   }
 
   return (
-    <InAppLayout noFooter={true}>
+    <InAppLayout noFooter={true} variant="framed">
       <SidebarProvider>
         <CustomerAuthLeftNav />
         <SidebarInset className="!m-0">
-          <main className="flex h-full flex-col overflow-auto">
+          <main className="relative flex max-h-[calc(100dvh-var(--customer-nav-bar))] flex-col overflow-auto">
             <Outlet />
           </main>
         </SidebarInset>

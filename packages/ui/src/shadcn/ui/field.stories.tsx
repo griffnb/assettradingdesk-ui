@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Field,
   FieldContent,
@@ -62,7 +62,7 @@ export const WithError: Story = {
         <FieldError
           errors={[
             { message: "Username must be at least 3 characters" },
-            { message: "Username cannot contain special characters" }
+            { message: "Username cannot contain special characters" },
           ]}
         />
       </FieldContent>
