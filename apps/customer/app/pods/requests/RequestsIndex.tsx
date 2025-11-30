@@ -3,8 +3,9 @@ import { status } from "@/models/models/request/_constants/status";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
-import { cn } from "@/utils/cn";
+import { Button } from "@/ui/shadcn/ui/button";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
+import { Book, Plus } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router";
@@ -47,13 +48,28 @@ export const RequestsIndex = observer(function RequestsIndex() {
   }, [appliedFilters, applyFilters]);
 
   return (
-    <div className={cn("relative flex h-full min-h-0 flex-1 flex-col")}>
+    <div className="flex h-full flex-col">
+      <div className="flex items-center justify-between p-6 pb-4">
+        <div className="flex items-center gap-3">
+          <Book className="size-8 text-primary" />
+          <div>
+            <h1 className="text-3xl font-bold">Requests</h1>
+            <p className="text-sm text-muted-foreground">
+              Manage your requests
+            </p>
+          </div>
+        </div>
+        <Button onClick={openNewRequest} className="gap-2">
+          <Plus className="size-4" />
+          New Request
+        </Button>
+      </div>
       <StandardTableWrap<RequestModel>
-        className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
-        newComponent={openNewRequest}
+        className="[&_*[data-slot='table-wrap']]:flex-1 [&_*[data-slot='table-wrap']]:overflow-x-auto"
         columns={columns}
         statuses={status}
         modelType="request"
+        //customPath="manage"
         filters={filters}
         applyFilters={applyFilters}
         appliedFilters={appliedFilters}
