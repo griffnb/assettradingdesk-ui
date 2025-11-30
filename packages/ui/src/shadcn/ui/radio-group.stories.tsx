@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { RadioGroup, RadioGroupItem } from './radio-group'
-import { Label } from './label'
-import { cn } from '../utils'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { cn } from "../utils";
+import { Label } from "./label";
+import { RadioGroup, RadioGroupItem } from "./radio-group";
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Components/RadioGroup',
+  title: "Components/RadioGroup",
   component: RadioGroup,
   argTypes: {
     disabled: {
-      control: 'boolean',
-      description: 'Disable the entire radio group'
-    }
+      control: "boolean",
+      description: "Disable the entire radio group",
+    },
   },
   parameters: {
-    layout: 'centered'
-  }
-}
+    layout: "centered",
+  },
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof RadioGroup>
+type Story = StoryObj<typeof RadioGroup>;
 
 export const Default: Story = {
   render: (args) => (
@@ -37,8 +37,8 @@ export const Default: Story = {
         <Label htmlFor="r3">Compact</Label>
       </div>
     </RadioGroup>
-  )
-}
+  ),
+};
 
 export const Disabled: Story = {
   render: (args) => (
@@ -56,8 +56,8 @@ export const Disabled: Story = {
         <Label htmlFor="r3-disabled">Compact</Label>
       </div>
     </RadioGroup>
-  )
-}
+  ),
+};
 
 export const WithCustomStyling: Story = {
   render: (args) => (
@@ -68,7 +68,7 @@ export const WithCustomStyling: Story = {
           id="r1-custom"
           className={cn(
             "peer h-6 w-6 border-2 border-primary",
-            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
           )}
         />
         <Label
@@ -84,7 +84,7 @@ export const WithCustomStyling: Story = {
           id="r2-custom"
           className={cn(
             "peer h-6 w-6 border-2 border-primary",
-            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
           )}
         />
         <Label
@@ -100,7 +100,7 @@ export const WithCustomStyling: Story = {
           id="r3-custom"
           className={cn(
             "peer h-6 w-6 border-2 border-primary",
-            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+            "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
           )}
         />
         <Label
@@ -111,5 +111,5 @@ export const WithCustomStyling: Story = {
         </Label>
       </div>
     </RadioGroup>
-  )
-}
+  ),
+};

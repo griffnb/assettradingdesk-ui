@@ -4,17 +4,20 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from "@/ui/shadcn/ui/sidebar";
 import {
   BookOpen,
   Bot,
+  Building2,
   MessageSquare,
   PanelLeft,
   Plus,
+  Settings,
   SquareTerminal,
 } from "lucide-react";
 import { observer } from "mobx-react-lite";
@@ -62,9 +65,25 @@ export const assetItems = [
     url: "/manage/assets/new",
     icon: Plus,
   },
- 
 ];
 
+export const managementItems = [
+  {
+    title: "Organization",
+    url: "/manage/organization",
+    icon: Settings,
+  },
+  {
+    title: "Facilities",
+    url: "/manage/facilities",
+    icon: Building2,
+  },
+  {
+    title: "My Account",
+    url: "/manage/my-account",
+    icon: Settings,
+  },
+];
 
 export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
   const location = useLocation();
@@ -81,7 +100,9 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
         <SidebarGroup className="!py-0 pb-2">
           <SidebarMenu>
             <SidebarMenuItem className="flex flex-row items-center">
-              <span className="group-data-[state='collapsed']:hidden">Manage</span>
+              <span className="group-data-[state='collapsed']:hidden">
+                Manage
+              </span>
               <SidebarMenuButton asChild>
                 <Button
                   variant="ghost"
@@ -112,7 +133,23 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
           <Separator className="my-2" />
 
           <SidebarMenu>
+            <SidebarGroupLabel>Asset Management</SidebarGroupLabel>
             {assetItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild isActive={currentPath === item.url}>
+                  <Link to={item.url}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+          <Separator className="my-2" />
+
+          <SidebarMenu>
+            <SidebarGroupLabel>Account Management</SidebarGroupLabel>
+            {managementItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild isActive={currentPath === item.url}>
                   <Link to={item.url}>

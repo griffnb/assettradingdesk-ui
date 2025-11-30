@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,16 +9,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from './alert-dialog';
-import { Button } from './button';
+} from "./alert-dialog";
+import { Button } from "./button";
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'Components/AlertDialog',
+  title: "Components/AlertDialog",
   component: AlertDialog,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     // Add any custom argTypes if needed
   },
@@ -38,7 +38,8 @@ export const Default: Story = {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your account.
+            This action cannot be undone. This will permanently delete your
+            account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -60,8 +61,8 @@ export const Destructive: Story = {
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Account</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you absolutely sure you want to delete your account?
-            This action cannot be undone and will result in permanent data loss.
+            Are you absolutely sure you want to delete your account? This action
+            cannot be undone and will result in permanent data loss.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -79,12 +80,12 @@ export const WithCustomStyles: Story = {
       <AlertDialogTrigger asChild>
         <Button>Open Custom Alert Dialog</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-blue-50 dark:bg-blue-950 border-blue-200">
+      <AlertDialogContent className="dark:bg-blue-950 border-blue-200 bg-blue-50">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-blue-700 dark:text-blue-300">
+          <AlertDialogTitle className="dark:text-blue-300 text-blue-700">
             Confirm Action
           </AlertDialogTitle>
-          <AlertDialogDescription className="text-blue-600 dark:text-blue-400">
+          <AlertDialogDescription className="dark:text-blue-400 text-blue-600">
             This is a custom-styled alert dialog with blue color scheme.
           </AlertDialogDescription>
         </AlertDialogHeader>

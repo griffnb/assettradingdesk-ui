@@ -11,7 +11,6 @@ export class FacilityAddress extends ValidationClass {
 
 export class FacilityMetaData extends ValidationClass {
   wafer_sizes: number[] = [];
-  company_types: number[] = [];
 }
 
 export class FacilityBaseModel extends BaseModel {

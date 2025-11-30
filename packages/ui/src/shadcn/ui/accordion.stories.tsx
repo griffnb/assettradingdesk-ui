@@ -1,22 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
-} from './accordion';
+  AccordionTrigger,
+} from "./accordion";
 
 const meta: Meta<typeof Accordion> = {
-  title: 'UI/Shadcn/Accordion',
+  title: "UI/Shadcn/Accordion",
   component: Accordion,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: {
-      control: 'select',
-      options: ['single', 'multiple'],
-      description: 'Controls whether one or multiple accordion items can be open at a time'
-    }
-  }
+      control: "select",
+      options: ["single", "multiple"],
+      description:
+        "Controls whether one or multiple accordion items can be open at a time",
+    },
+  },
 };
 
 export default meta;
@@ -28,8 +29,8 @@ export const Default: Story = {
       <AccordionItem value="item-1">
         <AccordionTrigger>First Item</AccordionTrigger>
         <AccordionContent>
-          Content for the first accordion item. This shows how the accordion works
-          with a simple example of expandable content.
+          Content for the first accordion item. This shows how the accordion
+          works with a simple example of expandable content.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
@@ -42,18 +43,18 @@ export const Default: Story = {
       <AccordionItem value="item-3">
         <AccordionTrigger>Third Item</AccordionTrigger>
         <AccordionContent>
-          A third item to show how the accordion handles multiple sections.
-          The chevron icon rotates to indicate the open state.
+          A third item to show how the accordion handles multiple sections. The
+          chevron icon rotates to indicate the open state.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  ),
 };
 
 export const SingleOpen: Story = {
   args: {
-    type: 'single',
-    collapsible: false
+    type: "single",
+    collapsible: false,
   },
   render: (args) => (
     <Accordion {...args}>
@@ -70,13 +71,13 @@ export const SingleOpen: Story = {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  ),
 };
 
 export const Collapsible: Story = {
   args: {
-    type: 'single',
-    collapsible: true
+    type: "single",
+    collapsible: true,
   },
   render: (args) => (
     <Accordion {...args}>
@@ -88,12 +89,12 @@ export const Collapsible: Story = {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  ),
 };
 
 export const MultipleOpen: Story = {
   args: {
-    type: 'multiple'
+    type: "multiple",
   },
   render: (args) => (
     <Accordion {...args}>
@@ -116,5 +117,5 @@ export const MultipleOpen: Story = {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  ),
 };

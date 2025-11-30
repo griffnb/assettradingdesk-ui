@@ -47,6 +47,14 @@ export class OrganizationModel extends OrganizationBaseModel {
     };
   }
 
+  get billing_email(): string {
+    return (this.properties.billing_email as string) || "";
+  }
+
+  set billing_email(value: string) {
+    this.properties.billing_email = value;
+  }
+
   constructor(store: IStore<OrganizationModel>) {
     super(store);
     this.addObserve(this);

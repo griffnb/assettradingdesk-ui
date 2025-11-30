@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Select,
   SelectContent,
@@ -8,24 +7,24 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue
-} from './select';
+  SelectValue,
+} from "./select";
 
 const meta: Meta<typeof SelectTrigger> = {
-  title: 'Components/Select',
+  title: "Components/Select",
   component: SelectTrigger,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: { type: 'select', options: ['sm', 'default'] },
-      description: 'Size of the select trigger',
-      defaultValue: 'default'
+      control: { type: "select", options: ["sm", "default"] },
+      description: "Size of the select trigger",
+      defaultValue: "default",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disable the select component'
-    }
-  }
+      control: "boolean",
+      description: "Disable the select component",
+    },
+  },
 };
 
 export default meta;
@@ -53,7 +52,7 @@ export const Default: Story = {
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const SmallSize: Story = {
@@ -71,7 +70,7 @@ export const SmallSize: Story = {
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const Disabled: Story = {
@@ -89,7 +88,7 @@ export const Disabled: Story = {
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  ),
 };
 
 export const WithIcons: Story = {
@@ -116,5 +115,5 @@ export const WithIcons: Story = {
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  ),
 };

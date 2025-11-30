@@ -1,57 +1,57 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Checkbox } from './checkbox'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Checkbox } from "./checkbox";
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'UI/Checkbox',
+  title: "UI/Checkbox",
   component: Checkbox,
   argTypes: {
     checked: {
-      control: 'boolean',
-      description: 'Controls the checked state of the checkbox'
+      control: "boolean",
+      description: "Controls the checked state of the checkbox",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disables the checkbox interaction'
-    }
-  }
-}
+      control: "boolean",
+      description: "Disables the checkbox interaction",
+    },
+  },
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof Checkbox>
+type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
   args: {
     checked: false,
-    children: 'Default Checkbox'
-  }
-}
+    children: "Default Checkbox",
+  },
+};
 
 export const Checked: Story = {
   args: {
     checked: true,
-    children: 'Checked Checkbox'
-  }
-}
+    children: "Checked Checkbox",
+  },
+};
 
 export const Disabled: Story = {
   args: {
     disabled: true,
-    children: 'Disabled Checkbox'
-  }
-}
+    children: "Disabled Checkbox",
+  },
+};
 
 export const DisabledChecked: Story = {
   args: {
     checked: true,
     disabled: true,
-    children: 'Disabled Checked Checkbox'
-  }
-}
+    children: "Disabled Checked Checkbox",
+  },
+};
 
 export const WithLabel: Story = {
   args: {
-    children: 'Checkbox with Label'
+    children: "Checkbox with Label",
   },
   render: (args) => (
     <div className="flex items-center space-x-2">
@@ -63,5 +63,5 @@ export const WithLabel: Story = {
         {args.children}
       </label>
     </div>
-  )
-}
+  ),
+};
