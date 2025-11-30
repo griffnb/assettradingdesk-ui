@@ -22,6 +22,7 @@ export class AssetBaseModel extends BaseModel {
   @attr("string") location: string = "";
   @attr("string") configuration_notes: string = "";
   @attr("number") install_status: number = 0;
+  @attr("number") visibility: number = 0;
   @attr("number") operational_status: number = 0;
   @attr("number") year: number = 0;
   @attr("number") quantity: number = 0;
