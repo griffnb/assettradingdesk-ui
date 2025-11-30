@@ -26,6 +26,7 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { ImageType } from "react-images-uploading";
+import { AssetExistingFiles } from "./AssetExistingFiles";
 import { AssetImageUploader } from "./AssetImageUploader";
 
 interface AssetCreationFormProps {
@@ -252,6 +253,7 @@ export const AssetCreationForm = observer(function AssetCreationForm(
             </Card>
           </div>
         </div>
+        {props.record.id && <AssetExistingFiles asset={props.record} />}
         <AssetImageUploader
           asset={props.record}
           images={images}

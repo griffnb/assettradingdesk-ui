@@ -34,6 +34,12 @@ export const AssetImageUploader = observer(function AssetImageUploader(
 
   const onChange = (imageList: ImageListType) => {
     const newImages = imageList.map((image) => {
+      const existing = wrappedImages.find(
+        (w) => w.dataURL === image.dataURL || w.file === image.file,
+      );
+      if (existing) {
+        return existing;
+      }
       return {
         file: image.file,
         uploading: false,

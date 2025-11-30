@@ -1,3 +1,4 @@
+import { LayerService } from "@/common_lib/services/LayerService";
 import { status } from "@/models/models/asset/_constants/status";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
@@ -7,6 +8,7 @@ import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router";
+import { AssetPreview, AssetPreviewId } from "./AssetPreview";
 import { columns } from "./columns";
 import { filters } from "./filters";
 
@@ -43,6 +45,13 @@ export const AssetManagementIndex = observer(function AssetManagementIndex() {
         hideTotalRow={true}
         infiniteScroll={true}
         massActions={[(props) => <DefaultMassActions {...props} />]}
+        rowClickAction={(record) => {
+          LayerService.add({
+            id: AssetPreviewId,
+            component: AssetPreview,
+            props: { record },
+          });
+        }}
       />
     </>
   );

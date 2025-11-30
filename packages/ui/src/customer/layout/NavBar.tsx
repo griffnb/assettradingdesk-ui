@@ -109,6 +109,16 @@ export const NavBar = observer(function NavBar() {
                 <Link to="/assets">Browse All Assets</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
+            {account && (
+              <NavigationMenuItem value="browse">
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link to="/manage/dashboard">Dashboard</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
           <NavigationMenuList className="ml-auto w-full justify-end">
             {account ? (
@@ -120,7 +130,7 @@ export const NavBar = observer(function NavBar() {
                       Welcome, {account.first_name}!
                     </span>
                     <Link className="underline" to="/manage/dashboard">
-                      Go to Dashboard
+                      My Account
                     </Link>
                     <Button
                       className="bg-primary text-primary-foreground"

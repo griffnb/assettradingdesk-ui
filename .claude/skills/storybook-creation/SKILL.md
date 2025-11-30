@@ -13,7 +13,7 @@ Create interactive documentation and examples for components using Storybook.
 
 ```typescript
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentName } from "./ComponentName";
 
 const meta: Meta<typeof ComponentName> = {
@@ -75,7 +75,7 @@ const account = Store.account_model.create({...}); // Wrong!
 ## Simple Component Story
 
 ```typescript
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -123,7 +123,7 @@ export const Outline: Story = {
 
 ```typescript
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AssetCard } from "./AssetCard";
 
 const meta: Meta<typeof AssetCard> = {
@@ -169,7 +169,7 @@ Only use render when the component needs state updates:
 
 ```typescript
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { observer } from "mobx-react-lite";
 import { AssetForm } from "./AssetForm";
 
@@ -295,7 +295,7 @@ Don't create variations for:
 
 ```typescript
 import { Store } from "@/models/store/Store";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DataTable } from "./DataTable";
 import { assetColumns } from "./columns";
 import { assetFilters } from "./filters";
