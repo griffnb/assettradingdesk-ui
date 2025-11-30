@@ -120,10 +120,7 @@ export const SuggestedAssetsCarousel = observer(
           <Carousel className="w-full">
             <CarouselContent>
               {assets.map((asset) => (
-                <CarouselItem
-                  key={asset.id}
-                  className="basis-full md:basis-1/3 lg:basis-1/4"
-                >
+                <CarouselItem key={asset.id} className="min-w-fit max-w-fit">
                   <AssetCard asset={asset} variant="full" />
                 </CarouselItem>
               ))}

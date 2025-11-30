@@ -57,4 +57,6 @@ export class RequestBaseModel extends BaseModel {
   @attr("uuid", { readOnly: true }) facility_id: string | null = null;
 
   @attr("json", { readOnly: true }) pipeline_ids: number[] = [];
+
+  @attr("number", { readOnly: true }) match_count: number = 0;
 }

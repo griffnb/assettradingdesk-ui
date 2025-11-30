@@ -3,6 +3,10 @@ import { status } from "@/models/models/request/_constants/status";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import {
+  RequestSuggestions,
+  RequestSuggestionsId,
+} from "@/ui/customer/requests/RequestSuggestions";
 import { Button } from "@/ui/shadcn/ui/button";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { Book, Plus } from "lucide-react";
@@ -36,7 +40,7 @@ export const RequestsIndex = observer(function RequestsIndex() {
   );
 
   const openNewRequest = useCallback(() => {
-    LayerService.add(RequestFormModalId, RequestFormModal, {
+    LayerService.addOnly(RequestFormModalId, RequestFormModal, {
       onSave: () => {
         LayerService.remove(RequestFormModalId);
         applyFilters({ ...appliedFilters, reload: "true" });
@@ -79,6 +83,13 @@ export const RequestsIndex = observer(function RequestsIndex() {
         hideTotalRow={true}
         infiniteScroll={true}
         massActions={[(props) => <DefaultMassActions {...props} />]}
+        rowClickAction={(record) => {
+          LayerService.addOnly({
+            id: RequestSuggestionsId,
+            component: RequestSuggestions,
+            props: { record },
+          });
+        }}
       />
     </div>
   );

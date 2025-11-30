@@ -48,6 +48,11 @@ export const columns: IColumn<RequestModel>[] = [
     queryField: "make_model",
   },
   {
+    title: "Matches",
+    field: "match_count",
+    queryField: "match_count",
+  },
+  {
     title: "Price Range",
     field: "min_price",
     queryField: "min_price",
