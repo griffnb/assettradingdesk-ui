@@ -91,9 +91,14 @@ export const sidebarItems: SidebarItem[] = [
   },
 
   {
-    title: "Sync",
+    title: "System",
     icon: <i className="fa fa-sitemap" />,
     items: [
+      { title: "Billing Plans", url: "/billing_plans" },
+      {
+        title: "Validate Fields",
+        url: "/validation",
+      },
       {
         title: "Sync Objects",
         url: "/sync",
