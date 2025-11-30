@@ -22,7 +22,7 @@ export default function RootIndex() {
       <SidebarProvider>
         <CustomerAuthLeftNav />
         <SidebarInset className="!m-0">
-          <main className="relative flex max-h-[calc(100dvh-var(--customer-nav-bar))] flex-col overflow-auto">
+          <main className="relative flex max-h-[calc(100dvh-var(--customer-nav-bar))] flex-1 flex-col overflow-auto">
             <Outlet />
           </main>
         </SidebarInset>

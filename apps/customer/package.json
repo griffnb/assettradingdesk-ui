@@ -13,6 +13,7 @@
     "deploy": "bun run pages:deploy"
   },
   "dependencies": {
+    "lucide-react": "^0.446.0",
     "@auth0/auth0-react": "^2.8.0",
     "@openai/chatkit-react": "^0.0.0",
     "@react-router/cloudflare": "^7.9.6",
