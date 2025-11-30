@@ -6,6 +6,8 @@ export class OrganizationBaseModel extends BaseModel {
   @attr("string") external_id: string = "";
   @attr("string") stripe_id: string = "";
   @attr("uuid") billing_plan_id: string = "";
+
+  @attr("uuid") end_user_company_id: string | null = null;
   @attr("json") properties: { billing_email?: string } & Record<
     string,
     unknown
