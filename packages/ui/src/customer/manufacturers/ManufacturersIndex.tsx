@@ -42,29 +42,8 @@ export const ManufacturersIndex = observer(function ManufacturersIndex() {
     0
   );
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": manufacturers.map((manufacturer, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Brand",
-        "name": manufacturer.name,
-        "description": manufacturer.description || `Browse ${manufacturer.name} equipment on Asset Trading Desk`,
-        "url": `${typeof window !== "undefined" ? window.location.origin : ""}/manufacturers/${manufacturer.slug}`,
-      }
-    }))
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <div className="bg-gradient-to-b from-slate-50 to-white">
+    <div className="bg-gradient-to-b from-slate-50 to-white">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
@@ -131,6 +110,5 @@ export const ManufacturersIndex = observer(function ManufacturersIndex() {
           )}
         </div>
       </div>
-    </>
   );
 });

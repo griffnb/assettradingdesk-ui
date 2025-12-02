@@ -6,7 +6,6 @@ import { useState } from "react";
 import { ModelAssetsList } from "./ModelAssetsList";
 import { ModelBreadCrumb } from "./ModelBreadCrumb";
 import { ModelHeader } from "./ModelHeader";
-import { ModelSEO } from "./ModelSEO";
 
 export interface ModelDetailsProps {
   model: ModelModel;
@@ -21,7 +20,6 @@ export const ModelDetails = observer(function ModelDetails({
 
   return (
     <>
-      <ModelSEO model={model} assetCount={assetCount} />
       <ModelBreadCrumb model={model} />
       <div
         className={cn(

@@ -23,6 +23,35 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
     : undefined;
   const url = `https://assettradingdesk.com${asset.publicLink}`;
 
+  // Generate JSON-LD structured data for Product schema
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${asset.manufacturer_name} ${asset.model_name}`,
+    "description": asset.description || `${asset.manufacturer_name} ${asset.model_name}`,
+    "brand": {
+      "@type": "Brand",
+      "name": asset.manufacturer_name || "",
+    },
+    "category": asset.category_name || "Industrial Equipment",
+    ...(asset.price && {
+      "offers": {
+        "@type": "Offer",
+        "price": asset.price,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/UsedCondition",
+        "url": url,
+      },
+    }),
+    ...(imageUrl && {
+      "image": imageUrl,
+    }),
+    ...(asset.year && {
+      "productionDate": asset.year.toString(),
+    }),
+  };
+
   return [
     { title },
     { name: "description", content: description },
@@ -46,6 +75,9 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
     ...(asset.price ? [{ property: "product:price:amount", content: asset.price.toString() }] : []),
     { property: "product:price:currency", content: "USD" },
     { property: "product:condition", content: "used" },
+
+    // JSON-LD structured data
+    { tagName: "script", type: "application/ld+json", children: JSON.stringify(structuredData) },
   ];
 };
 

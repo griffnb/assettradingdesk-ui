@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/ui/shadcn/ui/card";
 import { Separator } from "@/ui/shadcn/ui/separator";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
 import { Link } from "react-router";
 import { ManufacturerBreadcrumb } from "./ManufacturerBreadcrumb";
 import { ManufacturerModelCard } from "./ManufacturerModelCard";
@@ -21,79 +20,6 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
   models,
   className,
 }: ManufacturerDetailsProps) {
-  // Set page title and meta tags
-  useEffect(() => {
-    // Set page title
-    document.title = `${manufacturer.name} - Asset Trading Desk`;
-
-    // Create or update meta tags
-    const updateMetaTag = (name: string, content: string, property?: string) => {
-      let element = property
-        ? document.querySelector(`meta[property="${property}"]`)
-        : document.querySelector(`meta[name="${name}"]`);
-
-      if (!element) {
-        element = document.createElement("meta");
-        if (property) {
-          element.setAttribute("property", property);
-        } else {
-          element.setAttribute("name", name);
-        }
-        document.head.appendChild(element);
-      }
-      element.setAttribute("content", content);
-    };
-
-    // Basic meta tags
-    const description =
-      manufacturer.description ||
-      `Browse ${models.length} equipment models from ${manufacturer.name}. Find industrial assets and machinery on Asset Trading Desk.`;
-    updateMetaTag("description", description);
-
-    // Open Graph tags
-    updateMetaTag("og:title", `${manufacturer.name} - Asset Trading Desk`, "og:title");
-    updateMetaTag("og:description", description, "og:description");
-    updateMetaTag("og:type", "website", "og:type");
-    updateMetaTag("og:url", window.location.href, "og:url");
-
-    // Twitter Card tags
-    updateMetaTag("twitter:card", "summary_large_image");
-    updateMetaTag("twitter:title", `${manufacturer.name} - Asset Trading Desk`);
-    updateMetaTag("twitter:description", description);
-
-    // Add canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = window.location.href;
-
-    // Add structured data (JSON-LD) for Organization/Brand
-    let structuredDataScript = document.querySelector('script[type="application/ld+json"]');
-    if (!structuredDataScript) {
-      structuredDataScript = document.createElement("script");
-      structuredDataScript.type = "application/ld+json";
-      document.head.appendChild(structuredDataScript);
-    }
-
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Brand",
-      name: manufacturer.name,
-      description: manufacturer.description,
-      url: window.location.href,
-      numberOfProducts: models.length,
-    };
-
-    structuredDataScript.textContent = JSON.stringify(structuredData);
-
-    // Cleanup function
-    return () => {
-      document.title = "Asset Trading Desk";
-    };
-  }, [manufacturer, models.length]);
 
   const totalAssets = models.reduce((sum, model) => sum + (model.asset_count || 0), 0);
 
