@@ -10,7 +10,8 @@
     "watch": "tsc --watch --noEmit --project './tsconfig.json'",
     "pages:dev": "wrangler pages dev ./build/client",
     "pages:deploy": "bun run build && wrangler pages deploy ./build/client",
-    "deploy": "bun run pages:deploy"
+    "deploy": "bun run pages:deploy",
+    "lint": "eslint ."
   },
   "dependencies": {
     "lucide-react": "^0.446.0",

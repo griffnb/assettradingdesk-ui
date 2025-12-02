@@ -1,8 +1,6 @@
 import sharedConfig from "../../eslint.config.js";
 
-export default [
-  ...sharedConfig, // Import the higher-up config
-];
+export default sharedConfig;
 /**
 import js from "@eslint/js";
 import globals from "globals";
