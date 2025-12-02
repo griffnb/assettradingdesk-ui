@@ -41,7 +41,7 @@ export const OrganizationBilling = observer(function OrganizationBilling({
             <div>
               <p className="font-medium">Current Plan</p>
               <p className="text-sm text-muted-foreground">
-                {record.plan_id ? "Pro Plan" : "Free Plan"}
+                {record.billing_plan_id ? "Pro Plan" : "Free Plan"}
               </p>
             </div>
             <div className="flex gap-2">
