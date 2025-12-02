@@ -50,8 +50,45 @@ export const AssetDetails = observer(function AssetDetails({
     console.log("Secondary action clicked for asset:", asset.id);
   };
 
+  const hasManufacturerDescription = asset.manufacturer_description && asset.manufacturer_description.trim().length > 0;
+  const hasModelDescription = asset.model_description && asset.model_description.trim().length > 0;
+  const hasSeoContent = hasManufacturerDescription || hasModelDescription;
+
+  // Generate JSON-LD structured data for Product schema
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${asset.manufacturer_name} ${asset.model_name}`,
+    "description": asset.description || `${asset.manufacturer_name} ${asset.model_name}`,
+    "brand": {
+      "@type": "Brand",
+      "name": asset.manufacturer_name || "",
+    },
+    "category": asset.category_name || "Industrial Equipment",
+    ...(asset.price && {
+      "offers": {
+        "@type": "Offer",
+        "price": asset.price,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/UsedCondition",
+        "url": `https://assettradingdesk.com${asset.publicLink}`,
+      },
+    }),
+    ...(asset.largeImage && !asset.largeImage.includes("placeholder.png") && {
+      "image": asset.largeImage,
+    }),
+    ...(asset.year && {
+      "productionDate": asset.year.toString(),
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <AssetBreadCrumb asset={asset} />
       <div
         className={cn(
@@ -83,6 +120,37 @@ export const AssetDetails = observer(function AssetDetails({
           asset={asset}
           className="flex w-full flex-col items-start gap-5"
         />
+
+        {/* SEO Content Section */}
+        {hasSeoContent && (
+          <section className="flex w-full flex-col items-start gap-6 rounded-xl border-2 border-gray-200 p-6 md:p-12">
+            <h2 className="text-2xl font-bold text-gray-900">
+              About {asset.manufacturer_name} {asset.model_name}
+            </h2>
+
+            {hasManufacturerDescription && (
+              <div className="flex flex-col gap-3">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  About {asset.manufacturer_name}
+                </h3>
+                <p className="text-base leading-relaxed text-gray-700">
+                  {asset.manufacturer_description}
+                </p>
+              </div>
+            )}
+
+            {hasModelDescription && (
+              <div className="flex flex-col gap-3">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  About the {asset.model_name} Model
+                </h3>
+                <p className="text-base leading-relaxed text-gray-700">
+                  {asset.model_description}
+                </p>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </>
   );

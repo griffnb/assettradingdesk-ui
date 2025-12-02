@@ -40,9 +40,9 @@ export const ProductInfo = observer(function ProductInfo({
           <p className="w-full min-w-full whitespace-pre-wrap text-sm font-semibold leading-5 text-gray-500">
             {asset.category_name}
           </p>
-          <p className="w-full min-w-full whitespace-pre-wrap text-[30px] font-bold leading-9 text-gray-700">
-            {asset.model_name}
-          </p>
+          <h1 className="w-full min-w-full whitespace-pre-wrap text-[30px] font-bold leading-9 text-gray-700">
+            {asset.manufacturer_name} {asset.model_name}
+          </h1>
           <div className="flex items-start gap-2">
             {/*
             {badges.map((badge, index) => (
