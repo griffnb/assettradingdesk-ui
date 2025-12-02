@@ -86,10 +86,10 @@ export const AssetCard = observer(function AssetCard(
             loading="lazy"
             decoding="async"
             data-nimg="1"
-            className="size-full rounded border object-cover shadow-md"
+            className="size-full rounded border object-cover object-center shadow-md"
             src={asset.mediumImage}
           />
-          {asset.picture_count && asset.picture_count > 0 && (
+          {(asset.picture_count || 0) > 0 && (
             <div className="absolute bottom-1 right-1">
               <Badge className="bg-primary">
                 <Image /> {asset.picture_count}

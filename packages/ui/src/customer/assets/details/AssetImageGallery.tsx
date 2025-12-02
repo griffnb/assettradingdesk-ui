@@ -1,5 +1,4 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import ZoomableImage from "@/ui/common/components/image/ZoomableImage";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +8,12 @@ import {
 } from "@/ui/shadcn/ui/carousel";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { Lightbox } from "yet-another-react-lightbox";
+import { Counter, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
+import "yet-another-react-lightbox/plugins/counter.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/styles.css";
 
 export interface AssetImageGalleryProps {
   asset: AssetModel;
@@ -20,36 +25,48 @@ export const AssetImageGallery = observer(function AssetImageGallery({
   className,
 }: AssetImageGalleryProps) {
   // Default placeholder if no images
-  const displayImages = asset.images(true);
+  const smallImages = asset.images(true);
+  const primaryImage = asset.largeImage;
+  const allImages = asset.images();
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
 
   return (
     <div className={cn("flex flex-col gap-5 md:max-w-[500px]", className)}>
       {/* Main large image */}
       <div className="relative hidden aspect-square w-full overflow-hidden rounded-xl md:block">
-        <ZoomableImage
-          src={asset.largeImage}
-          largeSrc={asset.largeImage}
+        <img
+          src={primaryImage}
           className="size-full rounded-xl object-cover"
+          alt={"Asset Large Image"}
+          onClick={() => {
+            setIndex(0);
+            setOpen(true);
+          }}
         />
       </div>
 
-      {displayImages.length > 0 && (
+      {smallImages.length > 0 && (
         <Carousel className="mx-auto w-full md:w-[500px]">
           <CarouselContent>
-            {displayImages.map((image, index) => (
+            {smallImages.map((image, index) => (
               <CarouselItem
                 className="max-h-[300px] basis-full overflow-hidden md:max-h-[100px] md:basis-1/3"
                 key={index}
               >
-                <ZoomableImage
+                <img
                   src={image.mediumImage}
-                  largeSrc={image.largeImage}
                   className="h-[300px] w-full rounded-xl object-cover md:h-[100px]"
+                  onClick={() => {
+                    setIndex(index + 1);
+                    setOpen(true);
+                  }}
+                  alt={"Asset Image"}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
-          {displayImages.length > 3 && (
+          {smallImages.length > 3 && (
             <>
               <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
               <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
@@ -57,6 +74,17 @@ export const AssetImageGallery = observer(function AssetImageGallery({
           )}
         </Carousel>
       )}
+
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        plugins={[Zoom, Thumbnails, Counter]}
+        index={index}
+        zoom={{ maxZoomPixelRatio: 5 }}
+        slides={allImages.map((asset) => {
+          return { src: asset.largeImage };
+        })}
+      />
     </div>
   );
 });

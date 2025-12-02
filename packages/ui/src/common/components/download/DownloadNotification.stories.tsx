@@ -1,5 +1,5 @@
 import { DownloadService } from "@/common_lib/services/DownloadService";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import DownloadNotification from "./DownloadNotification";
 
 const meta = {

@@ -1,0 +1,6 @@
+[12:49:05.631] [INFO] storybook v10.1.2
+[12:49:06.236] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[12:49:06.238] [WARN]   Failed to load preset: "/Users/griffnb/projects/asset-trading-desk/assettradingdesk-ui/packages/ui/.storybook/main.ts"
+[12:49:06.238] [ERROR] ResolveMessage: Cannot find package 'vite-tsconfig-paths' from './.storybook/main.ts'
+[12:49:06.239] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry

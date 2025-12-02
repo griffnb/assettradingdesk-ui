@@ -14,9 +14,11 @@ export type Bookmark = {
 };
 
 export class AdminBaseModel extends BaseModel {
-  @attr("string") name: string = "";
+  @attr("string") first_name: string = "";
+  @attr("string") last_name: string = "";
+  @attr("string") external_id: string = "";
   @attr("string") email: string = "";
-  @attr("string") phone: string = "";
+
   @attr("number") role: number = 0;
 
   @attr("string") slack_id: string = "";

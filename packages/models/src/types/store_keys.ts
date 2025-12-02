@@ -9,10 +9,13 @@ export type StoreKeys =
   | "facility"
   | "industry"
   | "manufacturer"
+  | "message"
   | "model"
   | "organization"
   | "opportunity"
   | "pipeline"
   | "request"
   | "global_config"
-  | "change_log";
+  | "change_log"
+  | "billing_plan"
+  | "subscription";

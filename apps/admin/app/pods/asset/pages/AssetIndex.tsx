@@ -2,7 +2,7 @@ import { LayerService } from "@/common_lib/services/LayerService";
 import { status } from "@/models/models/asset/_constants/status";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";

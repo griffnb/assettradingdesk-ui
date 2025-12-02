@@ -1,10 +1,18 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActions.triggerOnFocusChange": true, // Trigger on focus change
   "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-
+  // 🎨 CODE FORMATTING (Prettier)
+  
+  
+  "editor.formatOnPaste": true, // Format on paste
+  "prettier.requireConfig": true, // Only format when Prettier config is present
+  "files.autoSave": "onFocusChange", // Auto-save when the editor loses focus
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  
   "eslint.workingDirectories": [{ "mode": "auto" }],
 
   "search.exclude": {

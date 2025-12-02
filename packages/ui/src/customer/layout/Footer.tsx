@@ -6,7 +6,7 @@ import { HTMLAttributes } from "react";
 import { Link } from "react-router";
 
 const styleVariants = cva(
-  "inline-flex flex-col items-start justify-start gap-8 self-stretch border-t bg-dark-background px-16 text-dark-foreground py-20",
+  "flex mt-auto flex-col items-start justify-start gap-8 self-stretch border-t bg-dark-background px-16 text-dark-foreground py-20",
   {
     variants: {
       variant: {

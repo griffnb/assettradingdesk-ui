@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "name": "assettradingdesk-ui",
+      "path": ".",
+    },
+    {
+      "name": "customer",
+      "path": "apps/customer",
+    },
+    {
+      "name": "admin",
+      "path": "apps/admin",
+    },
+    {
+      "name": "common_lib",
+      "path": "packages/common_lib",
+    },
+    {
+      "name": "models",
+      "path": "packages/models",
+    },
+    {
+      "name": "utils",
+      "path": "packages/utils",
+    },
+    {
+      "name": "ui",
+      "path": "packages/ui",
+    },
+    {
+      "path": "../assettradingdesk-go",
+    },
+  ],
+  "settings": {
+    "githubPullRequests.ignoredPullRequestBranches": ["development"],
+    "project-link.linkAliases": {
+      "go": "../assettradingdesk-go",
+      "ui": "./packages/ui",
+      "models": "./packages/models",
+    },
+  },
+}

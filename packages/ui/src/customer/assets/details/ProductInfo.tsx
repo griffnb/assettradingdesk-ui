@@ -8,6 +8,7 @@ import { ProductSpecs } from "./ProductSpecs";
 
 export interface ProductInfoProps {
   asset: AssetModel;
+  isAuthenticated: boolean;
   onShare?: () => void;
   onFavorite?: () => void;
   onPrimaryAction?: () => void;
@@ -17,6 +18,7 @@ export interface ProductInfoProps {
 
 export const ProductInfo = observer(function ProductInfo({
   asset,
+  isAuthenticated,
   onShare,
   onFavorite,
   onPrimaryAction,
@@ -102,6 +104,8 @@ export const ProductInfo = observer(function ProductInfo({
 
       {/* Action buttons */}
       <ProductActions
+        asset={asset}
+        isAuthenticated={isAuthenticated}
         onPrimaryAction={onPrimaryAction}
         onSecondaryAction={onSecondaryAction}
       />

@@ -15,20 +15,15 @@ help: ## Show this help message
 # Development targets
 
 
-.PHONY: assettradingdesk
-assettradingdesk: ## Run development server
-	@open -a "Google Chrome" http://assets-local:4321
-	pnpm -F assettradingdesk-com dev --host 0.0.0.0
-
 .PHONY: admin
 admin: ## Run development server
-	@open -a "Google Chrome" http://assets-local:5174
-	pnpm -F admin dev --host 0.0.0.0
+	@open -a "Google Chrome" http://localhost:5174
+	bun -F admin dev --host 0.0.0.0
 
 .PHONY: customer
 customer: ## Run development server
-	@open -a "Google Chrome" http://assets-local:5173
-	pnpm -F customer dev --host 0.0.0.0
+	@open -a "Google Chrome" http://localhost:5173
+	bun -F customer dev --host 0.0.0.0
 
 # Docker targets
 .PHONY: docker-up
@@ -47,7 +42,11 @@ watch-cf-logs: ## Watch Cloudflare logs
 
 .PHONY: storybook
 storybook: ## Run the storybook
-	pnpm -F ui storybook
+	@if lsof -Pi :6006 -sTCP:LISTEN -t >/dev/null 2>&1; then \
+		echo "Storybook is already running on port 6006"; \
+		exit 0; \
+	fi; \
+	bun --bun -F ui storybook
 
 
 .PHONY: fix-mismatches
@@ -65,7 +64,7 @@ add-component: ## adds one or more shadcn components
 	if [ -z "$$args" ]; then \
 		echo "Usage: make add-component <component...>"; exit 1; \
 	fi; \
-	cd packages/ui && pnpm dlx shadcn@latest add $$args
+	cd packages/ui && GITHUB_TOKEN=$$(gh auth token) bun dlx shadcn@latest add $$args
 
 # swallow extra goals so make doesn't complain
 %:
@@ -80,3 +79,27 @@ pr:
 	fi; \
 	current_branch=$$(git rev-parse --abbrev-ref HEAD); \
 	gh pr create --base development --head $$current_branch --title "$(title)" --body "$(title)"
+
+
+
+.PHONY: sync-core-custom
+sync-core-custom: ## sync custom core packages with shadcn_builder
+	@echo "Syncing custom core packages"
+	@GITHUB_TOKEN=$$(gh auth token); \
+	for dir in packages/*/; do \
+		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
+			echo "Syncing custom registry in $$dir"; \
+			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder add -all); \
+		fi; \
+	done
+
+.PHONY: check-core-custom
+check-core-custom: ## sync custom core packages with shadcn_builder
+	@echo "Checking custom core packages"
+	@GITHUB_TOKEN=$$(gh auth token); \
+	for dir in packages/*/; do \
+		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
+			echo "Checking custom registry in $$dir"; \
+			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder check -all); \
+		fi; \
+	done

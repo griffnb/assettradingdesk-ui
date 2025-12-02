@@ -10,7 +10,7 @@ export class ValidationClass {
   tryValidation = false;
 }
 
-export type ValidationRule = {
+export type ValidationRule<T = any> = {
   required?: {
     message: string;
   };
@@ -53,7 +53,7 @@ export type ValidationRule = {
     message: string;
   };
   custom?: {
-    validate: (value: unknown, record: any) => string | null;
+    validate: (value: unknown, record: T) => string | null;
   };
 };
 
@@ -63,12 +63,12 @@ export type ValidationRules = {
 
 // Seperate typing here for validation, if it was on regular validation rules it creates a circular dependency and forces pushing around types too far
 export type ValidationRulesType<T> = {
-  [K in keyof T]?: ValidationRule;
+  [K in keyof T]?: ValidationRule<T>;
 };
 
 export function isFieldRequired<T extends ValidationType>(
   obj: T,
-  field: keyof T & string
+  field: keyof T & string,
 ) {
   const objectRules = obj.validationRules;
   if (isEmpty(objectRules) || isEmpty(objectRules[field])) {
@@ -86,7 +86,7 @@ export function isFieldRequired<T extends ValidationType>(
 export function isFieldValid<T extends ValidationType>(
   obj: T,
   field: keyof T,
-  customRule?: ValidationRule
+  customRule?: ValidationRule,
 ): string[] {
   const objectRules = obj.validationRules;
   const theErrors: string[] = [];
@@ -129,7 +129,7 @@ export function isFieldValid<T extends ValidationType>(
 
 export function isObjectValid<T extends ValidationType>(
   obj: T,
-  checkOnly?: boolean
+  checkOnly?: boolean,
 ): string[] {
   //Try validation if i ask if its valid unless im checking only, otherwise it will force errors on fields
   if (!checkOnly) {
@@ -149,7 +149,7 @@ export function isObjectValid<T extends ValidationType>(
 export function validateCustomRule<T extends ValidationType>(
   field_value: any | undefined,
   ruleFunction: (value: string, record: T) => string | null,
-  obj: T
+  obj: T,
 ) {
   return ruleFunction(field_value, obj);
 }
@@ -157,7 +157,7 @@ export function validateCustomRule<T extends ValidationType>(
 export function validateRule(
   rule: string,
   rule_value: any | undefined,
-  field_value: any
+  field_value: any,
 ) {
   let valid = true;
 

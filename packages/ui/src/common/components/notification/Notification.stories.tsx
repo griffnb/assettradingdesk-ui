@@ -1,5 +1,5 @@
 import { NotificationItem } from "@/common_lib/services/NotificationService";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Notification } from "./Notification";
 
 const meta = {

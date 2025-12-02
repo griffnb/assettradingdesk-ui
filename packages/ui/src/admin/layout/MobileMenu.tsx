@@ -1,5 +1,4 @@
 "use client";
-import { UserButton } from "@clerk/clerk-react";
 import { ChevronDown, Search, Settings, Wand2, X } from "lucide-react";
 
 import { cn } from "@/utils/cn";
@@ -134,9 +133,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
                 <span>Settings</span>
               </button>
               <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-                <div className="flex items-center gap-3">
-                  <UserButton showName={true} />
-                </div>
+                <div className="flex items-center gap-3">user info here</div>
               </button>
             </div>
           </div>

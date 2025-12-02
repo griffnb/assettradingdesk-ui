@@ -1,5 +1,4 @@
 "use client";
-import { UserButton } from "@clerk/clerk-react";
 import { Bell, Menu, PanelLeft } from "lucide-react";
 
 import { observer } from "mobx-react-lite";
@@ -55,7 +54,7 @@ export const Header = observer(function Header(props: HeaderProps) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-2xl relative"
+                  className="relative rounded-2xl"
                 >
                   <Bell className="h-5 w-5" />
                   {notifications > 0 && (
@@ -68,8 +67,7 @@ export const Header = observer(function Header(props: HeaderProps) {
               <TooltipContent>Notifications</TooltipContent>
             </Tooltip>
           </TooltipProvider>
-
-          <UserButton showName={true} />
+          user info here
         </div>
       </div>
     </header>

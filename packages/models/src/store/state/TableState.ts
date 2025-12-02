@@ -553,8 +553,7 @@ export class TableState<T extends object> {
     return (
       this.rows.length > 0 &&
       this.rows.every(
-        (row) =>
-          this.checked_row_ids[(row["id" as keyof T] as number).toString()],
+        (row) => this.checked_row_ids[row["id" as keyof T] as string] === true,
       )
     );
   }
@@ -566,9 +565,7 @@ export class TableState<T extends object> {
   }
 
   uncheckAll() {
-    this.rows.forEach((row) => {
-      this.uncheckRow((row["id" as keyof T] as number).toString());
-    });
+    this.checked_row_ids = {};
   }
 
   expandRow(id: string) {

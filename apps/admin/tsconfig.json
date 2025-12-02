@@ -12,5 +12,6 @@
       "@/ui/*": ["packages/ui/src/*"],
       "@/common_lib/*": ["packages/common_lib/src/*"]
     }
-  }
+  },
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

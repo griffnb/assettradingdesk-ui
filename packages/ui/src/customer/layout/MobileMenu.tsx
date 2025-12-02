@@ -1,4 +1,7 @@
+import { useAccount } from "@/common_lib/authentication/useAccount";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { ServerService } from "@/common_lib/services/ServerService";
+import { SessionService } from "@/common_lib/services/SessionService";
 import { TakeoverPanelWrap } from "@/ui/common/components/takeover-panel/TakeoverPanelWrap";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
@@ -7,10 +10,11 @@ import {
   ViewSidebarMenuButton,
   ViewSidebarMenuItem,
 } from "@/ui/shadcn/ui/sidebarview";
-import { SignedIn, SignOutButton, useAuth } from "@clerk/clerk-react";
+
 import { X } from "lucide-react";
 import { observer } from "mobx-react-lite";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { assetItems, platformItems } from "../auth/nav/CustomerAuthLeftNav";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MobileMenuProps {}
@@ -32,10 +36,11 @@ export const MobileMenuID = "mobile-menu";
 
 export const MobileMenu = observer(function MobileMenu() {
   const location = useLocation();
-  const { isSignedIn } = useAuth();
+  const { account } = useAccount();
   const currentPath = location.pathname;
+  const nav = useNavigate();
 
-  const menu = !isSignedIn
+  const menu = !account
     ? [
         ...sidebarItems,
         {
@@ -49,7 +54,17 @@ export const MobileMenu = observer(function MobileMenu() {
           icon: null,
         },
       ]
-    : [...sidebarItems];
+    : [...sidebarItems, ...platformItems, ...assetItems];
+
+  const logout = async () => {
+    await ServerService.postRaw("/logout", {
+      token: SessionService.sessionToken,
+    });
+
+    SessionService.clearSessionToken();
+    SessionService.clearUser();
+    nav("/login");
+  };
 
   return (
     <TakeoverPanelWrap
@@ -86,25 +101,28 @@ export const MobileMenu = observer(function MobileMenu() {
                   key={item.url}
                   onClick={() => LayerService.remove(MobileMenuID)}
                 >
-                  {item.icon && item.icon}
+                  {item.icon && <item.icon className="size-4" />}
                   <span>{item.title}</span>
                 </Link>
               </ViewSidebarMenuButton>
             </ViewSidebarMenuItem>
           ))}
-          <div className="flex w-full flex-col border-t py-3">
-            <SignedIn>
-              <SignOutButton>
+          {account && (
+            <>
+              <div className="flex w-full flex-col border-t py-3">
                 <Button
                   variant="outline"
                   className="w-full"
-                  onClick={() => LayerService.remove(MobileMenuID)}
+                  onClick={() => {
+                    logout();
+                    LayerService.remove(MobileMenuID);
+                  }}
                 >
                   Sign Out
                 </Button>
-              </SignOutButton>
-            </SignedIn>
-          </div>
+              </div>
+            </>
+          )}
         </ViewSidebarMenu>
       </ViewSidebarGroup>
     </TakeoverPanelWrap>

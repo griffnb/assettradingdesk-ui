@@ -1,25 +1,22 @@
-import {StandardTableWrap} from "@/ui/common/components/table/StandardTableWrap";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { status } from "@/models/models/company/_constants/status";
+import { CompanyModel } from "@/models/models/company/model/CompanyModel";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
+import { observer } from "mobx-react-lite";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router";
+import { columns } from "../columns";
 import {
   CompanyFormModal,
   CompanyFormModalId,
 } from "../components/CompanyFormModal";
-import { useSearchParams } from "react-router";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
-import { MassActionProps } from "@/ui/common/components/types/mass-actions";
-import { CompanyModel } from "@/models/models/company/model/CompanyModel";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
-import { observer } from "mobx-react-lite";
-import { status } from "@/models/models/company/_constants/status";
-import { columns } from "../columns";
 import { filters } from "../filters";
-import { useMemo } from "react";
-
-
 
 export const CompanyIndex = observer(function CompanyIndex() {
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const appliedFilters = useMemo(
     () =>
@@ -29,7 +26,6 @@ export const CompanyIndex = observer(function CompanyIndex() {
       }),
     [searchParams],
   );
- 
 
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     setSearchParams(params);
@@ -39,13 +35,10 @@ export const CompanyIndex = observer(function CompanyIndex() {
       <AdminTitleBar title="Companies" />
       <StandardTableWrap<CompanyModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
-
         newComponent={() => {
-          LayerService.add(
-            CompanyFormModalId,
-            CompanyFormModal,
-            {onSave: () => applyFilters({...appliedFilters})},
-          );
+          LayerService.add(CompanyFormModalId, CompanyFormModal, {
+            onSave: () => applyFilters({ ...appliedFilters }),
+          });
         }}
         columns={columns}
         statuses={status}
@@ -56,13 +49,10 @@ export const CompanyIndex = observer(function CompanyIndex() {
         selectRows={true}
         tableSearch={true}
         tableExport={true}
- hideTotalRow={true}
-infiniteScroll={true}
-        massActions={[
-          (props) => <DefaultMassActions {...props} />,
-        ]}
+        hideTotalRow={true}
+        infiniteScroll={true}
+        massActions={[(props) => <DefaultMassActions {...props} />]}
       />
     </>
   );
 });
-

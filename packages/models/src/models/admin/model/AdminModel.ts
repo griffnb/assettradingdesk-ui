@@ -18,6 +18,10 @@ export class AdminModel extends AdminBaseModel {
     return "";
   }
 
+  get name(): string {
+    return `${this.first_name} ${this.last_name}`;
+  }
+
   //TODO
   getParent() {
     return null;

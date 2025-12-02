@@ -35,6 +35,16 @@ export class AssetModel extends AssetBaseModel {
     return findConstant(constants.asset.install_status, this.install_status);
   }
 
+  get install_statusFmt(): string {
+    const status = this.installStatus;
+    return status ? status.label : "Unknown";
+  }
+
+  get operational_statusFmt(): string {
+    const status = this.operationalStatus;
+    return status ? status.label : "Unknown";
+  }
+
   get operationalStatus(): IConstant {
     return findConstant(
       constants.asset.operational_status,
@@ -98,6 +108,24 @@ export class AssetModel extends AssetBaseModel {
       }
       return img
         ? img.meta_data.medium_image.replaceAll("_mw.", "_m.")
+        : "/img/placeholder.png";
+    }
+    return "/img/placeholder.png";
+  }
+
+  get thumbnail(): string {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const img = this.asset_files.find(
+        (file) =>
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.small_image &&
+          file.meta_data.small_image != "",
+      );
+      if (!img) {
+        return "/img/placeholder.png";
+      }
+      return img
+        ? img.meta_data.small_image.replaceAll("_sw.", "_s.")
         : "/img/placeholder.png";
     }
     return "/img/placeholder.png";

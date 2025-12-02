@@ -21,7 +21,7 @@ interface FormFieldTextAreaProps<T extends ValidationType>
 }
 
 // Define the component with correct generic syntax
-const FormFieldTextArea = observer(
+export const FormFieldTextArea = observer(
   <T extends ValidationType>(props: FormFieldTextAreaProps<T>) => {
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -69,5 +69,3 @@ const FormFieldTextArea = observer(
     );
   },
 );
-
-export default FormFieldTextArea;

@@ -56,3 +56,4 @@ tsconfig.tsbuildinfo
 .astro
 /sites/techboss_ai/dist
 dist
+/.playwright-mcp

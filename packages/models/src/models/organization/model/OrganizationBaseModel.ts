@@ -4,7 +4,17 @@ import { attr } from "@/models/decorators/attr";
 export class OrganizationBaseModel extends BaseModel {
   @attr("string") name: string = "";
   @attr("string") external_id: string = "";
-  @attr("json") properties: Record<string, unknown> = {};
+  @attr("string") stripe_id: string = "";
+  @attr("uuid") billing_plan_id: string = "";
+
+  @attr("uuid") end_user_company_id: string | null = null;
+  @attr("json") properties: { billing_email?: string } & Record<
+    string,
+    unknown
+  > = {};
   @attr("json") meta_data: Record<string, unknown> = {};
-  @attr("string") plan_id: string = "";
+  @attr("json") email_domains: string[] = [];
+  @attr("string") subdomain: string = "";
+  @attr("json") feature_set_overrides: Record<string, unknown> = {};
+  @attr("number") organization_type: number = 0;
 }

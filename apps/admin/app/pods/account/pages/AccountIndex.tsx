@@ -8,7 +8,8 @@ import {
 
 import { status } from "@/models/models/account/_constants/status";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
@@ -25,7 +26,7 @@ export const AccountIndex = observer(() => {
         status: [],
         limit: "100",
       }),
-    [searchParams]
+    [searchParams],
   );
 
   const applyFilters = (params: { [key: string]: string | string[] }) => {
@@ -34,6 +35,7 @@ export const AccountIndex = observer(() => {
 
   return (
     <>
+      <AdminTitleBar title="Accounts" />
       <StandardTableWrap<AccountModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {

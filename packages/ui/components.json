@@ -17,5 +17,14 @@
     "lib": "@/ui/shadcn/lib",
     "hooks": "@/ui/shadcn/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+
+  "registries": {
+    "@core": {
+      "url": "https://raw.githubusercontent.com/griffnb/core/refs/heads/feature/frontend-backend/frontend/packages/ui/registry.json",
+      "headers": {
+        "Authorization": "token ${GITHUB_TOKEN}"
+      }
+    }
+  }
 }

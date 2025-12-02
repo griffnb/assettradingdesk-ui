@@ -16,6 +16,7 @@ type Env = {
   PUBLIC_STRIPE_PUBLISHABLE_KEY: string;
   PUBLIC_SCAN?: string;
   PUBLIC_CLERK_PUBLISHABLE_KEY?: string;
+  PUBLIC_CUSTOMER_URL?: string;
 };
 
 const env: Env = {
@@ -52,6 +53,9 @@ const env: Env = {
     import.meta.env.VITE_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
   PUBLIC_CLERK_PUBLISHABLE_KEY:
     import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "",
+  PUBLIC_SCAN: import.meta.env.VITE_PUBLIC_SCAN,
+
+  PUBLIC_CUSTOMER_URL: import.meta.env.VITE_PUBLIC_CUSTOMER_URL,
 };
 
 export function getPublicEnvVar(key: keyof Env): string {
@@ -59,6 +63,12 @@ export function getPublicEnvVar(key: keyof Env): string {
   if (value === undefined) {
     throw new Error(`Environment variable ${key} is not set.`);
   }
+  return value;
+}
+
+export function getOptionalPublicEnvVar(key: keyof Env): string | undefined {
+  const value = env[key];
+
   return value;
 }
 
