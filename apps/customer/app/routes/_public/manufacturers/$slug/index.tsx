@@ -6,19 +6,24 @@ import { ManufacturerDetails } from "@/ui/customer/manufacturers/ManufacturerDet
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { data } from "react-router";
-import type { Route } from "./+types/$slug";
+import type { Route } from "./+types/index";
 
 export const meta = ({ loaderData }: Route.MetaArgs) => {
   if (!loaderData?.manufacturer) {
     return [
       { title: "Manufacturer Not Found | Asset Trading Desk" },
-      { name: "description", content: "The requested manufacturer could not be found." },
+      {
+        name: "description",
+        content: "The requested manufacturer could not be found.",
+      },
     ];
   }
 
   const { manufacturer, models } = loaderData;
   const title = `${manufacturer.name} - Asset Trading Desk`;
-  const description = manufacturer.description || `Browse ${models.length} equipment models from ${manufacturer.name}. Find industrial assets and machinery on Asset Trading Desk.`;
+  const description =
+    manufacturer.description ||
+    `Browse ${models.length} equipment models from ${manufacturer.name}. Find industrial assets and machinery on Asset Trading Desk.`;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -32,13 +37,20 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
   return [
     { title },
     { name: "description", content: description },
-    { tagName: "link", rel: "canonical", href: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}` },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
+    },
 
     // Open Graph tags
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}` },
+    {
+      property: "og:url",
+      content: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
+    },
     { property: "og:site_name", content: "Asset Trading Desk" },
 
     // Twitter Card tags
@@ -47,7 +59,11 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
     { name: "twitter:description", content: description },
 
     // JSON-LD structured data
-    { tagName: "script", type: "application/ld+json", children: JSON.stringify(structuredData) },
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(structuredData),
+    },
   ];
 };
 
@@ -58,14 +74,23 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw data({ manufacturer: null, models: [] }, { status: 404 });
   }
 
-  const manufacturerResp = await ServerService.callGet("manufacturer", "", { slug });
-  if (!manufacturerResp.success || !manufacturerResp.data || manufacturerResp.data.length === 0) {
+  const manufacturerResp = await ServerService.callGet("manufacturer", "", {
+    slug,
+  });
+  if (
+    !manufacturerResp.success ||
+    !manufacturerResp.data ||
+    manufacturerResp.data.length === 0
+  ) {
     throw data({ manufacturer: null, models: [] }, { status: 404 });
   }
 
   const manufacturerData = manufacturerResp.data[0];
-  const modelsResp = await ServerService.callGet("model", "", { manufacturer_id: manufacturerData.id });
-  const modelsData = modelsResp.success && modelsResp.data ? modelsResp.data : [];
+  const modelsResp = await ServerService.callGet("model", "", {
+    manufacturer_id: manufacturerData.id,
+  });
+  const modelsData =
+    modelsResp.success && modelsResp.data ? modelsResp.data : [];
 
   return data({
     manufacturer: manufacturerData,
@@ -75,10 +100,10 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export default observer(({ loaderData }: Route.ComponentProps) => {
   const [manufacturer] = useState<ManufacturerModel>(() =>
-    Store.manufacturer.load(loaderData.manufacturer)
+    Store.manufacturer.load(loaderData.manufacturer),
   );
   const [models] = useState<ModelModel[]>(() =>
-    loaderData.models.map((modelData: any) => Store.model.load(modelData))
+    loaderData.models.map((modelData: any) => Store.model.load(modelData)),
   );
 
   return <ManufacturerDetails manufacturer={manufacturer} models={models} />;
