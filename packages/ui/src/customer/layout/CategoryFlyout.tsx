@@ -67,7 +67,7 @@ export const CategoryFlyout = observer(function CategoryFlyout(
             className="ml-0 pl-2 text-sm font-medium text-primary"
             asChild
           >
-            <Link to="/assets">See All Categories</Link>
+            <Link to="/categories">See All Categories</Link>
           </Button>
         </div>
       </div>

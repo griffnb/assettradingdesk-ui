@@ -67,7 +67,7 @@ export const ManufacturerFlyout = observer(function ManufacturerFlyout(
             className="ml-0 pl-2 text-sm font-medium text-primary"
             asChild
           >
-            <Link to="/assets">See All Manufacturers</Link>
+            <Link to="/manufacturers">See All Manufacturers</Link>
           </Button>
         </div>
       </div>

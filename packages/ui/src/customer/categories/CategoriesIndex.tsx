@@ -1,6 +1,6 @@
 "use client";
 
-import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { Store } from "@/models/store/Store";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import {
@@ -16,42 +16,42 @@ import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-export interface ManufacturersIndexProps {
+export interface CategoriesIndexProps {
   className?: string;
 }
 
-export const ManufacturersIndex = observer(function ManufacturersIndex({
+export const CategoriesIndex = observer(function CategoriesIndex({
   className,
-}: ManufacturersIndexProps = {}) {
-  const [manufacturers, setManufacturers] = useState<ManufacturerModel[]>([]);
+}: CategoriesIndexProps = {}) {
+  const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchManufacturers = async () => {
-      const response = await Store.manufacturer.query({
-        limit: "90000",
+    const fetchCategories = async () => {
+      const response = await Store.category.query({
+        limit: "500",
         sort: "name",
       });
 
       if (response.success && response.data) {
-        setManufacturers(response.data);
+        setCategories(response.data);
       }
       setLoading(false);
     };
 
-    fetchManufacturers();
+    fetchCategories();
   }, []);
 
   if (loading) {
     return (
       <div className="mx-auto flex items-center justify-center p-6 md:w-[1200px]">
-        <div className="text-center">Loading manufacturers...</div>
+        <div className="text-center">Loading categories...</div>
       </div>
     );
   }
 
-  const totalAssets = manufacturers.reduce(
-    (sum, manufacturer) => sum + (manufacturer.asset_count || 0),
+  const totalAssets = categories.reduce(
+    (sum, category) => sum + (category.asset_count || 0),
     0,
   );
 
@@ -69,14 +69,15 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
             <p className="text-sm uppercase tracking-widest text-white/70">
               Browse
             </p>
-            <h1 className="text-3xl font-semibold">Equipment Manufacturers</h1>
+            <h1 className="text-3xl font-semibold">Equipment Categories</h1>
             <p className="mt-2 text-sm text-white/80">
-              Find used and refurbished machinery from trusted brands
+              Explore industrial equipment by category and find the right assets
+              for your needs
             </p>
           </div>
           <div className="rounded-2xl border border-white/20 bg-white/5 px-6 py-4 text-right">
-            <p className="text-sm text-white/70">Total Manufacturers</p>
-            <p className="text-2xl font-semibold">{manufacturers.length}</p>
+            <p className="text-sm text-white/70">Total Categories</p>
+            <p className="text-2xl font-semibold">{categories.length}</p>
             {totalAssets > 0 && (
               <p className="text-xs text-white/60">
                 {totalAssets} assets available
@@ -86,8 +87,8 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
         </div>
         <div className="mt-6 flex flex-wrap gap-2">
           <Badge variant="secondary" className="bg-white/20 text-white">
-            {manufacturers.length}{" "}
-            {manufacturers.length === 1 ? "Manufacturer" : "Manufacturers"}
+            {categories.length}{" "}
+            {categories.length === 1 ? "Category" : "Categories"}
           </Badge>
           {totalAssets > 0 && (
             <Badge variant="secondary" className="bg-white/20 text-white">
@@ -99,40 +100,40 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
 
       <Separator className="my-4" />
 
-      {/* Manufacturers Grid */}
-      {manufacturers.length > 0 ? (
+      {/* Categories Grid */}
+      {categories.length > 0 ? (
         <div className="w-full space-y-4">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {manufacturers.map((manufacturer) => (
+            {categories.map((category) => (
               <Link
-                key={manufacturer.id}
-                to={`/manufacturers/${manufacturer.slug}`}
+                key={category.id}
+                to={`/categories/${category.slug}`}
                 className="group block transition-transform hover:scale-[1.02]"
               >
                 <Card className="h-full border-slate-200 transition-shadow hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-start justify-between gap-3">
                       <CardTitle className="line-clamp-2 text-lg">
-                        {manufacturer.name}
+                        {category.name}
                       </CardTitle>
-                      {manufacturer.asset_count > 0 && (
+                      {category.asset_count > 0 && (
                         <Badge variant="secondary" className="shrink-0">
-                          {manufacturer.asset_count}
+                          {category.asset_count}
                         </Badge>
                       )}
                     </div>
-                    {manufacturer.description && (
+                    {category.description && (
                       <CardDescription className="line-clamp-3 text-sm">
-                        {manufacturer.description}
+                        {category.description}
                       </CardDescription>
                     )}
                   </CardHeader>
                   <CardContent>
                     <div className="text-sm text-slate-600">
-                      {manufacturer.asset_count > 0 ? (
+                      {category.asset_count > 0 ? (
                         <span>
-                          {manufacturer.asset_count}{" "}
-                          {manufacturer.asset_count === 1 ? "asset" : "assets"}{" "}
+                          {category.asset_count}{" "}
+                          {category.asset_count === 1 ? "asset" : "assets"}{" "}
                           available
                         </span>
                       ) : (
@@ -141,6 +142,13 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
                         </span>
                       )}
                     </div>
+                    {category.industry_name && (
+                      <div className="mt-2">
+                        <Badge variant="outline" className="text-xs">
+                          {category.industry_name}
+                        </Badge>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </Link>
@@ -149,7 +157,7 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
         </div>
       ) : (
         <div className="w-full py-12 text-center">
-          <p className="text-lg text-slate-600">No manufacturers found.</p>
+          <p className="text-lg text-slate-600">No categories found.</p>
         </div>
       )}
     </div>

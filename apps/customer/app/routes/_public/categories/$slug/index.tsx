@@ -1,37 +1,37 @@
 import { ServerService } from "@/common_lib/services/ServerService";
-import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
-import { ManufacturerDetails } from "@/ui/customer/manufacturers/ManufacturerDetails";
+import { CategoryDetails } from "@/ui/customer/categories/CategoryDetails";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { data } from "react-router";
 import type { Route } from "./+types/index";
 
 export const meta = ({ loaderData }: Route.MetaArgs) => {
-  if (!loaderData?.manufacturer) {
+  if (!loaderData?.category) {
     return [
-      { title: "Manufacturer Not Found | Asset Trading Desk" },
+      { title: "Category Not Found | Asset Trading Desk" },
       {
         name: "description",
-        content: "The requested manufacturer could not be found.",
+        content: "The requested category could not be found.",
       },
     ];
   }
 
-  const { manufacturer, models } = loaderData;
-  const title = `${manufacturer.name} Equipment Models | Asset Trading Desk`;
+  const { category, models } = loaderData;
+  const title = `${category.name} Equipment & Assets | Asset Trading Desk`;
   const description =
-    manufacturer.description ||
-    `Browse ${models.length} equipment models from ${manufacturer.name}. Find industrial assets, machinery, and detailed specifications on Asset Trading Desk.`;
+    category.description ||
+    `Browse ${models.length} equipment models in the ${category.name} category. Find industrial assets, machinery, and detailed specifications on Asset Trading Desk.`;
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Brand",
-    name: manufacturer.name,
-    description: manufacturer.description || description,
-    url: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
-    numberOfProducts: models.length,
+    "@type": "CollectionPage",
+    name: category.name,
+    description: category.description || description,
+    url: `https://assettradingdesk.com/categories/${category.slug}`,
+    numberOfItems: models.length,
   };
 
   const breadcrumbStructuredData = {
@@ -47,14 +47,14 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Manufacturers",
-        item: "https://assettradingdesk.com/manufacturers",
+        name: "Categories",
+        item: "https://assettradingdesk.com/categories",
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: manufacturer.name,
-        item: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
+        name: category.name,
+        item: `https://assettradingdesk.com/categories/${category.slug}`,
       },
     ],
   };
@@ -65,7 +65,7 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
     {
       name: "keywords",
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      content: `${manufacturer.name}, ${manufacturer.name} equipment, industrial equipment, used equipment, asset trading, ${models
+      content: `${category.name}, ${category.name} equipment, industrial equipment, used equipment, asset trading, ${models
         .map((m: any) => m.name)
         .slice(0, 5)
         .join(", ")}`,
@@ -73,7 +73,7 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
     {
       tagName: "link",
       rel: "canonical",
-      href: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
+      href: `https://assettradingdesk.com/categories/${category.slug}`,
     },
 
     // Open Graph tags
@@ -82,7 +82,7 @@ export const meta = ({ loaderData }: Route.MetaArgs) => {
     { property: "og:type", content: "website" },
     {
       property: "og:url",
-      content: `https://assettradingdesk.com/manufacturers/${manufacturer.slug}`,
+      content: `https://assettradingdesk.com/categories/${category.slug}`,
     },
     { property: "og:site_name", content: "Asset Trading Desk" },
 
@@ -109,41 +109,41 @@ export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug;
 
   if (!slug) {
-    throw data({ manufacturer: null, models: [] }, { status: 404 });
+    throw data({ category: null, models: [] }, { status: 404 });
   }
 
-  const manufacturerResp = await ServerService.callGet("manufacturer", "", {
+  const categoryResp = await ServerService.callGet("category", "", {
     slug,
   });
   if (
-    !manufacturerResp.success ||
-    !manufacturerResp.data ||
-    manufacturerResp.data.length === 0
+    !categoryResp.success ||
+    !categoryResp.data ||
+    categoryResp.data.length === 0
   ) {
-    throw data({ manufacturer: null, models: [] }, { status: 404 });
+    throw data({ category: null, models: [] }, { status: 404 });
   }
 
-  const manufacturerData = manufacturerResp.data[0];
+  const categoryData = categoryResp.data[0];
   const modelsResp = await ServerService.callGet("model", "", {
-    manufacturer_id: manufacturerData.id,
+    category_id: categoryData.id,
   });
   const modelsData =
     modelsResp.success && modelsResp.data ? modelsResp.data : [];
 
   return data({
-    manufacturer: manufacturerData,
+    category: categoryData,
     models: modelsData,
   });
 }
 
 export default observer(({ loaderData }: Route.ComponentProps) => {
-  const [manufacturer] = useState<ManufacturerModel>(() =>
-    Store.manufacturer.load(loaderData.manufacturer),
+  const [category] = useState<CategoryModel>(() =>
+    Store.category.load(loaderData.category),
   );
   const [models] = useState<ModelModel[]>(() =>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loaderData.models.map((modelData: any) => Store.model.load(modelData)),
   );
 
-  return <ManufacturerDetails manufacturer={manufacturer} models={models} />;
+  return <CategoryDetails category={category} models={models} />;
 });

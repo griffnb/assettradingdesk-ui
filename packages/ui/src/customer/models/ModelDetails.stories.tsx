@@ -1,3 +1,5 @@
+import { IJSONAPIType } from "@/common_lib/services/ServerService";
+import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "@storybook/test";
@@ -73,7 +75,8 @@ const mockModelShortDescription = Store.model.create({
   id: "4",
   name: "KLA Archer 700",
   slug: "kla-archer-700",
-  description: "Advanced overlay metrology system for semiconductor manufacturing.",
+  description:
+    "Advanced overlay metrology system for semiconductor manufacturing.",
   manufacturer_id: "4",
   manufacturer_name: "KLA Corporation",
   category_name: "Metrology Equipment",
@@ -131,25 +134,37 @@ const mockAssets = [
 ];
 
 // Mock Store.asset.query for stories
-const mockAssetQuerySuccess = fn(async () => ({
-  success: true,
-  data: mockAssets,
-}));
+const mockAssetQuerySuccess = fn(
+  async () =>
+    ({
+      success: true,
+      data: mockAssets,
+    }) as IJSONAPIType<AssetModel[]>,
+);
 
-const mockAssetQueryEmpty = fn(async () => ({
-  success: true,
-  data: [],
-}));
+const mockAssetQueryEmpty = fn(
+  async () =>
+    ({
+      success: true,
+      data: [] as AssetModel[],
+    }) as IJSONAPIType<AssetModel[]>,
+);
 
-const mockAssetCountSuccess = fn(async () => ({
-  success: true,
-  data: mockAssets.length,
-}));
+const mockAssetCountSuccess = fn(
+  async () =>
+    ({
+      success: true,
+      data: mockAssets.length,
+    }) as IJSONAPIType<number>,
+);
 
-const mockAssetCountZero = fn(async () => ({
-  success: true,
-  data: 0,
-}));
+const mockAssetCountZero = fn(
+  async () =>
+    ({
+      success: true,
+      data: 0,
+    }) as IJSONAPIType<number>,
+);
 
 export const Default: Story = {
   args: {
@@ -166,12 +181,14 @@ export const Default: Story = {
   play: async () => {
     Store.asset.query = mockAssetQuerySuccess;
     // Mock ServerService.callGet for asset count
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
         return mockAssetCountSuccess();
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };
@@ -183,18 +200,21 @@ export const WithManyAssets: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Model with a high asset count showing how the layout handles multiple assets.",
+        story:
+          "Model with a high asset count showing how the layout handles multiple assets.",
       },
     },
   },
   play: async () => {
     Store.asset.query = mockAssetQuerySuccess;
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
-        return { success: true, data: 45 };
+        return { success: true, data: 45 } as IJSONAPIType<number>;
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };
@@ -212,12 +232,14 @@ export const WithNoAssets: Story = {
   },
   play: async () => {
     Store.asset.query = mockAssetQueryEmpty;
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
         return mockAssetCountZero();
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };
@@ -235,12 +257,14 @@ export const WithShortDescription: Story = {
   },
   play: async () => {
     Store.asset.query = mockAssetQuerySuccess;
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
-        return { success: true, data: 15 };
+        return { success: true, data: 15 } as IJSONAPIType<number>;
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };
@@ -252,18 +276,21 @@ export const WithNoDescription: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Model without a description, showing how the component handles missing content.",
+        story:
+          "Model without a description, showing how the component handles missing content.",
       },
     },
   },
   play: async () => {
     Store.asset.query = mockAssetQuerySuccess;
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
-        return { success: true, data: 22 };
+        return { success: true, data: 22 } as IJSONAPIType<number>;
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };
@@ -283,11 +310,13 @@ export const Loading: Story = {
     // Mock a slow query that never resolves
     Store.asset.query = fn(async () => {
       return new Promise(() => {}); // Never resolves
-    });
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    }) as any;
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async () => {
       return new Promise(() => {}); // Never resolves
-    });
+    }) as any;
   },
 };
 
@@ -308,18 +337,21 @@ export const WithLongModelName: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Tests layout with very long model name, manufacturer name, and description.",
+        story:
+          "Tests layout with very long model name, manufacturer name, and description.",
       },
     },
   },
   play: async () => {
     Store.asset.query = mockAssetQuerySuccess;
-    const { ServerService } = await import("@/common_lib/services/ServerService");
+    const { ServerService } = await import(
+      "@/common_lib/services/ServerService"
+    );
     ServerService.callGet = fn(async (model: string, path: string) => {
       if (model === "asset" && path === "count") {
-        return { success: true, data: 3 };
+        return { success: true, data: 3 } as IJSONAPIType<number>;
       }
-      return { success: false };
+      return { success: false, error: "Not Found" };
     });
   },
 };

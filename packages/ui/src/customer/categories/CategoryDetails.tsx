@@ -1,24 +1,24 @@
-import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent } from "@/ui/shadcn/ui/card";
 import { Separator } from "@/ui/shadcn/ui/separator";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
-import { ManufacturerBreadcrumb } from "./ManufacturerBreadcrumb";
-import { ManufacturerModelCard } from "./ManufacturerModelCard";
+import { CategoryBreadcrumb } from "./CategoryBreadcrumb";
+import { CategoryModelCard } from "./CategoryModelCard";
 
-export interface ManufacturerDetailsProps {
-  manufacturer: ManufacturerModel;
+export interface CategoryDetailsProps {
+  category: CategoryModel;
   models: ModelModel[];
   className?: string;
 }
 
-export const ManufacturerDetails = observer(function ManufacturerDetails({
-  manufacturer,
+export const CategoryDetails = observer(function CategoryDetails({
+  category,
   models,
   className,
-}: ManufacturerDetailsProps) {
+}: CategoryDetailsProps) {
   const totalAssets = models.reduce(
     (sum, model) => sum + (model.asset_count || 0),
     0,
@@ -26,7 +26,7 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
 
   return (
     <>
-      <ManufacturerBreadcrumb manufacturer={manufacturer} />
+      <CategoryBreadcrumb category={category} />
       <div
         className={cn(
           "mx-auto flex flex-col items-center gap-8 bg-white p-6 md:w-[1200px]",
@@ -38,12 +38,12 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex-1">
               <p className="text-sm uppercase tracking-widest text-white/70">
-                Manufacturer
+                Category
               </p>
-              <h1 className="text-3xl font-semibold">{manufacturer.name}</h1>
-              {manufacturer.description && (
+              <h1 className="text-3xl font-semibold">{category.name}</h1>
+              {category.description && (
                 <p className="mt-2 text-sm text-white/80">
-                  {manufacturer.description}
+                  {category.description}
                 </p>
               )}
             </div>
@@ -66,6 +66,11 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
                 {totalAssets} Available Assets
               </Badge>
             )}
+            {category.industry_name && (
+              <Badge variant="secondary" className="bg-white/20 text-white">
+                {category.industry_name}
+              </Badge>
+            )}
           </div>
         </div>
 
@@ -84,10 +89,10 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {models.map((model) => (
-                <ManufacturerModelCard
+                <CategoryModelCard
                   key={model.id}
                   model={model}
-                  manufacturer={manufacturer}
+                  category={category}
                 />
               ))}
             </div>
@@ -96,22 +101,22 @@ export const ManufacturerDetails = observer(function ManufacturerDetails({
           <Card className="w-full">
             <CardContent className="py-12 text-center">
               <p className="text-lg text-muted-foreground">
-                No models available for this manufacturer yet.
+                No models available in this category yet.
               </p>
             </CardContent>
           </Card>
         )}
 
         {/* SEO Content Section */}
-        {manufacturer.description && (
+        {category.description && (
           <>
             <Separator className="my-4" />
             <div className="w-full space-y-4">
               <h2 className="text-2xl font-semibold text-gray-900">
-                About {manufacturer.name}
+                About {category.name}
               </h2>
               <div className="prose max-w-none text-gray-700">
-                <p>{manufacturer.description}</p>
+                <p>{category.description}</p>
               </div>
             </div>
           </>

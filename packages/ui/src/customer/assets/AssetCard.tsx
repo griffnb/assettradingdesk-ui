@@ -102,13 +102,13 @@ export const AssetCard = observer(function AssetCard(
         <div className="flex w-full flex-col items-start justify-start gap-2 self-stretch">
           <div className="flex flex-col items-start justify-start self-stretch">
             <div className="justify-start self-stretch text-sm font-normal leading-tight text-muted-foreground">
-              {asset.manufacturer_name}
+              {asset.manufacturer_name || "Unknown"}
             </div>
             <div className="justify-start self-stretch text-lg font-semibold leading-7 text-foreground">
-              {asset.model_name}
+              {asset.model_name || "Unknown"}
             </div>
             <div className="justify-start self-stretch text-sm font-normal leading-tight text-muted-foreground">
-              {asset.category_name}
+              {asset.category_name || "Unknown"}
             </div>
           </div>
           {asset.price > 0 && (
