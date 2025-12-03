@@ -4,6 +4,7 @@ import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { AssetBreadCrumb } from "./AssetBreadCrumb";
 import { AssetImageGallery } from "./AssetImageGallery";
+import { AssetSEOContent } from "./AssetSEOContent";
 import { ProductInfo } from "./ProductInfo";
 import { SimilarListings } from "./SimilarListings";
 
@@ -83,6 +84,9 @@ export const AssetDetails = observer(function AssetDetails({
           asset={asset}
           className="flex w-full flex-col items-start gap-5"
         />
+
+        {/* SEO Content Section */}
+        <AssetSEOContent asset={asset} />
       </div>
     </>
   );
