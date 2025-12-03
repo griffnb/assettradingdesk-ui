@@ -1,14 +1,14 @@
+import { ServerService } from "@/common_lib/services/ServerService";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
-import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { ManufacturerDetails } from "@/ui/customer/manufacturers/ManufacturerDetails";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
-import { data, useParams } from "react-router";
-import type { MetaFunction } from "react-router";
+import { useState } from "react";
+import { data } from "react-router";
+import type { Route } from "./+types/$slug";
 
-export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
+export const meta = ({ loaderData }: Route.MetaArgs) => {
   if (!loaderData?.manufacturer) {
     return [
       { title: "Manufacturer Not Found | Asset Trading Desk" },
@@ -51,66 +51,35 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
   ];
 };
 
-export async function loader({ params }: { params: { slug: string } }) {
+export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug;
 
   if (!slug) {
     throw data({ manufacturer: null, models: [] }, { status: 404 });
   }
 
-  const manufacturerResp = await Store.manufacturer.query({ slug });
+  const manufacturerResp = await ServerService.callGet("manufacturer", "", { slug });
   if (!manufacturerResp.success || !manufacturerResp.data || manufacturerResp.data.length === 0) {
     throw data({ manufacturer: null, models: [] }, { status: 404 });
   }
 
-  const manufacturer = manufacturerResp.data[0];
+  const manufacturerData = manufacturerResp.data[0];
+  const modelsResp = await ServerService.callGet("model", "", { manufacturer_id: manufacturerData.id });
+  const modelsData = modelsResp.success && modelsResp.data ? modelsResp.data : [];
 
-  const modelsResp = await Store.model.query({ manufacturer_id: manufacturer.id });
-  const models = modelsResp.success && modelsResp.data ? modelsResp.data : [];
-
-  return data({ manufacturer, models });
+  return data({
+    manufacturer: manufacturerData,
+    models: modelsData,
+  });
 }
 
-export default observer(() => {
-  const params = useParams();
-  const slug = params.slug;
-
-  const [manufacturer, setManufacturer] = useState<ManufacturerModel | null>(null);
-  const [models, setModels] = useState<ModelModel[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    const fetchData = async () => {
-      setLoading(true);
-
-      // Fetch manufacturer by slug
-      const manufacturerResp = await Store.manufacturer.query({ slug });
-      if (manufacturerResp.success && manufacturerResp.data && manufacturerResp.data.length > 0) {
-        const manufacturerData = manufacturerResp.data[0];
-        setManufacturer(manufacturerData);
-
-        // Fetch models for this manufacturer
-        const modelsResp = await Store.model.query({ manufacturer_id: manufacturerData.id });
-        if (modelsResp.success && modelsResp.data) {
-          setModels(modelsResp.data);
-        }
-      }
-
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [slug]);
-
-  if (loading) {
-    return <LoadingSkeleton />;
-  }
-
-  if (!manufacturer) {
-    return <div className="p-8 text-center">Manufacturer not found</div>;
-  }
+export default observer(({ loaderData }: Route.ComponentProps) => {
+  const [manufacturer] = useState<ManufacturerModel>(() =>
+    Store.manufacturer.load(loaderData.manufacturer)
+  );
+  const [models] = useState<ModelModel[]>(() =>
+    loaderData.models.map((modelData: any) => Store.model.load(modelData))
+  );
 
   return <ManufacturerDetails manufacturer={manufacturer} models={models} />;
 });

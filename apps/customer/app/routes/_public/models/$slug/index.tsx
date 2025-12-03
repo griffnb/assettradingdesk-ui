@@ -1,23 +1,28 @@
+import { ServerService } from "@/common_lib/services/ServerService";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
-import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { ModelDetails } from "@/ui/customer/models/ModelDetails";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
-import { data, useParams } from "react-router";
-import type { MetaFunction } from "react-router";
+import { useState } from "react";
+import { data } from "react-router";
+import type { Route } from "./+types/index";
 
-export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
+export const meta = ({ loaderData }: Route.MetaArgs) => {
   if (!loaderData?.model) {
     return [
       { title: "Model Not Found | Asset Trading Desk" },
-      { name: "description", content: "The requested model could not be found." },
+      {
+        name: "description",
+        content: "The requested model could not be found.",
+      },
     ];
   }
 
   const { model, assetCount } = loaderData;
   const title = `${model.manufacturer_name} ${model.name} | Asset Trading Desk`;
-  const description = model.description || `Browse ${assetCount} available ${model.name} assets from ${model.manufacturer_name}. Find detailed specifications, pricing, and contact sellers.`;
+  const description =
+    model.description ||
+    `Browse ${assetCount} available ${model.name} assets from ${model.manufacturer_name}. Find detailed specifications, pricing, and contact sellers.`;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -37,7 +42,10 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
       "@type": "AggregateOffer",
       priceCurrency: "USD",
       offerCount: assetCount,
-      availability: assetCount > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      availability:
+        assetCount > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
     },
   };
 
@@ -81,14 +89,24 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
   return [
     { title },
     { name: "description", content: description },
-    { name: "keywords", content: `${model.name}, ${model.manufacturer_name}, ${model.category_name}, industrial equipment, used equipment, asset trading` },
-    { tagName: "link", rel: "canonical", href: `https://assettradingdesk.com/models/${model.slug}` },
+    {
+      name: "keywords",
+      content: `${model.name}, ${model.manufacturer_name}, ${model.category_name}, industrial equipment, used equipment, asset trading`,
+    },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: `https://assettradingdesk.com/models/${model.slug}`,
+    },
 
     // Open Graph tags
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: "product" },
-    { property: "og:url", content: `https://assettradingdesk.com/models/${model.slug}` },
+    {
+      property: "og:url",
+      content: `https://assettradingdesk.com/models/${model.slug}`,
+    },
     { property: "og:site_name", content: "Asset Trading Desk" },
 
     // Twitter Card tags
@@ -97,70 +115,45 @@ export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
     { name: "twitter:description", content: description },
 
     // JSON-LD structured data
-    { tagName: "script", type: "application/ld+json", children: JSON.stringify(structuredData) },
-    { tagName: "script", type: "application/ld+json", children: JSON.stringify(breadcrumbStructuredData) },
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(structuredData),
+    },
+    {
+      tagName: "script",
+      type: "application/ld+json",
+      children: JSON.stringify(breadcrumbStructuredData),
+    },
   ];
 };
 
-export async function loader({ params }: { params: { slug: string } }) {
+export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug;
 
   if (!slug) {
     throw data({ model: null, assetCount: 0 }, { status: 404 });
   }
 
-  const resp = await Store.model.query({ slug: slug, limit: "1" });
+  const resp = await ServerService.callGet("model", "", {
+    slug: slug,
+    limit: "1",
+  });
 
   if (!resp.success || !resp.data || resp.data.length === 0) {
     throw data({ model: null, assetCount: 0 }, { status: 404 });
   }
 
-  const model = resp.data[0];
-  const assetCount = model.asset_count || 0;
+  const modelData = resp.data[0];
+  const assetCount = modelData.asset_count || 0;
 
-  return data({ model, assetCount });
+  return data({ model: modelData, assetCount });
 }
 
-export default observer(() => {
-  const params = useParams();
-  const slug = params.slug;
-
-  const [model, setModel] = useState<ModelModel | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    setLoading(true);
-    Store.model
-      .query({ slug: slug, limit: "1" })
-      .then((resp) => {
-        if (resp.success && resp.data && resp.data.length > 0) {
-          setModel(resp.data[0]);
-        }
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [slug]);
-
-  if (loading) {
-    return <LoadingSkeleton />;
-  }
-
-  if (!model) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Model Not Found</h1>
-          <p className="mt-2 text-gray-600">
-            The model you are looking for does not exist.
-          </p>
-        </div>
-      </div>
-    );
-  }
+export default observer(({ loaderData }: Route.ComponentProps) => {
+  const [model] = useState<ModelModel>(() =>
+    Store.model.load(loaderData.model),
+  );
 
   return <ModelDetails model={model} />;
 });

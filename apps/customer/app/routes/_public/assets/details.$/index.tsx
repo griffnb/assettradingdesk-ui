@@ -4,11 +4,10 @@ import { Store } from "@/models/store/Store";
 import { AssetDetails } from "@/ui/customer/assets/details/AssetDetails";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import type { MetaFunction } from "react-router";
 import { data } from "react-router";
-import { Route } from "./+types";
+import type { Route } from "./+types";
 
-export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
+export const meta = ({ loaderData }: Route.MetaArgs) => {
   if (!loaderData?.asset) {
     return [
       { title: "Asset Not Found | Asset Trading Desk" },
@@ -98,7 +97,7 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
   ];
 };
 
-export async function loader({ params }: { params: { "*": string } }) {
+export async function loader({ params }: Route.LoaderArgs) {
   const paramParts = params["*"]?.split("/") || [];
   const id = paramParts[paramParts.length - 1];
 
@@ -112,17 +111,13 @@ export async function loader({ params }: { params: { "*": string } }) {
     throw data({ asset: null }, { status: 404 });
   }
 
-  return data({ asset: resp.data as AssetModel });
+  return data({ asset: resp.data });
 }
 
 export default observer(({ loaderData }: Route.ComponentProps) => {
-  //const params = useParams();
-  //
-  //const paramParts = params["*"]?.split("/") || [];
-
-  //const id = paramParts[paramParts.length - 1];
-  console.log("Loader Data:", loaderData.asset);
-  const [asset] = useState<AssetModel>(Store.asset.load(loaderData.asset));
+  const [asset] = useState<AssetModel>(() =>
+    Store.asset.load(loaderData.asset)
+  );
 
   return <AssetDetails asset={asset} />;
 });
