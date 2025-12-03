@@ -82,10 +82,11 @@ export const ProductInfo = observer(function ProductInfo({
             ? formatPrice(asset.price)
             : "Contact for Price"}
         </p>
-
+        {/*}
         <p className="w-full whitespace-pre-wrap text-lg font-medium leading-7 text-gray-500">
           {asset.model_description}
         </p>
+        */}
       </div>
       <div className="flex w-full flex-col items-start gap-2">
         <div className="grid w-full grid-cols-[200px,_1fr] gap-2">

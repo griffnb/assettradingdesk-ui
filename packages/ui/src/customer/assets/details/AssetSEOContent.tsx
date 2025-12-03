@@ -8,8 +8,11 @@ export interface AssetSEOContentProps {
 export const AssetSEOContent = observer(function AssetSEOContent({
   asset,
 }: AssetSEOContentProps) {
-  const hasManufacturerDescription = asset.manufacturer_description && asset.manufacturer_description.trim().length > 0;
-  const hasModelDescription = asset.model_description && asset.model_description.trim().length > 0;
+  const hasManufacturerDescription =
+    asset.manufacturer_description &&
+    asset.manufacturer_description.trim().length > 0;
+  const hasModelDescription =
+    asset.model_description && asset.model_description.trim().length > 0;
   const hasSeoContent = hasManufacturerDescription || hasModelDescription;
 
   if (!hasSeoContent) {
@@ -25,7 +28,7 @@ export const AssetSEOContent = observer(function AssetSEOContent({
       {hasManufacturerDescription && (
         <div className="flex flex-col gap-3">
           <h3 className="text-xl font-semibold text-gray-800">
-            About {asset.manufacturer_name}
+            {asset.manufacturer_name}
           </h3>
           <p className="text-base leading-relaxed text-gray-700">
             {asset.manufacturer_description}
@@ -36,7 +39,7 @@ export const AssetSEOContent = observer(function AssetSEOContent({
       {hasModelDescription && (
         <div className="flex flex-col gap-3">
           <h3 className="text-xl font-semibold text-gray-800">
-            About the {asset.model_name} Model
+            {asset.model_name} Model
           </h3>
           <p className="text-base leading-relaxed text-gray-700">
             {asset.model_description}
