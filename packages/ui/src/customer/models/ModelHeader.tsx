@@ -9,6 +9,7 @@ export interface ModelHeaderProps {
   className?: string;
 }
 
+//TODO pull out to a reusable component and put in manufacturers index / details and categories index / details
 export const ModelHeader = observer(function ModelHeader({
   model,
   assetCount,
@@ -17,7 +18,7 @@ export const ModelHeader = observer(function ModelHeader({
   return (
     <div
       className={cn(
-        "rounded-3xl border bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 p-8 text-white",
+        "rounded-3xl border bg-[url('/img/hero2.png')] bg-cover bg-center p-8 text-white",
         className,
       )}
     >
@@ -33,11 +34,11 @@ export const ModelHeader = observer(function ModelHeader({
             <p className="mt-2 text-sm text-white/80">{model.description}</p>
           )}
         </div>
-        <div className="rounded-2xl border border-white/20 bg-white/5 px-6 py-4 text-right">
-          <p className="text-sm text-white/70">Available Assets</p>
+        <div className="rounded-2xl border border-white/20 bg-gray-500/50 px-6 py-4 text-right">
+          <p className="text-sm text-white/90">Available Assets</p>
           <p className="text-2xl font-semibold">{assetCount}</p>
           {assetCount > 0 && (
-            <p className="text-xs text-white/60">Browse listings below</p>
+            <p className="text-xs text-white/90">Browse listings below</p>
           )}
         </div>
       </div>

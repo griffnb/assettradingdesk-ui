@@ -63,7 +63,7 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
       )}
     >
       {/* Hero Section */}
-      <div className="w-full rounded-3xl border bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 p-8 text-white">
+      <div className="w-full rounded-3xl border bg-[url('/img/hero2.png')] bg-cover bg-center p-8 text-white">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex-1">
             <p className="text-sm uppercase tracking-widest text-white/70">
@@ -74,11 +74,11 @@ export const ManufacturersIndex = observer(function ManufacturersIndex({
               Find used and refurbished machinery from trusted brands
             </p>
           </div>
-          <div className="rounded-2xl border border-white/20 bg-white/5 px-6 py-4 text-right">
-            <p className="text-sm text-white/70">Total Manufacturers</p>
+          <div className="rounded-2xl border border-white/20 bg-gray-500/50 px-6 py-4 text-right">
+            <p className="text-sm text-white/90">Total Manufacturers</p>
             <p className="text-2xl font-semibold">{manufacturers.length}</p>
             {totalAssets > 0 && (
-              <p className="text-xs text-white/60">
+              <p className="text-xs text-white/90">
                 {totalAssets} assets available
               </p>
             )}
