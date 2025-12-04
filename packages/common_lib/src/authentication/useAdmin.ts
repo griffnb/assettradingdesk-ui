@@ -2,6 +2,7 @@ import { SessionService } from "@/common_lib/services/SessionService";
 import { AdminModel } from "@/models/models/admin/model/AdminModel";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
 type UseAdminProps = {
   minRole?: number;
   redirectLocation?: string;
