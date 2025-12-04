@@ -159,6 +159,7 @@ class SessionServiceClass {
       {
         skipCache: skipCache,
         silentError: true,
+        customTTL: 1000 * 60 * 1, // 1 minutes
       },
     );
     if (response.success && response.data) {
