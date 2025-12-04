@@ -1,4 +1,3 @@
-import { Button } from "@/ui/shadcn/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,6 +15,7 @@ import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
+import { Avatar, AvatarFallback } from "@/ui/shadcn/ui/avatar";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import { Menu } from "lucide-react";
 import { observer } from "mobx-react-lite";
@@ -125,19 +125,37 @@ export const NavBar = observer(function NavBar() {
               <>
                 <NavigationMenuItem value="manage-account" className="ml-auto">
                   <NavigationMenuTrigger>Manage Account</NavigationMenuTrigger>
-                  <NavigationMenuContent className="left-auto right-0 z-10 flex !w-[400px] flex-col space-y-4 rounded-md border bg-white p-4 shadow-md">
-                    <span className="text-sm">
-                      Welcome, {account.first_name}!
-                    </span>
-                    <Link className="underline" to="/manage/dashboard">
-                      My Account
-                    </Link>
-                    <Button
-                      className="bg-primary text-primary-foreground"
-                      onClick={logout}
-                    >
-                      Sign Out
-                    </Button>
+                  <NavigationMenuContent className="left-auto right-0 z-10 !w-[280px] rounded-md border bg-white shadow-md">
+                    <div className="flex items-center gap-3 border-b px-4 py-3">
+                      <Avatar className="size-10">
+                        <AvatarFallback className="bg-primary text-sm font-semibold text-primary-foreground">
+                          {account.first_name?.[0]}
+                          {account.last_name?.[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 overflow-hidden">
+                        <p className="truncate text-sm font-medium">
+                          {account.first_name} {account.last_name}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {account.email}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="py-2">
+                      <Link
+                        to="/manage/dashboard"
+                        className="flex w-full items-center px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
+                      >
+                        My Account
+                      </Link>
+                      <button
+                        onClick={logout}
+                        className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-accent hover:text-red-700"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </>
