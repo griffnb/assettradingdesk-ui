@@ -26,7 +26,7 @@ export const RequestsIndex = observer(function RequestsIndex() {
   const appliedFilters = useMemo(
     () =>
       queryToFilters(parseSearchParams(searchParams), {
-        status: [],
+        status: ["100"],
         limit: "100",
       }),
     [searchParams],

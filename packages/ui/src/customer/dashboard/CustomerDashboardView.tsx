@@ -4,10 +4,7 @@ import { HTMLAttributes } from "react";
 import { CustomerDashboardHeader } from "./CustomerDashboardHeader";
 import { CustomerDashboardListingsTable } from "./CustomerDashboardListingsTable";
 import { CustomerDashboardRequestsTable } from "./CustomerDashboardRequestsTable";
-import {
-  CustomerDashboardStatsGrid,
-  DashboardStat,
-} from "./CustomerDashboardStatsGrid";
+import { DashboardStat } from "./CustomerDashboardStatsGrid";
 import { CustomerDashboardSuggestedTools } from "./CustomerDashboardSuggestedTools";
 
 export interface CustomerDashboardViewProps
@@ -22,8 +19,7 @@ export const CustomerDashboardView = observer(function CustomerDashboardView(
   const {
     className,
     userName,
-    stats,
-
+    //stats,
     ...props
   } = fullProps;
 
@@ -33,7 +29,7 @@ export const CustomerDashboardView = observer(function CustomerDashboardView(
       {...props}
     >
       <CustomerDashboardHeader userName={userName} />
-      <CustomerDashboardStatsGrid stats={stats} />
+      {/*<CustomerDashboardStatsGrid stats={stats} />*/}
       <div className="flex w-full flex-col gap-7">
         <CustomerDashboardSuggestedTools />
         <div className="@md:flex-row flex w-full flex-col gap-10">

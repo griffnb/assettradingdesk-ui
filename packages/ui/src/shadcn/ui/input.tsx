@@ -20,7 +20,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "outline-none transition-[color,box-shadow]",
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
         // Focus States
-        "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+        "focus-visible:border-neutral-950 focus-visible:ring focus-visible:ring-neutral-950/50",
         // Invalid States
         "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
         // Selection

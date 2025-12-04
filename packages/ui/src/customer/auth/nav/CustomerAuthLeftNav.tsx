@@ -47,11 +47,13 @@ export const platformItems = [
     url: "/manage/requests",
     icon: BookOpen,
   },
+  /*
   {
     title: "Offers",
     url: "/manage/offers",
     icon: BookOpen,
   },
+  */
 ];
 
 export const assetItems = [

@@ -15,7 +15,7 @@ import {
 } from "@/utils/query/builder";
 
 import { getFilterForQueryParam } from "@/utils/filters/helpers";
-import { flow, makeAutoObservable } from "mobx";
+import { flow, makeAutoObservable, toJS } from "mobx";
 import { IColumn } from "../../../../ui/src/common/components/types/columns";
 import { IFilter } from "../../../../ui/src/common/components/types/filters";
 
@@ -229,6 +229,8 @@ export class TableState<T extends object> {
     if (!noChange || params["reload"]) {
       delete params["reload"];
       this.loadFilters(params);
+      console.log("Params", params);
+      console.log("APplied Filters", toJS(this.appliedFilters));
       this.reloadData();
     }
   }
