@@ -8,7 +8,8 @@
     "git-build": "",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "--bun storybook build"
+    "build-storybook": "--bun storybook build",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.8.0",

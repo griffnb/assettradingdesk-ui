@@ -2,7 +2,8 @@
   "name": "models",
   "scripts": {
     "tsc": "tsc --noEmit",
-    "watch": "tsc --watch --noEmit --project './tsconfig.json'"
+    "watch": "tsc --watch --noEmit --project './tsconfig.json'",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@aws-sdk/client-cloudwatch-logs": "^3.675.0",
