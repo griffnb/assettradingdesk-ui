@@ -4,6 +4,10 @@ import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
 import {
+  RequestFormModal,
+  RequestFormModalId,
+} from "@/ui/customer/requests/RequestFormModal";
+import {
   RequestSuggestions,
   RequestSuggestionsId,
 } from "@/ui/customer/requests/RequestSuggestions";
@@ -14,10 +18,6 @@ import { observer } from "mobx-react-lite";
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "./columns";
-import {
-  RequestFormModal,
-  RequestFormModalId,
-} from "./components/RequestFormModal";
 import { filters } from "./filters";
 
 export const RequestsIndex = observer(function RequestsIndex() {

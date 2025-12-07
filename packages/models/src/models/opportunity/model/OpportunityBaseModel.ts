@@ -5,11 +5,13 @@ export class OpportunityBaseModel extends BaseModel {
   // Buyer created it
   @attr("uuid") buyer_organization_id: string | null = null;
   @attr("uuid") buyer_account_id: string | null = null;
+  @attr("uuid") buyer_client_id: string | null = null;
   @attr("number") buyer_deal_status: number = 0;
   @attr("number") seller_deal_status: number = 0;
   // Seller Created it
   @attr("uuid") seller_organization_id: string | null = null;
   @attr("uuid") seller_account_id: string | null = null;
+  @attr("uuid") seller_client_id: string | null = null;
 
   // Common fields
   @attr("uuid") pipeline_id: string | null = null;

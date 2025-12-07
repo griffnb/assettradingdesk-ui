@@ -1,6 +1,7 @@
 import { SafeBaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { RequestMetaData } from "@/models/models/request/model/RequestBaseModel";
@@ -170,6 +171,18 @@ export const CustomerRequestForm = observer(function CustomerRequestForm(
 
       {!noOptions && (
         <>
+          <FormFieldModelSelect<RequestModel, FacilityModel>
+            record={props.record}
+            field="facility_id"
+            modelName="facility"
+            modelDisplayField="name"
+            modelSearchField="name"
+            modelSearchFilters={{ disabled: "0" }}
+            label="Facility"
+            placeholder="Select Facility"
+            defaultIfSingleOption={true}
+          />
+
           <FormFieldSlider<RequestModel>
             label="Purchase Time Frame"
             record={props.record}

@@ -12,7 +12,7 @@ import {
 import {
   RequestFormModal,
   RequestFormModalId,
-} from "./components/RequestFormModal";
+} from "@/ui/customer/requests/RequestFormModal";
 export const columns: IColumn<RequestModel>[] = [
   {
     title: "Status",

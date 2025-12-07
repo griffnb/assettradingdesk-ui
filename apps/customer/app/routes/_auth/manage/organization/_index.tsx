@@ -1,6 +1,7 @@
 import { useAccount } from "@/common_lib/authentication/useAccount";
 import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
 import { Store } from "@/models/store/Store";
+import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { OrganizationManagement } from "@/ui/customer/settings/OrganizationManagement";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ export default observer(function OrganizationPage() {
   }, [account?.organization_id]);
 
   if (!organization) {
-    return <div>Loading...</div>;
+    return <LoadingSkeleton />;
   }
 
   return (

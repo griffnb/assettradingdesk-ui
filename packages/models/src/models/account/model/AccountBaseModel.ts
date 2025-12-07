@@ -31,6 +31,10 @@ export class AccountBaseModel extends BaseModel {
   @attr("number") role: number = 1;
   @attr("json") signup_properties: SignupProperties = new SignupProperties();
   @attr("number") test_user_type: number = 0;
+
+  @attr("uuid") facility_id: string | null = null;
+  @attr("uuid") company_id: string | null = null;
+
   // Public Join Data
   @attr("string", { readOnly: true }) name: string | null = null;
 
@@ -43,4 +47,6 @@ export class AccountBaseModel extends BaseModel {
   @attr("json", { readOnly: true }) feature_set_overrides: any | null = null;
   @attr("json", { readOnly: true }) feature_set: any | null = null;
   @attr("string", { readOnly: true }) organization_name: string | null = null;
+  @attr("string", { readOnly: true }) facility_name: string | null = null;
+  @attr("uuid", { readOnly: true }) end_user_company_id: string | null = null;
 }

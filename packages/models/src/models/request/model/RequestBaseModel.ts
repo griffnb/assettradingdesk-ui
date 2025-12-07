@@ -49,14 +49,9 @@ export class RequestBaseModel extends BaseModel {
 
   @attr("string", { readOnly: true }) industry_name: string = "";
   @attr("uuid", { readOnly: true }) industry_id: number = 0;
-  @attr("string", { readOnly: true }) client_name: string = "";
-  @attr("string", { readOnly: true }) company_name: string = "";
 
-  @attr("json", { readOnly: true }) company_types: number[] = [];
   @attr("string", { readOnly: true }) facility_name: string = "";
   @attr("uuid", { readOnly: true }) facility_id: string | null = null;
-
-  @attr("json", { readOnly: true }) pipeline_ids: number[] = [];
 
   @attr("number", { readOnly: true }) match_count: number = 0;
 }

@@ -23,6 +23,7 @@ interface FormFieldModelSelectProps<
   as?: "select" | "combobox";
   additionalOptions?: IConstant[];
   onValueUpdate?: (record: T, value: V | undefined) => void;
+  defaultIfSingleOption?: boolean;
 }
 
 // Define the component with correct generic syntax

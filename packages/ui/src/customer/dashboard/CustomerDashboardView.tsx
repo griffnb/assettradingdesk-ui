@@ -1,3 +1,4 @@
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
@@ -9,7 +10,7 @@ import { CustomerDashboardSuggestedTools } from "./CustomerDashboardSuggestedToo
 
 export interface CustomerDashboardViewProps
   extends HTMLAttributes<HTMLDivElement> {
-  userName?: string;
+  account: AccountModel;
   stats: DashboardStat[];
 }
 
@@ -18,7 +19,7 @@ export const CustomerDashboardView = observer(function CustomerDashboardView(
 ) {
   const {
     className,
-    userName,
+    account,
     //stats,
     ...props
   } = fullProps;
@@ -28,7 +29,7 @@ export const CustomerDashboardView = observer(function CustomerDashboardView(
       className={cn("@container flex w-full flex-col gap-6 p-8", className)}
       {...props}
     >
-      <CustomerDashboardHeader userName={userName} />
+      <CustomerDashboardHeader userName={account.name || ""} />
       {/*<CustomerDashboardStatsGrid stats={stats} />*/}
       <div className="flex w-full flex-col gap-7">
         <CustomerDashboardSuggestedTools />

@@ -12,6 +12,7 @@ export class AssetMetaData {
 export class AssetBaseModel extends BaseModel {
   // Self Made
   @attr("uuid") organization_id: string | null = null;
+  @attr("uuid") facility_id: string | null = null;
   @attr("uuid") account_id: string | null = null;
   // CRM Made
   @attr("uuid") company_id: string | null = null;
@@ -57,7 +58,8 @@ export class AssetBaseModel extends BaseModel {
   @attr("json", { readOnly: true }) company_types: number[] | null = null;
 
   @attr("string", { readOnly: true }) facility_name: string | null = null;
-  @attr("uuid", { readOnly: true }) facility_id: string | null = null;
+
   @attr("json", { readOnly: true }) pipeline_ids: string[] | null = null;
   @attr("number", { readOnly: true }) picture_count: number | null = null;
+  @attr("number", { readOnly: true }) match_count: number | null = null;
 }

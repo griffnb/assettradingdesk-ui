@@ -31,7 +31,7 @@ export const SetupOrganization = observer(function SetupOrganization(
       if (messages.length > 0) {
         return false;
       }
-      const resp = await props.record.save();
+      const resp = await props.record.save({ setup: "true" });
 
       if (resp.success && props.onSuccess) {
         props.onSuccess(props.record);
