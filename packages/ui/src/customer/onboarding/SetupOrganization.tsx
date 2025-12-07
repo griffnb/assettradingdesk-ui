@@ -29,7 +29,6 @@ export const SetupOrganization = observer(function SetupOrganization(
     runInAction(async () => {
       const messages = isObjectValid<OrganizationModel>(props.record);
       if (messages.length > 0) {
-        console.log(messages);
         return false;
       }
       const resp = await props.record.save();
@@ -42,7 +41,7 @@ export const SetupOrganization = observer(function SetupOrganization(
 
   return (
     <Card className="w-full max-w-2xl shadow-lg">
-      <CardHeader>
+      <CardHeader className="border-b pb-4">
         <CardTitle>Create Your Organization</CardTitle>
         <CardDescription>
           Set up your organization to manage assets and requests.

@@ -10,10 +10,6 @@ const meta: Meta<typeof SetupOrganization> = {
       action: "success",
       description: "Callback when organization is created successfully",
     },
-    onCancel: {
-      action: "cancel",
-      description: "Callback when user cancels",
-    },
   },
 };
 
@@ -31,7 +27,6 @@ export const Default: Story = {
       <SetupOrganization
         record={organization}
         onSuccess={(record) => console.log("Created:", record)}
-        onCancel={() => console.log("Cancelled")}
       />
     );
   },
@@ -48,7 +43,6 @@ export const WithPrefilledData: Story = {
       <SetupOrganization
         record={organization}
         onSuccess={(record) => console.log("Created:", record)}
-        onCancel={() => console.log("Cancelled")}
       />
     );
   },

@@ -34,7 +34,7 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
       <LayerDisplay />
       <SearchModalActivator />
       <BookmarkModalActivator />
-      <div className="relative min-h-screen overflow-hidden bg-background">
+      <div className="flex h-dvh flex-col overflow-hidden">
         <MobileMenu
           expandedItems={expandedItems}
           toggleExpanded={toggleExpanded}
@@ -51,11 +51,13 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
         {/* Main Content */}
         <div
           className={cn(
-            "min-h-screen transition-all duration-300 ease-in-out",
+            "flex h-full overflow-x-hidden",
             sidebarOpen ? "md:pl-64" : "md:pl-0",
           )}
         >
-          <main className="flex-1">{props.children}</main>
+          <main className="relative flex h-full flex-1 flex-col overflow-auto">
+            {props.children}
+          </main>
         </div>
       </div>
     </>

@@ -7,7 +7,6 @@ import { Button } from "@/ui/shadcn/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -57,18 +56,12 @@ export const VerifyEmailSent = observer(function VerifyEmailSent() {
     }
   };
 
-  console.log("Verification Token:", verificationToken);
-  console.log("Email:", email);
-
   return (
     <Card className="w-2/5 shadow-lg">
       <CardHeader>
-        <CardTitle className="flex justify-center border-b pb-3">
-          <img src="/img/logo.png" alt="Logo" />
-        </CardTitle>
-        <CardDescription className="flex justify-center text-xl font-semibold text-text-neutral-primary">
+        <CardTitle className="flex justify-center border-b pb-3 text-xl font-semibold text-text-neutral-primary">
           Verify Your Email
-        </CardDescription>
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex flex-col items-center gap-4 py-6 text-center">

@@ -4,6 +4,8 @@ import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { AccountInfo } from "../components/details/AccountInfo";
+
 //interface AccountDetailProps {}
 export const AccountDetails = observer(function AccountDetails() {
   const [record, setRecord] = useState<AccountModel | null>(null);
@@ -21,6 +23,7 @@ export const AccountDetails = observer(function AccountDetails() {
   return (
     <>
       <AdminTitleBar objectURN={record.urn} title="Account" />
+      <AccountInfo account={record} />
     </>
   );
 });

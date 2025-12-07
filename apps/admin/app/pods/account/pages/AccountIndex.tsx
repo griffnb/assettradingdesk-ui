@@ -37,7 +37,7 @@ export const AccountIndex = observer(() => {
     <>
       <AdminTitleBar title="Accounts" />
       <StandardTableWrap<AccountModel>
-        className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
+        className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {
           LayerService.add(AccountFormModalId, AccountFormModal, {
             onSave: () => applyFilters({ ...appliedFilters }),

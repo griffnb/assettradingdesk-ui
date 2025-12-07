@@ -32,9 +32,23 @@ export interface FetchEventSourceHandlers {
 
 export type IJSONAPIType<T> = Omit<IJSONAPI, "data"> & { data?: T };
 
+export type MockMatcher = (
+  params: Record<string, string | string[]>,
+) => boolean;
+
+export interface MockConfig {
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  path: string;
+  params?: Record<string, string | string[]>;
+  matcher?: MockMatcher;
+  response: IJSONAPI | (() => IJSONAPI | Promise<IJSONAPI>);
+  once?: boolean;
+}
+
 class ServerServiceClass {
   private static instance: ServerServiceClass;
   private notificationService = false;
+  private mocks: MockConfig[] = [];
   private constructor() {}
 
   public static getInstance(): ServerServiceClass {
@@ -53,6 +67,125 @@ class ServerServiceClass {
     getPublicEnvVar("PUBLIC_NAMESPACE") !== "_"
       ? `${getPublicEnvVar("PUBLIC_NAMESPACE")}/`
       : "";
+
+  /**
+   * Add a mock for testing purposes
+   * @param config Mock configuration
+   * @example
+   * // Simple mock without params
+   * ServerService.addMock({
+   *   method: 'POST',
+   *   path: '/api/users/save',
+   *   response: { success: true, data: { id: '123' } }
+   * });
+   *
+   * // Mock with exact param matching
+   * ServerService.addMock({
+   *   method: 'GET',
+   *   path: '/api/users/list',
+   *   params: { status: 'active' },
+   *   response: { success: true, data: [...] }
+   * });
+   *
+   * // Mock with custom matcher function
+   * ServerService.addMock({
+   *   method: 'GET',
+   *   path: '/api/users',
+   *   matcher: (params) => params.limit === '10',
+   *   response: { success: true, data: [...] }
+   * });
+   *
+   * // One-time mock
+   * ServerService.addMock({
+   *   method: 'POST',
+   *   path: '/api/users/save',
+   *   response: { success: true, data: { id: '123' } },
+   *   once: true
+   * });
+   */
+  addMock(config: MockConfig): void {
+    this.mocks.push(config);
+  }
+
+  /**
+   * Remove a specific mock
+   */
+  removeMock(
+    method: "GET" | "POST" | "PUT" | "DELETE",
+    path: string,
+    params?: Record<string, string | string[]>,
+  ): void {
+    this.mocks = this.mocks.filter(
+      (mock) =>
+        !(
+          mock.method === method &&
+          mock.path === path &&
+          (!params || JSON.stringify(mock.params) === JSON.stringify(params))
+        ),
+    );
+  }
+
+  /**
+   * Clear all mocks
+   */
+  clearMocks(): void {
+    this.mocks = [];
+  }
+
+  /**
+   * Find a matching mock for the given request
+   */
+  private findMock(
+    method: string,
+    endpoint: string,
+    params: Record<string, string | string[]>,
+  ): MockConfig | undefined {
+    // Try to find mock with matcher first (most specific)
+    const matcherMock = this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        mock.matcher &&
+        mock.matcher(params),
+    );
+    if (matcherMock) return matcherMock;
+
+    // Try to find mock with exact params match
+    const paramsMock = this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        mock.params &&
+        JSON.stringify(mock.params) === JSON.stringify(params),
+    );
+    if (paramsMock) return paramsMock;
+
+    // Fall back to mock without params (matches any)
+    return this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        !mock.params &&
+        !mock.matcher,
+    );
+  }
+
+  /**
+   * Execute a mock and return its response
+   */
+  private async executeMock(mock: MockConfig): Promise<IJSONAPI> {
+    // Remove mock if it's a one-time mock
+    if (mock.once) {
+      this.mocks = this.mocks.filter((m) => m !== mock);
+    }
+
+    // Handle function response
+    if (typeof mock.response === "function") {
+      return await mock.response();
+    }
+
+    return mock.response;
+  }
 
   // Legacy with token
   async headers(payload: object): Promise<{ [key: string]: string }> {
@@ -112,7 +245,7 @@ class ServerServiceClass {
   async callPut<Path extends string>(
     route: string,
     path: NoLeadingSlash<Path>,
-    body: Record<string, any>,
+    body: Record<string, unknown>,
     rawParameters: Record<string, string | string[]> = {},
     options?: Options,
   ) {
@@ -160,6 +293,12 @@ class ServerServiceClass {
     rawParameters: Record<string, string | string[]> = {},
     options?: Options,
   ): Promise<IJSONAPI> {
+    // Check for mocks
+    const mock = this.findMock(method, endpoint, rawParameters);
+    if (mock) {
+      return this.executeMock(mock);
+    }
+
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
 
@@ -226,6 +365,12 @@ class ServerServiceClass {
     method = "GET",
     options?: Options,
   ): Promise<IJSONAPI> {
+    // Check for mocks
+    const mock = this.findMock(method, endpoint, rawParameters);
+    if (mock) {
+      return this.executeMock(mock);
+    }
+
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
 
