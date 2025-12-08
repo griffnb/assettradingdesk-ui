@@ -75,8 +75,8 @@ export const columns: IColumn<RequestModel>[] = [
     render: (options: ColumnComponentOptions<RequestModel>) => {
       return (
         <div>
-          {options.record.meta_data.min_year} -{" "}
-          {options.record.meta_data.max_year}
+          {options.record.meta_data?.min_year} -{" "}
+          {options.record.meta_data?.max_year}
         </div>
       );
     },
@@ -87,7 +87,7 @@ export const columns: IColumn<RequestModel>[] = [
     noSort: true,
     queryField: "install_statuses",
     render: (options: ColumnComponentOptions<RequestModel>) => {
-      return options.record.meta_data.install_statusesFmt;
+      return options.record.meta_data?.install_statusesFmt;
     },
   },
   {
@@ -96,7 +96,7 @@ export const columns: IColumn<RequestModel>[] = [
     noSort: true,
     queryField: "operational_statuses",
     render: (options: ColumnComponentOptions<RequestModel>) => {
-      return options.record.meta_data.operational_statusesFmt;
+      return options.record.meta_data?.operational_statusesFmt;
     },
   },
 ];

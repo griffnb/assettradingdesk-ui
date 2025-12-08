@@ -15,7 +15,7 @@ import {
 } from "@/utils/query/builder";
 
 import { getFilterForQueryParam } from "@/utils/filters/helpers";
-import { flow, makeAutoObservable, toJS } from "mobx";
+import { flow, makeAutoObservable } from "mobx";
 import { IColumn } from "../../../../ui/src/common/components/types/columns";
 import { IFilter } from "../../../../ui/src/common/components/types/filters";
 
@@ -226,11 +226,8 @@ export class TableState<T extends object> {
   applyRouteFilters(params: URLParams) {
     // Check if the incoming params are different from current applied filters
     const noChange = deepEqual(this.appliedFilters, params);
-    if (!noChange || params["reload"]) {
-      delete params["reload"];
+    if (!noChange) {
       this.loadFilters(params);
-      console.log("Params", params);
-      console.log("APplied Filters", toJS(this.appliedFilters));
       this.reloadData();
     }
   }

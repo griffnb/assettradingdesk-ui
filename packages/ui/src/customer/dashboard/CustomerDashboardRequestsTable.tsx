@@ -27,6 +27,10 @@ import { ArrowUpRight } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router";
+import {
+  RequestSuggestions,
+  RequestSuggestionsId,
+} from "../requests/RequestSuggestions";
 
 export interface CustomerDashboardRequestsTableProps
   extends HTMLAttributes<HTMLDivElement> {}
@@ -60,6 +64,14 @@ export const CustomerDashboardRequestsTable = observer(
         onCancel: () => {
           LayerService.remove(RequestFormModalId);
         },
+      });
+    }, []);
+
+    const openMatches = useCallback((record: RequestModel) => {
+      LayerService.addOnly({
+        id: RequestSuggestionsId,
+        component: RequestSuggestions,
+        props: { record },
       });
     }, []);
 
@@ -110,12 +122,16 @@ export const CustomerDashboardRequestsTable = observer(
                   <TableHead className="min-w-[85px]">Model</TableHead>
                   <TableHead className="min-w-[85px]">Facility</TableHead>
                   <TableHead className="min-w-[85px]">Price Range</TableHead>
-                  <TableHead className="min-w-[85px]">Date</TableHead>
+                  <TableHead className="min-w-[85px]">Matches</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {requests.map((request) => (
-                  <TableRow key={request.id}>
+                  <TableRow
+                    key={request.id}
+                    onClick={() => openMatches(request)}
+                    className="cursor-pointer hover:bg-gray-50"
+                  >
                     <TableCell>
                       <span className="truncate text-sm text-foreground">
                         {request.label}
@@ -123,12 +139,17 @@ export const CustomerDashboardRequestsTable = observer(
                     </TableCell>
                     <TableCell>
                       <span className="truncate text-sm text-foreground">
-                        {request.min_price} - {request.max_price}
+                        {request.facility_name}
                       </span>
                     </TableCell>
                     <TableCell>
                       <span className="truncate text-sm text-foreground">
-                        {request.expire_at_ts?.format("MM/DD/YYYY") || "N/A"}
+                        ${request.min_price} - ${request.max_price}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="truncate text-sm text-foreground">
+                        {request.match_count}
                       </span>
                     </TableCell>
                   </TableRow>

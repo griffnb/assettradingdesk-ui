@@ -11,14 +11,14 @@ export class RequestMetaData extends ValidationClass {
   max_year: number = 0;
 
   get install_statusesFmt(): string[] {
-    return this.install_statuses.map((status) => {
+    return this.install_statuses?.map((status) => {
       const val = findConstant(constants.asset.install_status, status);
       return val.label;
     });
   }
 
   get operational_statusesFmt(): string[] {
-    return this.operational_statuses.map((status) => {
+    return this.operational_statuses?.map((status) => {
       const val = findConstant(constants.asset.operational_status, status);
       return val.label;
     });

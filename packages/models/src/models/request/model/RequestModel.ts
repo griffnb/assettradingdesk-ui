@@ -21,13 +21,7 @@ export class RequestModel extends RequestBaseModel {
     return `/requests/details/${this.id}`;
   }
 
-  get inPipeline(): string {
-    if (this.pipeline_ids && this.pipeline_ids.length > 0) {
-      return "Yes";
-    }
-    return "No";
-  }
-
+  /*
   get company_typesFmt(): string {
     if (this.company_types !== null && this.company_types.length > 0) {
       const typeNames = this.company_types.map((company_type) => {
@@ -39,6 +33,7 @@ export class RequestModel extends RequestBaseModel {
     }
     return "";
   }
+    */
 
   get label(): string {
     if (this.model_id) {

@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { SuggestedAssetsCarousel } from "../requests/RequestSuggestedAssets";
 
-const styleVariants = cva("flex flex-col gap-6 max-w-[80%]", {
+const styleVariants = cva("flex flex-col gap-6 p-6 max-w-7xl mx-auto", {
   variants: {
     variant: {
       default: "",

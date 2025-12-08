@@ -44,9 +44,8 @@ export const RequestFormModal = observer(function RequestFormModal(
       title={`${record.id && record.id != "" ? "Edit" : "New"} Request`}
       showCancel={false}
       showSave={false}
-      className=""
     >
-      <div className="flex max-h-[80dvh] flex-col overflow-auto">
+      <div className="flex max-h-[80dvh] min-h-[80dvh] flex-col overflow-auto">
         <CustomerRequestForm
           record={record}
           onSuccess={onSuccess}
