@@ -54,4 +54,6 @@ export class RequestBaseModel extends BaseModel {
   @attr("uuid", { readOnly: true }) facility_id: string | null = null;
 
   @attr("number", { readOnly: true }) match_count: number = 0;
+
+  @attr("string", { readOnly: true }) client_name: string = "";
 }

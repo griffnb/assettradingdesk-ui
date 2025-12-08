@@ -2,7 +2,7 @@ import useMediaQuery, { BREAKPOINTS } from "@/common_lib/hooks/useMediaQuery";
 import { LayerService } from "@/common_lib/services/LayerService";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { MessageThreadPanel } from "@/ui/customer/messages/v2/MessageThreadPanel";
-import { RequestThreadsList } from "@/ui/customer/messages/v2/RequestThreadsList";
+import { ThreadsList } from "@/ui/customer/messages/v2/ThreadsList";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
@@ -36,36 +36,34 @@ export const MessagesIndex = observer(function MessagesIndex(
   const { isMediaQuery: isSmallDesktop } = useMediaQuery(BREAKPOINTS.LG);
   const resizingRef = useRef<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
-  const [activeOpportunityId, setActiveOpportunityId] = useState<string | null>(
-    null,
-  );
+  const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const { account } = props;
 
   // Handle URL parameter updates
   useEffect(() => {
-    if (params.opportunityId) {
-      setActiveOpportunityId(params.opportunityId);
+    if (params.threadId) {
+      setActiveThreadId(params.threadId);
     }
-  }, [params.opportunityId]);
+  }, [params.threadId]);
 
   /**
    * Update active opportunity and navigate to new URL
    * For mobile, opens MessageThreadPanel in LayerService modal
    */
-  const onSetActiveOpportunity = (opportunityId: string) => {
-    setActiveOpportunityId(opportunityId);
-    navigate(`/manage/messages/${opportunityId}`, { replace: false });
+  const onSetActiveThread = (threadId: string) => {
+    setActiveThreadId(threadId);
+    navigate(`/manage/messages/${threadId}`, { replace: false });
 
     if (isSmallDesktop) {
       LayerService.add({
         id: MessageSidePanelID,
         component: MessageSidePanel,
         props: {
-          clearOpportunity: () => {
-            setActiveOpportunityId(null);
+          closeAction: () => {
+            setActiveThreadId(null);
             navigate("/manage/messages", { replace: false });
           },
-          opportunityId: opportunityId,
+          threadId: threadId,
           account: account,
           title: "Asset XXX XXTODO",
         },
@@ -122,9 +120,9 @@ export const MessagesIndex = observer(function MessagesIndex(
           style={{ width: !isSmallDesktop ? `440px` : "100%" }}
           className="shrink-0 self-stretch overflow-y-scroll"
         >
-          <RequestThreadsList
-            activeOpportunityId={activeOpportunityId}
-            setActiveOpportunity={onSetActiveOpportunity}
+          <ThreadsList
+            threadId={activeThreadId}
+            setActiveThread={onSetActiveThread}
             reloadedAt={reloadedAt}
             account={account}
           />
@@ -137,12 +135,11 @@ export const MessagesIndex = observer(function MessagesIndex(
 
         <div className="hidden lg:contents">
           <MessageThreadPanel
-            opportunityId={activeOpportunityId}
+            threadId={activeThreadId}
             account={account}
             reloadList={() => {
               setReloadedAt(new Date());
             }}
-            // Prop removed as per TypeScript error correction
           />
         </div>
       </div>

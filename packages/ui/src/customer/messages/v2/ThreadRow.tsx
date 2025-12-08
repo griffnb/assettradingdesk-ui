@@ -1,16 +1,12 @@
-import { AssetModel } from "@/models/models/asset/model/AssetModel";
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
-import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
 import { cn } from "@/utils/cn";
-import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
-import { formatDateTime } from "./utils";
 
-interface RequestThreadItemProps {
-  opportunity: OpportunityModel;
-  asset: AssetModel;
-  messages: MessageModel[];
-  unreadCount: number;
+interface ThreadRowProps {
+  thread: MessageModel;
+  account: AccountModel;
+
   active: boolean;
   onClick: () => void;
 }
@@ -30,30 +26,22 @@ interface RequestThreadItemProps {
  *   onClick={() => setActiveOpportunityId(opportunity.id)}
  * />
  */
-export const RequestThreadItem = observer(function RequestThreadItem({
-  opportunity, // Keep the prop to satisfy the interface, but add an eslint-disable comment
-  asset,
-  messages,
-  unreadCount,
+export const ThreadRow = observer(function ThreadRow({
+  thread,
   active,
+  account,
   onClick,
-}: RequestThreadItemProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _ = opportunity; // Optional: explicitly reference the prop to suppress unused variable warning
+}: ThreadRowProps) {
+  const lastMessagePreview =
+    thread.body.length > 60
+      ? thread.body.substring(0, 60) + "..."
+      : thread.body;
 
-  const lastMessage =
-    messages.length > 0 ? messages[messages.length - 1] : null;
-  const lastMessagePreview = lastMessage
-    ? lastMessage.body.length > 60
-      ? lastMessage.body.substring(0, 60) + "..."
-      : lastMessage.body
-    : "No messages";
-
-  const lastMessageTime = lastMessage
-    ? formatDateTime(dayjs(lastMessage.updated_at))
-    : "";
-
-  const assetName = `${asset.manufacturer_name} ${asset.model_name}`;
+  // Determine other party name
+  const otherParty =
+    thread.from_account_id !== account.id
+      ? thread.from_account_name
+      : thread.to_account_name;
 
   return (
     <div
@@ -65,12 +53,12 @@ export const RequestThreadItem = observer(function RequestThreadItem({
         "data-[seen=false]:bg-white",
       )}
       data-active={active ? "true" : "false"}
-      data-seen={unreadCount === 0 ? "true" : "false"}
+      data-seen={thread.unread_count === 0 ? "true" : "false"}
     >
       <div className="flex flex-row items-center gap-x-3">
         <img
-          src={asset.thumbnail}
-          alt={assetName}
+          src={thread.asset_thumbnail}
+          alt={thread.asset_make_model}
           className="size-12 shrink-0 rounded object-cover"
         />
         <div className="flex min-w-0 flex-1 flex-col">
@@ -83,10 +71,10 @@ export const RequestThreadItem = observer(function RequestThreadItem({
                 "group-data-[seen=true]:font-semibold",
               )}
             >
-              {unreadCount > 0 && (
+              {thread.unread_count > 0 && (
                 <span className="flex size-2.5 flex-none flex-col items-center justify-center rounded-full bg-icon-brand-primary" />
               )}
-              <span className="truncate">{assetName}</span>
+              <span className="truncate">{thread.asset_make_model}</span>
             </div>
             <div
               className={cn(
@@ -96,7 +84,7 @@ export const RequestThreadItem = observer(function RequestThreadItem({
                 "group-data-[seen=true]:group-data-[active=false]:text-text-neutral-quaternary",
               )}
             >
-              {lastMessageTime}
+              {thread.createdAtFmt}
             </div>
           </div>
           <div
@@ -107,8 +95,7 @@ export const RequestThreadItem = observer(function RequestThreadItem({
                 : "text-text-neutral-secondary",
             )}
           >
-            {asset.year && `${asset.year} • `}
-            {asset.location}
+            {otherParty.trim() == "" ? "Other Party" : otherParty}
           </div>
           <div
             className={cn(

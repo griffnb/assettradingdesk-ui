@@ -1,3 +1,4 @@
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Button } from "@/ui/shadcn/ui/button";
 import { cn } from "@/utils/cn";
@@ -14,15 +15,14 @@ export interface ProductInfoProps {
   onPrimaryAction?: () => void;
   onSecondaryAction?: () => void;
   className?: string;
+  account: AccountModel | null;
 }
 
 export const ProductInfo = observer(function ProductInfo({
   asset,
-  isAuthenticated,
+  account,
   onShare,
   onFavorite,
-  onPrimaryAction,
-  onSecondaryAction,
   className,
 }: ProductInfoProps) {
   const formatPrice = (amount: number) => {
@@ -104,12 +104,7 @@ export const ProductInfo = observer(function ProductInfo({
       </div>
 
       {/* Action buttons */}
-      <ProductActions
-        asset={asset}
-        isAuthenticated={isAuthenticated}
-        onPrimaryAction={onPrimaryAction}
-        onSecondaryAction={onSecondaryAction}
-      />
+      <ProductActions asset={asset} account={account} />
       <ProductSpecs asset={asset} />
     </div>
   );

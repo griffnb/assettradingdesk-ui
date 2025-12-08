@@ -30,22 +30,17 @@ const styleVariants = cva("", {
 export interface MessageSidePanelProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof styleVariants> {
-  clearOpportunity: () => void;
-  opportunityId: string;
+  closeAction: () => void;
+  threadId?: string;
+  assetId?: string;
   account: AccountModel;
   title: string;
 }
 export const MessageSidePanel = observer(function MessageSidePanel(
   fullProps: MessageSidePanelProps,
 ) {
-  const {
-    className,
-    variant,
-    clearOpportunity,
-    opportunityId,
-    account,
-    title,
-  } = fullProps;
+  const { className, variant, closeAction, account, assetId, threadId, title } =
+    fullProps;
 
   return (
     <SidePanelWrap
@@ -54,10 +49,11 @@ export const MessageSidePanel = observer(function MessageSidePanel(
       title={title}
       resizeable={false}
       size="lg"
-      closeAction={clearOpportunity}
+      closeAction={closeAction}
     >
       <MessageThreadPanel
-        opportunityId={opportunityId}
+        threadId={threadId}
+        assetId={assetId}
         account={account}
         reloadList={() => {}}
         // Prop removed as per TypeScript error correction

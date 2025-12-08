@@ -70,7 +70,7 @@ const navigationMenuTriggerStyle = cva([
   /* Hover States */
   "hover:bg-neutral-100 hover:text-neutral-900",
   /* Focus States */
-  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-neutral-950/50 outline-none focus-visible:ring focus-visible:outline-1",
+  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-neutral-950/50 outline-none focus-visible:ring-1 focus-visible:outline-1",
   /* Disabled State */
   "disabled:pointer-events-none disabled:opacity-50",
   /* Open States */
@@ -95,7 +95,7 @@ function NavigationMenuTrigger({
       {children}
       {""}
       <ChevronDownIcon
-        className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+        className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
@@ -175,7 +175,7 @@ function NavigationMenuLink({
         /* Transitions */
         "transition-all",
         /* Focus States */
-        "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:outline-1 focus-visible:ring focus-visible:ring-neutral-950/50",
+        "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:outline-1 focus-visible:ring-1 focus-visible:ring-neutral-950/50",
         /* Hover States */
         "hover:bg-neutral-100 hover:text-neutral-900",
         /* Active States */
@@ -221,6 +221,5 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  NavigationMenuViewport
+  NavigationMenuViewport,
 };
-

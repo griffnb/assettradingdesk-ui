@@ -196,7 +196,7 @@ const CodeModal = observer(function CodeModal({
 }: {
   tableName: string;
   code: string;
-  public_types: string;
+  public_types: string[];
 }) {
   return (
     <SimpleModal

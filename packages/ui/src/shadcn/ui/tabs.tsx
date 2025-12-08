@@ -39,7 +39,7 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         default:
-          "h-[calc(100%-1px)] rounded-md border border-neutral-200 px-2 py-1 text-neutral-950 focus-visible:border-neutral-950 focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring focus-visible:ring-neutral-950/50 data-[state=active]:bg-white data-[state=active]:shadow-sm",
+          "h-[calc(100%-1px)] rounded-md border border-neutral-200 px-2 py-1 text-neutral-950 focus-visible:border-neutral-950 focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring-1 focus-visible:ring-neutral-950/50 data-[state=active]:bg-white data-[state=active]:shadow-sm",
         underline:
           "h-full rounded-none border-0 border-b-2 border-transparent bg-background text-muted-foreground hover:border-muted-foreground/30 hover:text-foreground data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none",
       },

@@ -1,8 +1,8 @@
+import { LayerService } from "@/common_lib/services/LayerService";
+import { NotificationService } from "@/common_lib/services/NotificationService";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { MessageService } from "@/models/models/message/services/MessageService";
-import { LayerService } from "@/common_lib/services/LayerService";
-import { NotificationService } from "@/common_lib/services/NotificationService";
 import { SidePanelWrap } from "@/ui/common/components/side-panel/SidePanelWrap";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Textarea } from "@/ui/shadcn/ui/textarea";
@@ -32,9 +32,9 @@ export const NewMessagePanel = observer(function NewMessagePanel(
 
     setSending(true);
     try {
-      const response = await MessageService.createBuyerMessage({
+      const response = await MessageService.createNewThread({
         body: body.trim(),
-        asset_id: selectedAsset.id || undefined,
+        asset_id: selectedAsset.id as string,
       });
 
       if (response.success && response.data?.opportunity_id) {

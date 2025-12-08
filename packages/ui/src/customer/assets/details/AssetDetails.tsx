@@ -38,19 +38,6 @@ export const AssetDetails = observer(function AssetDetails({
     console.log("Favorite clicked for asset:", asset.id);
   };
 
-  const handlePrimaryAction = () => {
-    // If not authenticated, redirect to login
-    if (!isAuthenticated) {
-      console.log("Redirecting to login...");
-      // TODO: Implement redirect to login
-    }
-  };
-
-  const handleSecondaryAction = () => {
-    // TODO: Implement secondary action (e.g., request quote)
-    console.log("Secondary action clicked for asset:", asset.id);
-  };
-
   return (
     <>
       <AssetBreadCrumb asset={asset} />
@@ -73,8 +60,7 @@ export const AssetDetails = observer(function AssetDetails({
             isAuthenticated={isAuthenticated}
             onShare={handleShare}
             onFavorite={handleFavorite}
-            onPrimaryAction={handlePrimaryAction}
-            onSecondaryAction={handleSecondaryAction}
+            account={account}
             className="w-full md:w-1/2"
           />
         </div>

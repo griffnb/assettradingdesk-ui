@@ -36,9 +36,6 @@ export const columns: IColumn<RequestModel>[] = [
           LayerService.remove(RequestFormModalId);
           reloadData();
         },
-        onCancel: () => {
-          LayerService.remove(RequestFormModalId);
-        },
       });
     },
   } as RowActionColumn<RequestModel>,

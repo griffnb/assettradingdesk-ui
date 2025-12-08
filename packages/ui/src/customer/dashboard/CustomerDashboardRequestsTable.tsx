@@ -61,9 +61,6 @@ export const CustomerDashboardRequestsTable = observer(
           LayerService.remove(RequestFormModalId);
           loadRequests();
         },
-        onCancel: () => {
-          LayerService.remove(RequestFormModalId);
-        },
       });
     }, []);
 

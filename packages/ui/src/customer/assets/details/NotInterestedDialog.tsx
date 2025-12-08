@@ -1,5 +1,4 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { MessageService } from "@/models/models/message/services/MessageService";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Dialog,
@@ -13,17 +12,17 @@ import { Textarea } from "@/ui/shadcn/ui/textarea";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 
-export interface MessageInquiryDialogProps {
+export interface NotInterestedDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   asset: AssetModel;
 }
 
-export const MessageInquiryDialog = observer(function MessageInquiryDialog({
+export const NotInterestedDialog = observer(function NotInterestedDialog({
   open,
   onOpenChange,
   asset,
-}: MessageInquiryDialogProps) {
+}: NotInterestedDialogProps) {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,24 +35,6 @@ export const MessageInquiryDialog = observer(function MessageInquiryDialog({
 
     setIsSubmitting(true);
     setError(null);
-
-    try {
-      const response = await MessageService.createBuyerMessage({
-        body: message,
-        asset_id: asset.id || undefined,
-      });
-
-      if (response.success) {
-        setMessage("");
-        onOpenChange(false);
-      } else {
-        setError(response.error || "Failed to send message");
-      }
-    } catch {
-      setError("An unexpected error occurred");
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   const handleClose = () => {
@@ -68,9 +49,10 @@ export const MessageInquiryDialog = observer(function MessageInquiryDialog({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>Send Message About This Asset</DialogTitle>
+          <DialogTitle>Help us refine your results</DialogTitle>
           <DialogDescription>
-            Ask the seller a question about {asset.model_name || "this asset"}
+            What makes this {asset.model_name || "this asset"} not a good fit
+            for you?
           </DialogDescription>
         </DialogHeader>
 
@@ -99,7 +81,7 @@ export const MessageInquiryDialog = observer(function MessageInquiryDialog({
             onClick={handleSubmit}
             disabled={isSubmitting || !message.trim()}
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+            {isSubmitting ? "Sending..." : "Send Feedback"}
           </Button>
         </DialogFooter>
       </DialogContent>

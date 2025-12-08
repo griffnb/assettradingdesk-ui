@@ -47,9 +47,6 @@ export const RequestsIndex = observer(function RequestsIndex() {
         ref.current?.reloadData();
         LayerService.remove(RequestFormModalId);
       },
-      onCancel: () => {
-        LayerService.remove(RequestFormModalId);
-      },
     });
   }, [appliedFilters, applyFilters, ref.current]);
 
