@@ -45,14 +45,6 @@ yarn-error.log*
 /.pnpm-store
 tsconfig.tsbuildinfo
 .react-router/
-/.github/chatmodes
-/.github/instructions
-/.github/prompts
-/.vscode
-/plop_blueprints
-/plopfile.js
-/scripts/make_mcp.sh
-/scripts/tools.json
 .astro
 /sites/techboss_ai/dist
 dist

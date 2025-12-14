@@ -1,0 +1,72 @@
+import {StandardTableWrap} from "@/ui/common/components/table/StandardTableWrap";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { LayerService } from "@/common_lib/services/LayerService";
+import {
+  {{pascalCase name}}FormModal,
+  {{pascalCase name}}FormModalId,
+} from "../components/{{pascalCase name}}FormModal";
+
+import {DefaultMassActions} from "@/ui/common/components/table/nav/DefaultMassActions";
+import { MassActionProps } from "@/ui/common/components/types/mass-actions";
+import { {{pascalCase name}}Model } from "@/models/models/{{name}}/model/{{pascalCase name}}Model";
+import { applyQueryFilters, queryToFilters } from "@/utils/query/builder";
+import { observer } from "mobx-react";
+import { useRouter } from "next/router";
+import { status } from "@/models/models/{{name}}/_constants/status";
+import { columns } from "../columns";
+import { filters } from "../filters";
+import { useMemo } from "react";
+
+
+
+export const {{pascalCase name}}Index = observer(() => {
+  const router = useRouter();
+  
+
+  const appliedFilters = useMemo(
+    () =>
+      queryToFilters(router.query, {
+        status: [],
+        limit: "100",
+      }),
+    [router.query],
+  );
+ 
+
+  const applyFilters = (params: { [key: string]: string | string[] }) => {
+    applyQueryFilters(router, params);
+  };
+
+  return (
+    <>
+      <AdminTitleBar title="{{pascalCase pluralName}}" />
+      <StandardTableWrap<{{pascalCase name}}Model>
+        className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
+
+        newComponent={() => {
+          LayerService.add(
+            {{pascalCase name}}FormModalId,
+            <{{pascalCase name}}FormModal
+              onSave={() => applyFilters({...appliedFilters})}
+            />,
+          );
+        }}
+        columns={columns}
+        statuses={status}
+        modelType="{{lowerCase name}}"
+        filters={filters}
+        applyFilters={applyFilters}
+        appliedFilters={appliedFilters}
+        selectRows={true}
+        tableSearch={true}
+        tableExport={true}
+ hideTotalRow={true}
+infiniteScroll={true}
+        massActions={[
+          (props) => <DefaultMassActions {...props} />,
+        ]}
+      />
+    </>
+  );
+});
+

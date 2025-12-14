@@ -1,12 +1,17 @@
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
+import { ValidationClass } from "@/utils/validations";
 import dayjs from "dayjs";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 
-export class AssetMetaData {
+export class AssetMetaData extends ValidationClass {
   legacy_id: number = 0;
   legacy_key: string = "";
   wafer_size: number = 0;
+
+  constructor() {
+    super();
+  }
 }
 
 export class AssetBaseModel extends BaseModel {

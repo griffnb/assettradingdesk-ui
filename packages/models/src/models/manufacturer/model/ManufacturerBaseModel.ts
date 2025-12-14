@@ -1,7 +1,8 @@
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
+import { ValidationClass } from "@/utils/validations";
 
-export class ManufacturerMetaData {
+export class ManufacturerMetaData extends ValidationClass {
   legacy_id: number = 0;
   legacy_key: string = "";
 }

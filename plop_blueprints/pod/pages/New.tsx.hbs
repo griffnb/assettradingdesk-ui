@@ -1,0 +1,27 @@
+import { Store } from "@/models/store/Store";
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+
+import { {{pascalCase name}}Form  } from "@/admin/pods/{{name}}/components/{{pascalCase name}}Form";
+import { {{pascalCase name}}Model } from "@/models/models/{{name}}/model/{{pascalCase name}}Model";
+
+//interface {{pascalCase name}}NewProps {}
+
+export const {{pascalCase name}}New = observer(() => {
+  const [record, setRecord] = useState<{{pascalCase name}}Model | null>(null);
+
+  useEffect(() => {
+    const rec = Store.{{name}}.create();
+    setRecord(rec);
+  }, []);
+
+  if (!record) return null;
+
+    return (
+    <>
+      <AdminTitleBar title="New {{pascalCase name}}" />
+      <{{pascalCase name}}Form record={record} />;
+    </>
+  );
+});

@@ -24,4 +24,8 @@ export class FacilityBaseModel extends BaseModel {
   @attr("string") description: string = "";
   @attr("json", { classType: FacilityMetaData }) meta_data: FacilityMetaData =
     new FacilityMetaData();
+
+  // Public Join Data
+  @attr("string", { readOnly: true }) organization_name: string | null = null;
+  @attr("string", { readOnly: true }) company_name: string | null = null;
 }

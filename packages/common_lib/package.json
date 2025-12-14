@@ -1,9 +1,9 @@
 {
   "name": "common_lib",
   "scripts": {
-    "tsc": "tsc --noEmit",
-    "watch": "tsc --watch --noEmit --project './tsconfig.json'",
-    "lint": "eslint ."
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "watch": "tsc --watch --noEmit --project './tsconfig.json'"
   },
   "dependencies": {
     "@customerio/cdp-analytics-browser": "^0.3.4",

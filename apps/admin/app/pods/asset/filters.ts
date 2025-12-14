@@ -1,5 +1,138 @@
+import { constants } from "@/models/constants";
 import { IFilter } from "@/ui/common/components/types/filters";
 
 export const filters: IFilter[] = [
-  
+  {
+    placeholder: "Serial Number",
+    type: "text",
+    field: "q:serial_number",
+  },
+  {
+    placeholder: "Description",
+    type: "text",
+    field: "q:description",
+  },
+  {
+    placeholder: "Location",
+    type: "text",
+    field: "q:location",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Model & Specifications",
+    field: "",
+  },
+  {
+    placeholder: "Model",
+    type: "model-search-multi-select",
+    field: "model_id",
+    modelName: "model",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Year",
+    type: "number",
+    field: "year",
+  },
+  {
+    placeholder: "Quantity",
+    type: "number",
+    field: "quantity",
+  },
+  {
+    placeholder: "Price",
+    type: "number",
+    field: "price",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Status",
+    field: "",
+  },
+  {
+    placeholder: "Install Status",
+    type: "multi-select",
+    field: "install_status",
+    options: constants.asset.install_status,
+  },
+  {
+    placeholder: "Operational Status",
+    type: "multi-select",
+    field: "operational_status",
+    options: constants.asset.operational_status,
+  },
+  {
+    placeholder: "Visibility",
+    type: "multi-select",
+    field: "visibility",
+    options: constants.asset.visibility,
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Relationships",
+    field: "",
+  },
+  {
+    placeholder: "Organization",
+    type: "model-search-multi-select",
+    field: "organization_id",
+    modelName: "organization",
+    modelDisplayField: "label",
+    modelSearchFilters: { disabled: "0" },
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Facility",
+    type: "model-search-multi-select",
+    field: "facility_id",
+    modelName: "facility",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Account",
+    type: "model-search-multi-select",
+    field: "account_id",
+    modelName: "account",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Company",
+    type: "model-search-multi-select",
+    field: "company_id",
+    modelName: "company",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Client",
+    type: "model-search-multi-select",
+    field: "client_id",
+    modelName: "client",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Date Filters",
+    field: "",
+  },
+  {
+    placeholder: "Verified Date",
+    type: "date-range",
+    field: "between:verified_at_ts",
+    format: "YYYY-MM-DD",
+  },
+  {
+    placeholder: "Created Date",
+    type: "date-range",
+    field: "between:created_at",
+    format: "YYYY-MM-DD",
+  },
 ];

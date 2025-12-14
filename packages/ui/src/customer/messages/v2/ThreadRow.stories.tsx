@@ -1,29 +1,16 @@
 import { Store } from "@/models/store/Store";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import dayjs from "dayjs";
-import { RequestThreadItem } from "./RequestThreadItem";
+import { ThreadRow } from "./ThreadRow";
 
-const meta: Meta<typeof RequestThreadItem> = {
-  title: "Customer/Components/Messages/V2/RequestThreadItem",
-  component: RequestThreadItem,
+const meta: Meta<typeof ThreadRow> = {
+  title: "Customer/Components/Messages/V2/ThreadRow",
+  component: ThreadRow,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    opportunity: {
-      description: "OpportunityModel instance",
-    },
-    asset: {
-      description: "AssetModel instance with manufacturer and model details",
-    },
-    messages: {
-      description: "Array of MessageModel instances in the conversation",
-    },
-    unreadCount: {
-      description: "Number of unread messages",
-      control: "number",
-    },
     active: {
       description: "Whether this thread is currently active/selected",
       control: "boolean",
@@ -54,7 +41,7 @@ const mockOpportunity = Store.opportunity.create({
 
 // Create mock messages
 const createMockMessage = (id: string, body: string, hoursAgo: number = 2) => {
-  const createdAt = dayjs().subtract(hoursAgo, 'hours');
+  const createdAt = dayjs().subtract(hoursAgo, "hours");
 
   return Store.message.create({
     id,
@@ -89,138 +76,24 @@ const mockMessages = [
 
 export const Default: Story = {
   args: {
-    opportunity: mockOpportunity,
-    asset: mockAsset,
-    messages: mockMessages,
-    unreadCount: 0,
-    active: false,
-    onClick: () => console.log("Thread clicked"),
-  },
-};
-
-export const Active: Story = {
-  args: {
-    ...Default.args,
-    active: true,
-  },
-};
-
-export const WithUnread: Story = {
-  args: {
-    ...Default.args,
-    unreadCount: 2,
-  },
-};
-
-export const ActiveWithUnread: Story = {
-  args: {
-    ...Default.args,
-    active: true,
-    unreadCount: 1,
-  },
-};
-
-export const NoMessages: Story = {
-  args: {
-    ...Default.args,
-    messages: [],
-    unreadCount: 0,
-  },
-};
-
-export const LongAssetName: Story = {
-  args: {
-    ...Default.args,
-    asset: Store.asset.create({
-      id: "asset-2",
-      manufacturer_name: "Tokyo Electron Limited",
-      model_name: "Clean Track Lithius Pro-i with Extended Wafer Handler",
-      year: 2020,
-      location: "Portland, Oregon",
+    thread: Store.message.create({
+      id: "thread-1",
+      opportunity_id: mockOpportunity.id,
+      asset_id: mockAsset.id,
+      from_account_id: "buyer-123",
+      from_account_name: "Alice Buyer",
+      to_account_id: "seller-456",
+      to_account_name: "John Seller",
+      asset_make_model: `${mockAsset.manufacturer_name} ${mockAsset.model_name}`,
+      asset_thumbnail:
+        "https://via.placeholder.com/150?text=Applied+Materials+Centura",
+      body: mockMessages[mockMessages.length - 1]?.body || "",
+      unread_count: 0,
     }),
-  },
-};
-
-export const LongMessagePreview: Story = {
-  args: {
-    ...Default.args,
-    messages: [
-      createMockMessage(
-        "msg-long",
-        "This is a very long message that should be truncated when displayed in the preview. It contains a lot of information about the asset and the buyer's requirements for the equipment including detailed specifications and delivery timeline.",
-        1,
-      ),
-    ],
-  },
-};
-
-export const MultipleThreads: Story = {
-  render: () => {
-    const handleClick = (id: string | null) =>
-      console.log(`Clicked thread ${id}`);
-
-    const threads = [
-      {
-        opportunity: mockOpportunity,
-        asset: mockAsset,
-        messages: mockMessages,
-        unreadCount: 2,
-        active: false,
-      },
-      {
-        opportunity: Store.opportunity.create({
-          id: "opp-2",
-          asset_id: "asset-2",
-          buyer_account_id: "buyer-123",
-          seller_account_id: "seller-456",
-        }),
-        asset: Store.asset.create({
-          id: "asset-2",
-          manufacturer_name: "LAM Research",
-          model_name: "2300 Kiyo",
-          year: 2019,
-          location: "Austin, TX",
-        }),
-        messages: [
-          createMockMessage("msg-4", "Is this equipment available?", 12),
-        ],
-        unreadCount: 0,
-        active: true,
-      },
-      {
-        opportunity: Store.opportunity.create({
-          id: "opp-3",
-          asset_id: "asset-3",
-          buyer_account_id: "buyer-123",
-          seller_account_id: "seller-456",
-        }),
-        asset: Store.asset.create({
-          id: "asset-3",
-          manufacturer_name: "KLA",
-          model_name: "Surfscan SP5",
-          year: 2021,
-          location: "Milpitas, CA",
-        }),
-        messages: [],
-        unreadCount: 1,
-        active: false,
-      },
-    ];
-
-    return (
-      <div className="w-[440px]">
-        {threads.map((thread) => (
-          <RequestThreadItem
-            key={thread.opportunity.id}
-            opportunity={thread.opportunity}
-            asset={thread.asset}
-            messages={thread.messages}
-            unreadCount={thread.unreadCount}
-            active={thread.active}
-            onClick={() => handleClick(thread.opportunity.id)}
-          />
-        ))}
-      </div>
-    );
+    account: Store.account.create({
+      id: "buyer-123",
+      name: "Alice Buyer",
+    }),
+    onClick: () => console.log("Thread clicked"),
   },
 };

@@ -1,6 +1,9 @@
+import { findConstant } from "@/models/constants";
+import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
+import { organization_type } from "../_constants/organization_type";
 import { OrganizationBaseModel } from "./OrganizationBaseModel";
 import { validationRules } from "./validation_rules";
 
@@ -24,35 +27,22 @@ export class OrganizationModel extends OrganizationBaseModel {
   }
 
   getParent(): ParentInfo | null {
-    /*
-    return {
-      model: "",
-      id: `${this.family_id}`,
-    };
-    */
     return null;
   }
 
   getBreadCrumb() {
-    //parent: any) {
-    /*
-    return {
-      title: parent ? parent.name : this.family_primary_account_name,
-      url: `/families/details/${this.family_id}`,
-    };
-    */
     return {
       title: "",
       url: "",
     };
   }
 
-  get billing_email(): string {
-    return (this.properties.billing_email as string) || "";
+  get organization_typeConst(): IConstant {
+    return findConstant(organization_type, this.organization_type);
   }
 
-  set billing_email(value: string) {
-    this.properties.billing_email = value;
+  get organization_typeStr(): string {
+    return this.organization_typeConst.label;
   }
 
   constructor(store: IStore<OrganizationModel>) {

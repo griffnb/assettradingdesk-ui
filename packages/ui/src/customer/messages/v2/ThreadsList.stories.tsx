@@ -1,22 +1,21 @@
 import { Store } from "@/models/store/Store";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { RequestThreadsList } from "./RequestThreadsList";
+import { ThreadsList } from "./ThreadsList";
 
-const meta: Meta<typeof RequestThreadsList> = {
-  title: "Customer/Components/Messages/V2/RequestThreadsList",
-  component: RequestThreadsList,
+const meta: Meta<typeof ThreadsList> = {
+  title: "Customer/Components/Messages/V2/ThreadsList",
+  component: ThreadsList,
   parameters: {
     layout: "padded",
   },
   tags: ["autodocs"],
   argTypes: {
-    activeOpportunityId: {
-      description: "The currently active opportunity ID",
-      control: "text",
+    threadId: {
+      description: "ID of the active thread",
     },
-    setActiveOpportunity: {
-      description: "Callback function to set the active opportunity",
+    setActiveThread: {
+      description: "Callback function to set the active thread",
     },
     reloadedAt: {
       description: "Date timestamp to trigger reload",
@@ -47,69 +46,9 @@ export const Default: Story = {
 
     return (
       <div className="h-[600px] w-[440px]">
-        <RequestThreadsList
-          activeOpportunityId={activeOpportunityId}
-          setActiveOpportunity={setActiveOpportunityId}
-          reloadedAt={reloadedAt}
-          account={mockAccount}
-        />
-      </div>
-    );
-  },
-};
-
-export const Loading: Story = {
-  render: () => {
-    const [activeOpportunityId, setActiveOpportunityId] = useState<
-      string | null
-    >(null);
-    const [reloadedAt] = useState(new Date());
-
-    return (
-      <div className="h-[600px] w-[440px]">
-        <RequestThreadsList
-          activeOpportunityId={activeOpportunityId}
-          setActiveOpportunity={setActiveOpportunityId}
-          reloadedAt={reloadedAt}
-          account={mockAccount}
-        />
-      </div>
-    );
-  },
-};
-
-export const WithActiveThread: Story = {
-  render: () => {
-    const [activeOpportunityId, setActiveOpportunityId] = useState<
-      string | null
-    >("opp-1");
-    const [reloadedAt] = useState(new Date());
-
-    return (
-      <div className="h-[600px] w-[440px]">
-        <RequestThreadsList
-          activeOpportunityId={activeOpportunityId}
-          setActiveOpportunity={setActiveOpportunityId}
-          reloadedAt={reloadedAt}
-          account={mockAccount}
-        />
-      </div>
-    );
-  },
-};
-
-export const FullHeight: Story = {
-  render: () => {
-    const [activeOpportunityId, setActiveOpportunityId] = useState<
-      string | null
-    >(null);
-    const [reloadedAt] = useState(new Date());
-
-    return (
-      <div className="h-screen w-[440px]">
-        <RequestThreadsList
-          activeOpportunityId={activeOpportunityId}
-          setActiveOpportunity={setActiveOpportunityId}
+        <ThreadsList
+          threadId={activeOpportunityId}
+          setActiveThread={setActiveOpportunityId}
           reloadedAt={reloadedAt}
           account={mockAccount}
         />

@@ -1,0 +1,16 @@
+import { useAuth } from "@/common_lib/authentication/useAuth";
+import { {{pascalCase name}}Details } from "@/admin/pods/{{lowerCase name}}/pages/{{pascalCase name}}Details";
+import { observer } from "mobx-react";
+
+export default observer(() => {
+  const { isAuthenticated, authLoading } = useAuth();
+  if (authLoading) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  return <{{pascalCase name}}Details />;
+});

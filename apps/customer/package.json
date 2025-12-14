@@ -7,7 +7,7 @@
     "prod-preview": "react-router build && react-router-serve ./build/server/index.js",
     "dev": "react-router dev --port 5173",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
+    "typecheck": "react-router typegen && tsc --noEmit --project './tsconfig.json'",
     "watch": "tsc --watch --noEmit --project './tsconfig.json'",
     "pages:dev": "wrangler pages dev ./build/client",
     "pages:deploy": "bun run build && wrangler pages deploy ./build/client",

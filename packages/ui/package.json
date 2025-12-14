@@ -3,13 +3,11 @@
   "type": "module",
   "scripts": {
     "watch": "tsc --watch --noEmit --project './tsconfig.json'",
-    "tsc": "tsc --noEmit --project './tsconfig.json'",
-    "build": "",
-    "git-build": "",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "--bun storybook build",
-    "lint": "eslint ."
+    "build-storybook": "--bun storybook build"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.8.0",

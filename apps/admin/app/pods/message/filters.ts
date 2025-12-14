@@ -1,5 +1,102 @@
 import { IFilter } from "@/ui/common/components/types/filters";
 
 export const filters: IFilter[] = [
-  
+  {
+    placeholder: "From Account",
+    type: "model-search-multi-select",
+    field: "from_account_id",
+    modelName: "account",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "To Account",
+    type: "model-search-multi-select",
+    field: "to_account_id",
+    modelName: "account",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Message Body",
+    type: "text",
+    field: "q:body",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Status & Read",
+    field: "",
+  },
+  {
+    placeholder: "Mark as Read",
+    type: "checkbox",
+    field: "is_read",
+    checkedValue: "1",
+    uncheckedValue: "",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Organizations",
+    field: "",
+  },
+  {
+    placeholder: "Seller Organization",
+    type: "model-search-multi-select",
+    field: "seller_organization_id",
+    modelName: "organization",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Buyer Organization",
+    type: "model-search-multi-select",
+    field: "buyer_organization_id",
+    modelName: "organization",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Related Entities",
+    field: "",
+  },
+  {
+    placeholder: "Asset",
+    type: "model-search-multi-select",
+    field: "asset_id",
+    modelName: "asset",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Opportunity",
+    type: "model-search-multi-select",
+    field: "opportunity_id",
+    modelName: "opportunity",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Pipeline",
+    type: "model-search-multi-select",
+    field: "pipeline_id",
+    modelName: "pipeline",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Date Filters",
+    field: "",
+  },
+  {
+    placeholder: "Created Date",
+    type: "date-range",
+    field: "between:created_at",
+    format: "YYYY-MM-DD",
+  },
 ];

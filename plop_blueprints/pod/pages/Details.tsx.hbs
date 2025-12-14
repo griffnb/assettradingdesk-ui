@@ -1,0 +1,36 @@
+import { Store } from "@/models/store/Store";
+import { observer } from "mobx-react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { {{pascalCase name}}Model } from "@/models/models/{{name}}/model/{{pascalCase name}}Model";
+
+//interface {{pascalCase name}}DetailProps {}
+
+export const {{pascalCase name}}Details = observer(() => {
+  const [record, setRecord] = useState<{{pascalCase name}}Model | null>(null);
+  // Use the useRouter hook to access the router object
+  const router = useRouter();
+  // Access the dynamic id from the URL
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (!id) return;
+    Store.{{lowerCase name}}.get(id as string).then(
+      (rec) => {
+        if(!rec.data) return;
+setRecord(rec.data);
+      },
+    );
+  }, [id]);
+
+  if (!record) return null;
+
+  return (
+    <>
+      <AdminTitleBar
+        objectURN={record.urn}
+        title="{{pascalCase name}}" />
+    </>
+  );
+});

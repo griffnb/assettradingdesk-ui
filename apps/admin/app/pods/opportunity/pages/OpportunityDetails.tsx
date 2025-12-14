@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
+import { OpportunityInfo } from "../components/details/OpportunityInfo";
 
 //interface OpportunityDetailProps {}
 
@@ -31,6 +32,7 @@ export const OpportunityDetails = observer(function OpportunityDetails() {
       <AdminTitleBar
         objectURN={record.urn}
         title="Opportunity" />
+      <OpportunityInfo opportunity={record} />
     </>
   );
 });
