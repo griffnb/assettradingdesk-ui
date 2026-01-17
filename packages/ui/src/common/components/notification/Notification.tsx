@@ -2,7 +2,7 @@ import {
   NotificationItem,
   NotificationService,
 } from "@/common_lib/services/NotificationService";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@/ui/shadcn/ui/button";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   ButtonGroup,
   ButtonGroupSeparator,
@@ -7,7 +7,7 @@ import {
 } from "./button-group";
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: "Common/Components/UI/ButtonGroup",
+  title: "UI/Shadcn/ButtonGroup",
   component: ButtonGroup,
   argTypes: {
     orientation: {

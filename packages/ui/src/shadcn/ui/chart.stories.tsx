@@ -9,7 +9,7 @@ import {
 } from "./chart";
 
 const meta: Meta<typeof ChartContainer> = {
-  title: "Common/Components/Charts/ChartContainer",
+  title: "UI/Shadcn/Charts/ChartContainer",
   component: ChartContainer,
   argTypes: {
     id: {

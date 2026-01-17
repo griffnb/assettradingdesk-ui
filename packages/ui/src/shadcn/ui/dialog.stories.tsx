@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@/ui/shadcn/ui/button";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Dialog,
   DialogClose,
@@ -12,7 +12,7 @@ import {
 } from "./dialog";
 
 const meta: Meta<typeof Dialog> = {
-  title: "Common/Components/UI/Dialog",
+  title: "UI/Shadcn/Dialog",
   component: Dialog,
   argTypes: {
     open: {

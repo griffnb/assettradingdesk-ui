@@ -12,7 +12,7 @@ function ResizablePanelGroup({
     <ResizablePrimitive.PanelGroup
       data-slot="resizable-panel-group"
       className={cn([
-        "flex h-full w-full",
+        "flex size-full",
         "data-[panel-group-direction=vertical]:flex-col",
         className,
       ])}
@@ -60,7 +60,7 @@ function ResizableHandle({
       {...props}
     >
       {withHandle && (
-        <div className="rounded-xs dark:bg-neutral-800 z-10 flex h-4 w-3 items-center justify-center border bg-neutral-200">
+        <div className="dark:bg-neutral-800 z-10 flex h-4 w-3 items-center justify-center rounded-xs border bg-neutral-200">
           <GripVerticalIcon className="size-2.5" />
         </div>
       )}

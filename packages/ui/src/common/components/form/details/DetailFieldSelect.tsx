@@ -1,7 +1,7 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { IConstant } from "@/models/types/constants";
 import { SelectInput } from "@/ui/common/components/fields/SelectInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
@@ -41,9 +41,17 @@ export const DetailFieldSelect = observer(function DetailFieldSelect<
     });
   };
 
+  const getDisplayValue = () => {
+    return (
+      props.options.find((opt) => {
+        return opt.id === props.record[props.field];
+      })?.label || ""
+    );
+  };
+
   const value = props.displayField
     ? (props.record[props.displayField] as string)
-    : (props.record[props.field] as string);
+    : getDisplayValue();
 
   return (
     <DetailFieldWrap {...props} value={value}>
@@ -63,5 +71,3 @@ export const DetailFieldSelect = observer(function DetailFieldSelect<
     </DetailFieldWrap>
   );
 });
-
-export default DetailFieldSelect;

@@ -31,7 +31,7 @@ function ScrollArea({
           /* Transitions */
           "transition-[color,box-shadow]",
           /* Focus Styles */
-          "focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+          "focus-visible:outline-1 focus-visible:ring-1 focus-visible:ring-primary/50",
           /* Dark Mode */
           "dark:focus-visible:ring-neutral-300/50",
         ])}

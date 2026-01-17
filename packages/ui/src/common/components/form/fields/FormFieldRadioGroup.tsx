@@ -8,7 +8,7 @@ import {
 } from "../../fields/RadioGroupInput";
 
 import { IConstant } from "@/models/types/constants";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 

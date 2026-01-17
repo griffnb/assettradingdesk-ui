@@ -4,7 +4,7 @@ import {
 } from "@/ui/common/components/fields/SelectInput";
 
 import { IConstant } from "@/models/types/constants";
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

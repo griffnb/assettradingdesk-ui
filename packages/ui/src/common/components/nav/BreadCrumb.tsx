@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { StoreModel } from "@/models/store/StoreModel";
 import { StoreKeys } from "@/models/types/store_keys";
-import { titleCase } from "@/utils/strings";
+import { titleCase } from "@/common_lib/utils/strings";
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 

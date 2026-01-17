@@ -4,7 +4,7 @@ import {
 } from "@/ui/common/components/fields/DateInput";
 
 import { StoreModel } from "@/models/store/StoreModel";
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import dayjs from "dayjs";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";

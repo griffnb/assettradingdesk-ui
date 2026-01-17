@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ChevronRight, Folder, Home, Settings, Users } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
-  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarInput,
@@ -15,14 +14,11 @@ import {
   SidebarMenuItem,
   SidebarMenuSkeleton,
   SidebarProvider,
-  SidebarRail,
   SidebarSeparator,
-  SidebarTrigger,
 } from "./sidebar";
-import { Home, Settings, Users, Folder, ChevronRight } from "lucide-react";
 
 const meta: Meta<typeof Sidebar> = {
-  title: "Common/Components/Navigation/Sidebar",
+  title: "UI/Shadcn/Sidebar",
   component: Sidebar,
   argTypes: {
     side: {

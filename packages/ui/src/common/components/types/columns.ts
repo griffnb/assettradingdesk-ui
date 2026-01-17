@@ -1,5 +1,6 @@
 // This function takes a component and returns a new component that renders the original component with common props
 
+import { type DotPath } from "@/common_lib/utils/path";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { TableState } from "@/models/store/state/TableState";
 import { ReactNode } from "react";
@@ -22,9 +23,17 @@ export type TotalFormat =
   | "average_dollars"
   | "average_percent";
 
+export interface IFieldColumn<T extends object> extends IColumn<T> {
+  field: keyof T;
+}
+
+export interface IPathColumn<T extends object> extends IColumn<T> {
+  field: DotPath<T>;
+}
+
 export interface IColumn<T extends object> {
   title: string; // the header of the column
-  field: keyof T; // The object field name, only override this if you need custom query mechanisms
+  field: keyof T | DotPath<T>; // The object field name, only override this if you need custom query mechanisms
   displayField?: keyof T; // If the display field is different from the field, for standard types, you can just use the field + format and leave this off
   queryField: string | IField; // The field name to query on, needed for sorting and/or filtering, should be the field value normally
   filterValueField?: string | IField; // The field value to pull for filtering, only used for reporting
@@ -50,8 +59,16 @@ export interface TableCellProps<T extends object> {
   tableState: TableState<T>;
 }
 
+export interface AccountTableCellProps<T extends object> {
+  record: T;
+  column: IColumn<T>;
+  index: number;
+  account?: AccountModel;
+  tableState: TableState<T>;
+}
+
 export type ColumnComponent<T extends object> = (
-  options: ColumnComponentOptions<T>
+  options: ColumnComponentOptions<T>,
 ) => ReactNode;
 
 export type ColumnComponentOptions<T extends object> = {

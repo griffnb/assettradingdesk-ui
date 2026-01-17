@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
 import { Button } from "./button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
 
 const meta: Meta<typeof HoverCard> = {
-  title: "Common/Components/UI/HoverCard",
+  title: "UI/Shadcn/HoverCard",
   component: HoverCard,
   argTypes: {
     // No additional argTypes needed for root component

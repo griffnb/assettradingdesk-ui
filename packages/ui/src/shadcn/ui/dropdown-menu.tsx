@@ -41,9 +41,9 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         className={cn([
           /* Layout & Display */
-          "z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md p-1",
+          "z-50 min-w-32 overflow-y-auto overflow-x-hidden rounded-md p-1",
           /* Max Height & Origin */
-          "max-h-(--radix-dropdown-menu-content-available-height) origin-(--radix-dropdown-menu-content-transform-origin)",
+          "max-h-[var(--radix-dropdown-menu-content-available-height)] origin-[var(--radix-dropdown-menu-content-transform-origin)]",
           /* Colors & Borders */
           "border border-neutral-200 bg-white text-neutral-950 shadow-md",
           /* Animations */
@@ -308,9 +308,9 @@ function DropdownMenuSubContent({
       data-slot="dropdown-menu-sub-content"
       className={cn([
         /* Layout & Display */
-        "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
+        "z-50 min-w-32 overflow-hidden rounded-md p-1",
         /* Origin */
-        "origin-(--radix-dropdown-menu-content-transform-origin)",
+        "origin-[var(--radix-dropdown-menu-content-transform-origin)]",
         /* Colors & Borders */
         "border border-neutral-200 bg-white text-neutral-950 shadow-lg",
         /* Animations */

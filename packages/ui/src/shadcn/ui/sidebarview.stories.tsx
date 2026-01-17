@@ -1,21 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { HomeIcon, SettingsIcon, UserIcon, UsersIcon } from "lucide-react";
 import {
   ViewSidebar,
   ViewSidebarContent,
-  ViewSidebarGroup,
-  ViewSidebarMenu,
-  ViewSidebarMenuItem,
-  ViewSidebarMenuButton,
-  ViewSidebarMenuSubButton,
   ViewSidebarHeader,
-  ViewSidebarSeparator,
   ViewSidebarInset,
+  ViewSidebarMenu,
+  ViewSidebarMenuButton,
+  ViewSidebarMenuItem,
+  ViewSidebarSeparator,
 } from "./sidebarview";
-import { HomeIcon, SettingsIcon, UserIcon, UsersIcon } from "lucide-react";
-import { Store } from "@/models/store/Store";
 
 const meta: Meta<typeof ViewSidebar> = {
-  title: "Common/Components/UI/SidebarView",
+  title: "UI/Shadcn/SidebarView",
   component: ViewSidebar,
   argTypes: {
     side: {

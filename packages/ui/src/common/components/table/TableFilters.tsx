@@ -1,6 +1,6 @@
 import { TableState } from "@/models/store/state/TableState";
 import { IConstant } from "@/models/types/constants";
-import { getQueryParamField } from "@/utils/filters/helpers";
+import { getQueryParamField } from "@/common_lib/utils/filters/helpers";
 import {
     Popover,
     PopoverButton,

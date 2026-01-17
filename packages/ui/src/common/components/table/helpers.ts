@@ -1,4 +1,4 @@
-import { formatNumber, getPrecision } from "@/utils/numbers";
+import { formatNumber, getPrecision } from "@/common_lib/utils/numbers";
 import dayjs from "dayjs";
 import { TextFormat } from "../types/columns";
 

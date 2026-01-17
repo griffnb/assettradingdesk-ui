@@ -1,4 +1,3 @@
-
 export interface INumberConstant {
   id: number;
   label: string;
@@ -7,7 +6,7 @@ export interface INumberConstant {
   value?: string | number;
   icon?: string;
   textColor?: string;
-  
+
   bgColor?: string;
   hidden?: boolean;
   aliases?: string[];
@@ -22,7 +21,7 @@ export interface IStringConstant {
   icon?: string;
   textColor?: string;
   bgColor?: string;
-  
+
   hidden?: boolean;
   aliases?: string[];
 }
@@ -35,7 +34,7 @@ export interface Status {
   helpText?: string;
   class: string;
   skipFilter?: boolean;
-  
+
   short?: string; // Optional short label for display purposes
   icon?: string;
   hidden?: boolean;

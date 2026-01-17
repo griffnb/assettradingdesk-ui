@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { HelpCircleIcon, StarIcon } from "lucide-react";
+import { Button } from "./button";
 import {
   Item,
   ItemActions,
@@ -11,11 +13,9 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "./item";
-import { Button } from "./button";
-import { HelpCircleIcon, StarIcon } from "lucide-react";
 
 const meta: Meta<typeof Item> = {
-  title: "Common/Components/UI/Item",
+  title: "UI/Shadcn/Item",
   component: Item,
   argTypes: {
     variant: {

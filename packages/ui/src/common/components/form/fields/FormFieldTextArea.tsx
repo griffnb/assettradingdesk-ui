@@ -1,7 +1,7 @@
 import TextAreaInput, {
   TextAreaInputProps,
 } from "@/ui/common/components/fields/TextAreaInput";
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { FocusEvent, useState } from "react";

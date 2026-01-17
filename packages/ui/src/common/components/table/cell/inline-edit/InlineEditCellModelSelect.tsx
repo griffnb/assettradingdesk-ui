@@ -1,12 +1,12 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ModelSelectInput } from "@/ui/common/components/fields/ModelSelectInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { IColumn, TableCellProps } from "../../../types/columns";
-import InlineEditCellWrap from "./InlineEditCellWrap";
+import { IFieldColumn, TableCellProps } from "../../../types/columns";
+import { InlineEditCellWrap } from "./InlineEditCellWrap";
 
 interface InlineEditCellModelSelectProps<
   T extends ValidationType & StoreModel,
@@ -16,16 +16,17 @@ interface InlineEditCellModelSelectProps<
 }
 
 export interface InlineEditCellModelSelectColumn<T extends object, V>
-  extends IColumn<T> {
+  extends IFieldColumn<T> {
   modelName: StoreKeys;
   modelDisplayField: keyof V;
   modelSearchField: keyof V;
   modelSearchFilters?: { [key: string]: string | string[] };
 }
-const InlineEditCellModelSelect = observer(
-  <T extends ValidationType & StoreModel, V extends StoreModel>(
-    props: InlineEditCellModelSelectProps<T, V>,
-  ) => {
+export const InlineEditCellModelSelect = observer(
+  function InlineEditCellModelSelect<
+    T extends ValidationType & StoreModel,
+    V extends StoreModel,
+  >(props: InlineEditCellModelSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
 
     let errorMessages: string[] = [];

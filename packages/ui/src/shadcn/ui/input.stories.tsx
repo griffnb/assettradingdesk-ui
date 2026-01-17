@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "./input";
 
 const meta: Meta<typeof Input> = {
-  title: "Common/Components/UI/Input",
+  title: "UI/Shadcn/Input",
   component: Input,
   argTypes: {
     type: {

@@ -2,10 +2,10 @@ import { Status } from "@/models/types/constants";
 
 import { TableState } from "@/models/store/state/TableState";
 
-import { cn } from "@/utils/cn";
-import { debounce } from "@/utils/debounce";
+import { cn } from "@/common_lib/utils/cn";
+import { debounce } from "@/common_lib/utils/debounce";
 import { cva, VariantProps } from "class-variance-authority";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { observer } from "mobx-react-lite";
 
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";

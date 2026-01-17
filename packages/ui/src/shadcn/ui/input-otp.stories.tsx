@@ -8,7 +8,7 @@ import {
 } from "./input-otp";
 
 const meta: Meta<typeof InputOTP> = {
-  title: "Shadcn/Input OTP",
+  title: "UI/Shadcn/Input OTP",
   component: InputOTP,
   parameters: {
     layout: "centered",

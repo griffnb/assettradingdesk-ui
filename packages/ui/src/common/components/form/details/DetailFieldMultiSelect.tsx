@@ -1,7 +1,7 @@
 import { StoreModel } from "@/models/store/StoreModel";
 import { IConstant } from "@/models/types/constants";
 import { MultiSelectInput } from "@/ui/common/components/fields/MultiSelectInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

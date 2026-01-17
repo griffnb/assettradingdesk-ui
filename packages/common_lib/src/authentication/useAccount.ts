@@ -15,7 +15,7 @@ export const useAccount = ({
   const [accountLoading, setAccountLoading] = useState(true); // Indicates if the auth check is in progress
   const nav = useNavigate();
   useEffect(() => {
-    SessionService.loadAccount(force).then((account) => {
+    SessionService.fetchAccount(force).then((account) => {
       if (!account) {
         setAccountLoading(false); // Auth check is complete
         if (redirectLocation) {
@@ -23,10 +23,9 @@ export const useAccount = ({
         }
         return;
       }
-
       setAccountLoading(false); // Auth check is complete
     });
-  }, [SessionService.isAuthenticated, force]);
+  }, [force]);
 
   return { account: SessionService.account, accountLoading };
 };

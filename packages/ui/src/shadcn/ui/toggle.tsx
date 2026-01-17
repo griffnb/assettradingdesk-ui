@@ -20,20 +20,11 @@ const toggleVariants = cva(
     // Data States
     "data-[state=on]:bg-neutral-100 data-[state=on]:text-neutral-900",
     // Focus States
-    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring",
     // Invalid States
     "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
     // SVG Styles
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
-    // Dark Mode - Hover
-    "dark:hover:bg-neutral-800 dark:hover:text-neutral-400",
-    // Dark Mode - Data States
-    "dark:data-[state=on]:bg-neutral-800 dark:data-[state=on]:text-neutral-50",
-    // Dark Mode - Focus
-    "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
-    // Dark Mode - Invalid States
-    "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20",
-    "dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900",
   ],
   {
     variants: {

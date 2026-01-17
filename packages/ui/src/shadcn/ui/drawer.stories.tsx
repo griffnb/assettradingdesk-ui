@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button } from "./button";
 import {
   Drawer,
   DrawerClose,
@@ -9,10 +10,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./drawer";
-import { Button } from "./button";
 
 const meta: Meta<typeof DrawerContent> = {
-  title: "Components/Drawer",
+  title: "UI/Shadcn/Drawer",
   component: DrawerContent,
   parameters: {
     layout: "centered",

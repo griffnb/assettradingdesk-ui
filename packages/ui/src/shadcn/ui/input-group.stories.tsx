@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { SearchIcon, SendIcon } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
+  InputGroupButton,
   InputGroupInput,
   InputGroupText,
-  InputGroupButton,
   InputGroupTextarea,
 } from "./input-group";
-import { SearchIcon, SendIcon } from "lucide-react";
 
 const meta: Meta<typeof InputGroup> = {
-  title: "Common/Components/UI/InputGroup",
+  title: "UI/Shadcn/InputGroup",
   component: InputGroup,
   subcomponents: {
     InputGroupAddon,

@@ -1,7 +1,7 @@
 import { StoreModel } from "@/models/store/StoreModel";
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
-import { isNumeric } from "@/utils/numbers";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isNumeric } from "@/common_lib/utils/numbers";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

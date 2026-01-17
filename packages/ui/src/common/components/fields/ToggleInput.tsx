@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ChangeEvent, HTMLAttributes } from "react";
 

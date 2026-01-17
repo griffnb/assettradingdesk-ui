@@ -1,5 +1,5 @@
 import { SelectBase } from "@/ui/common/components/fields/base/select/SelectBase";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router";

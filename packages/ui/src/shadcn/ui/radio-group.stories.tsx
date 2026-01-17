@@ -4,7 +4,7 @@ import { Label } from "./label";
 import { RadioGroup, RadioGroupItem } from "./radio-group";
 
 const meta: Meta<typeof RadioGroup> = {
-  title: "Components/RadioGroup",
+  title: "UI/Shadcn/RadioGroup",
   component: RadioGroup,
   argTypes: {
     disabled: {

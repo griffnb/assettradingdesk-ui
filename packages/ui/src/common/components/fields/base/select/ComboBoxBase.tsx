@@ -1,7 +1,7 @@
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
-import { cn } from "@/utils/cn";
-import { debounce } from "@/utils/debounce";
-import { equals } from "@/utils/numbers";
+import { cn } from "@/common_lib/utils/cn";
+import { debounce } from "@/common_lib/utils/debounce";
+import { equals } from "@/common_lib/utils/numbers";
 import {
   Combobox,
   ComboboxButton,
@@ -168,10 +168,6 @@ export const ComboBoxBase = observer(function ComboBoxBase<T extends object>(
 
   const virtualOptions = !searching && displayedOptions.length > 30;
 
-  const value = props.selected
-    ? (props.selected[props.idField] as number).toString()
-    : "";
-
   return (
     <div
       className={cn(
@@ -188,7 +184,11 @@ export const ComboBoxBase = observer(function ComboBoxBase<T extends object>(
         virtual={
           virtualOptions ? { options: displayedOptions as any } : undefined
         }
-        value={value}
+        value={
+          props.selected
+            ? (props.selected[props.idField] as number).toString()
+            : ""
+        }
         onChange={(value: number | string | null) => {
           if (value === null) {
             props.handleChange(undefined);
@@ -284,11 +284,9 @@ export const ComboBoxBase = observer(function ComboBoxBase<T extends object>(
                 modal={false}
               >
                 {({ option }) => {
-                  if (!option) return <></>;
                   const isChecked =
                     props.selected &&
                     props.selected[props.idField] === option[props.idField];
-
                   return (
                     <ComboboxOption
                       key={option[props.idField] as string}
@@ -337,8 +335,8 @@ const itemVariants = cva(
   {
     variants: {
       state: {
-        unchecked: "hover:bg-bg-neutral-active",
-        checked: "bg-bg-neutral-active", // Checked state styles
+        unchecked: "font-base hover:bg-bg-neutral-active",
+        checked: "bg-bg-neutral-active font-base", // Checked state styles
       },
     },
     defaultVariants: {
@@ -403,7 +401,7 @@ export const RenderComboBoxOptions = observer(function RenderComboBoxOptions<
           props.displayedOptions.map((option) => {
             const isChecked =
               props.selected && selectedValues?.includes(option[props.idField]);
-            console.log("Rendering option:", option, "isChecked:", isChecked);
+
             return (
               <ComboboxOption
                 key={option[props.idField] as string}

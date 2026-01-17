@@ -18,7 +18,7 @@ import {
 } from "./context-menu";
 
 const meta: Meta = {
-  title: "Components/Context Menu",
+  title: "UI/Shadcn/Context Menu",
   component: ContextMenu,
   tags: ["autodocs"],
   parameters: {

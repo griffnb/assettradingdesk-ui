@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Textarea } from "./textarea";
 
 const meta: Meta<typeof Textarea> = {
-  title: "Common/Components/UI/Textarea",
+  title: "UI/Shadcn/Textarea",
   component: Textarea,
   argTypes: {
     disabled: {

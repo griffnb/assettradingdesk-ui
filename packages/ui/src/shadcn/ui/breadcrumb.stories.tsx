@@ -10,7 +10,7 @@ import {
 } from "./breadcrumb";
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: "Common/Components/Navigation/Breadcrumb",
+  title: "UI/Shadcn/Breadcrumb",
   component: Breadcrumb,
   argTypes: {
     children: {
@@ -73,11 +73,11 @@ export const CustomSeparator: Story = {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          <BreadcrumbSeparator>{'>'}</BreadcrumbSeparator>
+          <BreadcrumbSeparator>{">"}</BreadcrumbSeparator>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/manage/dashboard">Dashboard</BreadcrumbLink>
-          <BreadcrumbSeparator>{'>'}</BreadcrumbSeparator>
+          <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+          <BreadcrumbSeparator>{">"}</BreadcrumbSeparator>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbPage>Analytics</BreadcrumbPage>
@@ -104,7 +104,9 @@ export const LongBreadcrumb: Story = {
           <BreadcrumbSeparator />
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/admin/users/management">Management</BreadcrumbLink>
+          <BreadcrumbLink href="/admin/users/management">
+            Management
+          </BreadcrumbLink>
           <BreadcrumbSeparator />
         </BreadcrumbItem>
         <BreadcrumbItem>

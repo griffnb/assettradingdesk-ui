@@ -1,6 +1,6 @@
 import { TextInputProps } from "@/ui/common/components/fields/TextInput";
 
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 
 import { Slider } from "@/ui/shadcn/ui/slider";
 import { runInAction } from "mobx";

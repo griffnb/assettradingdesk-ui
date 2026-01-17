@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Kbd, KbdGroup } from "./kbd";
 
 const meta: Meta<typeof Kbd> = {
-  title: "Common/Components/UI/Kbd",
+  title: "UI/Shadcn/Kbd",
   component: Kbd,
   argTypes: {
     children: {

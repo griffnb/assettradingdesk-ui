@@ -1,5 +1,5 @@
 import { LayerService } from "@/common_lib/services/LayerService";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
@@ -73,7 +73,7 @@ export const ModalWrap = observer((props: ModalWrapProps) => {
       <div
         className={cn(
           modalVariants.content({ size: props.size }),
-          props.contentClassName
+          props.contentClassName,
         )}
         data-slot="modal-content"
       >

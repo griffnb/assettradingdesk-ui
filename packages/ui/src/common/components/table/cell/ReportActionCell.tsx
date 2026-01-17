@@ -1,8 +1,8 @@
 import {
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    Transition,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  Transition,
 } from "@headlessui/react";
 import { observer } from "mobx-react-lite";
 import { Fragment } from "react";
@@ -102,12 +102,12 @@ const ReportActionCell = observer(
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <PopoverPanel className="x-4 absolute left-0 z-popover w-44 divide-y rounded-lg border border-gray-200 bg-white font-normal shadow">
+                <PopoverPanel className="absolute left-0 z-popover w-44 divide-y rounded-lg border border-gray-200 bg-white px-4 font-normal shadow">
                   <ul className="py-0 text-left text-sm text-gray-700">
                     <li>
                       <a
                         href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="dark:hover:bg-gray-600 dark:hover:text-white block px-4 py-2 hover:bg-gray-100"
                         onClick={() => {
                           addToFilters();
                           close();
@@ -117,7 +117,7 @@ const ReportActionCell = observer(
                       </a>
                       <a
                         href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="dark:hover:bg-gray-600 dark:hover:text-white block px-4 py-2 hover:bg-gray-100"
                         onClick={() => {
                           addAndApplyToFilters();
                           close();

@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 
 interface DetailFieldContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {

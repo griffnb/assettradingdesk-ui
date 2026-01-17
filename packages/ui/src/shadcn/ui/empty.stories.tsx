@@ -11,7 +11,7 @@ import {
 import { FileIcon, MessageCircleIcon, SearchIcon } from "lucide-react";
 
 const meta: Meta = {
-  title: "Common/Components/UI/Empty",
+  title: "UI/Shadcn/Empty",
   component: Empty,
 };
 

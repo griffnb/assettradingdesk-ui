@@ -7,7 +7,7 @@ import {
 } from "./collapsible";
 
 const meta: Meta<typeof Collapsible> = {
-  title: "Components/Collapsible",
+  title: "UI/Shadcn/Collapsible",
   component: Collapsible,
   argTypes: {
     // Add any custom argTypes if needed

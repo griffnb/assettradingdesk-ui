@@ -11,7 +11,7 @@ import {
 } from "./select";
 
 const meta: Meta<typeof SelectTrigger> = {
-  title: "Components/Select",
+  title: "UI/Shadcn/Select",
   component: SelectTrigger,
   tags: ["autodocs"],
   argTypes: {

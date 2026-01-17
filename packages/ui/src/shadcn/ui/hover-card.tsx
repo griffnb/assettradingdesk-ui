@@ -34,7 +34,7 @@ function HoverCardContent({
         className={cn([
           // Positioning & Sizing
           "z-50 w-64",
-          "origin-(--radix-hover-card-content-transform-origin)",
+          "origin-[var(--radix-hover-card-content-transform-origin)]",
           // Colors & Borders
           "bg-white text-neutral-950",
           "rounded-md border border-neutral-200 shadow-md",

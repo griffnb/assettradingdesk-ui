@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { Button } from "./button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 const meta: Meta<typeof Tooltip> = {
-  title: "Common/Components/UI/Tooltip",
+  title: "UI/Shadcn/Tooltip",
   component: Tooltip,
   argTypes: {
     delayDuration: {

@@ -101,9 +101,9 @@ function ContextMenuSubContent({
       data-slot="context-menu-sub-content"
       className={cn([
         /* Layout & Display */
-        "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
+        "z-50 min-w-32 overflow-hidden rounded-md p-1",
         /* Origin */
-        "origin-(--radix-context-menu-content-transform-origin)",
+        "origin-[var(--radix-context-menu-content-transform-origin)]",
         /* Colors & Borders */
         "border border-neutral-200 bg-white text-neutral-950 shadow-lg",
         /* Animations */
@@ -127,9 +127,9 @@ function ContextMenuContent({
         data-slot="context-menu-content"
         className={cn([
           /* Layout & Display */
-          "z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md p-1",
+          "z-50 min-w-32 overflow-y-auto overflow-x-hidden rounded-md p-1",
           /* Max Height & Origin */
-          "max-h-(--radix-context-menu-content-available-height) origin-(--radix-context-menu-content-transform-origin)",
+          "max-h-[var(--radix-context-menu-content-available-height)] origin-[var(--radix-context-menu-content-transform-origin)]",
           /* Colors & Borders */
           "border border-neutral-200 bg-white text-neutral-950 shadow-md",
           /* Animations */

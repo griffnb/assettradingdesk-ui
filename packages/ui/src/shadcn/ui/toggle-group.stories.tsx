@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import React from "react";
-import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
-import { type VariantProps } from "class-variance-authority";
+
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
-import { toggleVariants } from "./toggle";
 
 const meta: Meta<typeof ToggleGroup> = {
-  title: "Common/Components/UI/ToggleGroup",
+  title: "UI/Shadcn/ToggleGroup",
   component: ToggleGroup,
   argTypes: {
     variant: {

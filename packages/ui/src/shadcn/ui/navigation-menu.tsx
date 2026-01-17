@@ -70,7 +70,7 @@ const navigationMenuTriggerStyle = cva([
   /* Hover States */
   "hover:bg-neutral-100 hover:text-neutral-900",
   /* Focus States */
-  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-neutral-950/50 outline-none focus-visible:ring-1 focus-visible:outline-1",
+  "focus:bg-neutral-100 focus:text-neutral-900 focus-visible:ring-primary/50 outline-none focus-visible:ring-1 focus-visible:outline-1",
   /* Disabled State */
   "disabled:pointer-events-none disabled:opacity-50",
   /* Open States */

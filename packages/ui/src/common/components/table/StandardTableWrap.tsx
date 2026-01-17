@@ -1,5 +1,5 @@
 import { TableState, TableStateProps } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useImperativeHandle, useState } from "react";
 import { SelectAllNav } from "./nav/SelectAllNav";

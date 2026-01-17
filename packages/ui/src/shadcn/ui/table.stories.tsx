@@ -11,7 +11,7 @@ import {
 } from "./table";
 
 const meta: Meta<typeof Table> = {
-  title: "Common/Components/UI/Table",
+  title: "UI/Shadcn/Table",
   component: Table,
   argTypes: {
     className: {
