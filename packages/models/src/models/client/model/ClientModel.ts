@@ -1,11 +1,12 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { ClientBaseModel } from "./ClientBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ClientModel extends ClientBaseModel {
-  _model_name = "client";
+  _model_name: StoreKeys = "client";
   get validationRules(): ValidationRules {
     return validationRules;
   }

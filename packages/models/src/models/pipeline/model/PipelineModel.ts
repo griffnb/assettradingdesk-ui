@@ -2,12 +2,14 @@ import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
+import { StoreKeys } from "@/models/types/store_keys";
 import { PipelineBaseModel } from "./PipelineBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class PipelineModel extends PipelineBaseModel {
-  _model_name = "pipeline";
+  _model_name: StoreKeys = "pipeline";
   get validationRules(): ValidationRules {
     return validationRules;
   }

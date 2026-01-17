@@ -1,10 +1,11 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ValidationRules } from "@/utils/validations";
 import { ChangeLogBaseModel } from "./ChangeLogBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ChangeLogModel extends ChangeLogBaseModel {
-  _model_name = "change_log";
+  _model_name: StoreKeys = "change_log";
   get validationRules(): ValidationRules {
     return validationRules;
   }

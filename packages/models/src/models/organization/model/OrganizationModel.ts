@@ -1,6 +1,7 @@
-import { findConstant } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { organization_type } from "../_constants/organization_type";
@@ -8,7 +9,7 @@ import { OrganizationBaseModel } from "./OrganizationBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class OrganizationModel extends OrganizationBaseModel {
-  _model_name = "organization";
+  _model_name: StoreKeys = "organization";
   get validationRules(): ValidationRules {
     return validationRules;
   }

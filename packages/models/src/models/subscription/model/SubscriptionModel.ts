@@ -1,18 +1,18 @@
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 
+import { findConstant } from "@/models/constants_helpers";
+import { StoreKeys } from "@/models/types/store_keys";
 import { SubscriptionBaseModel } from "./SubscriptionBaseModel";
 import { validationRules } from "./validation_rules";
 
-
 export class SubscriptionModel extends SubscriptionBaseModel {
-  _model_name = "subscription";
+  _model_name: StoreKeys = "subscription";
   get validationRules(): ValidationRules {
-      return validationRules;
+    return validationRules;
   }
-
 
   // Search Result Values
   get label(): string {
@@ -38,22 +38,25 @@ export class SubscriptionModel extends SubscriptionBaseModel {
 
   // Helper to get billing cycle label
   get billingCycleLabel(): string {
-    const constant = findConstant(constants.billing_plan.billing_cycle, this.billing_cycle);
+    const constant = findConstant(
+      constants.billing_plan.billing_cycle,
+      this.billing_cycle,
+    );
     return constant?.label || "Unknown";
   }
-  
 
-  getParent(): ParentInfo|null {
+  getParent(): ParentInfo | null {
     /*
     return {
       model: "",
       id: `${this.family_id}`,
     };
     */
-    return null
+    return null;
   }
 
-  getBreadCrumb(){ //parent: any) {
+  getBreadCrumb() {
+    //parent: any) {
     /*
     return {
       title: parent ? parent.name : this.family_primary_account_name,
@@ -63,12 +66,11 @@ export class SubscriptionModel extends SubscriptionBaseModel {
     return {
       title: "",
       url: "",
-    }
+    };
   }
 
   constructor(store: IStore<SubscriptionModel>) {
     super(store);
     this.addObserve(this);
   }
-
 }

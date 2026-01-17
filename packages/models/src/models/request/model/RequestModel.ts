@@ -1,12 +1,14 @@
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { RequestBaseModel } from "./RequestBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class RequestModel extends RequestBaseModel {
-  _model_name = "request";
+  _model_name: StoreKeys = "request";
   get validationRules(): ValidationRules {
     return validationRules;
   }

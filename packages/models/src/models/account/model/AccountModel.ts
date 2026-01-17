@@ -1,10 +1,12 @@
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ValidationRules } from "@/utils/validations";
 import { AccountBaseModel } from "./AccountBaseModel";
 
 export class AccountModel extends AccountBaseModel {
-  _model_name = "account";
+  _model_name: StoreKeys = "account";
 
   get validationRules(): ValidationRules {
     return {};

@@ -9,7 +9,7 @@ import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 
 
 export class {{pascalCase name}}Model extends {{pascalCase name}}BaseModel {
-  _model_name = "{{lowerCase name}}";
+  _model_name: StoreKeys = "{{lowerCase name}}";
   get validationRules(): ValidationRules {
       return validationRules;
   }

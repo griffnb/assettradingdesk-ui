@@ -1,11 +1,12 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { ManufacturerBaseModel } from "./ManufacturerBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ManufacturerModel extends ManufacturerBaseModel {
-  _model_name = "manufacturer";
+  _model_name: StoreKeys = "manufacturer";
   get validationRules(): ValidationRules {
     return validationRules;
   }

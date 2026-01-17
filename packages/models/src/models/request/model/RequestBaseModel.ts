@@ -1,5 +1,6 @@
 import { BaseModel } from "@/models/BaseModel";
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { attr } from "@/models/decorators/attr";
 import { ValidationClass } from "@/utils/validations";
 import { Dayjs } from "dayjs";

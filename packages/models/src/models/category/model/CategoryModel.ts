@@ -1,11 +1,12 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { CategoryBaseModel } from "./CategoryBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class CategoryModel extends CategoryBaseModel {
-  _model_name = "category";
+  _model_name: StoreKeys = "category";
   get validationRules(): ValidationRules {
     return validationRules;
   }
