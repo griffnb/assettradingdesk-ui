@@ -2,7 +2,7 @@ import { constants } from "@/models/constants";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
 import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
 import DetailFieldModelSearchSelect from "@/ui/common/components/form/details/DetailFieldModelSearchSelect";
-import DetailFieldSelect from "@/ui/common/components/form/details/DetailFieldSelect";
+import { DetailFieldSelect } from "@/ui/common/components/form/details/DetailFieldSelect";
 
 import { observer } from "mobx-react-lite";
 

@@ -130,7 +130,7 @@ export const RequestCarousel = observer(function RequestCarousel(
                   <div className="flex w-full items-center justify-between text-sm">
                     <span className="text-text-neutral-tertiary">
                       {/* INSTRUCTIONAL EXAMPLE: Fallback text for optional joined data */}
-                      {request.company_name || "Unknown Company"}
+                      {request.organization_id || "Unknown Company"}
                     </span>
                     {/* INSTRUCTIONAL EXAMPLE: Use cn() with array for conditional classes */}
                     {/* Group related classes together: base classes first, then conditional classes */}
@@ -138,12 +138,12 @@ export const RequestCarousel = observer(function RequestCarousel(
                     <span
                       className={cn([
                         "rounded-full px-2 py-1 text-xs",
-                        request.inPipeline === "Yes"
+                        request.client_id === "Yes"
                           ? "bg-fg-success-secondary text-text-success-primary"
                           : "bg-fg-neutral-secondary text-text-neutral-secondary",
                       ])}
                     >
-                      {request.inPipeline === "Yes"
+                      {request.client_id === "Yes"
                         ? "In Pipeline"
                         : "Available"}
                     </span>

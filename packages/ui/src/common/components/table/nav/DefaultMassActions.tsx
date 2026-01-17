@@ -26,7 +26,6 @@ export const DefaultMassActions = observer(function DefaultMassActions<
     return Object.keys(tableState.checked_row_ids).length;
   }, [tableState, props.allRows]);
 
-  //@ts-expect-error - TS doesn't know that constants[props.modelType] is a valid key
   const modelConstants = constants[tableState.modelType];
 
   if (!modelConstants) {
