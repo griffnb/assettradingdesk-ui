@@ -17,7 +17,7 @@ import { Store } from "@/models/store/Store";
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
 import { Avatar, AvatarFallback } from "@/ui/shadcn/ui/avatar";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
-import { Menu } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
@@ -78,7 +78,7 @@ export const NavBar = observer(function NavBar() {
         <Link to="/" className="w-[170px] flex-none">
           <img src="/img/logo.png" className="w-[170px] flex-none" />
         </Link>
-        <Menu className="md:hidden" onClick={toggleSidebar} />
+        <MenuIcon className="md:hidden" onClick={toggleSidebar} />
       </div>
       <SearchFlyout />
       <div className="hidden flex-row items-center gap-3 md:flex md:w-full">

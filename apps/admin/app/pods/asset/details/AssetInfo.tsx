@@ -99,14 +99,14 @@ export const AssetInfo = observer((props: AssetInfoProps) => {
           record={props.asset}
           field="install_status"
           label="Install Status"
-          displayField="install_status"
+          displayField="install_statusEnum.label"
           options={constants.asset.install_status}
         />
         <DetailFieldSelect
           record={props.asset}
           field="operational_status"
           label="Operational Status"
-          displayField="operational_status"
+          displayField="operational_statusEnum.label"
           options={constants.asset.operational_status}
         />
         <DetailFieldText

@@ -1,6 +1,10 @@
 import { status } from "@/models/models/request/_constants/status";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import {
+  LinkCell,
+  LinkCellColumn,
+} from "@/ui/common/components/table/cell/LinkCell";
+import {
   RowActionColumn,
   RowActions,
 } from "@/ui/common/components/table/cell/RowActions";
@@ -27,10 +31,23 @@ export const columns: IColumn<RequestModel>[] = [
     edit: "/requests/edit",
   } as RowActionColumn<RequestModel>,
   {
-    title: "Make/Model",
-    field: "label",
-    queryField: "make_model",
-  },
+    title: "Model Name",
+    field: "model_name",
+    queryField: "model_name",
+    displayField: "label",
+    linkTo: "/requests/details/[id]",
+    class: "max-w-64 px-3",
+    paramMapping: { id: "id" },
+    render: (options: ColumnComponentOptions<RequestModel>) => {
+      return (
+        <LinkCell
+          {...options}
+          column={options.column as LinkCellColumn<RequestModel>}
+          className="inline-block w-64 truncate"
+        />
+      );
+    },
+  } as LinkCellColumn<RequestModel>,
   {
     title: "Matches",
     field: "match_count",
@@ -71,7 +88,13 @@ export const columns: IColumn<RequestModel>[] = [
     noSort: true,
     queryField: "install_statuses",
     render: (options: ColumnComponentOptions<RequestModel>) => {
-      return options.record.meta_data.install_statusesFmt;
+      return (
+        <div className="flex flex-col gap-1">
+          {options.record.meta_data.install_statusesFmt.map((status) => {
+            return <div key={status}>{status}</div>;
+          })}
+        </div>
+      );
     },
   },
   {
@@ -80,7 +103,13 @@ export const columns: IColumn<RequestModel>[] = [
     noSort: true,
     queryField: "operational_statuses",
     render: (options: ColumnComponentOptions<RequestModel>) => {
-      return options.record.meta_data.operational_statusesFmt;
+      return (
+        <div className="flex flex-col gap-1">
+          {options.record.meta_data.operational_statusesFmt.map((status) => {
+            return <div key={status}>{status}</div>;
+          })}
+        </div>
+      );
     },
   },
 ];

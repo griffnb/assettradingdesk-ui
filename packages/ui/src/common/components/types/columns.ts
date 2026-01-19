@@ -34,7 +34,7 @@ export interface IPathColumn<T extends object> extends IColumn<T> {
 export interface IColumn<T extends object> {
   title: string; // the header of the column
   field: keyof T | DotPath<T>; // The object field name, only override this if you need custom query mechanisms
-  displayField?: keyof T; // If the display field is different from the field, for standard types, you can just use the field + format and leave this off
+  displayField?: keyof T | DotPath<T>; // If the display field is different from the field, for standard types, you can just use the field + format and leave this off
   queryField: string | IField; // The field name to query on, needed for sorting and/or filtering, should be the field value normally
   filterValueField?: string | IField; // The field value to pull for filtering, only used for reporting
   filterTargetField?: string; // the filter target, only used for reporting

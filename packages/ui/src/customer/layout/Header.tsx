@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Menu, PanelLeft } from "lucide-react";
+import { BellIcon, MenuIcon, PanelLeftIcon } from "lucide-react";
 
 import { observer } from "mobx-react-lite";
 import { Button } from "../../shadcn/ui/button";
@@ -35,7 +35,7 @@ export const Header = observer(function Header(props: HeaderProps) {
         className="md:hidden"
         onClick={() => setMobileMenuOpen(true)}
       >
-        <Menu className="h-5 w-5" />
+        <MenuIcon className="size-5" />
       </Button>
       <Button
         variant="ghost"
@@ -43,7 +43,7 @@ export const Header = observer(function Header(props: HeaderProps) {
         className="hidden md:flex"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <PanelLeft className="h-5 w-5" />
+        <PanelLeftIcon className="size-5" />
       </Button>
       <div className="flex flex-1 items-center justify-between">
         <h1 className="text-xl font-semibold">{title}</h1>
@@ -56,9 +56,9 @@ export const Header = observer(function Header(props: HeaderProps) {
                   size="icon"
                   className="relative rounded-2xl"
                 >
-                  <Bell className="h-5 w-5" />
+                  <BellIcon className="size-5" />
                   {notifications > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                       {notifications}
                     </span>
                   )}

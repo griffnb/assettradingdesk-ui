@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { RequestInfo } from "../components/details/RequestInfo";
 import { RequestMatches } from "../components/details/RequestMatches";
+import { RequestOpportunities } from "../components/details/RequestOpportunities";
 
 //interface RequestDetailProps {}
 
@@ -29,8 +30,11 @@ export const RequestDetails = observer(function RequestDetails() {
   return (
     <>
       <AdminTitleBar objectURN={record.urn} title="Request" />
-      <RequestMatches request={record} />
-      <RequestInfo request={record} />
+      <div className="flex flex-col gap-4">
+        <RequestInfo request={record} />
+        <RequestOpportunities request={record} />
+        <RequestMatches request={record} />
+      </div>
     </>
   );
 });

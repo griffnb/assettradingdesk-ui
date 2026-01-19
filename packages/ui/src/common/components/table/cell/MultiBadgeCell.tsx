@@ -24,6 +24,12 @@ export const MultiBadgeCell = observer(
       }
       return Math.abs(hash);
     };
+
+    if (!values || values.length === 0) {
+      return <></>;
+    }
+    console.log("Values", values);
+
     return (
       <div
         className={cn(

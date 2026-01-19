@@ -36,8 +36,8 @@ export const sidebarItems: SidebarItem[] = [
       },
 
       {
-        title: "Contacts",
-        url: "/contacts",
+        title: "Clients",
+        url: "/clients",
       },
     ],
   },

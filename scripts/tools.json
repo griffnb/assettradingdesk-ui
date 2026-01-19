@@ -8,6 +8,28 @@
     },
 
     {
+      "name": "docs",
+      "description": "Use For Paths / Props / Component Defs / Component Usage / Model Definitions - Gets the documentation and type definitions and props of a component or set of components or function using glob patterns. USE ME IF YOU KNOW WHAT YOU ARE LOOKING FOR",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "title": "Glob Pattern",
+            "type": "string",
+            "description": "Glob pattern to match files (e.g., 'packages/ui/**/*.tsx', '**/*BaseModel.ts', 'packages/ui/src/components/Button.tsx'). Use ** for recursive search, * for wildcards."
+          },
+          "component": {
+            "title": "Component Name",
+            "type": "string",
+            "description": "(Optional) The specific component or interface name to extract from matched files (e.g., Button, ButtonProps). If omitted, shows all exports in matched files."
+          }
+        },
+        "required": ["pattern"]
+      },
+      "command": "bun scripts/tsdoc.ts {{pattern}} {{component}}"
+    },
+
+    {
       "name": "typecheck",
       "description": "Type Checks the monorepo bun project properly.  ONLY USE ME FOR TYPE CHECKING",
       "inputSchema": {

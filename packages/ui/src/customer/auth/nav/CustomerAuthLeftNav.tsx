@@ -11,15 +11,15 @@ import {
   useSidebar,
 } from "@/ui/shadcn/ui/sidebar";
 import {
-  BookOpen,
-  Bot,
-  Building2,
-  MessageSquare,
-  PanelLeft,
-  PcCase,
-  Plus,
-  Settings,
-  SquareTerminal,
+  BookOpenIcon,
+  BotIcon,
+  Building2Icon,
+  MessageSquareIcon,
+  PanelLeftIcon,
+  PcCaseIcon,
+  PlusIcon,
+  SettingsIcon,
+  SquareTerminalIcon,
 } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
@@ -31,22 +31,22 @@ export const platformItems = [
   {
     title: "Dashboard",
     url: "/manage/dashboard",
-    icon: SquareTerminal,
+    icon: SquareTerminalIcon,
   },
   {
     title: "Messages",
     url: "/manage/messages",
-    icon: MessageSquare,
+    icon: MessageSquareIcon,
   },
   {
     title: "Suggested Assets",
     url: "/manage/opportunities",
-    icon: Bot,
+    icon: BotIcon,
   },
   {
     title: "Manage Requests",
     url: "/manage/requests",
-    icon: BookOpen,
+    icon: BookOpenIcon,
   },
   /*
   {
@@ -61,12 +61,12 @@ export const assetItems = [
   {
     title: "Assets",
     url: "/manage/assets",
-    icon: PcCase,
+    icon: PcCaseIcon,
   },
   {
     title: "New Asset",
     url: "/manage/assets/new",
-    icon: Plus,
+    icon: PlusIcon,
   },
 ];
 
@@ -74,17 +74,17 @@ export const managementItems = [
   {
     title: "Organization",
     url: "/manage/organization",
-    icon: Settings,
+    icon: SettingsIcon,
   },
   {
     title: "Facilities",
     url: "/manage/facilities",
-    icon: Building2,
+    icon: Building2Icon,
   },
   {
     title: "My Account",
     url: "/manage/my-account",
-    icon: Settings,
+    icon: SettingsIcon,
   },
 ];
 
@@ -113,7 +113,7 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
                   className="ml-auto size-7"
                   onClick={toggleSidebar}
                 >
-                  <PanelLeft className="size-4" />
+                  <PanelLeftIcon className="size-4" />
                   <span className="sr-only">Toggle Sidebar</span>
                 </Button>
               </SidebarMenuButton>

@@ -8,6 +8,7 @@ import { AssetFileTable } from "../details/AssetFileTable";
 import { AssetGallery } from "../details/AssetGallery";
 import { AssetInfo } from "../details/AssetInfo";
 import { AssetMatches } from "../details/AssetMatches";
+import { AssetOpportunities } from "../details/AssetOpportunities";
 import { AssetUpload } from "../details/AssetUpload";
 
 //interface AssetDetailProps {}
@@ -32,11 +33,14 @@ export const AssetDetails = observer(function AssetDetails() {
   return (
     <>
       <AdminTitleBar objectURN={record.urn} title="Asset" />
-      <AssetMatches asset={record} />
-      <AssetInfo asset={record} />
-      <AssetGallery asset={record} />
-      <AssetFileTable asset={record} />
-      <AssetUpload asset={record} />
+      <div className="flex flex-col gap-4">
+        <AssetInfo asset={record} />
+        <AssetOpportunities asset={record} />
+        <AssetMatches asset={record} />
+        <AssetGallery asset={record} />
+        <AssetFileTable asset={record} />
+        <AssetUpload asset={record} />
+      </div>
     </>
   );
 });

@@ -1,9 +1,10 @@
-import { StoreModel } from "@/models/store/StoreModel";
 import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
+import { StoreModel } from "@/models/store/StoreModel";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Tag, TagInputBase } from "../../fields/base/TagInputBase";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -32,7 +33,7 @@ export const DetailFieldTagInput = observer(function DetailFieldTagInput<
   };
 
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : (props.record[props.field] as string);
 
   return (

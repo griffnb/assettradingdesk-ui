@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { CheckCircle } from "lucide-react";
+import { CheckCircleIcon } from "lucide-react";
 
 interface NewUpgradeProps {
   onSelectFree?: () => void;
@@ -58,7 +58,7 @@ export function NewUpgrade(props: NewUpgradeProps) {
               <ul className="space-y-2">
                 {freeTierFeatures.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+                    <CheckCircleIcon className="size-5 shrink-0 text-green-600" />
                     <span className="text-sm">{feature}</span>
                   </li>
                 ))}
@@ -76,7 +76,7 @@ export function NewUpgrade(props: NewUpgradeProps) {
           </Card>
 
           {/* Seller Tier */}
-          <Card className="border-2 border-primary relative">
+          <Card className="relative border-2 border-primary">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <Badge className="bg-primary text-primary-foreground">
                 Recommended
@@ -95,7 +95,7 @@ export function NewUpgrade(props: NewUpgradeProps) {
               <ul className="space-y-2">
                 {sellerTierFeatures.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
+                    <CheckCircleIcon className="size-5 shrink-0 text-green-600" />
                     <span className="text-sm">{feature}</span>
                   </li>
                 ))}

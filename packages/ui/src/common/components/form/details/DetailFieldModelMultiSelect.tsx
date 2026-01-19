@@ -1,14 +1,15 @@
+import isEmpty from "@/common_lib/utils/empty";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { Store } from "@/models/store/Store";
 import { StoreModel } from "@/models/store/StoreModel";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ModelMultiSelectInput } from "@/ui/common/components/fields/ModelMultiSelectInput";
-import isEmpty from "@/common_lib/utils/empty";
-import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
+import { getColumnValue } from "../../table/cell/helpers";
 
 interface DetailFieldModelMultiSelectProps<
   T extends StoreModel & ValidationType,
@@ -73,7 +74,7 @@ export const DetailFieldModelMultiSelect = observer(
     };
 
     const value = props.displayField
-      ? (props.record[props.displayField] as string)
+      ? (getColumnValue(props.record, props.displayField) as string)
       : values.join(", ");
 
     return (

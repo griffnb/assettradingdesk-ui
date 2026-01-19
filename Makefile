@@ -10,10 +10,13 @@ help: ## Show this help message
 	@echo 'Usage: make [target]'
 	@echo ''
 	@echo 'Targets:'
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":"}; {target=$$2; sub(/^[[:space:]]*/, "", target); desc=$$3; for(i=4; i<=NF; i++) desc=desc":"$$i; sub(/.*## /, "", desc); printf "\033[36m%-30s\033[0m %s\n", target, desc}'
+
 
 # Development targets
 
+# Include standard makes
+include ./scripts/makes/core.mk
 
 .PHONY: admin
 admin: ## Run development server
@@ -24,93 +27,3 @@ admin: ## Run development server
 customer: ## Run development server
 	@open -a "Google Chrome" http://localhost:5173
 	bun -F customer dev --host 0.0.0.0
-
-# Docker targets
-.PHONY: docker-up
-docker-up: ## Start Docker services
-	docker compose -f infrastructure/docker-compose.yml up
-
-
-.PHONY: clear-node-modules
-clear-node-modules: ## Clear node_modules directory
-	find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
-
-.PHONY: watch-cf-logs
-watch-cf-logs: ## Watch Cloudflare logs
-	npx wrangler pages deployment tail
-
-
-.PHONY: storybook
-storybook: ## Run the storybook
-	@if lsof -Pi :6006 -sTCP:LISTEN -t >/dev/null 2>&1; then \
-		echo "Storybook is already running on port 6006"; \
-		exit 0; \
-	fi; \
-	bun --bun -F ui storybook
-
-
-.PHONY: fix-mismatches
-fix-mismatches: ## Fix package versions
-	npx syncpack@latest fix-mismatches --types prod,dev
-
-.PHONY: list-mismatches
-list-mismatches: ## List package mismatches
-	npx syncpack@latest list-mismatches --types prod,dev
-
-
-.PHONY: add-component
-add-component: ## adds one or more shadcn components
-	@args="$(filter-out $@,$(MAKECMDGOALS))"; \
-	if [ -z "$$args" ]; then \
-		echo "Usage: make add-component <component...>"; exit 1; \
-	fi; \
-	cd packages/ui && GITHUB_TOKEN=$$(gh auth token) bun dlx shadcn@latest add $$args
-
-# swallow extra goals so make doesn't complain
-%:
-	@:
-
-
-.PHONY: pr
-pr:
-	@if [ -z "$(title)" ]; then \
-		echo "Usage: make pr title='Fixes this bug'"; \
-		exit 1; \
-	fi; \
-	current_branch=$$(git rev-parse --abbrev-ref HEAD); \
-	gh pr create --base development --head $$current_branch --title "$(title)" --body "$(title)"
-
-
-
-.PHONY: sync-core-custom
-sync-core-custom: ## sync custom core packages with shadcn_builder
-	@echo "Syncing custom core packages"
-	@GITHUB_TOKEN=$$(gh auth token); \
-	for dir in packages/*/; do \
-		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
-			echo "Syncing custom registry in $$dir"; \
-			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder add -all); \
-		fi; \
-	done
-
-.PHONY: check-core-custom
-check-core-custom: ## sync custom core packages with shadcn_builder
-	@echo "Checking custom core packages"
-	@GITHUB_TOKEN=$$(gh auth token); \
-	for dir in packages/*/; do \
-		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
-			echo "Checking custom registry in $$dir"; \
-			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder check -all); \
-		fi; \
-	done
-
-.PHONY: core-sync-force
-core-sync-force: ## sync custom core packages with shadcn_builder
-	@echo "Syncing custom core packages"
-	@GITHUB_TOKEN=$$(gh auth token) shadcn_builder add -all -force || true
-	@for dir in $(CURDIR)/packages/*/; do \
-		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
-			echo "Building registry in $$dir"; \
-			(cd "$$dir" && GITHUB_TOKEN=$$(gh auth token) shadcn_builder add -all -force) || true; \
-		fi; \
-	done

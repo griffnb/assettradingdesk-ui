@@ -6,7 +6,7 @@ import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWra
 import { IColumn } from "@/ui/common/components/types/columns";
 import { Button } from "@/ui/shadcn/ui/button";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
-import { Building2, Plus } from "lucide-react";
+import { Building2Icon, PlusIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
@@ -61,7 +61,7 @@ export const FacilityManagement = observer(function FacilityManagement() {
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between p-6 pb-4">
         <div className="flex items-center gap-3">
-          <Building2 className="size-8 text-primary" />
+          <Building2Icon className="size-8 text-primary" />
           <div>
             <h1 className="text-3xl font-bold">Facilities</h1>
             <p className="text-sm text-muted-foreground">
@@ -70,7 +70,7 @@ export const FacilityManagement = observer(function FacilityManagement() {
           </div>
         </div>
         <Button onClick={handleNewFacility} className="gap-2">
-          <Plus className="size-4" />
+          <PlusIcon className="size-4" />
           New Facility
         </Button>
       </div>

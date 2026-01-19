@@ -1,11 +1,9 @@
 import { status } from "@/models/models/asset/_constants/status";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import InlineEditCellSelect, {
-  InlineEditCellSelectColumn,
-} from "@/ui/common/components/table/cell/inline-edit/InlineEditCellSelect";
-import InlineEditCellText, {
-  InlineEditCellTextColumn,
-} from "@/ui/common/components/table/cell/inline-edit/InlineEditCellText";
+import {
+  LinkCell,
+  LinkCellColumn,
+} from "@/ui/common/components/table/cell/LinkCell";
 import {
   RowActionColumn,
   RowActions,
@@ -33,74 +31,49 @@ export const columns: IColumn<AssetModel>[] = [
     headerClass: "action-header",
     edit: "/assets/edit",
   } as RowActionColumn<AssetModel>,
+  {
+    title: "Model Name",
+    field: "model_name",
+    queryField: "model_name",
+    displayField: "label",
+    linkTo: "/assets/details/[id]",
+    class: "max-w-64 px-3",
+    paramMapping: { id: "id" },
+    render: (options: ColumnComponentOptions<AssetModel>) => {
+      return (
+        <LinkCell
+          {...options}
+          column={options.column as LinkCellColumn<AssetModel>}
+          className="inline-block w-64 truncate"
+        />
+      );
+    },
+  } as LinkCellColumn<AssetModel>,
 
   {
     title: "Description",
     field: "description",
     queryField: "description",
-    type: "text",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+    class: "line-clamp-4 text-wrap w-64 py-0 my-1",
+  },
 
   {
     title: "Serial Number",
     field: "serial_number",
     queryField: "serial_number",
-    type: "text",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+  },
 
   {
     title: "Year",
     field: "year",
     queryField: "year",
-    type: "number",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+  },
 
   {
     title: "Quantity",
     field: "quantity",
     queryField: "quantity",
-    type: "number",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+  },
 
   {
     title: "Price",
@@ -113,35 +86,15 @@ export const columns: IColumn<AssetModel>[] = [
     title: "Install Status",
     field: "install_status",
     queryField: "install_status",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellSelect
-          record={options.record}
-          column={options.column as InlineEditCellSelectColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-    options: [],
-  } as InlineEditCellSelectColumn<AssetModel>,
+    displayField: "install_statusEnum.label",
+  },
 
   {
     title: "Operational Status",
     field: "operational_status",
     queryField: "operational_status",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellSelect
-          record={options.record}
-          column={options.column as InlineEditCellSelectColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-    options: [],
-  } as InlineEditCellSelectColumn<AssetModel>,
+    displayField: "operational_statusEnum.label",
+  },
 
   {
     title: "Verified Date",
@@ -153,33 +106,13 @@ export const columns: IColumn<AssetModel>[] = [
     title: "Notes",
     field: "notes",
     queryField: "notes",
-    type: "text",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+    class: "line-clamp-4 text-wrap w-64 py-0 my-1",
+  },
 
   {
     title: "Configuration Notes",
     field: "configuration_notes",
     queryField: "configuration_notes",
-    type: "text",
-    render: (options: ColumnComponentOptions<AssetModel>) => {
-      return (
-        <InlineEditCellText
-          record={options.record}
-          column={options.column as InlineEditCellTextColumn<AssetModel>}
-          index={options.index}
-          tableState={options.tableState}
-        />
-      );
-    },
-  } as InlineEditCellTextColumn<AssetModel>,
+    class: "line-clamp-4 text-wrap w-64 py-0 my-1",
+  },
 ];

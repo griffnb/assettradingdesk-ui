@@ -22,22 +22,21 @@ export const AssetMatches = observer(function AssetMatches(
   });
 
   return (
-    <div className="p-10">
-      <StandardTableWrap<RequestModel>
-        title="Matching Requests"
-        modelType="request"
-        columns={columns}
-        filters={filters}
-        statuses={constants.request.status}
-        appliedFilters={appliedFilters}
-        applyFilters={setAppliedFilters}
-        selectRows={false}
-        hideTotalRow={true}
-        tableSearch={false}
-        tableExport={false}
-        customPath={`matches/${asset.id}`}
-        parent={asset}
-      />
-    </div>
+    <StandardTableWrap<RequestModel>
+      className="[&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
+      title="Matching Requests"
+      modelType="request"
+      columns={columns}
+      filters={filters}
+      statuses={constants.request.status}
+      appliedFilters={appliedFilters}
+      applyFilters={setAppliedFilters}
+      selectRows={false}
+      hideTotalRow={true}
+      tableSearch={false}
+      tableExport={false}
+      customPath={`matches/${asset.id}`}
+      parent={asset}
+    />
   );
 });

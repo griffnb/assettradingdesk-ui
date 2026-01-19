@@ -10,12 +10,12 @@ import {
 } from "@/ui/shadcn/ui/sidebar";
 import { cva, VariantProps } from "class-variance-authority";
 import {
-  ChevronDown,
-  ChevronRight,
-  File,
-  Folder,
-  Search,
-  X,
+  ChevronDownIcon,
+  ChevronRightIcon,
+  FileIcon,
+  FolderIcon,
+  SearchIcon,
+  XIcon,
 } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, ReactNode, useMemo, useState } from "react";
@@ -125,8 +125,7 @@ function filterTree(nodes: FileNode[], pattern: string): FileNode[] {
  * @slot {"label"} data-slot="label" - Label text
  */
 export interface FileExplorerProps
-  extends
-    Omit<HTMLAttributes<HTMLDivElement>, "onClick">,
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onClick">,
     VariantProps<typeof styleVariants> {
   data: FileNode[];
   onNodeClick?: (node: FileNode) => void;
@@ -170,7 +169,11 @@ const FileTreeItem = observer(function FileTreeItem({
 
   const icon =
     node.icon ||
-    (isFolder ? <Folder className="size-4" /> : <File className="size-4" />);
+    (isFolder ? (
+      <FolderIcon className="size-4" />
+    ) : (
+      <FileIcon className="size-4" />
+    ));
 
   return (
     <>
@@ -183,9 +186,9 @@ const FileTreeItem = observer(function FileTreeItem({
           {isFolder && hasChildren && (
             <span data-slot="chevron" className="shrink-0">
               {expanded ? (
-                <ChevronDown className="size-4" />
+                <ChevronDownIcon className="size-4" />
               ) : (
-                <ChevronRight className="size-4" />
+                <ChevronRightIcon className="size-4" />
               )}
             </span>
           )}
@@ -270,7 +273,7 @@ export const FileExplorer = observer(function FileExplorer(
       {showSearch && (
         <div data-slot="header" className="mb-2 px-2">
           <div className="relative">
-            <Search className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               data-slot="search-input"
               type="text"
@@ -286,7 +289,7 @@ export const FileExplorer = observer(function FileExplorer(
                 onClick={handleClearSearch}
                 className="absolute right-0 top-1/2 size-8 -translate-y-1/2 p-0"
               >
-                <X className="size-4" />
+                <XIcon className="size-4" />
               </Button>
             )}
           </div>

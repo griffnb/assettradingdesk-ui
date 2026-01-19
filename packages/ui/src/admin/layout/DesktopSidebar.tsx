@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 
 import { useAdmin } from "@/common_lib/authentication/useAdmin";
 import { cn } from "@/utils/cn";
@@ -68,7 +68,7 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                     </Badge>
                   )}
                   {item.items && (
-                    <ChevronDown
+                    <ChevronDownIcon
                       className={cn(
                         "ml-2 size-4 transition-transform",
                         expandedItems[item.title] ? "rotate-180" : "",

@@ -47,7 +47,7 @@ export const TableColumn = observer(function TableColumn<T extends object>(
 
   if ("displayField" in column && column.displayField) {
     displayField = getFormattedField(
-      record[column.displayField] as string,
+      getColumnValue(record, column.displayField) as string,
       column.format,
     );
   } else if ("field" in column) {

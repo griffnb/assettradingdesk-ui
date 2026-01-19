@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter } from "@/ui/shadcn/ui/card";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
-import { Image } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
@@ -94,7 +94,7 @@ export const AssetCard = observer(function AssetCard(
           {(asset.picture_count || 0) > 0 && (
             <div className="absolute bottom-1 right-1">
               <Badge className="bg-primary">
-                <Image /> {asset.picture_count}
+                <ImageIcon /> {asset.picture_count}
               </Badge>
             </div>
           )}

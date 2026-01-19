@@ -3,7 +3,7 @@ import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { cn } from "@/utils/cn";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { OpportunityThreadItem } from "./OpportunityThreadItem";
@@ -105,9 +105,9 @@ export const AssetThreadItem = observer(function AssetThreadItem({
             </Badge>
           )}
           {isExpanded ? (
-            <ChevronDown className="size-4 text-text-neutral-quaternary" />
+            <ChevronDownIcon className="size-4 text-text-neutral-quaternary" />
           ) : (
-            <ChevronRight className="size-4 text-text-neutral-quaternary" />
+            <ChevronRightIcon className="size-4 text-text-neutral-quaternary" />
           )}
         </div>
       </button>

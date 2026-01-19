@@ -9,7 +9,7 @@ import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Input } from "@/ui/shadcn/ui/input";
 import { debounce } from "@/utils/debounce";
-import { Search } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
@@ -93,7 +93,7 @@ export const SearchFlyout = observer(function SearchFlyout() {
   return (
     <div className="relative flex w-full flex-row items-center overflow-visible md:mx-6 md:max-w-sm">
       <div className="flex w-full items-center rounded-lg border bg-white md:max-w-sm">
-        <Search className="ml-3 size-5 text-gray-400" />
+        <SearchIcon className="ml-3 size-5 text-gray-400" />
         <Input
           type="text"
           value={searchQuery}

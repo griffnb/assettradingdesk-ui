@@ -1,6 +1,8 @@
+import { LayerService } from "@/common_lib/services/LayerService";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { Store } from "@/models/store/Store";
+import { Button } from "@/ui/shadcn/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -8,12 +10,22 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/ui/shadcn/ui/carousel";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/ui/shadcn/ui/empty";
 import { Spinner } from "@/ui/shadcn/ui/spinner";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
+import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { AssetCard } from "../assets/AssetCard";
+import { RequestFormModal, RequestFormModalId } from "./RequestFormModal";
 
 const styleVariants = cva("flex flex-col gap-4 self-stretch", {
   variants: {
@@ -59,6 +71,16 @@ export const SuggestedAssetsCarousel = observer(
       loadSuggested();
     }, [request.id]);
 
+    const modifyRequest = () => {
+      LayerService.add({
+        id: RequestFormModalId,
+        component: RequestFormModal,
+        props: {
+          record: request,
+        },
+      });
+    };
+
     if (isLoading) {
       return (
         <div
@@ -99,15 +121,24 @@ export const SuggestedAssetsCarousel = observer(
         </div>
         <div className={cn(styleVariants({ variant, className }))} {...props}>
           {assets.length === 0 ? (
-            <div
-              className={cn(
-                "flex h-48 flex-col items-center justify-center rounded-lg border border-muted/40 bg-muted/10 text-sm text-muted-foreground",
-                className,
-              )}
-              {...props}
-            >
-              No matching assets yet. Check back soon.
-            </div>
+            <Empty>
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <SearchIcon />
+                </EmptyMedia>
+                <EmptyTitle>No Assets Available Yet</EmptyTitle>
+                <EmptyDescription>
+                  There are currently no assets that meet your criteria.
+                </EmptyDescription>
+              </EmptyHeader>
+              <EmptyContent>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={modifyRequest}>
+                    Modify Request
+                  </Button>
+                </div>
+              </EmptyContent>
+            </Empty>
           ) : (
             <Carousel className="w-full">
               <CarouselContent>

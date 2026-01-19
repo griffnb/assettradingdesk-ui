@@ -5,6 +5,7 @@ import { SelectInput } from "@/ui/common/components/fields/SelectInput";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -50,7 +51,7 @@ export const DetailFieldSelect = observer(function DetailFieldSelect<
   };
 
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : getDisplayValue();
 
   return (

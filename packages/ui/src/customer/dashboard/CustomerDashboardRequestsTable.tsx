@@ -23,7 +23,7 @@ import {
   TableRow,
 } from "@/ui/shadcn/ui/table";
 import { cn } from "@/utils/cn";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRightIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -89,7 +89,7 @@ export const CustomerDashboardRequestsTable = observer(
           <Button asChild variant="outline" size="sm" className="gap-2">
             <Link to="/manage/requests">
               <span>View All</span>
-              <ArrowUpRight className="size-4" />
+              <ArrowUpRightIcon className="size-4" />
             </Link>
           </Button>
         </div>

@@ -1,5 +1,7 @@
 import { BaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
 import { attr } from "@/models/decorators/attr";
+import { WithEnumGetters } from "@/models/types/enum_attrs";
 import { ValidationClass } from "@/utils/validations";
 import dayjs from "dayjs";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
@@ -27,9 +29,11 @@ export class AssetBaseModel extends BaseModel {
   @attr("string") description: string = "";
   @attr("string") location: string = "";
   @attr("string") configuration_notes: string = "";
-  @attr("number") install_status: number = 0;
+  @attr("number", { enum: constants.asset.install_status })
+  install_status: number = 0;
   @attr("number") visibility: number = 0;
-  @attr("number") operational_status: number = 0;
+  @attr("number", { enum: constants.asset.operational_status })
+  operational_status: number = 0;
   @attr("number") year: number = 0;
   @attr("number") quantity: number = 0;
   @attr("decimal") price: number = 0;
@@ -68,3 +72,10 @@ export class AssetBaseModel extends BaseModel {
   @attr("number", { readOnly: true }) picture_count: number | null = null;
   @attr("number", { readOnly: true }) match_count: number | null = null;
 }
+
+/**
+ * Declare which fields have enum decorators for type safety.
+ * This tells TypeScript that these enum getter properties exist at runtime.
+ */
+export interface AssetBaseModel
+  extends WithEnumGetters<"install_status" | "operational_status"> {}

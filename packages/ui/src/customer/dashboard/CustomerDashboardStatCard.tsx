@@ -1,7 +1,7 @@
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent } from "@/ui/shadcn/ui/card";
 import { cn } from "@/utils/cn";
-import { TrendingUp } from "lucide-react";
+import { TrendingUpIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 
@@ -38,7 +38,7 @@ export const CustomerDashboardStatCard = observer(
                 variant="outline"
                 className="gap-1 border-green-200 bg-green-50"
               >
-                <TrendingUp className="size-3 text-green-700" />
+                <TrendingUpIcon className="size-3 text-green-700" />
                 <span className="text-xs font-semibold text-green-700">
                   {trend}
                 </span>
