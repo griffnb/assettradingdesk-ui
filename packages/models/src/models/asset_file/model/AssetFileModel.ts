@@ -33,8 +33,8 @@ export class AssetFileModel extends AssetFileBaseModel {
     return "fa fa-file";
   }
 
-  get link(): string {
-    return `/asset_files/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/asset_files/${target}/${this.id}`;
   }
 
   get largeImage(): string {

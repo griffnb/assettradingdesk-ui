@@ -23,8 +23,8 @@ export class BillingPlanModel extends BillingPlanBaseModel {
     return "fa fa-credit-card";
   }
 
-  get link(): string {
-    return `/billing_plans/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/billing_plans/${target}/${this.id}`;
   }
 
   get stripePriceId(): string {

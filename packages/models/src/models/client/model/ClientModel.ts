@@ -20,8 +20,8 @@ export class ClientModel extends ClientBaseModel {
     return "fa fa-user";
   }
 
-  get link(): string {
-    return `/clients/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/clients/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

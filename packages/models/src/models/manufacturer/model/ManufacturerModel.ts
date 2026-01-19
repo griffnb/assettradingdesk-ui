@@ -20,8 +20,8 @@ export class ManufacturerModel extends ManufacturerBaseModel {
     return "fa fa-industry";
   }
 
-  get link(): string {
-    return `/manufacturers/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/manufacturers/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

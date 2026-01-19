@@ -20,8 +20,8 @@ export class IndustryModel extends IndustryBaseModel {
     return "fa fa-industry";
   }
 
-  get link(): string {
-    return `/industries/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/industries/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

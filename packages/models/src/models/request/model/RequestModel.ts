@@ -19,8 +19,8 @@ export class RequestModel extends RequestBaseModel {
     return "fa fa-clipboard-list";
   }
 
-  get link(): string {
-    return `/requests/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/requests/${target}/${this.id}`;
   }
 
   /*

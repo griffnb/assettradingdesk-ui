@@ -23,8 +23,8 @@ export class SubscriptionModel extends SubscriptionBaseModel {
     return "fa fa-credit-card";
   }
 
-  get link(): string {
-    return `/subscriptions/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/subscriptions/${target}/${this.id}`;
   }
 
   // Helper to get billing provider label

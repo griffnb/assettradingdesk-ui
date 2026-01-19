@@ -20,8 +20,8 @@ export class FacilityModel extends FacilityBaseModel {
     return "fa fa-warehouse";
   }
 
-  get link(): string {
-    return `/facilities/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/facilities/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

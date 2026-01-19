@@ -23,8 +23,8 @@ export class MessageModel extends MessageBaseModel {
     return "fa fa-envelope";
   }
 
-  get link(): string {
-    return `/messages/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/messages/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

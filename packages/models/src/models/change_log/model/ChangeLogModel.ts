@@ -19,8 +19,8 @@ export class ChangeLogModel extends ChangeLogBaseModel {
     return "fa fa-user";
   }
 
-  get link(): string {
-    return `/change_logs/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/change_logs/${target}/${this.id}`;
   }
 
   get timestampFmt(): string {

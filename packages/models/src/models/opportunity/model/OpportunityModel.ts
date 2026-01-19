@@ -20,8 +20,8 @@ export class OpportunityModel extends OpportunityBaseModel {
     return "fa fa-handshake";
   }
 
-  get link(): string {
-    return `/opportunities/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/opportunities/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

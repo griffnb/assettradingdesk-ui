@@ -20,8 +20,8 @@ export class CompanyModel extends CompanyBaseModel {
     return "fa fa-building";
   }
 
-  get link(): string {
-    return `/companies/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/companies/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

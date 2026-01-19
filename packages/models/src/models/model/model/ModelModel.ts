@@ -22,8 +22,8 @@ export class ModelModel extends ModelBaseModel {
     return "fa fa-cube";
   }
 
-  get link(): string {
-    return `/models/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/models/${target}/${this.id}`;
   }
 
   // Computed property for status label using constants

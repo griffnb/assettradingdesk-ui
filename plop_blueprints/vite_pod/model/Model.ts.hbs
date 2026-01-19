@@ -24,8 +24,8 @@ export class {{pascalCase name}}Model extends {{pascalCase name}}BaseModel {
     return "fa fa-user";
   }
 
-  get link(): string {
-    return `/{{lowerCase pluralName}}/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/{{lowerCase pluralName}}/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo|null {

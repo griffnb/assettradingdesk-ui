@@ -21,8 +21,8 @@ export class AccountModel extends AccountBaseModel {
     return "fa fa-user";
   }
 
-  get link(): string {
-    return `/accounts/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/accounts/${target}/${this.id}`;
   }
 
   get isSuperUsed(): boolean {

@@ -24,8 +24,8 @@ export class PipelineModel extends PipelineBaseModel {
     return "fa fa-stream";
   }
 
-  get link(): string {
-    return `/pipelines/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/pipelines/${target}/${this.id}`;
   }
 
   get stageFmt(): string {

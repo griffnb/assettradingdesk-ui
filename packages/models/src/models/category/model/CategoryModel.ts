@@ -20,8 +20,8 @@ export class CategoryModel extends CategoryBaseModel {
     return "fa fa-tag";
   }
 
-  get link(): string {
-    return `/categories/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/categories/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

@@ -25,8 +25,8 @@ export class AssetModel extends AssetBaseModel {
     return "fa fa-cog";
   }
 
-  get link(): string {
-    return `/assets/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/assets/${target}/${this.id}`;
   }
 
   get publicLink(): string {

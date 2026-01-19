@@ -23,8 +23,8 @@ export class OrganizationModel extends OrganizationBaseModel {
     return "fa fa-sitemap";
   }
 
-  get link(): string {
-    return `/organizations/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/organizations/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {
