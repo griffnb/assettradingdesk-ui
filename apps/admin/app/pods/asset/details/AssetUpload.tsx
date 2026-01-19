@@ -34,7 +34,7 @@ export const AssetUpload = observer(function AssetUpload(
   };
 
   return (
-    <div className="p-10">
+    <div className="rounded-xl border bg-white p-4 shadow">
       <SectionHead label="Upload Assets" />
 
       <S3BulkFileUpload

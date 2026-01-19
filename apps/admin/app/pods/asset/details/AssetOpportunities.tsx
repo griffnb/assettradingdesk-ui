@@ -24,7 +24,7 @@ export const AssetOpportunities = observer(function AssetOpportunities(
 
   return (
     <StandardTableWrap<OpportunityModel>
-      className="[&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
+      className="rounded-xl border bg-white shadow [&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
       title="Opportunities"
       modelType="opportunity"
       columns={columns}

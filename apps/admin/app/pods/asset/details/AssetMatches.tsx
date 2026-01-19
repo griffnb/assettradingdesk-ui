@@ -23,7 +23,7 @@ export const AssetMatches = observer(function AssetMatches(
 
   return (
     <StandardTableWrap<RequestModel>
-      className="[&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
+      className="rounded-xl border bg-white shadow [&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
       title="Matching Requests"
       modelType="request"
       columns={columns}

@@ -16,7 +16,7 @@ interface AssetInfoProps {
 }
 export const AssetInfo = observer((props: AssetInfoProps) => {
   return (
-    <div className="p-10">
+    <div className="rounded-xl border bg-white p-4 shadow">
       <div className="flex flex-row text-lg font-semibold">
         Asset Info
         <Button

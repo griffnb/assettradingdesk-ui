@@ -24,6 +24,33 @@ export class OpportunityModel extends OpportunityBaseModel {
     return `/opportunities/${target}/${this.id}`;
   }
 
+  get assetLabel(): string {
+    return `${this.asset_manufacturer_name} ${this.asset_model_name}`;
+  }
+
+  get requestLabel(): string {
+    if (this.request_model_name && this.request_model_name.length > 0) {
+      return `${this.request_manufacturer_name} ${this.request_model_name}`;
+    }
+
+    const nameParts = [];
+
+    if (this.request_category_name && this.request_category_name.length > 0) {
+      nameParts.push(this.request_category_name);
+    }
+    if (
+      this.request_manufacturer_name &&
+      this.request_manufacturer_name.length > 0
+    ) {
+      nameParts.push(this.request_manufacturer_name);
+    }
+    if (nameParts.length > 0) {
+      return nameParts.join(" ");
+    }
+
+    return "";
+  }
+
   getParent(): ParentInfo | null {
     /*
     return {

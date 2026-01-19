@@ -33,21 +33,9 @@ export const columns: IColumn<OpportunityModel>[] = [
   } as RowActionColumn<OpportunityModel>,
 
   {
-    title: "Asset Model",
-    field: "asset_model_name",
-    queryField: "asset_model_name",
-  },
-
-  {
-    title: "Asset Manufacturer",
-    field: "asset_manufacturer_name",
-    queryField: "asset_manufacturer_name",
-  },
-
-  {
     title: "Asset",
     field: "asset_model_name",
-    displayField: "asset_model_name",
+    displayField: "assetLabel",
     queryField: "asset_id",
     linkTo: "/assets/details/[asset_id]",
     paramMapping: { asset_id: "asset_id" },
@@ -65,6 +53,7 @@ export const columns: IColumn<OpportunityModel>[] = [
     title: "Request",
     field: "request_id",
     queryField: "request_id",
+    displayField: "requestLabel",
     linkTo: "/requests/details/[request_id]",
     paramMapping: { request_id: "request_id" },
     render: (options: ColumnComponentOptions<OpportunityModel>) => {

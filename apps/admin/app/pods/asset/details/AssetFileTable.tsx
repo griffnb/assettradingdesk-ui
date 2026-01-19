@@ -31,7 +31,7 @@ export const AssetFileTable = observer(function AssetFileTable(
 
   return (
     <StandardTableWrap<AssetFileModel>
-      className="[&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
+      className="rounded-xl border bg-white shadow [&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
       title="Files"
       modelType="asset_file"
       columns={columns}

@@ -1,5 +1,6 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
+import { StandardContentWrap } from "@/ui/admin/layout/StandardContentWrap";
 import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
@@ -33,14 +34,14 @@ export const AssetDetails = observer(function AssetDetails() {
   return (
     <>
       <AdminTitleBar objectURN={record.urn} title="Asset" />
-      <div className="flex flex-col gap-4">
+      <StandardContentWrap>
         <AssetInfo asset={record} />
         <AssetOpportunities asset={record} />
         <AssetMatches asset={record} />
         <AssetGallery asset={record} />
         <AssetFileTable asset={record} />
         <AssetUpload asset={record} />
-      </div>
+      </StandardContentWrap>
     </>
   );
 });
