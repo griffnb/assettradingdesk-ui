@@ -49,7 +49,7 @@ export const OrganizationSettings = observer(function OrganizationSettings({
           placeholder="Enter organization name"
         />
         <FormFieldText
-          record={record}
+          record={record.properties}
           field="billing_email"
           type="email"
           label="Billing Email"

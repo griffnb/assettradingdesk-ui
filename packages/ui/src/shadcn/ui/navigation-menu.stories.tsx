@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { UserIcon, SettingsIcon, HomeIcon, DollarSignIcon } from "lucide-react";
+import { DollarSignIcon, HomeIcon, SettingsIcon, UserIcon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,

@@ -1,46 +1,29 @@
+import useMediaQuery, { BREAKPOINTS } from "@/common_lib/hooks/useMediaQuery";
 import { LayerService } from "@/common_lib/services/LayerService";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { Transition } from "@headlessui/react";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 
-const styleVariants = cva(`fixed right-0 isolate flex flex-col bg-white`, {
-  variants: {
-    variant: {
-      default: "z-takeover",
+const styleVariants = cva(
+  `fixed right-0 top-0 isolate z-takeover flex h-full w-full flex-col bg-white`,
+  {
+    variants: {
+      variant: {
+        default: "",
+      },
+      size: {
+        auto: "w-[calc(100vw-312px)]",
+        full: "w-full",
+      },
     },
-    size: {
-      auto: [
-        "h-[calc(100svh-var(--top-nav-height)-var(--bottom-nav-height))] top-[var(--top-nav-height)]",
-        "lg:w-[calc(100vw-312px)] lg:h-[calc(100svh-var(--titlebar-height))] lg:top-[var(--titlebar-height)]",
-        "data-[inapp=true]:w-full data-[inapp=true]:h-full data-[inapp=true]:top-0",
-      ],
-      full: "w-full h-full top-0",
+    defaultVariants: {
+      variant: "default",
+      size: "auto",
     },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "auto",
-  },
-});
-/*
- style={
-            isSmallDesktop && !isInApp
-              ? {
-                  height:
-                    "calc(100svh - var(--top-nav-height) - var(--bottom-nav-height))",
-                  top: "var(--top-nav-height)",
-                  width: "100%",
-                }
-              : size !== "full"
-                ? {
-                    top: "var(--titlebar-height)",
-                    height: "calc(100svh - var(--titlebar-height))",
-                  }
-                : {}
-          }
-                */
+  }
+);
 interface TakeoverPanelWrapProps extends VariantProps<typeof styleVariants> {
   title?: string | ReactNode;
   children: ReactNode;
@@ -52,6 +35,8 @@ interface TakeoverPanelWrapProps extends VariantProps<typeof styleVariants> {
 }
 export const TakeoverPanelWrap = observer(
   (rawProps: TakeoverPanelWrapProps) => {
+    const { isMediaQuery: isSmallDesktop } = useMediaQuery(BREAKPOINTS.LG);
+
     const { variant, size, className, ...props } = rawProps;
 
     const close = () => {
@@ -76,7 +61,24 @@ export const TakeoverPanelWrap = observer(
         show={true}
         appear={true}
       >
-        <div className={cn(styleVariants({ variant, size, className }))}>
+        <div
+          className={cn(styleVariants({ variant, size, className }))}
+          style={
+            isSmallDesktop
+              ? {
+                  height:
+                    "calc(100svh - var(--top-nav-height) - var(--bottom-nav-height))",
+                  top: "var(--top-nav-height)",
+                  width: "100%",
+                }
+              : size !== "full"
+                ? {
+                    top: "var(--titlebar-height)",
+                    height: "calc(100svh - var(--titlebar-height))",
+                  }
+                : {}
+          }
+        >
           {!props.hideBack && (
             <div className="flex flex-row items-center border-b border-border-neutral-primary bg-white p-6 py-3">
               <div
@@ -99,5 +101,5 @@ export const TakeoverPanelWrap = observer(
         </div>
       </Transition>
     );
-  },
+  }
 );

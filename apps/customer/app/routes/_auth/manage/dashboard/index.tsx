@@ -1,8 +1,14 @@
+import { useAccount } from "@/common_lib/authentication/useAccount";
 import { CustomerDashboardView } from "@/ui/customer/dashboard/CustomerDashboardView";
 
 export default function RootIndex() {
+  const { account } = useAccount();
+  if (!account) {
+    return null;
+  }
   return (
     <CustomerDashboardView
+      account={account}
       stats={[
         {
           title: "Total Assets",

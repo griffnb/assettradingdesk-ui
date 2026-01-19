@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 
 import { IConstant } from "@/models/types/constants";
-import { debounce } from "@/utils/debounce";
+import { debounce } from "@/common_lib/utils/debounce";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ComboBoxBase } from "./base/select/ComboBoxBase";

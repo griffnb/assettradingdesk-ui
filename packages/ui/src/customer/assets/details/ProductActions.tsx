@@ -1,59 +1,68 @@
+import { LayerService } from "@/common_lib/services/LayerService";
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Button } from "@/ui/shadcn/ui/button";
 import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { MessageInquiryDialog } from "./MessageInquiryDialog";
+import {
+  MessageSidePanel,
+  MessageSidePanelID,
+} from "../../messages/v2/MessageSidePanel";
+import { NotInterestedDialog } from "./NotInterestedDialog";
 
 export interface ProductActionsProps {
   asset: AssetModel;
-  isAuthenticated: boolean;
-  onPrimaryAction?: () => void;
-  onSecondaryAction?: () => void;
-  primaryLabel?: string;
-  secondaryLabel?: string;
+  account: AccountModel | null;
+
   className?: string;
 }
 
 export const ProductActions = observer(function ProductActions({
   asset,
-  isAuthenticated,
-  onPrimaryAction,
-  onSecondaryAction,
-  primaryLabel = "Contact Seller",
-  secondaryLabel = "Request Quote",
+  account,
   className,
 }: ProductActionsProps) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handlePrimaryClick = () => {
-    if (isAuthenticated) {
-      setDialogOpen(true);
-    } else if (onPrimaryAction) {
-      onPrimaryAction();
+  const handleContactClick = () => {
+    if (account) {
+      LayerService.addOnly({
+        id: MessageSidePanelID,
+        component: MessageSidePanel,
+        props: {
+          account: account,
+          assetId: asset.id as string,
+          closeAction: () => {},
+          title: asset.label,
+        },
+      });
     }
+  };
+  const handleNotInterestedClick = () => {
+    setDialogOpen(true);
   };
 
   return (
     <>
       <div className={cn("flex w-full items-end gap-5", className)}>
         <Button
-          onClick={handlePrimaryClick}
+          onClick={handleContactClick}
           className="h-10 flex-1 bg-primary text-white hover:bg-primary/90"
         >
-          {primaryLabel}
+          Contact Seller
         </Button>
         <Button
-          onClick={onSecondaryAction}
+          onClick={handleNotInterestedClick}
           variant="outline"
           className="h-10 flex-1 border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
         >
-          {secondaryLabel}
+          Not Interested
         </Button>
       </div>
 
-      {isAuthenticated && (
-        <MessageInquiryDialog
+      {account && (
+        <NotInterestedDialog
           open={dialogOpen}
           onOpenChange={setDialogOpen}
           asset={asset}

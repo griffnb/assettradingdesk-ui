@@ -1,5 +1,5 @@
 import { IConstant } from "@/models/types/constants";
-import { equals, inArray } from "@/utils/numbers";
+import { equals, inArray } from "@/common_lib/utils/numbers";
 import { observer } from "mobx-react-lite";
 import { MultiComboBoxBase } from "./base/select/MultiComboBoxBase";
 import {

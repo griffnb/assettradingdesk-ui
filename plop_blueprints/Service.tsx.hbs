@@ -1,0 +1,25 @@
+import { action, makeAutoObservable } from "mobx";
+
+class {{pascalCase name}}ServiceClass {
+  private static instance: {{pascalCase name}}ServiceClass;
+
+
+  private constructor() {
+    // Initialize your properties here
+    makeAutoObservable(this, {
+      //sample_method: action,
+    });
+
+  }
+
+  public static getInstance(): {{pascalCase name}}ServiceClass {
+    if (!{{pascalCase name}}ServiceClass.instance) {
+      {{pascalCase name}}ServiceClass.instance = new {{pascalCase name}}ServiceClass();
+    }
+
+    return {{pascalCase name}}ServiceClass.instance;
+  }
+}
+
+// Export the single instance
+export const {{pascalCase name}}Service = {{pascalCase name}}ServiceClass.getInstance();

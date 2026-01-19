@@ -53,7 +53,7 @@ function InputOTPSlot({
       data-active={isActive}
       className={cn([
         /* Layout & Sizing */
-        "relative flex h-9 w-9 items-center justify-center",
+        "relative flex size-9 items-center justify-center",
         /* Typography */
         "text-sm",
         /* Borders & Shadows */
@@ -63,7 +63,7 @@ function InputOTPSlot({
         /* Transitions */
         "outline-none transition-all",
         /* Active State */
-        "data-[active=true]:z-10 data-[active=true]:border-neutral-950 data-[active=true]:ring-[3px] data-[active=true]:ring-neutral-950/50",
+        "data-[active=true]:z-10 data-[active=true]:border-neutral-950 data-[active=true]:ring data-[active=true]:ring-neutral-950/50",
         /* Active Invalid State */
         "data-[active=true]:aria-invalid:ring-red-500/20 data-[active=true]:aria-invalid:border-red-500",
         /* Invalid State */

@@ -3,12 +3,13 @@ import { deserializeObject, serializeObject } from "../serializers/serializer";
 
 import { action, makeObservable, observe } from "mobx";
 import { IStore, StoreResponse } from "../types/store";
+import { StoreKeys } from "../types/store_keys";
 
 export class StoreModel {
   // store to save through
 
   @attr("uuid") id: string | null = null;
-  _model_name: string = "";
+  _model_name: StoreKeys | "" = "";
   _store: IStore<any>;
   _dirtyAttributes: { [key: string]: any } = {};
   _newModel: boolean = true;
@@ -109,14 +110,14 @@ export class StoreModel {
     extraParams?: {
       [key: string]: string | string[];
     },
-    allData?: boolean
+    allData?: boolean,
   ): Promise<StoreResponse<undefined>> {
     const serializedData = serializeObject(this, allData);
     if (this.id && this.id != "" && !this._newModel) {
       const data = await this._store.saveUpdate(
         this.id,
         serializedData,
-        extraParams
+        extraParams,
       );
 
       if (data.success && data.data) {

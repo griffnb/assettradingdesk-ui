@@ -1,11 +1,13 @@
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ValidationRules } from "@/utils/validations";
 import { AdminBaseModel } from "./AdminBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class AdminModel extends AdminBaseModel {
-  _model_name = "admin";
+  _model_name: StoreKeys = "admin";
   get validationRules(): ValidationRules {
     return validationRules;
   }

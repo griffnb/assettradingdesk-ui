@@ -11,6 +11,7 @@ export class ModelBaseModel extends BaseModel {
   @attr("string") name: string = "";
   @attr("string") description: string = "";
   @attr("string") slug: string = "";
+  @attr("number") hot: number = 0;
 
   // JSON metadata field
   @attr("json") meta_data: ModelMetaData = new ModelMetaData();

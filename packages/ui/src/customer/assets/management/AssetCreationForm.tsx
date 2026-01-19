@@ -4,10 +4,12 @@ import { ServerService } from "@/common_lib/services/ServerService";
 import { constants } from "@/models/constants";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { AssetFileTypes } from "@/models/models/asset_file/_constants/file_type";
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
 import { ImageHolder } from "@/ui/common/components/fields/files/types";
 import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
+import FormFieldModelSelect from "@/ui/common/components/form/fields/FormFieldModelSelect";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
@@ -182,6 +184,17 @@ export const AssetCreationForm = observer(function AssetCreationForm(
                 placeholder="Serial Number"
               />
             </div>
+            <FormFieldModelSelect<AssetModel, FacilityModel>
+              record={props.record}
+              field="facility_id"
+              modelName="facility"
+              modelDisplayField="name"
+              modelSearchField="name"
+              modelSearchFilters={{ disabled: "0" }}
+              label="Facility"
+              placeholder="Select Facility"
+              defaultIfSingleOption={true}
+            />
 
             <FormFieldTextArea
               record={props.record}

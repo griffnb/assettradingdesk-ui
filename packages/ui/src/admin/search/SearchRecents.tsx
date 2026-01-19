@@ -1,7 +1,7 @@
 import { CacheService } from "@/common_lib/services/CacheService";
 import { SessionService } from "@/common_lib/services/SessionService";
 import { Bookmark } from "@/models/models/admin/model/AdminBaseModel";
-import { titleCase } from "@/utils/strings";
+import { titleCase } from "@/common_lib/utils/strings";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";

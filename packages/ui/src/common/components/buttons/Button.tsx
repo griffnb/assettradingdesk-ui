@@ -1,20 +1,28 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
+import { observer } from "mobx-react-lite";
 import {
   ButtonHTMLAttributes,
   forwardRef,
   HTMLAttributeAnchorTarget,
   ReactNode,
 } from "react";
+import { Link } from "react-router";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
+  /** Icon to show before the button text */
   prependIcon?: ReactNode;
+  /** Render as button or anchor tag */
   as?: "button" | "a";
+  /** URL to navigate to when as="a" */
   href?: string;
+  /** Target attribute for anchor tag */
   target?: HTMLAttributeAnchorTarget;
+  /** Icon to show after the button text */
   appendIcon?: ReactNode;
+  /** Button content */
   children?: ReactNode;
 }
 
@@ -79,52 +87,54 @@ const buttonStyles = cva(
       variant: "primary",
       size: "md",
     },
-  }
+  },
 );
 
 export type ButtonVariants = VariantProps<typeof buttonStyles>["variant"];
 
-export const Button = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps
->((rawProps: ButtonProps, ref) => {
-  const {
-    as = "button",
-    href,
-    target,
-    variant,
-    size,
-    className,
-    appendIcon,
-    prependIcon,
-    type,
-    ...props
-  } = rawProps; // Spread the remaining props
+export const Button = observer(
+  forwardRef(function Button(
+    rawProps: ButtonProps,
+    ref: React.Ref<HTMLButtonElement | HTMLAnchorElement>,
+  ) {
+    const {
+      as = "button",
+      href,
+      target,
+      variant,
+      size,
+      className,
+      appendIcon,
+      prependIcon,
+      type,
+      ...props
+    } = rawProps; // Spread the remaining props
 
-  const classes = cn(buttonStyles({ variant, size }), className || "");
+    const classes = cn(buttonStyles({ variant, size }), className || "");
 
-  if (as === "a" && href) {
+    if (as === "a" && href) {
+      return (
+        <Link to={href} className={classes} target={target} ref={ref as any}>
+          {prependIcon}
+          {props.children}
+          {appendIcon}
+        </Link>
+      );
+    }
+
     return (
-      <a href={href} className={classes} target={target} ref={ref as any}>
+      <button
+        className={classes}
+        ref={ref as any}
+        {...props}
+        type={type || "button"}
+      >
         {prependIcon}
         {props.children}
         {appendIcon}
-      </a>
+      </button>
     );
-  }
-
-  return (
-    <button
-      className={classes}
-      ref={ref as any}
-      {...props}
-      type={type || "button"}
-    >
-      {prependIcon}
-      {props.children}
-      {appendIcon}
-    </button>
-  );
-});
+  }),
+);
 
 Button.displayName = "Button";

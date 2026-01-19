@@ -1,5 +1,5 @@
 import { BaseModel } from "@/models/BaseModel";
-import { ValidationRule } from "@/utils/validations";
+import { ValidationRule } from "@/common_lib/utils/validations";
 import { ReactNode } from "react";
 
 export interface DetailFieldProps<T> {

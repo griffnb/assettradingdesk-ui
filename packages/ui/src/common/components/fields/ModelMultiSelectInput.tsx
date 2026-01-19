@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import { equals, inArray } from "@/utils/numbers";
+import { equals, inArray } from "@/common_lib/utils/numbers";
 import { observer } from "mobx-react-lite";
 import { useEffect, useMemo, useState } from "react";
 import { MultiComboBoxBase } from "./base/select/MultiComboBoxBase";

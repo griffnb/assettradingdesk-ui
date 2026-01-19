@@ -1,4 +1,4 @@
-import isEmpty from "@/utils/empty";
+import isEmpty from "@/common_lib/utils/empty";
 import { AttrOptions, getAttrMap } from "../decorators/attr";
 
 import Bool from "./bool";
@@ -92,8 +92,12 @@ export const serializeObject = (obj: any, allData?: boolean) => {
     serialized[key] = serializedValue;
   }
 
-  serialized.id = obj.id;
-  serialized.urn = obj.urn;
+  if (obj.id !== null && obj.id !== undefined) {
+    serialized.id = obj.id;
+  }
+  if (obj.urn !== null && obj.urn !== undefined) {
+    serialized.urn = obj.urn;
+  }
 
   return serialized;
 };

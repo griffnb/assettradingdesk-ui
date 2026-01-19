@@ -1,6 +1,8 @@
 "use client";
 
+import { constants } from "@/models/constants";
 import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
+import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
@@ -18,7 +20,6 @@ import { observer } from "mobx-react-lite";
 interface SetupOrganizationProps {
   record: OrganizationModel;
   onSuccess?: (record: OrganizationModel) => void;
-  onCancel?: () => void;
 }
 
 export const SetupOrganization = observer(function SetupOrganization(
@@ -28,10 +29,9 @@ export const SetupOrganization = observer(function SetupOrganization(
     runInAction(async () => {
       const messages = isObjectValid<OrganizationModel>(props.record);
       if (messages.length > 0) {
-        console.log(messages);
         return false;
       }
-      const resp = await props.record.save();
+      const resp = await props.record.save({ setup: "true" });
 
       if (resp.success && props.onSuccess) {
         props.onSuccess(props.record);
@@ -39,16 +39,9 @@ export const SetupOrganization = observer(function SetupOrganization(
     });
   };
 
-  const handleCancel = () => {
-    props.record.rollback();
-    if (props.onCancel) {
-      props.onCancel();
-    }
-  };
-
   return (
-    <Card className="shadow-lg">
-      <CardHeader>
+    <Card className="w-full max-w-2xl shadow-lg">
+      <CardHeader className="border-b pb-4">
         <CardTitle>Create Your Organization</CardTitle>
         <CardDescription>
           Set up your organization to manage assets and requests.
@@ -63,12 +56,16 @@ export const SetupOrganization = observer(function SetupOrganization(
           placeholder="Enter organization name"
           className="space-y-2"
         />
-       
+        <FormFieldSelect
+          record={props.record}
+          field="organization_type"
+          label="Organization Type"
+          placeholder="Select organization type"
+          className="space-y-2"
+          options={constants.organization.organization_type}
+        />
       </CardContent>
       <CardFooter className="flex gap-2">
-        <Button variant="outline" onClick={handleCancel} className="flex-1">
-          Cancel
-        </Button>
         <Button onClick={saveAction} className="flex-1">
           Create Organization
         </Button>

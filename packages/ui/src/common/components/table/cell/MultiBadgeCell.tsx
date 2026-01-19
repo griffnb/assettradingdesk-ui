@@ -1,7 +1,8 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { Badge, BadgeColors } from "../../badge/Badge";
 import { IColumn, TableCellProps } from "../../types/columns";
+import { getColumnValue } from "./helpers";
 
 export interface MultiBadgeCellProps<T extends object>
   extends TableCellProps<T> {
@@ -12,7 +13,8 @@ export interface MultiBadgeCellProps<T extends object>
 export const MultiBadgeCell = observer(
   <T extends object>(props: MultiBadgeCellProps<T>) => {
     const values =
-      props.values || (props.record[props.column.field] as string[]);
+      props.values ||
+      (getColumnValue(props.record, props.column.field) as string[]);
     const colors = BadgeColors;
 
     const stringToNumber = (str: string): number => {

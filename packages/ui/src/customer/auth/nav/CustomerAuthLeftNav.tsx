@@ -16,6 +16,7 @@ import {
   Building2,
   MessageSquare,
   PanelLeft,
+  PcCase,
   Plus,
   Settings,
   SquareTerminal,
@@ -47,18 +48,20 @@ export const platformItems = [
     url: "/manage/requests",
     icon: BookOpen,
   },
+  /*
   {
     title: "Offers",
     url: "/manage/offers",
     icon: BookOpen,
   },
+  */
 ];
 
 export const assetItems = [
   {
     title: "Assets",
     url: "/manage/assets",
-    icon: SquareTerminal,
+    icon: PcCase,
   },
   {
     title: "New Asset",

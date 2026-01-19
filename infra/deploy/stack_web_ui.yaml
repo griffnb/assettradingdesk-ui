@@ -87,6 +87,8 @@ Resources:
           Subnets:
             - !ImportValue PrivateSubnetA
             - !ImportValue PrivateSubnetB
+            - !ImportValue PrivateSubnetC
+            - !ImportValue PrivateSubnetD
       LoadBalancers:
         - ContainerName: nginx
           ContainerPort: 8080

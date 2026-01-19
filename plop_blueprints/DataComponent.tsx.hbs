@@ -1,0 +1,16 @@
+import { cn } from "@/utils/cn";
+import { cva, VariantProps } from "class-variance-authority";
+import { HTMLAttributes } from "react";
+import { observer } from "mobx-react";
+import { {{pascalCase name}}View, {{pascalCase name}}ViewProps } from "./{{pascalCase name}}View";
+
+
+interface {{pascalCase name}}Props  extends {{pascalCase name}}ViewProps {
+         } 
+export const {{pascalCase name}} = observer(function {{pascalCase name}}(fullProps:{{pascalCase name}}Props) { 
+  const { className, variant, ...props } = fullProps;
+    return (
+      <{{pascalCase name}}View {...props} />
+    )
+
+}); 

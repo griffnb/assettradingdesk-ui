@@ -37,8 +37,10 @@ export const useVirtualization = (props: VirtualizationProps) => {
   const enableDynamicHeightRef = useRef(enableDynamicHeight);
   enableDynamicHeightRef.current = enableDynamicHeight;
 
-  const rafRef = useRef<number>(0);
-  const debounceRef = useRef<number>(0);
+  const rafRef = useRef<number | undefined>(undefined);
+  const debounceRef = useRef<number | undefined>(undefined);
+  const resizeDebounceRef = useRef<number | undefined>(undefined);
+  const containerResizeDebounceRef = useRef<number | undefined>(undefined);
   const rowRefs = useRef<Map<number, HTMLElement>>(new Map());
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
@@ -46,8 +48,9 @@ export const useVirtualization = (props: VirtualizationProps) => {
   const [measuredHeights, setMeasuredHeights] = useState<Map<number, number>>(
     new Map(),
   );
+  const measurementStabilityRef = useRef<Map<number, number>>(new Map()); // Track how many times each row has been measured
 
-  // container height (don’t read getBoundingClientRect inside calcs)
+  // container height (don't read getBoundingClientRect inside calcs)
   const [containerHeight, setContainerHeight] = useState<number>(height ?? 0);
   useLayoutEffect(() => {
     if (height != null) {
@@ -58,14 +61,34 @@ export const useVirtualization = (props: VirtualizationProps) => {
     if (!el || typeof ResizeObserver === "undefined") return;
     const ro = new ResizeObserver((entries) => {
       const h = Math.round(entries[0]?.contentRect.height || 0);
-      setContainerHeight(h);
+
+      // Debounce and add threshold to prevent thrashing from continuous resizing
+      if (containerResizeDebounceRef.current) {
+        clearTimeout(containerResizeDebounceRef.current);
+      }
+
+      containerResizeDebounceRef.current = window.setTimeout(() => {
+        setContainerHeight((prev) => {
+          // Only update if change is significant (> 5px)
+          if (Math.abs(prev - h) > 5) {
+            return h;
+          }
+          return prev;
+        });
+      }, 50); // 50ms debounce for container resize
     });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      ro.disconnect();
+      if (containerResizeDebounceRef.current) {
+        clearTimeout(containerResizeDebounceRef.current);
+      }
+    };
   }, [height]);
 
   // debounced scrollTop (integer to avoid boundary thrash)
   const [debouncedScrollTop, setDebouncedScrollTop] = useState(0);
+
   const onScroll = useCallback(
     (e: UIEvent<HTMLDivElement>) => {
       const current = Math.round((e.target as HTMLDivElement).scrollTop);
@@ -163,13 +186,14 @@ export const useVirtualization = (props: VirtualizationProps) => {
     const bottomPad =
       (cumulativeHeights[cumulativeHeights.length - 1] || 0) -
       (cumulativeHeights[end] || 0);
-    return {
+    const result = {
       start,
       end,
       topPad,
       bottomPad,
       totalHeight: cumulativeHeights[cumulativeHeights.length - 1] || 0,
     };
+    return result;
   }, [
     debouncedScrollTop,
     containerHeight,
@@ -190,7 +214,9 @@ export const useVirtualization = (props: VirtualizationProps) => {
     if (prev.length && curr.length) {
       const anchor = findStartIndex(debouncedScrollTop + 0); // same rounding domain
       const delta = (curr[anchor] ?? 0) - (prev[anchor] ?? 0);
-      if (delta !== 0) scrollRef.current.scrollTop += delta;
+      if (delta !== 0) {
+        scrollRef.current.scrollTop += delta;
+      }
     }
     prevCumRef.current = curr;
   }, [cumulativeHeights, debouncedScrollTop, findStartIndex]);
@@ -238,38 +264,84 @@ export const useVirtualization = (props: VirtualizationProps) => {
       return;
 
     const ro = new ResizeObserver((entries) => {
-      const batch = new Map<number, number>();
-      for (const entry of entries) {
-        const el = entry.target as HTMLElement;
-        const idx = Number(el.dataset.virtualIndex ?? -1);
-        if (idx < 0) continue;
-
-        // Prefer border-box size; fallback to contentRect/boundingClient
-        const anyEntry = entry as any;
-        const box =
-          (Array.isArray(anyEntry.borderBoxSize) &&
-            anyEntry.borderBoxSize[0]?.blockSize) ??
-          anyEntry.borderBoxSize?.blockSize ??
-          entry.contentRect.height ??
-          el.getBoundingClientRect().height;
-
-        batch.set(idx, Math.round(box));
+      // Debounce ResizeObserver updates to batch rapid changes
+      if (resizeDebounceRef.current) {
+        clearTimeout(resizeDebounceRef.current);
       }
 
-      if (batch.size) {
-        setMeasuredHeights((prev) => {
-          let changed = false;
-          const next = new Map(prev);
-          batch.forEach((h, i) => {
-            const curr = prev.get(i);
-            if (curr == null || Math.abs(curr - h) > 2) {
-              next.set(i, h);
-              changed = true;
-            }
+      resizeDebounceRef.current = window.setTimeout(() => {
+        const batch = new Map<number, number>();
+        for (const entry of entries) {
+          const el = entry.target as HTMLElement;
+          const idx = Number(el.dataset.virtualIndex ?? -1);
+          if (idx < 0) continue;
+
+          // Prefer border-box size; fallback to contentRect/boundingClient
+          const anyEntry = entry as any;
+          const box =
+            (Array.isArray(anyEntry.borderBoxSize) &&
+              anyEntry.borderBoxSize[0]?.blockSize) ??
+            anyEntry.borderBoxSize?.blockSize ??
+            entry.contentRect.height ??
+            el.getBoundingClientRect().height;
+
+          batch.set(idx, Math.round(box));
+        }
+
+        if (batch.size) {
+          setMeasuredHeights((prev) => {
+            let changed = false;
+            const next = new Map(prev);
+            const updates: Array<{
+              index: number;
+              old: number | undefined;
+              new: number;
+              diff: number;
+            }> = [];
+            const oscillating: Array<{
+              index: number;
+              old: number;
+              new: number;
+              measureCount: number;
+            }> = [];
+
+            batch.forEach((h, i) => {
+              const curr = prev.get(i);
+              const diff = curr != null ? Math.abs(curr - h) : h;
+
+              // Track measurement stability
+              const measureCount =
+                (measurementStabilityRef.current.get(i) || 0) + 1;
+              measurementStabilityRef.current.set(i, measureCount);
+
+              // If a row has been measured many times and keeps changing, something is wrong
+              if (curr != null && diff > 3 && measureCount > 5) {
+                oscillating.push({ index: i, old: curr, new: h, measureCount });
+                // Lock it to prevent infinite loop - use the larger value
+                const locked = Math.max(curr, h);
+                next.set(i, locked);
+                changed = true;
+                updates.push({
+                  index: i,
+                  old: curr,
+                  new: locked,
+                  diff: Math.abs(curr - locked),
+                });
+                return;
+              }
+
+              // Increase threshold to 3px to reduce sensitivity to sub-pixel changes
+              if (curr == null || diff > 3) {
+                next.set(i, h);
+                changed = true;
+                updates.push({ index: i, old: curr, new: h, diff });
+              }
+            });
+
+            return changed ? next : prev;
           });
-          return changed ? next : prev;
-        });
-      }
+        }
+      }, 16); // ~1 frame delay to batch rapid changes
     });
 
     resizeObserverRef.current = ro;
@@ -286,6 +358,9 @@ export const useVirtualization = (props: VirtualizationProps) => {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (resizeDebounceRef.current) clearTimeout(resizeDebounceRef.current);
+      if (containerResizeDebounceRef.current)
+        clearTimeout(containerResizeDebounceRef.current);
     };
   }, []);
 
@@ -297,14 +372,12 @@ export const useVirtualization = (props: VirtualizationProps) => {
     return out;
   }, [start, end]);
 
-  const topSpacerStyle = useMemo<React.CSSProperties>(
-    () => ({ height: topPad, padding: 0, border: 0 }),
-    [topPad],
-  );
-  const bottomSpacerStyle = useMemo<React.CSSProperties>(
-    () => ({ height: bottomPad, padding: 0, border: 0 }),
-    [bottomPad],
-  );
+  const topSpacerStyle = useMemo<React.CSSProperties>(() => {
+    return { height: topPad, padding: 0, border: 0 };
+  }, [topPad]);
+  const bottomSpacerStyle = useMemo<React.CSSProperties>(() => {
+    return { height: bottomPad, padding: 0, border: 0 };
+  }, [bottomPad]);
 
   return {
     scrollRef,

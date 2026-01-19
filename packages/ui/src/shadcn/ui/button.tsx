@@ -18,61 +18,31 @@ const buttonVariants = cva(
     // States
     "disabled:pointer-events-none disabled:opacity-50",
     // Focus States
-    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring",
     // Invalid States
     "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
     // SVG Styles
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
-    // Dark Mode - Focus
-    "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
-    // Dark Mode - Invalid States
-    "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20",
-    "dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900",
   ],
   {
     variants: {
       variant: {
-        default: [
-          "bg-primary text-primary-foreground",
-          "hover:bg-primary/90",
-          "dark:bg-neutral-50 dark:text-neutral-900",
-          "dark:hover:bg-neutral-50/90",
-        ],
+        default: ["bg-primary text-primary-foreground", "hover:bg-primary/90"],
         destructive: [
           "bg-red-500 text-white",
           "hover:bg-red-500/90",
           "focus-visible:ring-red-500/20",
-          "dark:bg-red-500/60 dark:bg-red-900",
-          "dark:hover:bg-red-900/90",
-          "dark:focus-visible:ring-red-500/40 dark:focus-visible:ring-red-900/20",
-          "dark:dark:focus-visible:ring-red-900/40 dark:dark:bg-red-900/60",
         ],
         outline: [
           "border bg-white shadow-xs",
           "hover:bg-neutral-100 hover:text-neutral-900",
-          "dark:bg-neutral-200/30 dark:border-neutral-200",
-          "dark:hover:bg-neutral-200/50",
-          "dark:bg-neutral-950",
-          "dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
-          "dark:dark:bg-neutral-800/30 dark:dark:border-neutral-800",
-          "dark:dark:hover:bg-neutral-800/50",
         ],
         secondary: [
           "bg-neutral-100 text-neutral-900",
           "hover:bg-neutral-100/80",
-          "dark:bg-neutral-800 dark:text-neutral-50",
-          "dark:hover:bg-neutral-800/80",
         ],
-        ghost: [
-          "hover:bg-neutral-100 hover:text-neutral-900",
-          "dark:hover:bg-neutral-100/50 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
-          "dark:dark:hover:bg-neutral-800/50",
-        ],
-        link: [
-          "text-neutral-900 underline-offset-4",
-          "hover:underline",
-          "dark:text-neutral-50",
-        ],
+        ghost: ["hover:bg-neutral-100 hover:text-neutral-900"],
+        link: ["text-neutral-900 underline-offset-4", "hover:underline"],
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -111,4 +81,48 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+function BusyButton({
+  className,
+  variant,
+  size,
+  asChild = false,
+  onClick,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+    onClick: () => Promise<void>;
+    busyText?: string;
+  }) {
+  const [busy, setBusy] = React.useState(false);
+
+  const clickHandler = async () => {
+    if (busy) return;
+    setBusy(true);
+    await onClick();
+
+    setBusy(false);
+  };
+
+  const Comp = asChild ? Slot : "button";
+
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      onClick={clickHandler}
+      disabled={busy || props.disabled}
+      {...props}
+    >
+      {busy ? (
+        <>
+          {props.children} <i className="fa fa-spinner fa-spin flex-none"></i>
+        </>
+      ) : (
+        props.children
+      )}
+    </Comp>
+  );
+}
+
+export { BusyButton, Button, buttonVariants };

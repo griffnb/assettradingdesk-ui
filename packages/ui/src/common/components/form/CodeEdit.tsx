@@ -1,9 +1,9 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import Prism, { Grammar } from "prismjs";
 import "prismjs/themes/prism.min.css"; //Example style, you can use another
-import { ReactNode } from "react";
+import { FocusEventHandler, ReactNode } from "react";
 import Editor from "react-simple-code-editor";
 import { ErrorMessages } from "../fields/base/ErrorMessages";
 import { HelpText } from "../fields/base/HelpText";
@@ -12,7 +12,7 @@ import { InputEnd } from "../fields/base/InputEnd";
 const variantStyles = cva("group flex w-full flex-col", {
   variants: {
     variant: {
-      default: ["rounded-md border border-gray-200 bg-white"],
+      default: [],
       custom: "",
     },
   },
@@ -21,17 +21,20 @@ const variantStyles = cva("group flex w-full flex-col", {
   },
 });
 
-const wrapStyles = cva("block overflow-auto size-full", {
-  variants: {
-    variant: {
-      default: ["max-h-96"],
-      custom: "",
+const wrapStyles = cva(
+  "block overflow-auto size-full rounded-md border border-gray-200 bg-white",
+  {
+    variants: {
+      variant: {
+        default: ["max-h-96"],
+        custom: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+);
 
 const editorStyles = cva("", {
   variants: {
@@ -56,8 +59,12 @@ export interface CodeEditProps extends VariantProps<typeof variantStyles> {
   helpText?: ReactNode;
   prepend?: ReactNode;
   append?: ReactNode;
+  onBlur?:
+    | (FocusEventHandler<HTMLDivElement> &
+        FocusEventHandler<HTMLTextAreaElement>)
+    | undefined;
 }
-const CodeEdit = observer((rawProps: CodeEditProps) => {
+export const CodeEdit = observer((rawProps: CodeEditProps) => {
   const {
     prepend,
     append,
@@ -76,14 +83,14 @@ const CodeEdit = observer((rawProps: CodeEditProps) => {
         variantStyles({
           variant: props.variant,
           className: `${hasErrors ? "errors" : ""}`,
-        })
+        }),
       )}
     >
       <div className="flex w-full flex-row">
         {prepend && <InputEnd side="prepend">{prepend}</InputEnd>}
         <div
           className={cn(
-            wrapStyles({ variant: props.variant, className: wrapperClassName })
+            wrapStyles({ variant: props.variant, className: wrapperClassName }),
           )}
         >
           <Editor
@@ -93,17 +100,18 @@ const CodeEdit = observer((rawProps: CodeEditProps) => {
               Prism.highlight(
                 code,
                 Prism.languages[props.language] as Grammar,
-                props.language
+                props.language,
               )
             }
             padding={10}
             textareaClassName=""
             preClassName=""
+            onBlur={props.onBlur}
             className={cn(
               editorStyles({
                 variant: props.variant,
                 className: editorClassName,
-              })
+              }),
             )}
           />
         </div>
@@ -116,5 +124,3 @@ const CodeEdit = observer((rawProps: CodeEditProps) => {
     </div>
   );
 });
-
-export default CodeEdit;

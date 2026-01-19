@@ -1,4 +1,4 @@
-import { generateUUID } from "@/utils/strings";
+import { generateUUID } from "@/common_lib/utils/strings";
 import { action, makeAutoObservable } from "mobx";
 import { ReactNode } from "react";
 

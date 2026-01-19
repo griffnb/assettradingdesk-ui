@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import * as React from "react";
 import * as Recharts from "recharts";
 import {
   ChartContainer,
@@ -10,7 +9,7 @@ import {
 } from "./chart";
 
 const meta: Meta<typeof ChartContainer> = {
-  title: "Common/Components/Charts/ChartContainer",
+  title: "UI/Shadcn/Charts/ChartContainer",
   component: ChartContainer,
   argTypes: {
     id: {

@@ -1,5 +1,6 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
+import { LoadingSkeleton } from "@/ui/common/components/loading/LoadingSkeleton";
 import { AssetCreationForm } from "@/ui/customer/assets/management/AssetCreationForm";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
@@ -20,7 +21,7 @@ export const EditAsset = observer(function EditAsset() {
   }, [id]);
 
   if (!asset) {
-    return <div>Loading...</div>;
+    return <LoadingSkeleton />;
   }
 
   return <AssetCreationForm record={asset} />;

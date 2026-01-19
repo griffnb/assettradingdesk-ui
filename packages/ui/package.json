@@ -3,9 +3,8 @@
   "type": "module",
   "scripts": {
     "watch": "tsc --watch --noEmit --project './tsconfig.json'",
-    "tsc": "tsc --noEmit --project './tsconfig.json'",
-    "build": "",
-    "git-build": "",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint .",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "--bun storybook build"
@@ -42,6 +41,7 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@react-input/mask": "^2.0.4",
+    "@storybook/test": "^8.6.14",
     "@stripe/react-stripe-js": "^4.0.2",
     "@stripe/stripe-js": "^7.9.0",
     "@types/react-syntax-highlighter": "^15.5.13",

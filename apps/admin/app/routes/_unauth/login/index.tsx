@@ -38,7 +38,7 @@ export default observer(function Login() {
         },
       });
       if (token) {
-        const response = await ServerService.getRaw("/admin/tokenLogin", {
+        const response = await ServerService.postRaw("/admin/tokenLogin", {
           token: token,
         });
 

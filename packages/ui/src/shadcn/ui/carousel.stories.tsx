@@ -10,7 +10,7 @@ import {
 } from "./carousel";
 
 const meta: Meta<typeof Carousel> = {
-  title: "Components/Carousel",
+  title: "UI/Shadcn/Carousel",
   component: Carousel,
   tags: ["autodocs"],
   argTypes: {

@@ -35,14 +35,14 @@ const itemVariants = cva(
     // Layout
     "group/item flex items-center flex-wrap",
     // Borders & Shape
-    "border border-neutral-200 border-transparent rounded-md",
+    "border border-neutral-200 rounded-md",
     // Typography
     "text-sm",
     // States & Transitions
     "outline-none transition-colors duration-100",
     "[a]:hover:bg-neutral-100/50 [a]:transition-colors",
     // Focus States
-    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring-[3px]",
+    "focus-visible:border-neutral-950 focus-visible:ring-neutral-950/50 focus-visible:ring",
     // Dark Mode
     "dark:border-neutral-800",
     "dark:[a]:hover:bg-neutral-800/50",

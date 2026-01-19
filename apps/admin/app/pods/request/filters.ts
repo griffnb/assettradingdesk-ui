@@ -1,5 +1,167 @@
+import { constants } from "@/models/constants";
 import { IFilter } from "@/ui/common/components/types/filters";
 
 export const filters: IFilter[] = [
-  
+  {
+    placeholder: "Description",
+    type: "text",
+    field: "q:description",
+  },
+  {
+    placeholder: "Configuration Notes",
+    type: "text",
+    field: "q:configuration_notes",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Equipment Specifications",
+    field: "",
+  },
+  {
+    placeholder: "Model",
+    type: "model-search-multi-select",
+    field: "model_id",
+    modelName: "model",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Manufacturer",
+    type: "model-search-multi-select",
+    field: "manufacturer_id",
+    modelName: "manufacturer",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Category",
+    type: "model-search-multi-select",
+    field: "category_id",
+    modelName: "category",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Price & Year Range",
+    field: "",
+  },
+  {
+    placeholder: "Min Price",
+    type: "number",
+    field: "gte:min_price",
+  },
+  {
+    placeholder: "Max Price",
+    type: "number",
+    field: "lte:max_price",
+  },
+  {
+    placeholder: "Min Year",
+    type: "number",
+    field: {
+      queryParam: "gte:min_year",
+      postgresColumn: "requests.meta_data->>'min_year'",
+      elasticsearchColumn: "meta_data.min_year",
+    },
+  },
+  {
+    placeholder: "Max Year",
+    type: "number",
+    field: {
+      queryParam: "lte:max_year",
+      postgresColumn: "requests.meta_data->>'max_year'",
+      elasticsearchColumn: "meta_data.max_year",
+    },
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Statuses",
+    field: "",
+  },
+  {
+    placeholder: "Install Status",
+    type: "multi-select",
+    field: {
+      queryParam: "install_status",
+      postgresColumn: "requests.meta_data->'install_statuses'",
+      elasticsearchColumn: "meta_data.install_statuses",
+    },
+    options: constants.asset.install_status,
+  },
+  {
+    placeholder: "Operational Status",
+    type: "multi-select",
+    field: {
+      queryParam: "operational_status",
+      postgresColumn: "requests.meta_data->'operational_statuses'",
+      elasticsearchColumn: "meta_data.operational_statuses",
+    },
+    options: constants.asset.operational_status,
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Relationships",
+    field: "",
+  },
+  {
+    placeholder: "Organization",
+    type: "model-search-multi-select",
+    field: "organization_id",
+    modelName: "organization",
+    modelDisplayField: "label",
+    modelSearchFilters: { disabled: "0" },
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Company",
+    type: "model-search-multi-select",
+    field: "company_id",
+    modelName: "company",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Client",
+    type: "model-search-multi-select",
+    field: "client_id",
+    modelName: "client",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    placeholder: "Account",
+    type: "model-search-multi-select",
+    field: "account_id",
+    modelName: "account",
+    modelDisplayField: "label",
+    modelSearchParam: "q",
+  },
+  {
+    type: "gap",
+    placeholder: "",
+    label: "Time Filters",
+    field: "",
+  },
+  {
+    placeholder: "Time Frame (days)",
+    type: "number",
+    field: "time_frame",
+  },
+  {
+    placeholder: "Expire Date",
+    type: "date-range",
+    field: "between:expire_at_ts",
+    format: "YYYY-MM-DD",
+  },
+  {
+    placeholder: "Created Date",
+    type: "date-range",
+    field: "between:created_at",
+    format: "YYYY-MM-DD",
+  },
 ];

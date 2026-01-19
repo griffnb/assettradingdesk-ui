@@ -103,3 +103,14 @@ check-core-custom: ## sync custom core packages with shadcn_builder
 			(cd "$$dir" && GITHUB_TOKEN=$$GITHUB_TOKEN shadcn_builder check -all); \
 		fi; \
 	done
+
+.PHONY: core-sync-force
+core-sync-force: ## sync custom core packages with shadcn_builder
+	@echo "Syncing custom core packages"
+	@GITHUB_TOKEN=$$(gh auth token) shadcn_builder add -all -force || true
+	@for dir in $(CURDIR)/packages/*/; do \
+		if [ -d "$$dir" ] && [ -f "$$dir/components.json" ]; then \
+			echo "Building registry in $$dir"; \
+			(cd "$$dir" && GITHUB_TOKEN=$$(gh auth token) shadcn_builder add -all -force) || true; \
+		fi; \
+	done

@@ -1,17 +1,17 @@
+import { Button } from "@/ui/shadcn/ui/button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  CardAction,
 } from "./card";
-import { Button } from "@/ui/shadcn/ui/button";
 
 const meta: Meta<typeof Card> = {
-  title: "Common/Components/UI/Card",
+  title: "UI/Shadcn/Card",
   component: Card,
   argTypes: {
     // Note: most props are passed through, so no specific argTypes needed

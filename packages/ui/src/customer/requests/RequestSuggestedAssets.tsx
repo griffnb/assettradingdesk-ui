@@ -1,7 +1,6 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { Store } from "@/models/store/Store";
-import { Badge } from "@/ui/shadcn/ui/badge";
 import {
   Carousel,
   CarouselContent,
@@ -74,20 +73,6 @@ export const SuggestedAssetsCarousel = observer(
       );
     }
 
-    if (assets.length === 0) {
-      return (
-        <div
-          className={cn(
-            "flex h-48 flex-col items-center justify-center rounded-lg border border-muted/40 bg-muted/10 text-sm text-muted-foreground",
-            className,
-          )}
-          {...props}
-        >
-          No matching assets yet. Check back soon.
-        </div>
-      );
-    }
-
     return (
       <section
         key={request.id}
@@ -111,27 +96,35 @@ export const SuggestedAssetsCarousel = observer(
               </p>
             )}
           </div>
-
-          <Badge variant="outline" className="w-fit gap-2">
-            somebadge here
-          </Badge>
         </div>
         <div className={cn(styleVariants({ variant, className }))} {...props}>
-          <Carousel className="w-full">
-            <CarouselContent>
-              {assets.map((asset) => (
-                <CarouselItem key={asset.id} className="min-w-fit max-w-fit">
-                  <AssetCard asset={asset} variant="full" />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {assets.length > 3 && (
-              <>
-                <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
-                <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
-              </>
-            )}
-          </Carousel>
+          {assets.length === 0 ? (
+            <div
+              className={cn(
+                "flex h-48 flex-col items-center justify-center rounded-lg border border-muted/40 bg-muted/10 text-sm text-muted-foreground",
+                className,
+              )}
+              {...props}
+            >
+              No matching assets yet. Check back soon.
+            </div>
+          ) : (
+            <Carousel className="w-full">
+              <CarouselContent>
+                {assets.map((asset) => (
+                  <CarouselItem key={asset.id} className="min-w-fit max-w-fit">
+                    <AssetCard asset={asset} variant="full" />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {assets.length > 3 && (
+                <>
+                  <CarouselPrevious className="-left-9 bg-primary text-white hover:bg-primary/80" />
+                  <CarouselNext className="-right-9 bg-primary text-white hover:bg-primary/80" />
+                </>
+              )}
+            </Carousel>
+          )}
         </div>
       </section>
     );

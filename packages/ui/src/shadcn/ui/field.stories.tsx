@@ -9,12 +9,11 @@ import {
   FieldLegend,
   FieldSeparator,
   FieldSet,
-  FieldTitle,
 } from "./field";
 import { Input } from "./input";
 
 const meta: Meta = {
-  title: "Common/Components/UI/Field",
+  title: "UI/Shadcn/Field",
   component: Field,
   argTypes: {
     orientation: {

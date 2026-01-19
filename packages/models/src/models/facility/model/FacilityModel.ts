@@ -1,11 +1,12 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { FacilityBaseModel } from "./FacilityBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class FacilityModel extends FacilityBaseModel {
-  _model_name = "facility";
+  _model_name: StoreKeys = "facility";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -19,8 +20,8 @@ export class FacilityModel extends FacilityBaseModel {
     return "fa fa-warehouse";
   }
 
-  get link(): string {
-    return `/facilities/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/facilities/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

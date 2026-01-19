@@ -94,9 +94,9 @@ function MenubarContent({
         sideOffset={sideOffset}
         className={cn([
           /* Layout & Display */
-          "z-50 min-w-[12rem] overflow-hidden rounded-md p-1",
+          "z-50 min-w-48 overflow-hidden rounded-md p-1",
           /* Origin */
-          "origin-(--radix-menubar-content-transform-origin)",
+          "origin-[var(--radix-menubar-content-transform-origin)]",
           /* Colors & Borders */
           "border border-neutral-200 bg-white text-neutral-950 shadow-md",
           /* Animations */
@@ -162,7 +162,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       className={cn([
         /* Layout & Display */
-        "rounded-xs relative flex cursor-default items-center gap-2 py-1.5 pl-8 pr-2",
+        "relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pl-8 pr-2",
         /* Typography */
         "text-sm",
         /* Interaction */
@@ -200,7 +200,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       className={cn([
         /* Layout & Display */
-        "rounded-xs relative flex cursor-default items-center gap-2 py-1.5 pl-8 pr-2",
+        "relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pl-8 pr-2",
         /* Typography */
         "text-sm",
         /* Interaction */
@@ -326,7 +326,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto h-4 w-4" />
+      <ChevronRightIcon className="ml-auto size-4" />
     </MenubarPrimitive.SubTrigger>
   );
 }
@@ -340,9 +340,9 @@ function MenubarSubContent({
       data-slot="menubar-sub-content"
       className={cn([
         /* Layout & Display */
-        "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
+        "z-50 min-w-32 overflow-hidden rounded-md p-1",
         /* Origin */
-        "origin-(--radix-menubar-content-transform-origin)",
+        "origin-[var(--radix-menubar-content-transform-origin)]",
         /* Colors & Borders */
         "border border-neutral-200 bg-white text-neutral-950 shadow-lg",
         /* Animations */

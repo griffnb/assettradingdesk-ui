@@ -1,6 +1,8 @@
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { AssetFileTypes } from "../../asset_file/_constants/file_type";
@@ -9,7 +11,7 @@ import { AssetBaseModel } from "./AssetBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class AssetModel extends AssetBaseModel {
-  _model_name = "asset";
+  _model_name: StoreKeys = "asset";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -23,8 +25,8 @@ export class AssetModel extends AssetBaseModel {
     return "fa fa-cog";
   }
 
-  get link(): string {
-    return `/assets/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/assets/${target}/${this.id}`;
   }
 
   get publicLink(): string {

@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, ReactNode } from "react";
 import CheckboxBase from "./base/CheckboxBase";

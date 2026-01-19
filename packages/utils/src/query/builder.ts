@@ -136,6 +136,8 @@ export function getTableFilters(params: { [key: string]: string | string[] }): {
         continue;
       case "reporting_period":
         continue;
+      case "reload":
+        continue;
       default:
         filters[key] = value;
     }
@@ -236,6 +238,10 @@ export function buildQuery(
   }
 
   for (const [key, value] of Object.entries(filterValues)) {
+    if (key === "reload") {
+      continue;
+    }
+
     //Groups
     if (key.startsWith("g_")) {
       query[key] = value;

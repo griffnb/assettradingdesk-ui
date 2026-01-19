@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@/ui/shadcn/ui/button";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 const meta: Meta<typeof Popover> = {
-  title: "Common/Components/UI/Popover",
+  title: "UI/Shadcn/Popover",
   component: Popover,
   subcomponents: {
     PopoverTrigger,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
-import { UserIcon, SettingsIcon, CreditCardIcon } from "lucide-react";
+import { CreditCardIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 
 const meta: Meta<typeof Tabs> = {
   title: "Common/Components/UI/Tabs",
@@ -75,7 +75,28 @@ export const DisabledTab: Story = {
       <TabsContent value="disabled">
         This content should not be visible.
       </TabsContent>
-      <TabsContent value="another">Another tab's content.</TabsContent>
+      <TabsContent value="another">Another tab&apos;s content.</TabsContent>
+    </Tabs>
+  ),
+};
+
+export const Underline: Story = {
+  render: () => (
+    <Tabs defaultValue="account" variant="underline">
+      <TabsList variant="underline">
+        <TabsTrigger value="account" variant="underline">
+          Account
+        </TabsTrigger>
+        <TabsTrigger value="password" variant="underline">
+          Password
+        </TabsTrigger>
+        <TabsTrigger value="team" variant="underline">
+          Team
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Manage your account settings.</TabsContent>
+      <TabsContent value="password">Change your password here.</TabsContent>
+      <TabsContent value="team">Manage your team members.</TabsContent>
     </Tabs>
   ),
 };

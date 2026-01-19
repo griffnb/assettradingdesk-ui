@@ -1,11 +1,12 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
 import { OpportunityBaseModel } from "./OpportunityBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class OpportunityModel extends OpportunityBaseModel {
-  _model_name = "opportunity";
+  _model_name: StoreKeys = "opportunity";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -19,8 +20,8 @@ export class OpportunityModel extends OpportunityBaseModel {
     return "fa fa-handshake";
   }
 
-  get link(): string {
-    return `/opportunities/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/opportunities/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

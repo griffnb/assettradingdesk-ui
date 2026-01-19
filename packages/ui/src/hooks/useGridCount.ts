@@ -6,7 +6,6 @@ export function useGridCount<T extends HTMLElement>() {
 
   useLayoutEffect(() => {
     if (!ref.current) return;
-    console.log("in layout");
 
     const measure = () => {
       const el = ref.current!;

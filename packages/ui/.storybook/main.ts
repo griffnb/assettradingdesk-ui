@@ -45,7 +45,6 @@ const config: StorybookConfig = {
     config.esbuild = {
       ...config.esbuild,
       jsx: "automatic",
-      jsxDev: true,
     };
 
     // Add path aliases to match the monorepo structure
@@ -57,7 +56,6 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@/utils": join(dirname(__filename), "../../../packages/utils/src"),
       "@/models": join(dirname(__filename), "../../../packages/models/src"),
       "@/ui": join(dirname(__filename), "../src"),
       "@/common_lib": join(

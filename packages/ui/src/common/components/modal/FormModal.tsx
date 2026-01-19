@@ -1,5 +1,5 @@
 import { LayerService } from "@/common_lib/services/LayerService";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { Button } from "../buttons/Button";
@@ -40,7 +40,7 @@ export const FormModal = observer((props: FormModalProps) => {
         <div
           className={cn(
             "relative rounded-lg border bg-white pt-4 text-left shadow transition-all sm:my-24 sm:w-full",
-            props.className
+            props.className,
           )}
         >
           <div className="flex gap-x-2.5 px-4">

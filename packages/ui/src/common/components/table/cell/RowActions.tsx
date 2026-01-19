@@ -8,9 +8,9 @@ import {
   ViewRecordModalId,
 } from "@/ui/admin/modal/ViewRecordModal";
 
-import { cn } from "@/utils/cn";
-import { equals } from "@/utils/numbers";
-import { plural } from "@/utils/strings";
+import { cn } from "@/common_lib/utils/cn";
+import { equals } from "@/common_lib/utils/numbers";
+import { plural } from "@/common_lib/utils/strings";
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import copy from "copy-to-clipboard";
 import { runInAction } from "mobx";

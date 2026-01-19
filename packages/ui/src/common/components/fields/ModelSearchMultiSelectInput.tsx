@@ -1,5 +1,5 @@
 import { Store } from "@/models/store/Store";
-import { debounce } from "@/utils/debounce";
+import { debounce } from "@/common_lib/utils/debounce";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MultiComboBoxBase } from "./base/select/MultiComboBoxBase";

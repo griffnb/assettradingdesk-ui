@@ -1,4 +1,4 @@
-import { ValidationRules } from "@/utils/validations";
+import { ValidationRules } from "@/common_lib/utils/validations";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { makeAutoObservable } from "mobx";
 import { FormFieldArray } from "./FormFieldArray";

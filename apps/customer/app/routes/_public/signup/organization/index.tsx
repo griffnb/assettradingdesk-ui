@@ -7,33 +7,30 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 export default observer(function SignupOrganization() {
   const navigate = useNavigate();
-  const {account,accountLoading} = useAccount();
-  const [organization, setOrganization] = useState<OrganizationModel | null>(null);
+  const { account, accountLoading } = useAccount();
+  const [organization, setOrganization] = useState<OrganizationModel | null>(
+    null,
+  );
 
   useEffect(() => {
     if (account && account.organization_id) {
       Store.organization.get(account.organization_id || "").then((resp) => {
-        if(resp.success && resp.data){
+        if (resp.success && resp.data) {
           setOrganization(resp.data);
         }
-      }
-    );
+      });
     }
   }, [account]);
-
 
   if (accountLoading || !organization) {
     return null;
   }
 
-  
-
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center bg-[url('/img/hero.png')] bg-cover p-5">
+    <div className="flex min-h-dvh flex-col items-center justify-start bg-[url('/img/hero.png')] bg-cover p-5">
       <SetupOrganization
         record={organization}
-        onSuccess={() => navigate("/signup/upgrade")}
-        onCancel={() => navigate("/signup/account")}
+        onSuccess={() => navigate("/manage/dashboard")}
       />
     </div>
   );

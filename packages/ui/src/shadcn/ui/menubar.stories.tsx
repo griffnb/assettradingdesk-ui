@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Menubar,
+  MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
+  MenubarLabel,
   MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
   MenubarSeparator,
   MenubarShortcut,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-  MenubarCheckboxItem,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarLabel,
 } from "./menubar";
 
 const meta: Meta<typeof Menubar> = {
-  title: "Common/Components/UI/Menubar",
+  title: "UI/Shadcn/Menubar",
   component: Menubar,
   argTypes: {
     className: {

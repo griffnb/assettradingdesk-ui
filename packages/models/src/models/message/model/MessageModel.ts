@@ -1,11 +1,13 @@
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
 import { ValidationRules } from "@/utils/validations";
+import { AssetFileTypes } from "../../asset_file/_constants/file_type";
 import { MessageBaseModel } from "./MessageBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class MessageModel extends MessageBaseModel {
-  _model_name = "message";
+  _model_name: StoreKeys = "message";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -21,8 +23,8 @@ export class MessageModel extends MessageBaseModel {
     return "fa fa-envelope";
   }
 
-  get link(): string {
-    return `/messages/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/messages/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {
@@ -47,6 +49,28 @@ export class MessageModel extends MessageBaseModel {
       title: "",
       url: "",
     };
+  }
+
+  get asset_make_model(): string {
+    return `${this.manufacturer_name} ${this.model_name}`;
+  }
+
+  get asset_thumbnail(): string {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const img = this.asset_files.find(
+        (file) =>
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.small_image &&
+          file.meta_data.small_image != "",
+      );
+      if (!img) {
+        return "/img/placeholder.png";
+      }
+      return img
+        ? img.meta_data.small_image.replaceAll("_sw.", "_s.")
+        : "/img/placeholder.png";
+    }
+    return "/img/placeholder.png";
   }
 
   constructor(store: IStore<MessageModel>) {

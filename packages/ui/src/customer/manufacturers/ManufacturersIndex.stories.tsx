@@ -29,63 +29,72 @@ const mockManufacturers = [
     id: "1",
     name: "ASML",
     slug: "asml",
-    description: "Leading manufacturer of photolithography systems for the semiconductor industry. ASML produces advanced extreme ultraviolet (EUV) lithography machines used in cutting-edge chip production.",
+    description:
+      "Leading manufacturer of photolithography systems for the semiconductor industry. ASML produces advanced extreme ultraviolet (EUV) lithography machines used in cutting-edge chip production.",
     asset_count: 24,
   }),
   Store.manufacturer.create({
     id: "2",
     name: "Applied Materials",
     slug: "applied-materials",
-    description: "Global leader in materials engineering solutions for the semiconductor, display, and related industries. Provides manufacturing equipment, services, and software.",
+    description:
+      "Global leader in materials engineering solutions for the semiconductor, display, and related industries. Provides manufacturing equipment, services, and software.",
     asset_count: 156,
   }),
   Store.manufacturer.create({
     id: "3",
     name: "Lam Research",
     slug: "lam-research",
-    description: "Major supplier of wafer fabrication equipment and services to the semiconductor industry. Specializes in deposition, etch, and clean systems.",
+    description:
+      "Major supplier of wafer fabrication equipment and services to the semiconductor industry. Specializes in deposition, etch, and clean systems.",
     asset_count: 89,
   }),
   Store.manufacturer.create({
     id: "4",
     name: "KLA Corporation",
     slug: "kla-corporation",
-    description: "Leading provider of process control and yield management solutions for the semiconductor and related nanoelectronics industries.",
+    description:
+      "Leading provider of process control and yield management solutions for the semiconductor and related nanoelectronics industries.",
     asset_count: 67,
   }),
   Store.manufacturer.create({
     id: "5",
     name: "Tokyo Electron",
     slug: "tokyo-electron",
-    description: "Japanese manufacturer of semiconductor production equipment and flat panel display production equipment. Offers comprehensive solutions for chip manufacturing.",
+    description:
+      "Japanese manufacturer of semiconductor production equipment and flat panel display production equipment. Offers comprehensive solutions for chip manufacturing.",
     asset_count: 43,
   }),
   Store.manufacturer.create({
     id: "6",
     name: "Screen Holdings",
     slug: "screen-holdings",
-    description: "Specialized in semiconductor manufacturing equipment, particularly cleaning and coating systems for wafer processing.",
+    description:
+      "Specialized in semiconductor manufacturing equipment, particularly cleaning and coating systems for wafer processing.",
     asset_count: 31,
   }),
   Store.manufacturer.create({
     id: "7",
     name: "Advantest",
     slug: "advantest",
-    description: "World's leading manufacturer of automatic test equipment (ATE) for semiconductors, systems-on-chip (SoC), and other electronic devices.",
+    description:
+      "World's leading manufacturer of automatic test equipment (ATE) for semiconductors, systems-on-chip (SoC), and other electronic devices.",
     asset_count: 28,
   }),
   Store.manufacturer.create({
     id: "8",
     name: "Teradyne",
     slug: "teradyne",
-    description: "Leading supplier of automation equipment for test and industrial applications, including semiconductor testing systems.",
+    description:
+      "Leading supplier of automation equipment for test and industrial applications, including semiconductor testing systems.",
     asset_count: 19,
   }),
   Store.manufacturer.create({
     id: "9",
     name: "Nikon Precision",
     slug: "nikon-precision",
-    description: "Producer of precision equipment for semiconductor lithography and metrology applications.",
+    description:
+      "Producer of precision equipment for semiconductor lithography and metrology applications.",
     asset_count: 0,
   }),
 ];
@@ -101,16 +110,12 @@ const mockQueryEmpty = fn(async () => ({
   data: [],
 }));
 
-const mockQueryError = fn(async () => ({
-  success: false,
-  error: "Failed to load manufacturers",
-}));
-
 export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Default view showing a grid of manufacturers with asset counts and descriptions.",
+        story:
+          "Default view showing a grid of manufacturers with asset counts and descriptions.",
       },
     },
   },
@@ -124,7 +129,8 @@ export const WithManyManufacturers: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Displays manufacturers with various asset counts, showing how the layout adapts.",
+        story:
+          "Displays manufacturers with various asset counts, showing how the layout adapts.",
       },
     },
   },
@@ -190,7 +196,7 @@ export const Loading: Story = {
   play: async () => {
     // Mock a slow query that never resolves during the story
     Store.manufacturer.query = fn(async () => {
-      return new Promise(() => {}); // Never resolves
+      return new Promise(() => {}) as any; // Never resolves
     });
   },
 };

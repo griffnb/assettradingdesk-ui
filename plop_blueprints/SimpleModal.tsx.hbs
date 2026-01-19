@@ -1,0 +1,36 @@
+import { observer } from "mobx-react";
+import { SimpleModal } from "@/ui/common/components/modal/SimpleModal";
+
+
+export const {{pascalCase name}}Id = "{{pascalCase name}}";
+
+interface {{pascalCase name}}Props {
+
+}
+
+
+/**
+ * ## {{pascalCase name}} slots
+ *
+ *
+ *
+ * ## SimpleModal slots
+ * @slot {"simple-modal-content"} data-slot="simple-modal-content"
+ * @slot {"simple-modal-close-button"} data-slot="simple-modal-close-button"
+ *
+ * ## ModalWrap slots
+ * @slot {"modal-wrapper"} data-slot="modal-wrapper"
+ * @slot {"modal-overlay"} data-slot="modal-overlay"
+ * @slot {"modal-content"} data-slot="modal-content"
+ **/
+
+export const {{pascalCase name}} = observer(function {{pascalCase name}}(props: {{pascalCase name}}Props) {
+  return (
+    <SimpleModal
+      id={ {{pascalCase name}}Id }
+      title="{{pascalCase name}}"
+    >
+      Im a sample modal
+    </SimpleModal>
+  );
+});

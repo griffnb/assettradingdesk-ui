@@ -1,6 +1,6 @@
 import { TableState } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
-import { Direction } from "@/utils/query/builder";
+import { cn } from "@/common_lib/utils/cn";
+import { Direction } from "@/common_lib/utils/query/builder";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { Fragment } from "react";

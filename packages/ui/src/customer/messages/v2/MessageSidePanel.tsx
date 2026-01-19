@@ -1,0 +1,63 @@
+import { AccountModel } from "@/models/models/account/model/AccountModel";
+import { SidePanelWrap } from "@/ui/common/components/side-panel/SidePanelWrap";
+import { cva, VariantProps } from "class-variance-authority";
+import { observer } from "mobx-react-lite";
+import { HTMLAttributes } from "react";
+import { MessageThreadPanel } from "./MessageThreadPanel";
+
+export const MessageSidePanelID = "MessageSidePanel";
+
+const styleVariants = cva("", {
+  variants: {
+    variant: {
+      default: "min-w-[40%] overflow-y-auto",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+/**
+ * A Sample Component
+ *
+ * @example
+ * [&_*[data-slot='my-slot']]:mx-auto
+ *
+ * @slot {"my-slot"} data-slot="my-slot"
+ */
+
+export interface MessageSidePanelProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof styleVariants> {
+  closeAction: () => void;
+  threadId?: string;
+  assetId?: string;
+  account: AccountModel;
+  title: string;
+}
+export const MessageSidePanel = observer(function MessageSidePanel(
+  fullProps: MessageSidePanelProps,
+) {
+  const { className, variant, closeAction, account, assetId, threadId, title } =
+    fullProps;
+
+  return (
+    <SidePanelWrap
+      id={MessageSidePanelID}
+      className={styleVariants({ variant, className })}
+      title={title}
+      resizeable={false}
+      size="lg"
+      closeAction={closeAction}
+    >
+      <MessageThreadPanel
+        threadId={threadId}
+        assetId={assetId}
+        account={account}
+        reloadList={() => {}}
+        // Prop removed as per TypeScript error correction
+      />
+    </SidePanelWrap>
+  );
+});

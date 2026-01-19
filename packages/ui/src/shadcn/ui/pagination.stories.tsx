@@ -10,7 +10,7 @@ import {
 } from "./pagination";
 
 const meta: Meta = {
-  title: "Common/Components/UI/Pagination",
+  title: "UI/Shadcn/Pagination",
   component: Pagination,
   parameters: {
     layout: "centered",

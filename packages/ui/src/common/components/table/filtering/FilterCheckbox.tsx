@@ -1,6 +1,6 @@
 import { BadgeColorKeys } from "@/ui/common/components/badge/Badge";
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 

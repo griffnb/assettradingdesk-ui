@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Slider } from "./slider";
 
 const meta: Meta<typeof Slider> = {
-  title: "Components/Slider",
+  title: "UI/Shadcn/Slider",
   component: Slider,
   tags: ["autodocs"],
   argTypes: {

@@ -21,11 +21,19 @@ export const CustomerDashboardSuggestedTools = observer(
     const [assets, setAssests] = useState<AssetModel[]>([]);
 
     useEffect(() => {
-      Store.asset.query({ limit: "20" }).then((resp) => {
-        if (resp.success && resp.data) {
-          setAssests(resp.data);
+      async function fetchAssets() {
+        const response = await Store.asset.queryRecords(
+          `matches/all`,
+          {
+            limit: "10",
+          },
+          { skipCache: true },
+        );
+        if (response.success && response.data) {
+          setAssests(response.data);
         }
-      });
+      }
+      fetchAssets();
     }, []);
 
     return (
@@ -48,13 +56,10 @@ export const CustomerDashboardSuggestedTools = observer(
           </Button>
         </div>
         <div className="flex flex-col items-center px-10">
-          <Carousel className="flex w-full"  opts={{ align: "start" }}>
-            <CarouselContent  className="last:mr-3">
+          <Carousel className="flex w-full" opts={{ align: "start" }}>
+            <CarouselContent className="last:mr-3">
               {assets.map((asset, index) => (
-                <CarouselItem
-                  className="min-w-fit max-w-fit"
-                  key={index}
-                >
+                <CarouselItem className="min-w-fit max-w-fit" key={index}>
                   <AssetCard
                     key={asset.id}
                     asset={asset}

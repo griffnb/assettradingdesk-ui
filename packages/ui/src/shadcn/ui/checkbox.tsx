@@ -23,7 +23,7 @@ function Checkbox({
         "data-[state=checked]:bg-neutral-900 data-[state=checked]:text-neutral-50",
         "data-[state=checked]:border-neutral-900",
         // Focus States
-        "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+        "focus-visible:border-neutral-950 focus-visible:ring-1 focus-visible:ring-primary/50",
         // Invalid States
         "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
         // Disabled State
@@ -35,11 +35,7 @@ function Checkbox({
         "dark:data-[state=checked]:bg-neutral-900 dark:data-[state=checked]:text-neutral-900",
         "dark:dark:data-[state=checked]:bg-neutral-50",
         "dark:data-[state=checked]:border-neutral-50",
-        // Dark Mode - Focus States
-        "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
-        // Dark Mode - Invalid States
-        "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20",
-        "dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900",
+
         className,
       ])}
       {...props}

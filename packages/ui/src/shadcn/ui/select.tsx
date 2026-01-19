@@ -48,7 +48,7 @@ function SelectTrigger({
         /* Placeholder */
         "data-[placeholder]:text-neutral-500",
         /* Focus State */
-        "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+        "focus-visible:border-neutral-950 focus-visible:ring-1 focus-visible:ring-primary/50",
         /* Invalid State */
         "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
         /* Disabled State */
@@ -57,18 +57,7 @@ function SelectTrigger({
         "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
         /* SVG Styles */
         "[&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-neutral-500 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-        /* Dark Mode Base */
-        "dark:bg-neutral-200/30 dark:border-neutral-800 dark:dark:bg-neutral-800/30",
-        /* Dark Mode Placeholder */
-        "dark:data-[placeholder]:text-neutral-400",
-        /* Dark Mode SVG */
-        "dark:[&_svg:not([class*='text-'])]:text-neutral-400",
-        /* Dark Mode Hover */
-        "dark:hover:bg-neutral-200/50 dark:dark:hover:bg-neutral-800/50",
-        /* Dark Mode Focus */
-        "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
-        /* Dark Mode Invalid */
-        "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20 dark:aria-invalid:border-red-900 dark:dark:aria-invalid:ring-red-900/40",
+
         className,
       ])}
       {...props}
@@ -94,7 +83,7 @@ function SelectContent({
         data-slot="select-content"
         className={cn([
           /* Layout & Display */
-          "relative z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md p-1",
+          "relative z-50 min-w-32 overflow-y-auto overflow-x-hidden rounded-md p-1",
           /* Max Height & Origin */
           "max-h-(--radix-select-content-available-height) origin-(--radix-select-content-transform-origin)",
           /* Colors & Borders */

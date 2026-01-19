@@ -1,5 +1,6 @@
 import { BaseModel } from "@/models/BaseModel";
-import { constants, findConstant } from "@/models/constants";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { attr } from "@/models/decorators/attr";
 import { ValidationClass } from "@/utils/validations";
 import { Dayjs } from "dayjs";
@@ -11,14 +12,14 @@ export class RequestMetaData extends ValidationClass {
   max_year: number = 0;
 
   get install_statusesFmt(): string[] {
-    return this.install_statuses.map((status) => {
+    return this.install_statuses?.map((status) => {
       const val = findConstant(constants.asset.install_status, status);
       return val.label;
     });
   }
 
   get operational_statusesFmt(): string[] {
-    return this.operational_statuses.map((status) => {
+    return this.operational_statuses?.map((status) => {
       const val = findConstant(constants.asset.operational_status, status);
       return val.label;
     });
@@ -49,14 +50,11 @@ export class RequestBaseModel extends BaseModel {
 
   @attr("string", { readOnly: true }) industry_name: string = "";
   @attr("uuid", { readOnly: true }) industry_id: number = 0;
-  @attr("string", { readOnly: true }) client_name: string = "";
-  @attr("string", { readOnly: true }) company_name: string = "";
 
-  @attr("json", { readOnly: true }) company_types: number[] = [];
   @attr("string", { readOnly: true }) facility_name: string = "";
   @attr("uuid", { readOnly: true }) facility_id: string | null = null;
 
-  @attr("json", { readOnly: true }) pipeline_ids: number[] = [];
-
   @attr("number", { readOnly: true }) match_count: number = 0;
+
+  @attr("string", { readOnly: true }) client_name: string = "";
 }

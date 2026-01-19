@@ -15,6 +15,16 @@ label {
   :root {
     --customer-top-nav-h: 73px;
 
+    --z-nav-bar: 100;
+    --z-nav-bar-over: 101;
+    --z-layer-base: 101;
+    --z-takeover: 150;
+    --z-panel: 175;
+    --z-modal: 200;
+    --z-modal-popover: 99998;
+    --z-popover: 99998;
+    --z-notification: 99999;
+
     --radius: 0.5rem;
     --background: 0 0% 100%;
     --dark-background: 0 0% 14.5%;

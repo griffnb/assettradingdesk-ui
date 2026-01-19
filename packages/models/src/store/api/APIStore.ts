@@ -23,6 +23,7 @@ const DEFAULT_TTL = 500; // 500 ms
 interface Options extends RequestInit {
   skipCache?: boolean;
   silentError?: boolean;
+  //Miliseconds to live for cache
   customTTL?: number;
 }
 
@@ -117,7 +118,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
       options,
     );
     if (resp && resp.data) {
-      this.setCache(this.buildKey(this.modelRoute, "", params), resp.data);
+      this.setCache(this.buildKey(this.modelRoute, path, params), resp.data);
       if (Array.isArray(resp.data) && resp.data.length > 0) {
         return {
           data: this.load(resp.data[0]),
@@ -152,7 +153,7 @@ export class APIStore<T extends IBaseStoreModel> extends BaseStore<T> {
       options,
     );
     if (resp && resp.data) {
-      this.setCache(this.buildKey(this.modelRoute, "", params), resp.data);
+      this.setCache(this.buildKey(this.modelRoute, path, params), resp.data);
       return {
         success: true,
         data: this.loadMany(resp.data) as T[],

@@ -1,5 +1,9 @@
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { IndustryModel } from "@/models/models/industry/model/IndustryModel";
+import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
+import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
+import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
@@ -61,13 +65,54 @@ export const CategoryForm = observer(function CategoryForm(
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
+      <DetailFieldContainer>
+        <FormFieldText
+          record={props.record}
+          field="name"
+          type="text"
+          label="Name"
+          placeholder="Category Name"
+        />
+
+        <FormFieldText
+          record={props.record}
+          field="slug"
+          type="text"
+          label="Slug"
+          placeholder="category-slug"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldTextArea
+          record={props.record}
+          field="description"
+          label="Description"
+          placeholder="Category description"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldModelSearchSelect<CategoryModel, IndustryModel>
+          record={props.record}
+          field="industry_id"
+          label="Industry"
+          placeholder="Select Industry"
+          modelName="industry"
+          modelSearchParam="q"
+          modelDisplayField="label"
+        />
+
+        <FormFieldModelSearchSelect<CategoryModel, CategoryModel>
+          record={props.record}
+          field="parent_category_id"
+          label="Parent Category"
+          placeholder="Select Parent Category"
+          modelName="category"
+          modelSearchParam="q"
+          modelDisplayField="label"
+        />
+      </DetailFieldContainer>
     </FormWrap>
   );
 });

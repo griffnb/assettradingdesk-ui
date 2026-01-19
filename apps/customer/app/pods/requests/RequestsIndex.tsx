@@ -1,8 +1,13 @@
 import { LayerService } from "@/common_lib/services/LayerService";
 import { status } from "@/models/models/request/_constants/status";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
+import { TableState } from "@/models/store/state/TableState";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import {
+  RequestFormModal,
+  RequestFormModalId,
+} from "@/ui/customer/requests/RequestFormModal";
 import {
   RequestSuggestions,
   RequestSuggestionsId,
@@ -11,22 +16,19 @@ import { Button } from "@/ui/shadcn/ui/button";
 import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { Book, Plus } from "lucide-react";
 import { observer } from "mobx-react-lite";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "./columns";
-import {
-  RequestFormModal,
-  RequestFormModalId,
-} from "./components/RequestFormModal";
 import { filters } from "./filters";
 
 export const RequestsIndex = observer(function RequestsIndex() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const ref = useRef<TableState<RequestModel>>(null);
 
   const appliedFilters = useMemo(
     () =>
       queryToFilters(parseSearchParams(searchParams), {
-        status: [],
+        status: ["100"],
         limit: "100",
       }),
     [searchParams],
@@ -42,14 +44,11 @@ export const RequestsIndex = observer(function RequestsIndex() {
   const openNewRequest = useCallback(() => {
     LayerService.addOnly(RequestFormModalId, RequestFormModal, {
       onSave: () => {
-        LayerService.remove(RequestFormModalId);
-        applyFilters({ ...appliedFilters, reload: "true" });
-      },
-      onCancel: () => {
+        ref.current?.reloadData();
         LayerService.remove(RequestFormModalId);
       },
     });
-  }, [appliedFilters, applyFilters]);
+  }, [appliedFilters, applyFilters, ref.current]);
 
   return (
     <div className="flex h-full flex-col">
@@ -69,6 +68,7 @@ export const RequestsIndex = observer(function RequestsIndex() {
         </Button>
       </div>
       <StandardTableWrap<RequestModel>
+        ref={ref}
         className="[&_*[data-slot='table-wrap']]:flex-1 [&_*[data-slot='table-wrap']]:overflow-x-auto"
         columns={columns}
         statuses={status}

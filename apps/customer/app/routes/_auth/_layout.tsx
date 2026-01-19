@@ -3,18 +3,15 @@ import { CustomerAuthLeftNav } from "@/ui/customer/auth/nav/CustomerAuthLeftNav"
 import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
 import { SidebarInset, SidebarProvider } from "@/ui/shadcn/ui/sidebar";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet } from "react-router";
 
 export default function RootIndex() {
-  const { account, accountLoading } = useAccount();
-  const nav = useNavigate();
+  const { accountLoading } = useAccount({
+    redirectLocation: "/login",
+  });
+
   if (accountLoading) {
     return <Skeleton className="h-8 w-full" />;
-  }
-
-  if (!account) {
-    nav("/login");
-    return null;
   }
 
   return (

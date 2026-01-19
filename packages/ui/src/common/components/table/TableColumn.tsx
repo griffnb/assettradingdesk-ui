@@ -1,10 +1,11 @@
+import { cn } from "@/common_lib/utils/cn";
 import { TableState } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 import { IColumn } from "../types/columns";
+import { getColumnValue } from "./cell/helpers";
 import { getFormattedField } from "./helpers";
 
 const styleVariants = cva("text-nowrap px-3 py-2", {
@@ -51,7 +52,7 @@ export const TableColumn = observer(function TableColumn<T extends object>(
     );
   } else if ("field" in column) {
     displayField = getFormattedField(
-      record[column.field] as string | number | dayjs.Dayjs,
+      getColumnValue(record, column.field) as string | number | dayjs.Dayjs,
       column.format,
     );
   }

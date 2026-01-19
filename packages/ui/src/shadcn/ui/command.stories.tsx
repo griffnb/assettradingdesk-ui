@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { FileIcon, MessageSquareIcon, SettingsIcon } from "lucide-react";
 import {
   Command,
   CommandDialog,
@@ -10,10 +11,9 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "./command";
-import { FileIcon, MessageSquareIcon, SettingsIcon } from "lucide-react";
 
 const meta: Meta<typeof Command> = {
-  title: "Common/Components/UI/Command",
+  title: "UI/Shadcn/Command",
   component: Command,
   argTypes: {
     className: {

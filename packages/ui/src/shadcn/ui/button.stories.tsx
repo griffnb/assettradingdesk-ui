@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./button";
 
 const meta: Meta<typeof Button> = {
-  title: "Common/Components/UI/Button",
+  title: "UI/Shadcn/Button",
   component: Button,
   argTypes: {
     variant: {

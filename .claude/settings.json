@@ -8,13 +8,14 @@
   ],
   "enableAllProjectMcpServers": true,
   "permissions": {
-    "allow": ["ui_code_tools", "context7", "Read(./**)", "playwright"],
-    "deny": [
-      "Bash(curl:*)",
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./.configs/**)"
+    "allow": [
+      "mcp__code_tools",
+      "mcp__ui_code_tools",
+      "mcp__context7",
+      "mcp__playwright",
+      "Read(./**)"
     ],
+    "deny": ["Read(*.env)", "Read(*.env.*)", "Read(*/.configs/**)"],
     "ask": []
   }
 }

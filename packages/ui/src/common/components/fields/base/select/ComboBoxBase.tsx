@@ -1,7 +1,7 @@
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
-import { cn } from "@/utils/cn";
-import { debounce } from "@/utils/debounce";
-import { equals } from "@/utils/numbers";
+import { cn } from "@/common_lib/utils/cn";
+import { debounce } from "@/common_lib/utils/debounce";
+import { equals } from "@/common_lib/utils/numbers";
 import {
   Combobox,
   ComboboxButton,

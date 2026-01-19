@@ -3,7 +3,7 @@ import { Badge } from "./badge";
 // Store import removed as it was not necessary for this story
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: "UI/Shadcn/Badge",
   component: Badge,
   argTypes: {
     variant: {

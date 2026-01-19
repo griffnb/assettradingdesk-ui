@@ -1,4 +1,4 @@
-import { replaceURLValues } from "@/utils/strings";
+import { replaceURLValues } from "@/common_lib/utils/strings";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { IColumn, TableCellProps } from "../../types/columns";

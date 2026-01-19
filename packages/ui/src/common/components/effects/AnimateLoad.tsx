@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import { JSX, useEffect, useRef, useState } from "react";
 
 interface AnimateLoadProps {
@@ -8,7 +9,9 @@ interface AnimateLoadProps {
   animationEnded?: () => void;
 }
 
-const AnimateLoad = (props: AnimateLoadProps) => {
+export const AnimateLoad = observer(function AnimateLoad(
+  props: AnimateLoadProps,
+) {
   const [animate, setAnimate] = useState(props.startAnimateClass);
   const animationRun = useRef<boolean>(false);
   useEffect(() => {
@@ -46,6 +49,4 @@ const AnimateLoad = (props: AnimateLoadProps) => {
       {props.children}
     </div>
   );
-};
-
-export default AnimateLoad;
+});

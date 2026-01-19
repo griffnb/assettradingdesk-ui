@@ -35,19 +35,12 @@ function RadioGroupItem({
         // Transitions
         "transition-[color,box-shadow]",
         // Focus States
-        "focus-visible:border-neutral-950 focus-visible:ring-[3px] focus-visible:ring-neutral-950/50",
+        "focus-visible:border-neutral-950 focus-visible:ring-1 focus-visible:ring-primary/50",
         // Invalid States
         "aria-invalid:ring-red-500/20 aria-invalid:border-red-500",
         // Disabled State
         "disabled:cursor-not-allowed disabled:opacity-50",
-        // Dark Mode - Base
-        "dark:bg-neutral-200/30 dark:border-neutral-800 dark:text-neutral-50",
-        "dark:dark:bg-neutral-800/30",
-        // Dark Mode - Focus
-        "dark:focus-visible:border-neutral-300 dark:focus-visible:ring-neutral-300/50",
-        // Dark Mode - Invalid States
-        "dark:aria-invalid:ring-red-500/40 dark:aria-invalid:ring-red-900/20",
-        "dark:dark:aria-invalid:ring-red-900/40 dark:aria-invalid:border-red-900",
+
         className,
       ])}
       {...props}

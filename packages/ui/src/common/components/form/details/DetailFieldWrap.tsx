@@ -1,6 +1,6 @@
 import { StoreModel } from "@/models/store/StoreModel";
-import { debugLog } from "@/utils/debug";
-import { isObjectValid, ValidationType } from "@/utils/validations";
+import { debugLog } from "@/common_lib/utils/debug";
+import { isObjectValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";

@@ -6,7 +6,7 @@ import {
 } from "@/models/models/facility/model/FacilityBaseModel";
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { DetailFieldMultiSelect } from "@/ui/common/components/form/details/DetailFieldMultiSelect";
-import DetailFieldSelect from "@/ui/common/components/form/details/DetailFieldSelect";
+import { DetailFieldSelect } from "@/ui/common/components/form/details/DetailFieldSelect";
 import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
 import { DetailFieldTextArea } from "@/ui/common/components/form/details/DetailFieldTextArea";
 import { observer } from "mobx-react-lite";

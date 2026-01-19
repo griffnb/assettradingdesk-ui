@@ -1,7 +1,7 @@
-import { getPublicEnvVar } from "@/utils/env";
-import { getUrlString, hashPayload } from "@/utils/strings";
+import { getPublicEnvVar } from "@/common_lib/utils/env";
+import { getUrlString, hashPayload } from "@/common_lib/utils/strings";
 
-import { decryptResponse } from "@/utils/crypto";
+import { decryptResponse } from "@/common_lib/utils/crypto";
 import {
   EventSourceMessage,
   fetchEventSource,
@@ -15,6 +15,7 @@ export interface IJSONAPI {
   success: boolean;
   data?: any;
   error: string;
+  statusCode: number;
 }
 
 interface Options extends RequestInit {
@@ -32,10 +33,26 @@ export interface FetchEventSourceHandlers {
 
 export type IJSONAPIType<T> = Omit<IJSONAPI, "data"> & { data?: T };
 
+export type MockMatcher = (
+  params: Record<string, string | string[]>,
+) => boolean;
+
+export interface MockConfig<T = unknown> {
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  path: string;
+  params?: Record<string, string | string[]>;
+  matcher?: MockMatcher;
+  response:
+    | IJSONAPIType<T>
+    | (() => IJSONAPIType<T> | Promise<IJSONAPIType<T>>);
+  once?: boolean;
+}
+
 class ServerServiceClass {
+  private mockOnly = false;
   private static instance: ServerServiceClass;
   private notificationService = false;
-  private constructor() {}
+  private mocks: MockConfig[] = [];
 
   public static getInstance(): ServerServiceClass {
     if (!ServerServiceClass.instance) {
@@ -45,32 +62,173 @@ class ServerServiceClass {
     return ServerServiceClass.instance;
   }
 
+  private constructor() {
+    if (getPublicEnvVar("PUBLIC_GLOBAL_NOTIFICATION_SERVICE_ON") === "true") {
+      this.notificationService = true;
+    }
+
+    if (getPublicEnvVar("PUBLIC_API_URL") == "mock") {
+      this.mockOnly = true;
+    }
+  }
+
   host = getPublicEnvVar("PUBLIC_API_URL");
   sessionKey = getPublicEnvVar("PUBLIC_SESSION_KEY");
   decryptKey = getPublicEnvVar("PUBLIC_DECRYPT_KEY");
+
   namespace =
     getPublicEnvVar("PUBLIC_NAMESPACE") !== "" &&
     getPublicEnvVar("PUBLIC_NAMESPACE") !== "_"
       ? `${getPublicEnvVar("PUBLIC_NAMESPACE")}/`
       : "";
 
-  // Legacy with token
-  async headers(payload: object): Promise<{ [key: string]: string }> {
-    const key: { [key: string]: string } = {};
+  /**
+   * Add a mock for testing purposes
+   * @param config Mock configuration
+   * @example
+   * // Simple mock without params
+   * ServerService.addMock({
+   *   method: 'POST',
+   *   path: '/api/users/save',
+   *   response: { success: true, data: { id: '123' } }
+   * });
+   *
+   * // Mock with exact param matching
+   * ServerService.addMock({
+   *   method: 'GET',
+   *   path: '/api/users/list',
+   *   params: { status: 'active' },
+   *   response: { success: true, data: [...] }
+   * });
+   *
+   * // Mock with custom matcher function
+   * ServerService.addMock({
+   *   method: 'GET',
+   *   path: '/api/users',
+   *   matcher: (params) => params.limit === '10',
+   *   response: { success: true, data: [...] }
+   * });
+   *
+   * // One-time mock
+   * ServerService.addMock({
+   *   method: 'POST',
+   *   path: '/api/users/save',
+   *   response: { success: true, data: { id: '123' } },
+   *   once: true
+   * });
+   */
+  addMock<T>(config: MockConfig<T>): void {
+    this.mocks.push(config);
+  }
 
-    if (typeof window !== "undefined") {
-      key[this.sessionKey] = SessionService.sessionToken;
-      const token = await SessionService.tokenFetch?.();
-      if (token) {
-        key["Authorization"] = `Bearer ${token}`;
-      }
-      key["X-Source-Origin"] = window.location.href;
+  /**
+   * Remove a specific mock
+   */
+  removeMock(
+    method: "GET" | "POST" | "PUT" | "DELETE",
+    path: string,
+    params?: Record<string, string | string[]>,
+  ): void {
+    this.mocks = this.mocks.filter(
+      (mock) =>
+        !(
+          mock.method === method &&
+          trimTrailingSlash(mock.path) === trimTrailingSlash(path) &&
+          (!params || JSON.stringify(mock.params) === JSON.stringify(params))
+        ),
+    );
+  }
+
+  /**
+   * Clear all mocks
+   */
+  clearMocks(): void {
+    this.mocks = [];
+  }
+
+  /**
+   * Find a matching mock for the given request
+   */
+  private findMock(
+    method: string,
+    endpoint: string,
+    params: Record<string, string | string[]>,
+  ): MockConfig | undefined {
+    // Try to find mock with matcher first (most specific)
+    const matcherMock = this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        (mock.matcher ? mock.matcher(params) : true),
+    );
+
+    if (matcherMock) return matcherMock;
+
+    // Try to find mock with exact params match
+    const paramsMock = this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        mock.params &&
+        JSON.stringify(mock.params) === JSON.stringify(params),
+    );
+    if (paramsMock) return paramsMock;
+
+    // Fall back to mock without params (matches any)
+    const fallbackMock = this.mocks.find(
+      (mock) =>
+        mock.method === method &&
+        mock.path === endpoint &&
+        !mock.params &&
+        !mock.matcher,
+    );
+
+    if (fallbackMock) {
+      return fallbackMock;
     }
 
-    key["v"] = await hashPayload(payload);
-    key["Content-Type"] = "application/json";
+    if (this.mockOnly) {
+      console.log(
+        `addMock<unknown>("${endpoint}","${method}", {/* response data */});`,
+      );
+    }
 
-    return key;
+    return undefined;
+  }
+
+  /**
+   * Execute a mock and return its response
+   */
+  private async executeMock(mock: MockConfig): Promise<IJSONAPI> {
+    // Remove mock if it's a one-time mock
+    if (mock.once) {
+      this.mocks = this.mocks.filter((m) => m !== mock);
+    }
+
+    // Handle function response
+    if (typeof mock.response === "function") {
+      return await mock.response();
+    }
+
+    return mock.response;
+  }
+
+  async headers(payload: object): Promise<{ [key: string]: string }> {
+    const headers: { [key: string]: string } = this.baseHeaders();
+    headers["v"] = await hashPayload(payload);
+
+    return headers;
+  }
+
+  baseHeaders(): { [key: string]: string } {
+    const headers: { [key: string]: string } = {};
+
+    if (typeof window !== "undefined") {
+      headers[this.sessionKey] = SessionService.sessionToken;
+      headers["X-Source-Origin"] = window.location.href;
+    }
+    headers["Content-Type"] = "application/json";
+    return headers;
   }
 
   async bulkUpdate(
@@ -112,7 +270,7 @@ class ServerServiceClass {
   async callPut<Path extends string>(
     route: string,
     path: NoLeadingSlash<Path>,
-    body: Record<string, any>,
+    body: Record<string, unknown>,
     rawParameters: Record<string, string | string[]> = {},
     options?: Options,
   ) {
@@ -160,6 +318,12 @@ class ServerServiceClass {
     rawParameters: Record<string, string | string[]> = {},
     options?: Options,
   ): Promise<IJSONAPI> {
+    // Check for mocks
+    const mock = this.findMock(method, endpoint, rawParameters);
+    if (mock) {
+      return this.executeMock(mock);
+    }
+
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
 
@@ -174,14 +338,15 @@ class ServerServiceClass {
     try {
       const resp = await fetchWithRetry(url, requestOptions);
       if (resp.ok) {
-        const response = await resp.json();
+        const response = (await resp.json()) as IJSONAPI;
+        response.statusCode = resp.status;
         return decryptResponse(response, this.decryptKey);
       } else {
         return this.handleErrorResponse(resp, options);
       }
     } catch (e) {
       console.log(e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), statusCode: 500 };
     }
   }
 
@@ -209,14 +374,15 @@ class ServerServiceClass {
     try {
       const resp = await fetchWithRetry(url, requestOptions);
       if (resp.ok) {
-        const response = await resp.json();
+        const response = (await resp.json()) as IJSONAPI;
+        response.statusCode = resp.status;
         return decryptResponse(response, this.decryptKey);
       } else {
         return this.handleErrorResponse(resp, options);
       }
     } catch (e) {
       console.log(e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), statusCode: 500 };
     }
   }
 
@@ -226,6 +392,12 @@ class ServerServiceClass {
     method = "GET",
     options?: Options,
   ): Promise<IJSONAPI> {
+    // Check for mocks
+    const mock = this.findMock(method, endpoint, rawParameters);
+    if (mock) {
+      return this.executeMock(mock);
+    }
+
     const params = getUrlString(rawParameters);
     const url = `${this.host}${endpoint}?${params.toString()}`;
 
@@ -239,14 +411,15 @@ class ServerServiceClass {
     try {
       const resp = await fetchWithRetry(url, requestOptions);
       if (resp.ok) {
-        const response = await resp.json();
+        const response = (await resp.json()) as IJSONAPI;
+        response.statusCode = resp.status;
         return decryptResponse(response, this.decryptKey);
       } else {
         return this.handleErrorResponse(resp, options);
       }
     } catch (e) {
       console.error(e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), statusCode: 500 };
     }
   }
 
@@ -295,13 +468,13 @@ class ServerServiceClass {
         link.download = filename || "download_no-file";
         link.click();
         URL.revokeObjectURL(link.href);
-        return { success: true, error: "" };
+        return { success: true, error: "", statusCode: resp.status };
       } else {
         return this.handleErrorResponse(resp, options);
       }
     } catch (e) {
       console.log(e);
-      return { success: false, error: String(e) };
+      return { success: false, error: String(e), statusCode: 500 };
     }
   }
 
@@ -415,7 +588,7 @@ class ServerServiceClass {
       if (notificationService) {
         NotificationService.addError("Unauthorized");
       }
-      return { success: false, error: "Unauthorized" };
+      return { success: false, error: "Unauthorized", statusCode: resp.status };
     }
     if (resp.status == 404 || resp.status == 400) {
       let respData: IJSONAPI;
@@ -425,7 +598,11 @@ class ServerServiceClass {
           : { success: false, error: "Internal Error" };
       } catch (e) {
         console.error(e);
-        respData = { success: false, error: "Internal Error" };
+        respData = {
+          success: false,
+          error: "Internal Error",
+          statusCode: resp.status,
+        };
       }
 
       if (notificationService) {
@@ -436,7 +613,11 @@ class ServerServiceClass {
     }
 
     if (resp.status >= 500) {
-      return { success: false, error: "Internal Error" };
+      return {
+        success: false,
+        error: "Internal Error",
+        statusCode: resp.status,
+      };
     }
 
     const respData: IJSONAPI = await resp.json();
@@ -476,3 +657,7 @@ async function fetchWithRetry(
   }
   throw new Error("Unreachable");
 }
+
+const trimTrailingSlash = (str: string) => {
+  return str.replace(/\/+$/, "");
+};

@@ -1,4 +1,4 @@
-import { ValidationRule } from "@/utils/validations";
+import { ValidationRule } from "@/common_lib/utils/validations";
 import { ReactNode } from "react";
 import { WrapVariantKeys } from "./FormFieldWrap";
 

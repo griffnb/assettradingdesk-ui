@@ -1,5 +1,9 @@
+import { getPublicEnvVar } from "@/common_lib/utils/env";
+import { ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { Button } from "@/ui/common/components/buttons/Button";
+import { DetailFieldCheckbox } from "@/ui/common/components/form/details/DetailFieldCheckbox";
+import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
 import { SimpleModal } from "@/ui/common/components/modal/SimpleModal";
 import {
   Disclosure,
@@ -13,10 +17,15 @@ import { Fragment } from "react";
 export const ViewRecordModalId = "ViewRecordModal";
 
 interface ViewRecordModalProps {
-  record: StoreModel;
+  record: StoreModel | object;
 }
 export const ViewRecordModal = observer((props: ViewRecordModalProps) => {
-  const attributes = props.record.getAttributes();
+  const attributes =
+    typeof (props.record as any).getAttributes === "function"
+      ? (props.record as any).getAttributes()
+      : props.record;
+
+  const editable = getPublicEnvVar("PUBLIC_ENVIRONMENT") !== "production";
 
   return (
     <SimpleModal id={ViewRecordModalId} className="overflow-hidden">
@@ -31,13 +40,13 @@ export const ViewRecordModal = observer((props: ViewRecordModalProps) => {
                   case "object":
                     if (
                       dayjs.isDayjs(
-                        attributes[field as keyof typeof attributes]
+                        attributes[field as keyof typeof attributes],
                       )
                     ) {
                       return (
                         <span>
                           {dayjs(
-                            attributes[field as keyof typeof attributes]
+                            attributes[field as keyof typeof attributes],
                           ).format("YYYY-MM-DD HH:mm:ss")}
                         </span>
                       );
@@ -57,30 +66,60 @@ export const ViewRecordModal = observer((props: ViewRecordModalProps) => {
                             {JSON.stringify(
                               attributes[field as keyof typeof attributes],
                               null,
-                              2
+                              2,
                             )}
                           </div>
                         </DisclosurePanel>
                       </Disclosure>
                     );
                   case "string":
-                    return (
+                    return editable &&
+                      Object.prototype.hasOwnProperty.call(
+                        props.record,
+                        "_model_name",
+                      ) ? (
+                      <DetailFieldText
+                        record={props.record as StoreModel & ValidationType}
+                        field={field as keyof typeof props.record}
+                        type="text"
+                        label=""
+                      />
+                    ) : (
                       <span>
                         {attributes[field as keyof typeof attributes]}
                       </span>
                     );
                   case "number":
-                    return (
+                    return editable &&
+                      Object.prototype.hasOwnProperty.call(
+                        props.record,
+                        "_model_name",
+                      ) ? (
+                      <DetailFieldText
+                        record={props.record as StoreModel & ValidationType}
+                        field={field as keyof typeof props.record}
+                        type="number"
+                        label=""
+                      />
+                    ) : (
                       <span>
                         {attributes[field as keyof typeof attributes]}
                       </span>
                     );
                   case "boolean":
-                    return (
+                    return editable &&
+                      Object.prototype.hasOwnProperty.call(
+                        props.record,
+                        "_model_name",
+                      ) ? (
+                      <DetailFieldCheckbox
+                        record={props.record as StoreModel & ValidationType}
+                        field={field as keyof typeof props.record}
+                        label=""
+                      />
+                    ) : (
                       <span>
-                        {attributes[field as keyof typeof attributes]
-                          ? "true"
-                          : "false"}
+                        {attributes[field as keyof typeof attributes]}
                       </span>
                     );
 

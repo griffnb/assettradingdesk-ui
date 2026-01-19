@@ -1,4 +1,13 @@
+import { SafeBaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
+import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
+import { CompanyModel } from "@/models/models/company/model/CompanyModel";
+import { OrganizationProperties } from "@/models/models/organization/model/OrganizationBaseModel";
 import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
+import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
+import { FormFieldArray } from "@/ui/common/components/form/fields/FormFieldArray";
+import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
+import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { isObjectValid } from "@/utils/validations";
@@ -61,13 +70,86 @@ export const OrganizationForm = observer(function OrganizationForm(
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
+      <DetailFieldContainer>
+        <FormFieldText
+          record={props.record}
+          field="name"
+          type="text"
+          label="Name"
+          placeholder="Name"
+        />
+        <FormFieldSelect
+          record={props.record}
+          field="organization_type"
+          label="Organization Type"
+          options={constants.organization.organization_type}
+        />
+        <FormFieldText
+          record={props.record}
+          field="subdomain"
+          type="text"
+          label="Subdomain"
+          placeholder="Subdomain"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldModelSearchSelect<OrganizationModel, BillingPlanModel>
+          record={props.record}
+          field="billing_plan_id"
+          label="Billing Plan"
+          placeholder="Billing Plan"
+          modelName="billing_plan"
+          modelSearchParam="q"
+          modelDisplayField="label"
+          modelSearchFilters={{ disabled: "0" }}
+        />
+        <FormFieldText
+          record={props.record.properties as SafeBaseModel<OrganizationProperties>}
+          field="billing_email"
+          type="email"
+          label="Billing Email"
+          placeholder="Billing Email"
+        />
+        <FormFieldText
+          record={props.record}
+          field="stripe_id"
+          type="text"
+          label="Stripe ID"
+          placeholder="Stripe ID"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldText
+          record={props.record}
+          field="external_id"
+          type="text"
+          label="External ID"
+          placeholder="External ID"
+        />
+        <FormFieldModelSearchSelect<OrganizationModel, CompanyModel>
+          record={props.record}
+          field="end_user_company_id"
+          label="End User Company"
+          placeholder="End User Company"
+          modelName="company"
+          modelSearchParam="q"
+          modelDisplayField="label"
+          modelSearchFilters={{ disabled: "0" }}
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldArray
+          record={props.record}
+          field="email_domains"
+          label="Email Domains"
+          placeholder="Add Email Domain"
+          valueType="text"
+          valuePlaceholder="Email Domain"
+        />
+      </DetailFieldContainer>
     </FormWrap>
   );
 });

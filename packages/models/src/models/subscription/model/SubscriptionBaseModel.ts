@@ -4,7 +4,7 @@ import { BillingInfo } from "./BillingInfo";
 import { MetaData } from "./MetaData";
 
 export class SubscriptionBaseModel extends BaseModel {
-    @attr("uuid", { nullable: true }) organization_id: string | null = null;
+  @attr("uuid", { nullable: true }) organization_id: string | null = null;
   @attr("uuid", { nullable: true }) billing_plan_id: string | null = null;
   @attr("number") level: number = 0;
   @attr("number") billing_provider: number = 0;
@@ -19,4 +19,7 @@ export class SubscriptionBaseModel extends BaseModel {
   @attr("json", { classType: BillingInfo }) billing_info: BillingInfo =
     new BillingInfo();
   @attr("json", { classType: MetaData }) meta_data: MetaData = new MetaData();
+
+  @attr("string", { readOnly: true }) organization_name: string | null = null;
+  @attr("string", { readOnly: true }) billing_plan_name: string | null = null;
 }

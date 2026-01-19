@@ -1,7 +1,7 @@
 import { TableState } from "@/models/store/state/TableState";
 import { Status } from "@/models/types/constants";
-import { cn } from "@/utils/cn";
-import { equals, inArray } from "@/utils/numbers";
+import { cn } from "@/common_lib/utils/cn";
+import { equals, inArray } from "@/common_lib/utils/numbers";
 import {
     Popover,
     PopoverButton,

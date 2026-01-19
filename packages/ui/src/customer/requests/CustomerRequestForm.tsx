@@ -1,6 +1,7 @@
 import { SafeBaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { RequestMetaData } from "@/models/models/request/model/RequestBaseModel";
@@ -97,6 +98,42 @@ export const CustomerRequestForm = observer(function CustomerRequestForm(
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
+      {showModelSelection && (
+        <DetailFieldContainer>
+          <FormFieldModelSearchSelect<RequestModel, ModelModel>
+            record={props.record}
+            field="model_id"
+            label="Specific Model"
+            placeholder="Search models"
+            modelName="model"
+            modelDisplayField="label"
+            modelSearchParam="q"
+            modelSearchFilters={modelSearchFilters}
+            showClear={true}
+            as="combobox"
+            onValueUpdate={(record, value) => {
+              runInAction(() => {
+                if (value) {
+                  record.manufacturer_id = value.manufacturer_id;
+                  record.category_id = value.category_id;
+                }
+              });
+            }}
+          />
+        </DetailFieldContainer>
+      )}
+      {noOptions && (
+        <div className="relative flex items-center justify-center self-stretch py-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t" />
+          </div>
+          <div className="relative bg-background px-4">
+            <span className="text-sm font-medium text-muted-foreground">
+              OR
+            </span>
+          </div>
+        </div>
+      )}
       {showMakeCategorySelection && (
         <DetailFieldContainer>
           <FormFieldModelSelect<RequestModel, CategoryModel>
@@ -131,45 +168,21 @@ export const CustomerRequestForm = observer(function CustomerRequestForm(
           />
         </DetailFieldContainer>
       )}
-      {noOptions && (
-        <div className="relative flex items-center justify-center self-stretch py-4">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t" />
-          </div>
-          <div className="relative bg-background px-4">
-            <span className="text-sm font-medium text-muted-foreground">
-              OR
-            </span>
-          </div>
-        </div>
-      )}
-      {showModelSelection && (
-        <DetailFieldContainer>
-          <FormFieldModelSearchSelect<RequestModel, ModelModel>
-            record={props.record}
-            field="model_id"
-            label="Specific Model"
-            placeholder="Search models"
-            modelName="model"
-            modelDisplayField="label"
-            modelSearchParam="q"
-            modelSearchFilters={modelSearchFilters}
-            showClear={true}
-            as="combobox"
-            onValueUpdate={(record, value) => {
-              runInAction(() => {
-                if (value) {
-                  record.manufacturer_id = value.manufacturer_id;
-                  record.category_id = value.category_id;
-                }
-              });
-            }}
-          />
-        </DetailFieldContainer>
-      )}
 
       {!noOptions && (
         <>
+          <FormFieldModelSelect<RequestModel, FacilityModel>
+            record={props.record}
+            field="facility_id"
+            modelName="facility"
+            modelDisplayField="name"
+            modelSearchField="name"
+            modelSearchFilters={{ disabled: "0" }}
+            label="Facility"
+            placeholder="Select Facility"
+            defaultIfSingleOption={true}
+          />
+
           <FormFieldSlider<RequestModel>
             label="Purchase Time Frame"
             record={props.record}

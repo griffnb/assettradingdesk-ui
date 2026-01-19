@@ -3,20 +3,20 @@ import { IConstant } from "@/models/types/constants";
 export const role: IConstant[] = [
   {
     id: 1,
-    label: "Family Member",
+    label: "User",
   },
   {
-    id: 5,
-    label: "Family Admin",
+    id: 40,
+    label: "Org Admin",
   },
   {
-    id: 10,
-    label: "Family Owner",
+    id: 50,
+    label: "Org Owner",
   },
 ];
 
 export enum AccountRole {
-  FamilyMember = 1,
-  FamilyAdmin = 5,
-  FamilyOwner = 10,
+  User = 1,
+  OrgAdmin = 40,
+  OrgOwner = 50,
 }

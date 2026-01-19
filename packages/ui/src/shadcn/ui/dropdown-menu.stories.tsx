@@ -1,6 +1,8 @@
+import { Button } from "@/ui/shadcn/ui/button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -13,12 +15,10 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-  DropdownMenuCheckboxItem,
 } from "./dropdown-menu";
-import { Button } from "@/ui/shadcn/ui/button";
 
 const meta: Meta<typeof DropdownMenu> = {
-  title: "Common/Components/UI/DropdownMenu",
+  title: "UI/Shadcn/DropdownMenu",
   component: DropdownMenu,
 };
 

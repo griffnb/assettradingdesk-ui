@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { AlertTriangleIcon, InfoIcon, XCircleIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "./alert";
-import { InfoIcon, AlertTriangleIcon, XCircleIcon } from "lucide-react";
 
 const meta: Meta<typeof Alert> = {
-  title: "UI/Alert",
+  title: "UI/Shadcn/Alert",
   component: Alert,
   argTypes: {
     variant: {

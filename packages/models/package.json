@@ -1,7 +1,8 @@
 {
   "name": "models",
   "scripts": {
-    "tsc": "tsc --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint .",
     "watch": "tsc --watch --noEmit --project './tsconfig.json'"
   },
   "dependencies": {

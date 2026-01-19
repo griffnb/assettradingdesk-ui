@@ -1,7 +1,7 @@
 import { TableState } from "@/models/store/state/TableState";
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
-import { cn } from "@/utils/cn";
-import { formatNumber } from "@/utils/numbers";
+import { cn } from "@/common_lib/utils/cn";
+import { formatNumber } from "@/common_lib/utils/numbers";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { Button } from "../buttons/Button";
@@ -36,7 +36,6 @@ export const TablePagination = observer(
   <T extends object>(fullProps: TablePaginationProps<T>) => {
     const { className, variant, tableState, ...props } = fullProps;
     const { ref } = useMeasureVariable("table-footer", "height");
-
     return (
       <div
         data-slot="table-pagination"

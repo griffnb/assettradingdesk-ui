@@ -3,7 +3,7 @@ import {
   TextInput,
   TextInputProps,
 } from "@/ui/common/components/fields/TextInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

@@ -1,7 +1,10 @@
-import { createBuyerMessage } from "./_buyer_message";
-import { createSellerMessage } from "./_seller_message";
+import { createNewThread, createReply } from "./_messages";
+import { getThread, getThreadByAsset, getThreads } from "./_threads";
 
 export const MessageService = {
-  createBuyerMessage,
-  createSellerMessage,
+  createReply,
+  createNewThread,
+  getThreads,
+  getThread,
+  getThreadByAsset,
 };
