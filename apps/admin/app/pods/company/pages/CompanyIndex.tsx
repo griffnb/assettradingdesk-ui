@@ -34,6 +34,7 @@ export const CompanyIndex = observer(function CompanyIndex() {
     <>
       <AdminTitleBar title="Companies" />
       <StandardTableWrap<CompanyModel>
+        variant={"admin"}
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {
           LayerService.add(CompanyFormModalId, CompanyFormModal, {

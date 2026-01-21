@@ -1,12 +1,12 @@
-import { TableState } from "@/models/store/state/TableState";
-import { Status } from "@/models/types/constants";
 import { cn } from "@/common_lib/utils/cn";
 import { equals, inArray } from "@/common_lib/utils/numbers";
+import { TableState } from "@/models/store/state/TableState";
+import { Status } from "@/models/types/constants";
 import {
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    Transition,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  Transition,
 } from "@headlessui/react";
 import { cva } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
@@ -17,7 +17,7 @@ import { CheckboxInput } from "../fields/CheckboxInput";
 interface TableStatusFiltersProps<T extends object> {
   statuses?: Status[];
   tableState: TableState<T>;
-  variant?: "default" | "compact" | "custom" | null;
+  variant?: "default" | "compact" | "custom" | "admin" | null;
 }
 
 const popoverPanelVariants = cva(
@@ -27,6 +27,7 @@ const popoverPanelVariants = cva(
       variant: {
         default: "",
         compact: "-translate-x-1/2",
+        admin: "",
         custom: "",
       },
     },

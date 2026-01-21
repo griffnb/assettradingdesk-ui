@@ -25,18 +25,18 @@ export const DesktopSidebar = observer(function DesktopSidebar(
   return (
     <div
       className={cn(
-        "fixed inset-y-0 left-0 z-30 hidden w-64 border-r bg-background transition-transform duration-300 ease-in-out md:block",
+        "fixed inset-y-0 left-0 z-30 hidden w-64 bg-gradient-to-b from-gray-800 to-gray-700 text-white transition-transform duration-300 ease-in-out md:block",
         sidebarOpen ? "translate-x-0" : "-translate-x-full",
       )}
     >
-      <div className="flex h-full flex-col">
+      <div className="flex h-full min-h-0 flex-col">
         <div className="p-4">
           <div className="flex items-center gap-3">
-            <img src="/img/logo.png" />
+            <img src="/img/logo_dark_mode.png" />
           </div>
         </div>
 
-        <ScrollArea className="flex-1 px-3 py-2">
+        <ScrollArea className="min-h-0 flex-1 px-3 py-2">
           <div className="space-y-1">
             {sidebarItems.map((item) => (
               <div key={item.title} className="mb-1">
@@ -44,8 +44,8 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                   className={cn(
                     "flex w-full cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium",
                     item.url && location.pathname == item.url
-                      ? "bg-bg-brand-primary/10 text-text-brand-primary"
-                      : "hover:bg-gray-200",
+                      ? "bg-white text-text-brand-primary hover:bg-white/80"
+                      : "hover:bg-gray-700",
                   )}
                   onClick={() => {
                     if (item.url) {
@@ -83,10 +83,10 @@ export const DesktopSidebar = observer(function DesktopSidebar(
                       <span
                         key={subItem.title}
                         className={cn(
-                          "flex cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-200",
-                          item.url && location.pathname == item.url
-                            ? "bg-bg-brand-primary/10 text-text-brand-primary"
-                            : "hover:bg-gray-200",
+                          "flex cursor-pointer items-center justify-between rounded-2xl px-3 py-2 text-sm hover:bg-gray-700",
+                          subItem.url && location.pathname == subItem.url
+                            ? "bg-white text-text-brand-primary hover:bg-white/80"
+                            : "hover:bg-gray-700",
                         )}
                         onClick={() => {
                           if (subItem.url) {
@@ -112,9 +112,9 @@ export const DesktopSidebar = observer(function DesktopSidebar(
           </div>
         </ScrollArea>
 
-        <div className="border-t p-3">
+        <div className="h-16 border-t p-3">
           <div className="space-y-1">
-            <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
+            <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-800/80">
               <div className="flex items-center gap-3">{admin?.name}</div>
             </button>
           </div>

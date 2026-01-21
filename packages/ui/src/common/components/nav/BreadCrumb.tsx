@@ -1,8 +1,8 @@
+import { titleCase } from "@/common_lib/utils/strings";
 import { Store } from "@/models/store/Store";
 import { StoreModel } from "@/models/store/StoreModel";
 import { StoreKeys } from "@/models/types/store_keys";
-import { titleCase } from "@/common_lib/utils/strings";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { observer } from "mobx-react-lite";
 
 import { useEffect, useState } from "react";
@@ -66,7 +66,7 @@ export const BreadCrumb = observer(
                 setTitle(
                   (resp.data as unknown as T)[
                     props.parentTitleField as keyof T
-                  ] as string
+                  ] as string,
                 );
               }
               recursive(resp.data, newBreadCrumbs);
@@ -87,7 +87,7 @@ export const BreadCrumb = observer(
 
     const recursive = async (
       model: StoreModel,
-      newBreadCrumbs: Breadcrumb[]
+      newBreadCrumbs: Breadcrumb[],
     ) => {
       if (!isHasParent(model)) {
         return;
@@ -119,7 +119,7 @@ export const BreadCrumb = observer(
       <nav className="flex py-2" aria-label="Breadcrumb">
         <ol
           role="list"
-          className="flex w-full max-w-screen-xl space-x-4 px-4 text-text-neutral-quaternary sm:px-6 lg:px-8"
+          className="flex w-full max-w-screen-xl space-x-4 px-4 text-white sm:px-6 lg:px-8"
         >
           <li className="flex">
             <div className="flex items-center">
@@ -130,14 +130,14 @@ export const BreadCrumb = observer(
             </div>
           </li>
           {breadCrumbs.map((breadCrumb, index) => (
-            <li className="flex last:text-black hover:opacity-80" key={index}>
+            <li className="flex last:text-white hover:opacity-80" key={index}>
               <div className="flex items-center">
                 <i className="fa fa-chevron-right"></i>
                 <a
                   href={breadCrumb.url}
                   className={clsx(
                     `ml-4 truncate whitespace-nowrap text-sm font-semibold`,
-                    { "max-w-20": breadCrumbs.length - 1 > index }
+                    { "max-w-20": breadCrumbs.length - 1 > index },
                   )}
                 >
                   {breadCrumb.title}
@@ -147,7 +147,7 @@ export const BreadCrumb = observer(
           ))}
           {title && (
             <li
-              className="flex cursor-pointer last:cursor-default last:text-black hover:opacity-80"
+              className="flex cursor-pointer last:cursor-default last:text-white hover:opacity-80"
               onClick={async () => {
                 if (!hash) return;
               }}
@@ -161,7 +161,7 @@ export const BreadCrumb = observer(
             </li>
           )}
           {hash && (
-            <li className="flex last:text-black">
+            <li className="flex last:text-white hover:opacity-80">
               <div className="flex items-center">
                 <i className="fa fa-chevron-right"></i>
                 <span className="ml-4 max-w-24 truncate whitespace-nowrap text-sm font-semibold">
@@ -173,5 +173,5 @@ export const BreadCrumb = observer(
         </ol>
       </nav>
     );
-  }
+  },
 );

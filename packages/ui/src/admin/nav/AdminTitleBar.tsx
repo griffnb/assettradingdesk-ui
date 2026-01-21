@@ -10,7 +10,7 @@ const styleVariants = cva("flex flex-row items-center relative gap-x-3", {
   variants: {
     variant: {
       default:
-        "pr-6 py-2 border-b border-border-neutral-primary bg-bg-neutral-tertiary text-text-neutral-primary",
+        "pr-6 py-2 bg-gradient-to-r from-gray-800 to-gray-700 text-white",
     },
   },
   defaultVariants: {
@@ -57,9 +57,7 @@ export const AdminTitleBar = (props: TitleBarProps) => {
         {!props.hideCrumbs ? (
           <BreadCrumb record={props.record} title={props.title} />
         ) : (
-          <span className="ml-3 font-semibold text-text-neutral-primary">
-            {props.title}
-          </span>
+          <span className="ml-3 font-semibold text-white">{props.title}</span>
         )}
 
         <div className="ml-auto">{props.children}</div>
