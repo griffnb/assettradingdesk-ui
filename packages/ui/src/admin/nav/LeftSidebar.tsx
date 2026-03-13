@@ -85,13 +85,13 @@ export function LeftSidebar(props: LeftSidebarProps) {
         </div>
       </TooltipProvider>
 
-      {/* Content Panel */}
-      {isOpen && currentTab && (
-        <div
-          data-slot="left-sidebar-panel"
-          className="flex flex-col h-full shrink-0"
-          style={{ width: panelWidth }}
-        >
+      {/* Content Panel - always rendered, animated via width */}
+      <div
+        data-slot="left-sidebar-panel"
+        className="flex flex-col h-full shrink-0 overflow-hidden transition-[width] duration-200 ease-in-out"
+        style={{ width: isOpen ? panelWidth : 0 }}
+      >
+        <div className="flex flex-col h-full" style={{ minWidth: panelWidth }}>
           {/* Panel Header */}
           <div
             data-slot="left-sidebar-header"
@@ -102,10 +102,10 @@ export function LeftSidebar(props: LeftSidebarProps) {
           >
             <div className="flex items-center">
               <span className="flex items-center justify-center size-9 text-white/60 [&_svg]:size-5">
-                {currentTab.icon}
+                {currentTab?.icon}
               </span>
               <span className="text-sm font-medium text-white">
-                {currentTab.label}
+                {currentTab?.label}
               </span>
             </div>
             <Button
@@ -126,10 +126,10 @@ export function LeftSidebar(props: LeftSidebarProps) {
               "bg-[hsl(var(--admin-sidebar-panel-bg))]",
             ])}
           >
-            {currentTab.content}
+            {currentTab?.content}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

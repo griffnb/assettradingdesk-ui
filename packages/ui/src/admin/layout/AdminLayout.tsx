@@ -105,8 +105,8 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
           setMobileMenuOpen={setMobileMenuOpen}
         />
 
-        {/* Sticky Top Nav */}
-        <div className="sticky top-0 z-[var(--z-nav-bar)] shrink-0">
+        {/* Top Nav */}
+        <div className="shrink-0">
           <AdminNavBar
             logo={<Logo />}
             trailing={

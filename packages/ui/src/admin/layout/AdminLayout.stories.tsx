@@ -38,8 +38,8 @@ function AdminLayoutPreview(props: {
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
-      {/* Sticky Top Nav */}
-      <div className="sticky top-0 z-[var(--z-nav-bar)] shrink-0">
+      {/* Top Nav */}
+      <div className="shrink-0">
         <AdminNavBar
           logo={<LogoPreview />}
           trailing={
