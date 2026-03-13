@@ -9,7 +9,16 @@ import {
 } from "@/ui/shadcn/ui/dropdown-menu";
 import { cn } from "@/ui/shadcn/utils";
 import { observer } from "mobx-react-lite";
-import { LogOutIcon, SettingsIcon, SquareCheckIcon, UserIcon, ZapIcon } from "lucide-react";
+import {
+  AlertCircleIcon,
+  CircleDollarSignIcon,
+  LogOutIcon,
+  SettingsIcon,
+  SkullIcon,
+  SquareCheckIcon,
+  UserIcon,
+  ZapIcon,
+} from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import BookmarkModalActivator from "../bookmark/BookmarkModalActivator";
@@ -18,6 +27,7 @@ import {
   AdminNavBar,
   AdminSubNav,
   LeftSidebar,
+  NavBadge,
   NavLink,
   NavSearch,
   NavUserMenu,
@@ -33,17 +43,6 @@ interface AdminLayoutProps {
   showLeftSidebar?: boolean;
   breadcrumbs?: { label: string; href?: string }[];
 }
-
-const Logo = () => (
-  <div className="flex items-center gap-1">
-    <img src="/img/logo_dark_mode.png" className="h-10" alt="Logo" />
-    <span className="text-lg text-[hsl(var(--admin-nav-logo-text))]">
-      <span className="font-semibold">A</span>
-      <span className="font-medium">T</span>
-      <span className="font-normal">D</span>
-    </span>
-  </div>
-);
 
 const leftSidebarTabs: LeftSidebarTab[] = [
   {
@@ -69,7 +68,7 @@ const leftSidebarTabs: LeftSidebarTab[] = [
 ];
 
 export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
-  const { showLeftSidebar = true, breadcrumbs } = props;
+  const { showLeftSidebar = true, breadcrumbs = [{ label: "Home" }] } = props;
   const { admin } = useAdmin({ checkOnly: true });
   const navigate = useNavigate();
   const location = useLocation();
@@ -108,7 +107,6 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
         {/* Top Nav */}
         <div className="shrink-0">
           <AdminNavBar
-            logo={<Logo />}
             trailing={
               <>
                 <NavSearch className="flex-1" placeholder="Search..." />
@@ -132,47 +130,83 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
               </>
             }
           >
-            {sidebarItems.map((item) => {
-              const isActive = item.url
-                ? location.pathname === item.url
-                : item.items?.some((sub) => location.pathname === sub.url);
-
-              if (item.items) {
-                return (
-                  <NavLink
-                    key={item.title}
-                    label={item.title}
-                    active={isActive}
-                    dropdownContent={
-                      <>
-                        {item.items.map((sub) => (
-                          <DropdownMenuItem
-                            key={sub.title}
-                            onClick={() => sub.url && navigate(sub.url)}
-                          >
-                            {sub.title}
-                          </DropdownMenuItem>
-                        ))}
-                      </>
-                    }
-                  />
-                );
-              }
-
-              return (
+            {/* Working links */}
+            {sidebarItems
+              .filter((item) => !item.items)
+              .map((item) => (
                 <NavLink
                   key={item.title}
                   label={item.title}
-                  active={isActive}
+                  active={item.url ? location.pathname === item.url : false}
                   onClick={() => item.url && navigate(item.url)}
                 />
-              );
-            })}
+              ))}
+            {/* Working dropdown links */}
+            {sidebarItems
+              .filter((item) => item.items)
+              .map((item) => (
+                <NavLink
+                  key={item.title}
+                  label={item.title}
+                  active={item.items?.some((sub) => location.pathname === sub.url)}
+                  dropdownContent={
+                    <>
+                      {item.items?.map((sub) => (
+                        <DropdownMenuItem
+                          key={sub.title}
+                          onClick={() => sub.url && navigate(sub.url)}
+                        >
+                          {sub.title}
+                        </DropdownMenuItem>
+                      ))}
+                    </>
+                  }
+                />
+              ))}
+            {/* Figma nav items (placeholder) */}
+            <NavLink label="BDR Feed" />
+            <NavLink label="Personal Feed" />
+            <NavLink
+              label="Tasks"
+              badges={
+                <>
+                  <NavBadge variant="danger" count={133} icon={SkullIcon} />
+                  <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
+                </>
+              }
+            />
+            <NavLink label="Campaigns" />
+            <NavLink
+              label="My Campaign Queue"
+              badges={<NavBadge variant="warning" count={0} icon={AlertCircleIcon} />}
+            />
+            <NavLink
+              label="Campaign Reply Queue"
+              badges={<NavBadge variant="success" count={0} icon={CircleDollarSignIcon} />}
+            />
+            <NavLink
+              label="Bionic Approval Queue"
+              badges={<NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />}
+            />
+            <NavLink
+              label="Bionic Reply Queue"
+              badges={<NavBadge variant="success" size="icon" icon={CircleDollarSignIcon} />}
+            />
           </AdminNavBar>
 
-          {breadcrumbs && breadcrumbs.length > 0 && (
-            <AdminBreadcrumbBar segments={breadcrumbs} />
-          )}
+          <AdminSubNav>
+            {/* Figma sub-nav items (placeholder) */}
+            <NavLink label="Dashboards" />
+            <NavLink label="Reports" />
+            <NavLink label="Trading" />
+            <NavLink label="Model Management" />
+            <NavLink label="Lead Search" />
+            <NavLink label="User Mgmt" />
+            <NavLink label="Paperwork" />
+            <NavLink label="Config" />
+          </AdminSubNav>
+
+          <AdminBreadcrumbBar segments={breadcrumbs} />
         </div>
 
         {/* Body: Left Sidebar + Main Content */}

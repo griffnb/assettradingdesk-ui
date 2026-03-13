@@ -62,30 +62,11 @@ const userMenuContent = (
   </>
 );
 
-const Logo = () => (
-  <div className="flex items-center gap-1">
-    <div className="size-12 rounded bg-white/10 flex items-center justify-center">
-      <svg viewBox="0 0 48 48" className="size-10 text-white">
-        <path
-          d="M24 4L4 44h40L24 4zm0 8l14 28H10l14-28z"
-          fill="currentColor"
-          opacity="0.8"
-        />
-      </svg>
-    </div>
-    <span className="text-lg text-[hsl(var(--admin-nav-logo-text))]">
-      <span className="font-semibold">A</span>
-      <span className="font-medium">T</span>
-      <span className="font-normal">D</span>
-    </span>
-  </div>
-);
-
 export const Default: Story = {
   args: {},
   render: () => (
     <AdminNavBar
-      logo={<Logo />}
+
       trailing={
         <>
           <NavSearch className="flex-1" items={searchItems} />
@@ -149,7 +130,7 @@ export const FullNavigation: Story = {
   render: () => (
     <div className="flex flex-col">
       <AdminNavBar
-        logo={<Logo />}
+  
         trailing={
           <>
             <NavSearch className="flex-1" items={searchItems} />
@@ -327,7 +308,7 @@ export const MinimalNav: Story = {
   args: {},
   render: () => (
     <AdminNavBar
-      logo={<Logo />}
+
       trailing={<NavUserMenu initials="AB">{userMenuContent}</NavUserMenu>}
     >
       <NavLink label="Dashboard" active />
