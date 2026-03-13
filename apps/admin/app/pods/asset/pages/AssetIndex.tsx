@@ -5,11 +5,11 @@ import {
 } from "@/common_lib/utils/query/builder";
 import { status } from "@/models/models/asset/_constants/status";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "../columns";
 import { AssetFormModal, AssetFormModalId } from "../components/AssetFormModal";
@@ -30,9 +30,15 @@ export const AssetIndex = observer(function AssetIndex() {
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     setSearchParams(params);
   };
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Assets" },
+    ]);
+  }, []);
+
   return (
     <>
-      <AdminTitleBar title="Assets" />
       <StandardTableWrap<AssetModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {

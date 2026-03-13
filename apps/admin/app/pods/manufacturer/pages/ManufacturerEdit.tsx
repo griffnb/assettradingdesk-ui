@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { ManufacturerForm } from "@/admin/pods/manufacturer/components/ManufacturerForm";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface ManufacturerEditProps {}
 
@@ -24,11 +24,21 @@ export const ManufacturerEdit = observer(function ManufacturerEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Manufacturers", href: "/manufacturers" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Manufacturer" objectURN={record.urn} />
       <ManufacturerForm record={record} />;
     </>
   );

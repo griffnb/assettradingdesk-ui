@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { CategoryForm  } from "@/admin/pods/category/components/CategoryForm";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
@@ -16,11 +16,17 @@ export const CategoryNew = observer(function CategoryNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Categories", href: "/categories" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Category" />
       <CategoryForm record={record} />;
     </>
   );

@@ -11,10 +11,10 @@ import {
 } from "@/models/models/account/_constants/status";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AccountService } from "@/models/models/account/services/AccountService";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { MenuOption } from "@/ui/common/components/menu/MenuOption";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "../columns";
 import { filters } from "../filters";
@@ -49,9 +49,16 @@ export const TestingAccounts = observer(function TestingAccounts() {
     applyFilters({ ...appliedFilters, reload: "true" });
   };
 
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Testing Accounts" },
+    ]);
+  }, []);
+
+
   return (
     <>
-      <AdminTitleBar title="Testing Accounts" />
       <StandardTableWrap<AccountModel>
         className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
         columns={columns}

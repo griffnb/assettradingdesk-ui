@@ -39,7 +39,6 @@ interface AdminLayoutProps {
   children: ReactNode;
   title?: string;
   showLeftSidebar?: boolean;
-  breadcrumbs?: { label: string; href?: string }[];
 }
 
 /** Resolve badge configs into NavBadge elements, injecting dynamic counts */
@@ -132,7 +131,7 @@ const leftSidebarTabs: LeftSidebarTab[] = [
 ];
 
 export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
-  const { showLeftSidebar = true, breadcrumbs = [{ label: "Home" }] } = props;
+  const { showLeftSidebar = true } = props;
   const { admin } = useAdmin({ checkOnly: true });
   const navigate = useNavigate();
   const location = useLocation();
@@ -213,7 +212,7 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
             )}
           </AdminSubNav>
 
-          <AdminBreadcrumbBar segments={breadcrumbs} />
+          <AdminBreadcrumbBar />
         </div>
 
         {/* Body: Left Sidebar + Main Content */}

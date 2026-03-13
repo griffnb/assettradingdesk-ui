@@ -1,7 +1,7 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { StandardContentWrap } from "@/ui/admin/layout/StandardContentWrap";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -29,11 +29,20 @@ export const AssetDetails = observer(function AssetDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Assets", href: "/assets" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Asset" />
       <StandardContentWrap>
         <AssetInfo asset={record} />
         <AssetOpportunities asset={record} />

@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { CompanyForm  } from "@/admin/pods/company/components/CompanyForm";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
@@ -16,11 +16,17 @@ export const CompanyNew = observer(function CompanyNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Companies", href: "/companies" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Company" />
       <CompanyForm record={record} />;
     </>
   );

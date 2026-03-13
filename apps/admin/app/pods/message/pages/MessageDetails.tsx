@@ -1,6 +1,6 @@
 import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -20,11 +20,20 @@ export const MessageDetails = observer(function MessageDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Messages", href: "/messages" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Message" />
       <MessageInfo message={record} />
     </>
   );

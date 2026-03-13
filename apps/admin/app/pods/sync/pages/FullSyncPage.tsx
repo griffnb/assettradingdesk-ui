@@ -2,7 +2,7 @@ import { ServerService } from "@/common_lib/services/ServerService";
 import { getPublicEnvVar } from "@/common_lib/utils/env";
 import { formatPercent } from "@/common_lib/utils/numbers";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { MultiSelectInput } from "@/ui/common/components/fields/MultiSelectInput";
 import { FormFieldWrap } from "@/ui/common/components/form/fields/FormFieldWrap";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -34,6 +34,13 @@ export const FullSyncPage = observer(() => {
   const [currentModelNumber, setCurrentModelNumber] = useState<number>(0);
 
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Full System Sync" },
+    ]);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -125,7 +132,6 @@ export const FullSyncPage = observer(() => {
 
   return (
     <>
-      <AdminTitleBar title="Full System Sync" />
       <div className="p-5">
         <div className="flex flex-col">
           <div className="mb-4 flex flex-row items-center gap-2 rounded-xl border bg-white p-4">

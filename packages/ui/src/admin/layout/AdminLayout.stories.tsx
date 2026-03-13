@@ -2,6 +2,7 @@ import { addMock } from "@/models/mocks/helpers";
 import { AdminModel } from "@/models/models/admin/model/AdminModel";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MemoryRouter } from "react-router";
+import { BreadcrumbService } from "../nav/BreadcrumbService";
 import { AdminLayout } from "./AdminLayout";
 
 addMock<AdminModel>("/admin/admin/me", "GET", {
@@ -76,11 +77,13 @@ export const Default: Story = {
 export const WithBreadcrumbs: Story = {
   args: {
     children: <SampleContent />,
-    breadcrumbs: [
+  },
+  play: () => {
+    BreadcrumbService.setSegments([
       { label: "Home", href: "/" },
       { label: "Pipelines", href: "/pipelines" },
       { label: "Acme Corp Deal" },
-    ],
+    ]);
   },
 };
 

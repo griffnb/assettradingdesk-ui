@@ -1,6 +1,6 @@
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -20,11 +20,20 @@ export const ManufacturerDetails = observer(function ManufacturerDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Manufacturers", href: "/manufacturers" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Manufacturer" />
       <ManufacturerInfo manufacturer={record} />
     </>
   );

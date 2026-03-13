@@ -1,7 +1,8 @@
 export { AdminNavBar } from "./AdminNavBar";
 export { AdminSubNav } from "./AdminSubNav";
 export { AdminBreadcrumbBar } from "./AdminBreadcrumbBar";
-export type { BreadcrumbSegment } from "./AdminBreadcrumbBar";
+export { BreadcrumbService } from "./BreadcrumbService";
+export type { BreadcrumbSegment } from "./BreadcrumbService";
 export { NavLink } from "./NavLink";
 export { NavBadge, navBadgeVariants } from "./NavBadge";
 export { NavSearch } from "./NavSearch";

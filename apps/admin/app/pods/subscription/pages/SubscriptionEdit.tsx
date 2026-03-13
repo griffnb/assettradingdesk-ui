@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { SubscriptionForm } from "@/admin/pods/subscription/components/SubscriptionForm";
 import { SubscriptionModel } from "@/models/models/subscription/model/SubscriptionModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface SubscriptionEditProps {}
 
@@ -24,11 +24,21 @@ export const SubscriptionEdit = observer(function SubscriptionEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Subscriptions", href: "/subscriptions" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Subscription" objectURN={record.urn} />
       <SubscriptionForm record={record} />
     </>
   );

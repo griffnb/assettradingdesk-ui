@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { MessageForm } from "@/admin/pods/message/components/MessageForm";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface MessageEditProps {}
 
@@ -24,11 +24,21 @@ export const MessageEdit = observer(function MessageEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Messages", href: "/messages" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Message" objectURN={record.urn} />
       <MessageForm record={record} />
     </>
   );

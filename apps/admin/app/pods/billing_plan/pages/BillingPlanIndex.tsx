@@ -5,11 +5,11 @@ import {
 } from "@/common_lib/utils/query/builder";
 import { status } from "@/models/models/billing_plan/_constants/status";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "../columns";
 import {
@@ -34,9 +34,15 @@ export const BillingPlanIndex = observer(function BillingPlanIndex() {
     delete params.reload;
     setSearchParams(params);
   };
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Billing Plans" },
+    ]);
+  }, []);
+
   return (
     <>
-      <AdminTitleBar title="BillingPlans" />
       <StandardTableWrap<BillingPlanModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100dvh-var(--warning-bar,0px)-var(--table-footer,0px)-var(--table-nav,0px)-var(--admin-title-bar,0px)-var(--admin-header,0px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={(tableState) => {

@@ -289,10 +289,6 @@ export const FullNavigation: Story = {
       </AdminSubNav>
 
       <AdminBreadcrumbBar
-        segments={[
-          { label: "Home", href: "/" },
-          { label: "Feed" },
-        ]}
         actions={
           <NavBadge variant="neutral" size="default">
             <FlameIcon className="size-4" />

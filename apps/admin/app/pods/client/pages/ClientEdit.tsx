@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { ClientForm } from "@/admin/pods/client/components/ClientForm";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface ClientEditProps {}
 
@@ -24,11 +24,21 @@ export const ClientEdit = observer(function ClientEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Clients", href: "/clients" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Client" objectURN={record.urn} />
       <ClientForm record={record} />;
     </>
   );

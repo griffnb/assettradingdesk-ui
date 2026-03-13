@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { CategoryForm } from "@/admin/pods/category/components/CategoryForm";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface CategoryEditProps {}
 
@@ -24,11 +24,21 @@ export const CategoryEdit = observer(function CategoryEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Categories", href: "/categories" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Category" objectURN={record.urn} />
       <CategoryForm record={record} />;
     </>
   );

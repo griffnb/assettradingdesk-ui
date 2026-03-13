@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { ManufacturerForm  } from "@/admin/pods/manufacturer/components/ManufacturerForm";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
@@ -16,11 +16,17 @@ export const ManufacturerNew = observer(function ManufacturerNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Manufacturers", href: "/manufacturers" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Manufacturer" />
       <ManufacturerForm record={record} />;
     </>
   );
