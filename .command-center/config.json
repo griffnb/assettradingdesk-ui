@@ -1,1 +1,5 @@
-{}
+{
+  "worktree_folder": "/Users/griffnb/projects/asset-trading-desk/ui-worktree",
+  "workspace_folders": [],
+  "docker_sandbox_image": "cc-sandbox:latest"
+}
