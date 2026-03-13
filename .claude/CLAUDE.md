@@ -1,7 +1,5 @@
 ## ⚠️ CRITICAL: ALWAYS FOLLOW DOCUMENTATION AND PRD
 
-**MANDATORY REQUIREMENT**: Before making ANY changes to this codebase, you MUST:
-
 Specific component instructions are in `./.github/prompts/*`
 `./.github/prompts/columns.prompt.md` // how table columns should work
 `./.github/prompts/details.prompt.md` // how how a details page should be setup
