@@ -53,3 +53,5 @@ dist
 .command-center/local.env
 .command-center/sandbox.env
 .command-center/remote.env
+/.ckb
+/index.scip
