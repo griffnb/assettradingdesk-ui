@@ -18,7 +18,7 @@ export function AdminNavBar(props: AdminNavBarProps) {
     <div
       data-slot="admin-nav-bar"
       className={cn([
-        "flex items-center justify-between h-20 px-6",
+        "flex h-20 items-center justify-between px-6",
         "bg-[hsl(var(--admin-nav-bg))]",
         "border-b border-[hsl(var(--admin-nav-border))]",
         className,
@@ -26,19 +26,21 @@ export function AdminNavBar(props: AdminNavBarProps) {
     >
       <div className="flex items-center gap-6">
         <div data-slot="admin-nav-logo" className="flex items-center">
-          <img src="/img/header-logo.png" className="h-8" alt="Logo" />
+          <img
+            src="/img/header-logo.png"
+            className="h-8 flex-none"
+            alt="Logo"
+          />
         </div>
         <NavigationMenu viewport={false}>
-          <NavigationMenuList className="gap-1">
-            {children}
-          </NavigationMenuList>
+          <NavigationMenuList className="gap-1">{children}</NavigationMenuList>
         </NavigationMenu>
       </div>
 
       {trailing && (
         <div
           data-slot="admin-nav-trailing"
-          className="flex items-center gap-4 max-w-80 flex-1 ml-4"
+          className="ml-4 flex max-w-80 flex-1 items-center gap-4"
         >
           {trailing}
         </div>

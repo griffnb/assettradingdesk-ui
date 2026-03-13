@@ -8,20 +8,18 @@ import {
   DropdownMenuSeparator,
 } from "@/ui/shadcn/ui/dropdown-menu";
 import { cn } from "@/ui/shadcn/utils";
-import { observer } from "mobx-react-lite";
 import {
-  AlertCircleIcon,
-  CircleDollarSignIcon,
   LogOutIcon,
   SettingsIcon,
-  SkullIcon,
   SquareCheckIcon,
   UserIcon,
   ZapIcon,
 } from "lucide-react";
+import { observer } from "mobx-react-lite";
 import { type ReactNode, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import BookmarkModalActivator from "../bookmark/BookmarkModalActivator";
+import type { LeftSidebarTab } from "../nav";
 import {
   AdminBreadcrumbBar,
   AdminNavBar,
@@ -32,16 +30,80 @@ import {
   NavSearch,
   NavUserMenu,
 } from "../nav";
-import type { LeftSidebarTab } from "../nav";
 import { SearchModalActivator } from "../search/SearchModalActivator";
-import { sidebarItems } from "./sidebarItems";
 import { MobileMenu } from "./MobileMenu";
+import type { BadgeConfig, NavItemConfig } from "./sidebarItems";
+import { sidebarItems, subNavItems } from "./sidebarItems";
 
 interface AdminLayoutProps {
   children: ReactNode;
   title?: string;
   showLeftSidebar?: boolean;
   breadcrumbs?: { label: string; href?: string }[];
+}
+
+/** Resolve badge configs into NavBadge elements, injecting dynamic counts */
+function renderBadges(
+  badges: BadgeConfig[],
+  counts: Record<string, number>,
+): ReactNode {
+  return badges.map((badge, index) => {
+    const resolvedCount = badge.countKey ? counts[badge.countKey] : badge.count;
+    return (
+      <NavBadge
+        key={index}
+        variant={badge.variant}
+        size={badge.size}
+        icon={badge.icon}
+        count={resolvedCount}
+      />
+    );
+  });
+}
+
+/** Render a single nav item as a NavLink with optional dropdown and badges */
+function renderNavItem(
+  item: NavItemConfig,
+  location: { pathname: string },
+  navigate: (path: string) => void,
+  badgeCounts: Record<string, number>,
+): ReactNode {
+  const badges = item.badges
+    ? renderBadges(item.badges, badgeCounts)
+    : undefined;
+
+  if (item.items) {
+    return (
+      <NavLink
+        key={item.title}
+        label={item.title}
+        active={item.items.some((sub) => location.pathname === sub.url)}
+        badges={badges}
+        dropdownContent={
+          <>
+            {item.items.map((sub) => (
+              <DropdownMenuItem
+                key={sub.title}
+                onClick={() => sub.url && navigate(sub.url)}
+              >
+                {sub.title}
+              </DropdownMenuItem>
+            ))}
+          </>
+        }
+      />
+    );
+  }
+
+  return (
+    <NavLink
+      key={item.title}
+      label={item.title}
+      active={item.url ? location.pathname === item.url : false}
+      onClick={() => item.url && navigate(item.url)}
+      badges={badges}
+    />
+  );
 }
 
 const leftSidebarTabs: LeftSidebarTab[] = [
@@ -61,7 +123,9 @@ const leftSidebarTabs: LeftSidebarTab[] = [
     icon: <SquareCheckIcon />,
     content: (
       <div className="p-4">
-        <p className="text-sm text-neutral-500">TODO: Qualifications panel content</p>
+        <p className="text-sm text-neutral-500">
+          TODO: Qualifications panel content
+        </p>
       </div>
     ),
   },
@@ -73,7 +137,9 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
+    {},
+  );
 
   const toggleExpanded = (title: string) => {
     setExpandedItems((prev) => ({ ...prev, [title]: !prev[title] }));
@@ -87,6 +153,12 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
         .toUpperCase()
         .slice(0, 2)
     : "??";
+
+  // Dynamic badge counts — wire these to stores/API data as needed
+  const badgeCounts: Record<string, number> = {
+    tasksDanger: 133,
+    tasksWarning: 133,
+  };
 
   return (
     <>
@@ -130,80 +202,15 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
               </>
             }
           >
-            {/* Working links */}
-            {sidebarItems
-              .filter((item) => !item.items)
-              .map((item) => (
-                <NavLink
-                  key={item.title}
-                  label={item.title}
-                  active={item.url ? location.pathname === item.url : false}
-                  onClick={() => item.url && navigate(item.url)}
-                />
-              ))}
-            {/* Working dropdown links */}
-            {sidebarItems
-              .filter((item) => item.items)
-              .map((item) => (
-                <NavLink
-                  key={item.title}
-                  label={item.title}
-                  active={item.items?.some((sub) => location.pathname === sub.url)}
-                  dropdownContent={
-                    <>
-                      {item.items?.map((sub) => (
-                        <DropdownMenuItem
-                          key={sub.title}
-                          onClick={() => sub.url && navigate(sub.url)}
-                        >
-                          {sub.title}
-                        </DropdownMenuItem>
-                      ))}
-                    </>
-                  }
-                />
-              ))}
-            {/* Figma nav items (placeholder) */}
-            <NavLink label="BDR Feed" />
-            <NavLink label="Personal Feed" />
-            <NavLink
-              label="Tasks"
-              badges={
-                <>
-                  <NavBadge variant="danger" count={133} icon={SkullIcon} />
-                  <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
-                </>
-              }
-            />
-            <NavLink label="Campaigns" />
-            <NavLink
-              label="My Campaign Queue"
-              badges={<NavBadge variant="warning" count={0} icon={AlertCircleIcon} />}
-            />
-            <NavLink
-              label="Campaign Reply Queue"
-              badges={<NavBadge variant="success" count={0} icon={CircleDollarSignIcon} />}
-            />
-            <NavLink
-              label="Bionic Approval Queue"
-              badges={<NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />}
-            />
-            <NavLink
-              label="Bionic Reply Queue"
-              badges={<NavBadge variant="success" size="icon" icon={CircleDollarSignIcon} />}
-            />
+            {sidebarItems.map((item) =>
+              renderNavItem(item, location, navigate, badgeCounts),
+            )}
           </AdminNavBar>
 
           <AdminSubNav>
-            {/* Figma sub-nav items (placeholder) */}
-            <NavLink label="Dashboards" />
-            <NavLink label="Reports" />
-            <NavLink label="Trading" />
-            <NavLink label="Model Management" />
-            <NavLink label="Lead Search" />
-            <NavLink label="User Mgmt" />
-            <NavLink label="Paperwork" />
-            <NavLink label="Config" />
+            {subNavItems.map((item) =>
+              renderNavItem(item, location, navigate, badgeCounts),
+            )}
           </AdminSubNav>
 
           <AdminBreadcrumbBar segments={breadcrumbs} />
@@ -214,7 +221,7 @@ export const AdminLayout = observer(function InApp(props: AdminLayoutProps) {
           {showLeftSidebar && (
             <LeftSidebar
               tabs={leftSidebarTabs}
-              className="hidden md:flex shrink-0"
+              className="hidden shrink-0 md:flex"
             />
           )}
 

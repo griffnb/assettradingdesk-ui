@@ -4,8 +4,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MemoryRouter } from "react-router";
 import { AdminLayout } from "./AdminLayout";
 
-addMock<AdminModel>("/admin/me", "GET", {
+addMock<AdminModel>("/admin/admin/me", "GET", {
   name: "Nick Griff",
+  first_name: "Nick",
+  last_name: "Griff",
   role: 10,
 } as AdminModel);
 
