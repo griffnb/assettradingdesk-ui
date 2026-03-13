@@ -1,7 +1,7 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { IndustryModel } from "@/models/models/industry/model/IndustryModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

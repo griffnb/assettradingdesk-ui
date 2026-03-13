@@ -3,6 +3,7 @@
 import { NotificationService } from "@/common_lib/services/NotificationService";
 import { ServerService } from "@/common_lib/services/ServerService";
 import { SessionService } from "@/common_lib/services/SessionService";
+import { getPublicEnvVar } from "@/common_lib/utils/env";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Card,
@@ -11,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { getPublicEnvVar } from "@/utils/env";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";

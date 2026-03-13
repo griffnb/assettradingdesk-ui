@@ -7,3 +7,5 @@ export { NavBadge, navBadgeVariants } from "./NavBadge";
 export { NavSearch } from "./NavSearch";
 export type { NavSearchItem } from "./NavSearch";
 export { NavUserMenu } from "./NavUserMenu";
+export { LeftSidebar } from "./LeftSidebar";
+export type { LeftSidebarTab } from "./LeftSidebar";

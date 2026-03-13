@@ -1,3 +1,4 @@
+import { debounce } from "@/common_lib/utils/debounce";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -14,7 +15,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/ui/shadcn/ui/popover";
-import { debounce } from "@/utils/debounce";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
 import { formatPrice } from "./utils";

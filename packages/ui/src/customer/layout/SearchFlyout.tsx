@@ -2,13 +2,13 @@ import {
   IJSONAPIType,
   ServerService,
 } from "@/common_lib/services/ServerService";
+import { debounce } from "@/common_lib/utils/debounce";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Input } from "@/ui/shadcn/ui/input";
-import { debounce } from "@/utils/debounce";
 import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef, useState } from "react";

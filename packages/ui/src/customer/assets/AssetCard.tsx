@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent, CardFooter } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
 import { ImageIcon } from "lucide-react";

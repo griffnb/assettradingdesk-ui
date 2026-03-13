@@ -1,5 +1,5 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/common/components/buttons/Button";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 

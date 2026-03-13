@@ -1,8 +1,8 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
-import { cn } from "@/utils/cn";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

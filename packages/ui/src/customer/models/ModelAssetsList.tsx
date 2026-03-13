@@ -1,10 +1,10 @@
 import { ServerService } from "@/common_lib/services/ServerService";
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Store } from "@/models/store/Store";
 import { AssetCard } from "@/ui/customer/assets/AssetCard";
 import { Button } from "@/ui/shadcn/ui/button";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 

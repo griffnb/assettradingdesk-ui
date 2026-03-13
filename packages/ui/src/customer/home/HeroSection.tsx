@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Input } from "@/ui/shadcn/ui/input";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";

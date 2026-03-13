@@ -1,3 +1,4 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { SafeBaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
@@ -15,7 +16,6 @@ import { FormFieldSlider } from "@/ui/common/components/form/fields/FormFieldSli
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormFieldWrap } from "@/ui/common/components/form/fields/FormFieldWrap";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 

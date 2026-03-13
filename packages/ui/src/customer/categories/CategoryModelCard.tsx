@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
@@ -8,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
 import { PackageIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router";

@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 
 export interface ModelHeaderProps {

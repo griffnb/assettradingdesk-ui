@@ -1,12 +1,13 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
-import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
+import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
-import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
-import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
-import { CategoryModel } from "@/models/models/category/model/CategoryModel";
+import { ModelModel } from "@/models/models/model/model/ModelModel";
+import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
+import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { FormFieldDate } from "@/ui/common/components/form/fields/FormFieldDate";
 import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
@@ -14,7 +15,6 @@ import { FormFieldMultiSelect } from "@/ui/common/components/form/fields/FormFie
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

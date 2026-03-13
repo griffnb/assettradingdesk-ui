@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import {
   Carousel,
@@ -6,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/ui/shadcn/ui/carousel";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { Lightbox } from "yet-another-react-lightbox";

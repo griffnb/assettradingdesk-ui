@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/common_lib/utils/cn";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { Store } from "@/models/store/Store";
 import { Badge } from "@/ui/shadcn/ui/badge";
@@ -11,7 +12,6 @@ import {
   CardTitle,
 } from "@/ui/shadcn/ui/card";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";

@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { Store } from "@/models/store/Store";
 import { Spinner } from "@/ui/shadcn/ui/spinner";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";

@@ -2,7 +2,7 @@
 import { ChevronDownIcon } from "lucide-react";
 
 import { useAdmin } from "@/common_lib/authentication/useAdmin";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useLocation, useNavigate } from "react-router";
 import { Badge } from "../../shadcn/ui/badge";

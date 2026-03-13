@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import {
   Breadcrumb,
@@ -6,7 +7,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/ui/shadcn/ui/breadcrumb";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router";

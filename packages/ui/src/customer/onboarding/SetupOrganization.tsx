@@ -1,5 +1,6 @@
 "use client";
 
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
@@ -13,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 

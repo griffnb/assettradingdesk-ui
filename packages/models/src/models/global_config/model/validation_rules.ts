@@ -1,4 +1,4 @@
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type GlobalConfigModel } from "./GlobalConfigModel";
 
 export const validationRules: ValidationRulesType<GlobalConfigModel> = {

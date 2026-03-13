@@ -1,5 +1,6 @@
 "use client";
 
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
@@ -12,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 

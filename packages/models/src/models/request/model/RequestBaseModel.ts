@@ -1,8 +1,8 @@
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { BaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { findConstant } from "@/models/constants_helpers";
 import { attr } from "@/models/decorators/attr";
-import { ValidationClass } from "@/utils/validations";
 import { Dayjs } from "dayjs";
 
 export class RequestMetaData extends ValidationClass {

@@ -1,10 +1,10 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
 import { FormFieldCheckbox } from "@/ui/common/components/form/fields/FormFieldCheckbox";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
@@ -15,7 +15,9 @@ interface BillingPlanFormProps {
   onCancel?: () => void;
 }
 
-export const BillingPlanForm = observer(function BillingPlanForm(props: BillingPlanFormProps) {
+export const BillingPlanForm = observer(function BillingPlanForm(
+  props: BillingPlanFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -62,7 +64,7 @@ export const BillingPlanForm = observer(function BillingPlanForm(props: BillingP
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-     <FormFieldText
+      <FormFieldText
         record={props.record}
         field="name"
         type="text"
@@ -137,4 +139,3 @@ export const BillingPlanForm = observer(function BillingPlanForm(props: BillingP
     </FormWrap>
   );
 });
-

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flame } from "lucide-react";
+import { FlameIcon } from "lucide-react";
 import { AdminBreadcrumbBar } from "./AdminBreadcrumbBar";
 import { NavBadge } from "./NavBadge";
 
@@ -38,7 +38,7 @@ export const WithActions: Story = {
     ],
     actions: (
       <NavBadge variant="neutral" size="default">
-        <Flame className="size-4" />
+        <FlameIcon className="size-4" />
         <span className="text-xs font-medium capitalize">Hot Tool</span>
       </NavBadge>
     ),

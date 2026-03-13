@@ -1,9 +1,9 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { SubscriptionModel } from "@/models/models/subscription/model/SubscriptionModel";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
@@ -14,7 +14,9 @@ interface SubscriptionFormProps {
   onCancel?: () => void;
 }
 
-export const SubscriptionForm = observer(function SubscriptionForm(props: SubscriptionFormProps) {
+export const SubscriptionForm = observer(function SubscriptionForm(
+  props: SubscriptionFormProps,
+) {
   const nav = useNavigate();
 
   const saveAction = async () => {
@@ -61,7 +63,7 @@ export const SubscriptionForm = observer(function SubscriptionForm(props: Subscr
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-          <FormFieldText
+      <FormFieldText
         record={props.record}
         field="subscription_id"
         type="text"
@@ -107,8 +109,6 @@ export const SubscriptionForm = observer(function SubscriptionForm(props: Subscr
         label="Coupon Code"
         placeholder="Coupon Code"
       />
-
     </FormWrap>
   );
 });
-

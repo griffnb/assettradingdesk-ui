@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { ImageHolder } from "@/ui/common/components/fields/files/types";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -10,7 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import ImageUploading, {
   ImageListType,

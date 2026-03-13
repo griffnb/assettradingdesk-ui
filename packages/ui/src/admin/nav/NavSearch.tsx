@@ -11,7 +11,7 @@ import {
   PopoverContent,
 } from "@/ui/shadcn/ui/popover";
 import { cn } from "@/ui/shadcn/utils";
-import { Search } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
 
 export interface NavSearchItem {
@@ -78,7 +78,7 @@ export function NavSearch(props: NavSearchProps) {
             className,
           ])}
         >
-          <Search className="size-4 shrink-0 text-neutral-400" />
+          <SearchIcon className="size-4 shrink-0 text-neutral-400" />
           <input
             ref={inputRef}
             type="text"

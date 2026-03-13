@@ -1,5 +1,5 @@
 import { SessionService } from "@/common_lib/services/SessionService";
-import { debugLog } from "@/utils/debug";
+import { debugLog } from "@/common_lib/utils/debug";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 

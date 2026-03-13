@@ -1,4 +1,4 @@
-import { ValidationClass } from "@/utils/validations";
+import { ValidationClass } from "@/common_lib/utils/validations";
 
 export class BillingInfo extends ValidationClass {
   card_type: string = "";

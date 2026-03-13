@@ -1,6 +1,3 @@
-
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type OrganizationBaseModel } from "./OrganizationBaseModel";
-export const validationRules: ValidationRulesType<OrganizationBaseModel> = {
- 
-};
+export const validationRules: ValidationRulesType<OrganizationBaseModel> = {};

@@ -1,7 +1,7 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { CategoryBaseModel } from "./CategoryBaseModel";
 import { validationRules } from "./validation_rules";
 

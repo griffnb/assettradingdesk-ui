@@ -24,5 +24,11 @@
     --admin-badge-warning: 38 92% 50%; /* #F59E0B - Amber 500 */
     --admin-badge-success: 155 69% 41%; /* #20AF6F - IQ Green 500 */
     --admin-badge-neutral: 0 0% 100%; /* White */
+
+    /* Admin Left Sidebar */
+    --admin-sidebar-tab-bg: 220 8% 25%; /* #3B3F45 - Smokey Gray 700 */
+    --admin-sidebar-tab-btn: 225 5% 16%; /* #26282C - Smokey Gray 800 */
+    --admin-sidebar-panel-bg: 210 6% 93%; /* #ECEEEF - Smokey Gray 100 */
+    --admin-sidebar-header-bg: 220 8% 25%; /* #3B3F45 - Smokey Gray 700 */
   }
 }

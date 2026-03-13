@@ -7,7 +7,7 @@ import {
   XIcon,
 } from "lucide-react";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { Badge } from "../../shadcn/ui/badge";
 import { Button } from "../../shadcn/ui/button";
