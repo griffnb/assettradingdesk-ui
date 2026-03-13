@@ -1,13 +1,13 @@
-import { ServerService } from "@/common_lib/services/ServerService";
+import { addMock } from "@/models/mocks/helpers";
+import { AdminModel } from "@/models/models/admin/model/AdminModel";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MemoryRouter } from "react-router";
 import { AdminLayout } from "./AdminLayout";
 
-ServerService.addMock({
-  method: "GET",
-  path: "/api/session/admin",
-  response: { success: true, data: { name: "Nick Griffin", role: 10 } },
-});
+addMock<AdminModel>("/admin/me", "GET", {
+  name: "Nick Griff",
+  role: 10,
+} as AdminModel);
 
 const meta = {
   component: AdminLayout,
@@ -28,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const SampleContent = () => (
-  <div className="p-6 space-y-4">
+  <div className="space-y-4 p-6">
     <h1 className="text-2xl font-bold text-neutral-900">Pipeline Overview</h1>
     <p className="text-neutral-600">
       This is the main content area. The left sidebar expands when you click an
