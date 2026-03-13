@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Empty,
@@ -7,7 +8,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/ui/shadcn/ui/empty";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";

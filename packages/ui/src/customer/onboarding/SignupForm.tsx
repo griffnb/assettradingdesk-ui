@@ -3,6 +3,12 @@
 import { NotificationService } from "@/common_lib/services/NotificationService";
 import { ServerService } from "@/common_lib/services/ServerService";
 import { SessionService } from "@/common_lib/services/SessionService";
+import {
+  getOptionalPublicEnvVar,
+  getPublicEnvVar,
+} from "@/common_lib/utils/env";
+import { randomString } from "@/common_lib/utils/strings";
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { Signup } from "@/models/models/account/model/Signup";
 import { AccountService } from "@/models/models/account/services/AccountService";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
@@ -15,9 +21,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { getOptionalPublicEnvVar, getPublicEnvVar } from "@/utils/env";
-import { randomString } from "@/utils/strings";
-import { isObjectValid } from "@/utils/validations";
 import { useAuth0 } from "@auth0/auth0-react";
 import { action, runInAction } from "mobx";
 import { observer } from "mobx-react-lite";

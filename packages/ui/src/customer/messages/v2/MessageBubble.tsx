@@ -1,5 +1,5 @@
+import { cn } from "@/common_lib/utils/cn";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
-import { cn } from "@/utils/cn";
 import dayjs from "dayjs";
 import { observer } from "mobx-react-lite";
 
@@ -39,11 +39,14 @@ export const MessageBubble = observer(function MessageBubble({
         {senderName}
       </div>
       <div
-        className={cn("max-w-[70%] whitespace-pre-wrap break-words rounded-lg p-3", [
-          isOwnMessage
-            ? "bg-bg-brand-primary text-text-brand-tertiary"
-            : "bg-bg-neutral-tertiary text-text-neutral-primary",
-        ])}
+        className={cn(
+          "max-w-[70%] whitespace-pre-wrap break-words rounded-lg p-3",
+          [
+            isOwnMessage
+              ? "bg-bg-brand-primary text-text-brand-tertiary"
+              : "bg-bg-neutral-tertiary text-text-neutral-primary",
+          ],
+        )}
       >
         {message.body}
       </div>

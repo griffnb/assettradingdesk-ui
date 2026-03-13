@@ -1,6 +1,3 @@
-
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type RequestBaseModel } from "./RequestBaseModel";
-export const validationRules: ValidationRulesType<RequestBaseModel> = {
- 
-};
+export const validationRules: ValidationRulesType<RequestBaseModel> = {};

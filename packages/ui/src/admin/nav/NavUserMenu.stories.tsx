@@ -4,7 +4,7 @@ import {
   DropdownMenuSeparator,
 } from "@/ui/shadcn/ui/dropdown-menu";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { LogOut, Settings, User } from "lucide-react";
+import { LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { NavUserMenu } from "./NavUserMenu";
 
 const meta = {
@@ -34,16 +34,16 @@ export const Default: Story = {
         <DropdownMenuLabel>Nick Griffin</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <User className="size-4" />
+          <UserIcon className="size-4" />
           Profile
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Settings className="size-4" />
+          <SettingsIcon className="size-4" />
           Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className="size-4" />
+          <LogOutIcon className="size-4" />
           Sign Out
         </DropdownMenuItem>
       </>
@@ -59,16 +59,16 @@ export const DifferentInitials: Story = {
         <DropdownMenuLabel>John Doe</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <User className="size-4" />
+          <UserIcon className="size-4" />
           Profile
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Settings className="size-4" />
+          <SettingsIcon className="size-4" />
           Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className="size-4" />
+          <LogOutIcon className="size-4" />
           Sign Out
         </DropdownMenuItem>
       </>

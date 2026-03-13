@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AlertCircle, DollarSign, Flame, Skull } from "lucide-react";
+import { AlertCircleIcon, DollarSignIcon, FlameIcon, SkullIcon } from "lucide-react";
 import { NavBadge } from "./NavBadge";
 
 const meta = {
@@ -32,7 +32,7 @@ export const Danger: Story = {
   args: {
     variant: "danger",
     count: 133,
-    icon: Skull,
+    icon: SkullIcon,
   },
 };
 
@@ -40,7 +40,7 @@ export const Warning: Story = {
   args: {
     variant: "warning",
     count: 133,
-    icon: AlertCircle,
+    icon: AlertCircleIcon,
   },
 };
 
@@ -48,7 +48,7 @@ export const Success: Story = {
   args: {
     variant: "success",
     count: 0,
-    icon: DollarSign,
+    icon: DollarSignIcon,
   },
 };
 
@@ -56,14 +56,14 @@ export const IconOnly: Story = {
   args: {
     variant: "warning",
     size: "icon",
-    icon: AlertCircle,
+    icon: AlertCircleIcon,
   },
 };
 
 export const Neutral: Story = {
   args: {
     variant: "neutral",
-    icon: Flame,
+    icon: FlameIcon,
   },
   render: (args) => (
     <NavBadge {...args}>
@@ -76,11 +76,11 @@ export const AllVariants: Story = {
   args: {},
   render: () => (
     <div className="flex items-center gap-3">
-      <NavBadge variant="danger" count={133} icon={Skull} />
-      <NavBadge variant="warning" count={133} icon={AlertCircle} />
-      <NavBadge variant="success" count={0} icon={DollarSign} />
-      <NavBadge variant="warning" size="icon" icon={AlertCircle} />
-      <NavBadge variant="success" size="icon" icon={DollarSign} />
+      <NavBadge variant="danger" count={133} icon={SkullIcon} />
+      <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
+      <NavBadge variant="success" count={0} icon={DollarSignIcon} />
+      <NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />
+      <NavBadge variant="success" size="icon" icon={DollarSignIcon} />
     </div>
   ),
 };

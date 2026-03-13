@@ -1,6 +1,6 @@
 import { useAccount } from "@/common_lib/authentication/useAccount";
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { AssetBreadCrumb } from "./AssetBreadCrumb";
 import { AssetImageGallery } from "./AssetImageGallery";

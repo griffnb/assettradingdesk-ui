@@ -4,7 +4,7 @@ import {
   DropdownMenuSeparator,
 } from "@/ui/shadcn/ui/dropdown-menu";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AlertCircle, DollarSign, Skull } from "lucide-react";
+import { AlertCircleIcon, DollarSignIcon, SkullIcon } from "lucide-react";
 import { NavBadge } from "./NavBadge";
 import { NavLink } from "./NavLink";
 
@@ -70,8 +70,8 @@ export const WithBadges: Story = {
     ),
     badges: (
       <>
-        <NavBadge variant="danger" count={133} icon={Skull} />
-        <NavBadge variant="warning" count={133} icon={AlertCircle} />
+        <NavBadge variant="danger" count={133} icon={SkullIcon} />
+        <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
       </>
     ),
   },
@@ -80,14 +80,14 @@ export const WithBadges: Story = {
 export const WithSingleBadge: Story = {
   args: {
     label: "Campaign Reply Queue",
-    badges: <NavBadge variant="success" count={0} icon={DollarSign} />,
+    badges: <NavBadge variant="success" count={0} icon={DollarSignIcon} />,
   },
 };
 
 export const WithIconBadge: Story = {
   args: {
     label: "Bionic Approval Queue",
-    badges: <NavBadge variant="warning" size="icon" icon={AlertCircle} />,
+    badges: <NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />,
   },
 };
 
@@ -110,8 +110,8 @@ export const AllVariations: Story = {
         }
         badges={
           <>
-            <NavBadge variant="danger" count={133} icon={Skull} />
-            <NavBadge variant="warning" count={133} icon={AlertCircle} />
+            <NavBadge variant="danger" count={133} icon={SkullIcon} />
+            <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
           </>
         }
       />
@@ -127,19 +127,19 @@ export const AllVariations: Story = {
       />
       <NavLink
         label="My Campaign Queue"
-        badges={<NavBadge variant="warning" count={0} icon={AlertCircle} />}
+        badges={<NavBadge variant="warning" count={0} icon={AlertCircleIcon} />}
       />
       <NavLink
         label="Campaign Reply Queue"
-        badges={<NavBadge variant="success" count={0} icon={DollarSign} />}
+        badges={<NavBadge variant="success" count={0} icon={DollarSignIcon} />}
       />
       <NavLink
         label="Bionic Approval Queue"
-        badges={<NavBadge variant="warning" size="icon" icon={AlertCircle} />}
+        badges={<NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />}
       />
       <NavLink
         label="Bionic Reply Queue"
-        badges={<NavBadge variant="success" size="icon" icon={DollarSign} />}
+        badges={<NavBadge variant="success" size="icon" icon={DollarSignIcon} />}
       />
     </div>
   ),

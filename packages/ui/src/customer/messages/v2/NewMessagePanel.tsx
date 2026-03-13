@@ -1,12 +1,12 @@
 import { LayerService } from "@/common_lib/services/LayerService";
 import { NotificationService } from "@/common_lib/services/NotificationService";
+import { cn } from "@/common_lib/utils/cn";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { MessageService } from "@/models/models/message/services/MessageService";
 import { SidePanelWrap } from "@/ui/common/components/side-panel/SidePanelWrap";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Textarea } from "@/ui/shadcn/ui/textarea";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { AssetSearchInput } from "./AssetSearchInput";

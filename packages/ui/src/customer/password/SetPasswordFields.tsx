@@ -1,5 +1,5 @@
+import { ValidationType } from "@/common_lib/utils/validations";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import { ValidationType } from "@/utils/validations";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { PasswordValidationField } from "./PasswordValidationField";

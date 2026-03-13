@@ -1,9 +1,9 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

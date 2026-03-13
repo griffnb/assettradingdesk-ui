@@ -1,7 +1,7 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { IStore } from "@/models/types/store";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 
 import { findConstant } from "@/models/constants_helpers";
 import { StoreKeys } from "@/models/types/store_keys";

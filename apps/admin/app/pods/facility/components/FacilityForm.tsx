@@ -1,3 +1,4 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants as assetConstants } from "@/models/models/asset/constants";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
@@ -8,7 +9,6 @@ import { FormFieldMultiSelect } from "@/ui/common/components/form/fields/FormFie
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Button } from "@/ui/shadcn/ui/button";
-import { cn } from "@/utils/cn";
 import { HeartIcon, Share2Icon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ProductActions } from "./ProductActions";

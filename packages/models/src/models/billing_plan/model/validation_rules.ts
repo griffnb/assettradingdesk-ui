@@ -1,7 +1,5 @@
-import { ValidationRulesType } from "@/utils/validations";
-import {
-    type BillingPlanBaseModel,
-} from "./BillingPlanBaseModel";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
+import { type BillingPlanBaseModel } from "./BillingPlanBaseModel";
 import { type Properties } from "./Properties";
 
 export const propertiesValidationRules: ValidationRulesType<Properties> = {

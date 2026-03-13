@@ -1,6 +1,6 @@
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
-import { ValidationClass } from "@/utils/validations";
 
 export class ContactInfo extends ValidationClass {
   linkedin: string = "";

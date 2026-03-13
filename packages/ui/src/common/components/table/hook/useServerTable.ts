@@ -1,8 +1,6 @@
 import { CacheService } from "@/common_lib/services/CacheService";
 import { ServerService } from "@/common_lib/services/ServerService";
 import { URLParams } from "@/common_lib/types/url";
-import { Store } from "@/models/store/Store";
-import { StoreKeys } from "@/models/types/store_keys";
 import {
   buildQuery,
   Direction,
@@ -13,7 +11,9 @@ import {
   getSortColumnDirection,
   getStatusFilters,
   getTableFilters,
-} from "@/utils/query/builder";
+} from "@/common_lib/utils/query/builder";
+import { Store } from "@/models/store/Store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { useEffect, useState } from "react";
 import { IColumn } from "../../types/columns";
 import { IFilter } from "../../types/filters";

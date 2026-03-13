@@ -1,5 +1,5 @@
+import { cn } from "@/common_lib/utils/cn";
 import { replaceURLValues } from "@/common_lib/utils/strings";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { IColumn, TableCellProps } from "../../types/columns";

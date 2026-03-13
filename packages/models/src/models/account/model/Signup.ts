@@ -1,4 +1,4 @@
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { makeAutoObservable } from "mobx";
 import { signup_validation_rules } from "./signup_validation_rules";
 

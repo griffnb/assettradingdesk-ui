@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/shadcn/ui/dropdown-menu";
 import { cn } from "@/ui/shadcn/utils";
-import { ChevronDown } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 interface NavUserMenuProps {
@@ -40,7 +40,7 @@ export function NavUserMenu(props: NavUserMenuProps) {
           {initials}
         </AvatarFallback>
       </Avatar>
-      <ChevronDown className="size-5 text-[hsl(var(--admin-nav-text))]" />
+      <ChevronDownIcon className="size-5 text-[hsl(var(--admin-nav-text))]" />
     </button>
   );
 

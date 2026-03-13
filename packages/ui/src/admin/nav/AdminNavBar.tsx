@@ -7,13 +7,12 @@ import type { ReactNode } from "react";
 
 interface AdminNavBarProps {
   className?: string;
-  logo?: ReactNode;
   children?: ReactNode;
   trailing?: ReactNode;
 }
 
 export function AdminNavBar(props: AdminNavBarProps) {
-  const { className, logo, children, trailing } = props;
+  const { className, children, trailing } = props;
 
   return (
     <div
@@ -26,11 +25,9 @@ export function AdminNavBar(props: AdminNavBarProps) {
       ])}
     >
       <div className="flex items-center gap-6">
-        {logo && (
-          <div data-slot="admin-nav-logo" className="flex items-center gap-1">
-            {logo}
-          </div>
-        )}
+        <div data-slot="admin-nav-logo" className="flex items-center">
+          <img src="/img/header-logo.png" className="h-8" alt="Logo" />
+        </div>
         <NavigationMenu viewport={false}>
           <NavigationMenuList className="gap-1">
             {children}

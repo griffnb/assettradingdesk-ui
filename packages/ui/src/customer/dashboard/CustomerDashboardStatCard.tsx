@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
 import { TrendingUpIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";

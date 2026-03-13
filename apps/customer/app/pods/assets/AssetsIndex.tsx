@@ -1,9 +1,9 @@
-import { AssetTable } from "@/ui/customer/assets/AssetTable";
 import {
   applyQueryFilters,
   parseSearchParams,
   queryToFilters,
-} from "@/utils/query/builder";
+} from "@/common_lib/utils/query/builder";
+import { AssetTable } from "@/ui/customer/assets/AssetTable";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router";

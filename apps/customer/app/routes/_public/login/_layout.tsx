@@ -1,4 +1,4 @@
-import { getPublicEnvVar } from "@/utils/env";
+import { getPublicEnvVar } from "@/common_lib/utils/env";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Outlet } from "react-router";
 

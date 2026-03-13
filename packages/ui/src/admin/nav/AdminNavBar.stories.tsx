@@ -5,17 +5,17 @@ import {
 } from "@/ui/shadcn/ui/dropdown-menu";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
-  AlertCircle,
-  Building2,
-  CircleDollarSign,
-  Contact,
-  DollarSign,
-  FileText,
-  Flame,
-  LogOut,
-  Settings,
-  Skull,
-  User,
+  AlertCircleIcon,
+  Building2Icon,
+  CircleDollarSignIcon,
+  ContactIcon,
+  DollarSignIcon,
+  FileTextIcon,
+  FlameIcon,
+  LogOutIcon,
+  SettingsIcon,
+  SkullIcon,
+  UserIcon,
 } from "lucide-react";
 import type { NavSearchItem } from "./NavSearch";
 import { AdminBreadcrumbBar } from "./AdminBreadcrumbBar";
@@ -42,50 +42,31 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const searchItems: NavSearchItem[] = [
-  { label: "Acme Corporation", value: "acme-corp", group: "Accounts", icon: <Building2 className="size-4" /> },
-  { label: "Globex Industries", value: "globex", group: "Accounts", icon: <Building2 className="size-4" /> },
-  { label: "Stark Enterprises", value: "stark", group: "Accounts", icon: <Building2 className="size-4" /> },
-  { label: "John Smith", value: "john-smith", group: "Contacts", icon: <Contact className="size-4" /> },
-  { label: "Jane Doe", value: "jane-doe", group: "Contacts", icon: <Contact className="size-4" /> },
-  { label: "Acme - Q4 Renewal", value: "acme-q4", group: "Opportunities", icon: <CircleDollarSign className="size-4" /> },
-  { label: "NDA - Acme Corp", value: "nda-acme", group: "Documents", icon: <FileText className="size-4" /> },
+  { label: "Acme Corporation", value: "acme-corp", group: "Accounts", icon: <Building2Icon className="size-4" /> },
+  { label: "Globex Industries", value: "globex", group: "Accounts", icon: <Building2Icon className="size-4" /> },
+  { label: "Stark Enterprises", value: "stark", group: "Accounts", icon: <Building2Icon className="size-4" /> },
+  { label: "John Smith", value: "john-smith", group: "Contacts", icon: <ContactIcon className="size-4" /> },
+  { label: "Jane Doe", value: "jane-doe", group: "Contacts", icon: <ContactIcon className="size-4" /> },
+  { label: "Acme - Q4 Renewal", value: "acme-q4", group: "Opportunities", icon: <CircleDollarSignIcon className="size-4" /> },
+  { label: "NDA - Acme Corp", value: "nda-acme", group: "Documents", icon: <FileTextIcon className="size-4" /> },
 ];
 
 const userMenuContent = (
   <>
     <DropdownMenuLabel>Nick Griffin</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem><User className="size-4" />Profile</DropdownMenuItem>
-    <DropdownMenuItem><Settings className="size-4" />Settings</DropdownMenuItem>
+    <DropdownMenuItem><UserIcon className="size-4" />Profile</DropdownMenuItem>
+    <DropdownMenuItem><SettingsIcon className="size-4" />Settings</DropdownMenuItem>
     <DropdownMenuSeparator />
-    <DropdownMenuItem><LogOut className="size-4" />Sign Out</DropdownMenuItem>
+    <DropdownMenuItem><LogOutIcon className="size-4" />Sign Out</DropdownMenuItem>
   </>
-);
-
-const Logo = () => (
-  <div className="flex items-center gap-1">
-    <div className="size-12 rounded bg-white/10 flex items-center justify-center">
-      <svg viewBox="0 0 48 48" className="size-10 text-white">
-        <path
-          d="M24 4L4 44h40L24 4zm0 8l14 28H10l14-28z"
-          fill="currentColor"
-          opacity="0.8"
-        />
-      </svg>
-    </div>
-    <span className="text-lg text-[hsl(var(--admin-nav-logo-text))]">
-      <span className="font-semibold">A</span>
-      <span className="font-medium">T</span>
-      <span className="font-normal">D</span>
-    </span>
-  </div>
 );
 
 export const Default: Story = {
   args: {},
   render: () => (
     <AdminNavBar
-      logo={<Logo />}
+
       trailing={
         <>
           <NavSearch className="flex-1" items={searchItems} />
@@ -108,8 +89,8 @@ export const Default: Story = {
         }
         badges={
           <>
-            <NavBadge variant="danger" count={133} icon={Skull} />
-            <NavBadge variant="warning" count={133} icon={AlertCircle} />
+            <NavBadge variant="danger" count={133} icon={SkullIcon} />
+            <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
           </>
         }
       />
@@ -126,19 +107,19 @@ export const Default: Story = {
       />
       <NavLink
         label="My Campaign Queue"
-        badges={<NavBadge variant="warning" count={0} icon={AlertCircle} />}
+        badges={<NavBadge variant="warning" count={0} icon={AlertCircleIcon} />}
       />
       <NavLink
         label="Campaign Reply Queue"
-        badges={<NavBadge variant="success" count={0} icon={DollarSign} />}
+        badges={<NavBadge variant="success" count={0} icon={DollarSignIcon} />}
       />
       <NavLink
         label="Bionic Approval Queue"
-        badges={<NavBadge variant="warning" size="icon" icon={AlertCircle} />}
+        badges={<NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />}
       />
       <NavLink
         label="Bionic Reply Queue"
-        badges={<NavBadge variant="success" size="icon" icon={DollarSign} />}
+        badges={<NavBadge variant="success" size="icon" icon={DollarSignIcon} />}
       />
     </AdminNavBar>
   ),
@@ -149,7 +130,7 @@ export const FullNavigation: Story = {
   render: () => (
     <div className="flex flex-col">
       <AdminNavBar
-        logo={<Logo />}
+  
         trailing={
           <>
             <NavSearch className="flex-1" items={searchItems} />
@@ -172,8 +153,8 @@ export const FullNavigation: Story = {
           }
           badges={
             <>
-              <NavBadge variant="danger" count={133} icon={Skull} />
-              <NavBadge variant="warning" count={133} icon={AlertCircle} />
+              <NavBadge variant="danger" count={133} icon={SkullIcon} />
+              <NavBadge variant="warning" count={133} icon={AlertCircleIcon} />
             </>
           }
         />
@@ -190,19 +171,19 @@ export const FullNavigation: Story = {
         />
         <NavLink
           label="My Campaign Queue"
-          badges={<NavBadge variant="warning" count={0} icon={AlertCircle} />}
+          badges={<NavBadge variant="warning" count={0} icon={AlertCircleIcon} />}
         />
         <NavLink
           label="Campaign Reply Queue"
-          badges={<NavBadge variant="success" count={0} icon={DollarSign} />}
+          badges={<NavBadge variant="success" count={0} icon={DollarSignIcon} />}
         />
         <NavLink
           label="Bionic Approval Queue"
-          badges={<NavBadge variant="warning" size="icon" icon={AlertCircle} />}
+          badges={<NavBadge variant="warning" size="icon" icon={AlertCircleIcon} />}
         />
         <NavLink
           label="Bionic Reply Queue"
-          badges={<NavBadge variant="success" size="icon" icon={DollarSign} />}
+          badges={<NavBadge variant="success" size="icon" icon={DollarSignIcon} />}
         />
       </AdminNavBar>
 
@@ -314,7 +295,7 @@ export const FullNavigation: Story = {
         ]}
         actions={
           <NavBadge variant="neutral" size="default">
-            <Flame className="size-4" />
+            <FlameIcon className="size-4" />
             <span className="text-xs font-medium capitalize">Hot Tool</span>
           </NavBadge>
         }
@@ -327,7 +308,7 @@ export const MinimalNav: Story = {
   args: {},
   render: () => (
     <AdminNavBar
-      logo={<Logo />}
+
       trailing={<NavUserMenu initials="AB">{userMenuContent}</NavUserMenu>}
     >
       <NavLink label="Dashboard" active />

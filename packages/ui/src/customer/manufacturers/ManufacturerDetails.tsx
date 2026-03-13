@@ -1,9 +1,9 @@
+import { cn } from "@/common_lib/utils/cn";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent } from "@/ui/shadcn/ui/card";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { ManufacturerBreadcrumb } from "./ManufacturerBreadcrumb";
 import { ManufacturerModelCard } from "./ManufacturerModelCard";

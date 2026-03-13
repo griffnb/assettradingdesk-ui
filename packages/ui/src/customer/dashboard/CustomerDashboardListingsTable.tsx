@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -17,7 +18,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/ui/shadcn/ui/table";
-import { cn } from "@/utils/cn";
 import { ArrowUpRightIcon, PcCaseIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";

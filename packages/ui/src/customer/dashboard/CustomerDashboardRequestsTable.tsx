@@ -1,4 +1,5 @@
 import { LayerService } from "@/common_lib/services/LayerService";
+import { cn } from "@/common_lib/utils/cn";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
 import { Store } from "@/models/store/Store";
 import {
@@ -22,7 +23,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/ui/shadcn/ui/table";
-import { cn } from "@/utils/cn";
 import { ArrowUpRightIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useCallback, useEffect, useState } from "react";
