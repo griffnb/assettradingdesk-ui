@@ -1,0 +1,28 @@
+@layer base {
+  :root {
+    /* Admin Nav - Primary Bar */
+    --admin-nav-bg: 200 17% 29%; /* #3D4E57 - Corp Gray 800 */
+    --admin-nav-border: 200 15% 36%; /* #506672 - Corp Gray 700 */
+    --admin-nav-text: 200 15% 72%; /* #ABBCC4 - Corp Gray 400 */
+    --admin-nav-text-active: 0 0% 100%; /* White */
+    --admin-nav-logo-text: 0 0% 98%; /* #FAFAFA */
+
+    /* Admin Nav - Sub Bar */
+    --admin-subnav-bg: 200 15% 36%; /* #506672 - Corp Gray 700 */
+
+    /* Admin Nav - Breadcrumb Bar */
+    --admin-breadcrumb-bg: 220 8% 25%; /* #3B3F45 - Smokey Gray 700 */
+    --admin-breadcrumb-border: 225 5% 16%; /* #26282C - Smokey Gray 800 */
+    --admin-breadcrumb-link: 210 70% 78%; /* #90CAF9 - Brand Tertiary */
+    --admin-breadcrumb-text: 0 0% 100%; /* White */
+
+    /* Admin Nav - User Avatar */
+    --admin-nav-avatar-bg: 200 14% 63%; /* #8FA5B0 - Corp Gray 500 */
+
+    /* Admin Nav - Badge Colors */
+    --admin-badge-danger: 349 98% 60%; /* #FD385D - Hot Red 500 */
+    --admin-badge-warning: 38 92% 50%; /* #F59E0B - Amber 500 */
+    --admin-badge-success: 155 69% 41%; /* #20AF6F - IQ Green 500 */
+    --admin-badge-neutral: 0 0% 100%; /* White */
+  }
+}

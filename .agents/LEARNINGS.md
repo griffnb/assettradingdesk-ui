@@ -113,3 +113,20 @@ Add utility function creation guidance:
 - Keep utility functions pure and stateless - they should only transform data, not manage state
 - Add clear JSDoc comments explaining what each utility does
 - Name functions descriptively (formatDateTime, not formatDate) to indicate exactly what format they produce
+
+## Admin Nav Components - Use Existing Shadcn Primitives
+
+### What I learned
+- When building new components, always compose from existing shadcn components rather than writing raw HTML elements
+- The project has 51+ shadcn components already installed - Badge, Button, NavigationMenu, Avatar, Breadcrumb, etc.
+- Theme CSS should live in `packages/ui/src/theme_styles/` and be imported via `all.css`, NOT placed alongside components
+- Storybook picks up theme vars automatically via `all.css` import in `.storybook/preview.tsx`
+
+### How to improve the instructions
+- Before creating any new component, check which shadcn primitives could be composed to build it
+- Use `Button variant="ghost"` for nav links instead of raw `<button>` elements
+- Use `Badge` for status indicators instead of custom `<span>` wrappers
+- Use `NavigationMenu` + `NavigationMenuList` for nav bar layouts
+- Use `Avatar` + `AvatarFallback` for user avatars
+- Use `Breadcrumb` + `BreadcrumbList` for breadcrumb bars
+- Theme CSS variables go in `theme_styles/` folder, imported via `all.css` - never co-located with components
