@@ -29,6 +29,9 @@ interface OpenAPISpec {
         responses: {
           [statusCode: string]: any;
         };
+        "x-function": string;
+        "x-line": number;
+        "x-path": string;
       };
     };
   };
@@ -46,6 +49,9 @@ interface RouteInfo {
   requestType?: string;
   responseType?: string;
   tags?: string[];
+  fileLine: number;
+  filePath: string;
+  fileFunction: string;
 }
 
 interface ServiceGroup {
@@ -64,6 +70,8 @@ interface CLIOptions {
 const DEFAULT_SWAGGER_PATH =
   process.env.GO_SWAGGER_PATH || "./swag_docs/swagger.json";
 const DEFAULT_OUTPUT_DIR = "./packages/models/src/openapi/services";
+
+const BASE_FILE_PATH = process.env.GO_BASE_FILE_PATH || "internal/";
 
 /**
  * Parse command line arguments
@@ -135,6 +143,21 @@ function parseOpenAPISpec(specPath: string): OpenAPISpec {
 }
 
 /**
+ * Capitalize the first alphabetic character in a word, preserving leading digits.
+ * e.g., "2fa" -> "2Fa", "auth" -> "Auth"
+ */
+function capitalizeFirstAlpha(word: string): string {
+  for (let i = 0; i < word.length; i++) {
+    if (/[a-zA-Z]/.test(word[i])) {
+      return word.slice(0, i) + word[i].toUpperCase() + word.slice(i + 1);
+    }
+  }
+  return word;
+}
+
+const separatorsRegExp = /[_.$+:\- `\\\[\](){}\\/]+/;
+
+/**
  * Convert HTTP method and path to operation name
  * e.g., GET /account/{id} -> GetAccountById
  */
@@ -149,39 +172,30 @@ function getOperationName(method: string, path: string): string {
   const pathName = parts
     .map((part) => {
       if (part.startsWith("{") && part.endsWith("}")) {
-        // Convert {id} to ById, {conversationID} to ByConversationId
+        // Convert {id} to ById, {challenge_id} to ByChallengeId, {conversationID} to ByConversationId
         const param = part.slice(1, -1);
 
-        // Convert camelCase to PascalCase
-        // Handle consecutive capitals: conversationID -> Conversation + ID
-        // Split on transition from lowercase to uppercase: /([a-z])([A-Z])/
-        // Then capitalize first letter of each word, lowercase the rest
-        const withSpaces = param.replace(/([a-z])([A-Z])/g, "$1 $2");
-        const words = withSpaces.split(" ").filter((word) => word.length > 0);
-
-        const pascalParam = words
-          .map(
-            (word) =>
-              word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
-          )
+        // Split by separators first (handles snake_case, kebab-case, etc.)
+        // Then split each segment by camelCase boundaries
+        const pascalParam = param
+          .split(separatorsRegExp)
+          .filter((word) => word.length > 0)
+          .flatMap((word) => {
+            // Split camelCase: conversationID -> ["conversation", "ID"]
+            return word.replace(/([a-z])([A-Z])/g, "$1 $2").split(" ");
+          })
+          .filter((word) => word.length > 0)
+          .map((word) => capitalizeFirstAlpha(word.toLowerCase()))
           .join("");
 
         return "By" + pascalParam;
       }
 
-      // Convert kebab-case or snake_case to PascalCase
-      // If the part contains no separators, it might already be camelCase - preserve it
-      if (!part.includes("-") && !part.includes("_")) {
-        // Capitalize first letter but preserve rest (handles camelCase like testUser -> TestUser)
-        return part.charAt(0).toUpperCase() + part.slice(1);
-      }
-
+      // Split by separators (kebab-case, snake_case, etc.) and PascalCase each word
       return part
-        .split(/[-_]/)
+        .split(separatorsRegExp)
         .filter((word) => word.length > 0)
-        .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
-        )
+        .map((word) => capitalizeFirstAlpha(word))
         .join("");
     })
     .join("");
@@ -311,6 +325,9 @@ function groupRoutes(spec: OpenAPISpec): Map<string, ServiceGroup> {
         requestType,
         responseType,
         tags: routeInfo.tags,
+        fileFunction: routeInfo["x-function"],
+        fileLine: routeInfo["x-line"],
+        filePath: routeInfo["x-path"],
       });
     }
   }
@@ -331,6 +348,9 @@ function generateServiceMethod(route: RouteInfo): string | null {
     hasQueryParams,
     summary,
     tags,
+    fileLine,
+    filePath,
+    fileFunction,
   } = route;
 
   if (tags && tags.includes("CRUD")) {
@@ -434,8 +454,26 @@ function generateServiceMethod(route: RouteInfo): string | null {
     throw new Error(`Unsupported method: ${method}`);
   }
 
+  if (tags && tags.includes("Download")) {
+    serverServiceMethod = "callDownload";
+  }
+
+  const pathParts = filePath.split(BASE_FILE_PATH); // Get the path after the base file path
+  if (pathParts.length == 1) {
+    throw new Error(
+      `File path ${filePath} does not contain base file path ${BASE_FILE_PATH}`,
+    );
+  }
+
+  let filePathForLink = pathParts[1];
+  if (BASE_FILE_PATH == "internal/") {
+    filePathForLink = "internal/" + filePathForLink; // Prepend internal/ to the path for the link
+  }
+
+  const fileLink = `* @link {go}/${filePathForLink}:${fileLine} (${fileFunction})`;
+
   // Generate JSDoc comment
-  const jsdoc = summary ? `  /**\n   * ${summary}\n   */\n` : "";
+  const jsdoc = `  /**\n   * ${summary}\n   * [${method}]: "${path}"\n   ${fileLink}\n   */\n`;
 
   // Generate method
   const methodName =
@@ -525,6 +563,20 @@ function main() {
   // Create output directory
   if (!fs.existsSync(options.output)) {
     fs.mkdirSync(options.output, { recursive: true });
+  }
+
+  // Clear output directory before generating new files
+  if (fs.existsSync(options.output)) {
+    const files = fs.readdirSync(options.output);
+    for (const file of files) {
+      const filePath = path.join(options.output, file);
+      if (fs.statSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
+      }
+    }
+    if (files.length > 0) {
+      console.log(`🗑️  Removed ${files.length} existing file(s)\n`);
+    }
   }
 
   console.log(`\n📁 Output directory: ${options.output}\n`);

@@ -1,0 +1,5 @@
+# Command Center generated gitignore
+.secrets-env
+local.env
+sandbox.env
+remote.env
