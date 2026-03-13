@@ -28,6 +28,19 @@ else
     echo "No .command-center/setup-env.sh found in project root, skipping"
 fi
 
+
+# Copy .command-center files individually (don't replace the entire directory)
+if [ -d "$CC_PROJECT_PATH/.command-center" ]; then
+    mkdir -p "$CC_WORKTREE_PATH/.command-center"
+    for file in "$CC_PROJECT_PATH/.command-center"/*; do
+        [ -f "$file" ] || continue
+        cp "$file" "$CC_WORKTREE_PATH/.command-center/"
+        echo "Copied .command-center/$(basename "$file") to worktree"
+    done
+else
+    echo "No .command-center directory found in project root, skipping"
+fi
+
 copy_env_files() {
     local folders=("apps" "packages")
     

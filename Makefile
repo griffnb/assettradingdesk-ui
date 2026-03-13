@@ -27,3 +27,23 @@ admin: ## Run development server
 customer: ## Run development server
 	@open -a "Google Chrome" http://localhost:5173
 	bun -F customer dev --host 0.0.0.0
+
+
+
+.PHONY: storybook
+storybook: ## Run the storybook
+	bun -F ui storybook
+
+
+
+
+#CKB targets
+.PHONY: ckb-reindex
+ckb-reindex: ## Reindex CKB data
+	@npx @tastehub/ckb status
+	@npx @tastehub/ckb index
+
+.PHONY: ckb-start
+ckb-start: ## Start CKB node
+	@npx @tastehub/ckb daemon start
+
