@@ -34,25 +34,7 @@ export const sidebarItems: NavItemConfig[] = [
     title: "Pipelines",
     icon: <i className="fa fa-handshake" />,
     url: "/pipelines",
-  },
-  {
-    title: "Companies",
-    icon: <i className="fa fa-building" />,
-    items: [
-      { title: "Companies", url: "/companies" },
-      { title: "Facilities", url: "/facilities" },
-      { title: "Clients", url: "/clients" },
-    ],
-  },
-  {
-    title: "Assets",
-    icon: <i className="fa fa-box-open" />,
-    url: "/assets",
-  },
-  {
-    title: "Requests",
-    icon: <i className="fa fa-bell-concierge" />,
-    url: "/requests",
+    badges: [{ variant: "danger", countKey: "tasksDanger", icon: SkullIcon }],
   },
 
   {
@@ -84,12 +66,22 @@ export const sidebarItems: NavItemConfig[] = [
 export const subNavItems: NavItemConfig[] = [
   { title: "Dashboards", url: "/dashboards" },
   { title: "Reports", url: "/reports" },
-  { title: "Trading", url: "/trading" },
-  { title: "Model Management", url: "/model-management" },
-  { title: "Lead Search", url: "/lead-search" },
-  { title: "User Mgmt", url: "/user-mgmt" },
-  { title: "Paperwork", url: "/paperwork" },
-  { title: "Config", url: "/config" },
+  {
+    title: "Trading",
+    items: [
+      { title: "Assets", url: "/assets" },
+      { title: "Requests", url: "/requests" },
+    ],
+  },
+  {
+    title: "Companies",
+    icon: <i className="fa fa-building" />,
+    items: [
+      { title: "Companies", url: "/companies" },
+      { title: "Facilities", url: "/facilities" },
+      { title: "Clients", url: "/clients" },
+    ],
+  },
   {
     title: "System",
     icon: <i className="fa fa-sitemap" />,
