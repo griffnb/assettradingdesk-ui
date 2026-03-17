@@ -5,6 +5,7 @@
       "command": "./scripts/make_mcp.sh",
       "args": []
     },
+
     "context7": {
       "type": "stdio",
       "command": "npx",
