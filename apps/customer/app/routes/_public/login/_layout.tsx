@@ -5,7 +5,6 @@ import { Outlet } from "react-router";
 export default function RootIndex() {
   const domain = getPublicEnvVar("PUBLIC_OAUTH_DOMAIN");
   const clientId = getPublicEnvVar("PUBLIC_OAUTH_CLIENT_ID");
-  console.log("here?");
   return (
     <Auth0Provider domain={domain} clientId={clientId} authorizationParams={{}}>
       <Outlet />
