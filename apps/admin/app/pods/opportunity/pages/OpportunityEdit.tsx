@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { OpportunityForm } from "@/admin/pods/opportunity/components/OpportunityForm";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface OpportunityEditProps {}
 
@@ -24,11 +24,21 @@ export const OpportunityEdit = observer(function OpportunityEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Opportunities", href: "/opportunities" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Opportunity" objectURN={record.urn} />
       <OpportunityForm record={record} />;
     </>
   );

@@ -1,14 +1,14 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
-import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
 import { OrganizationModel } from "@/models/models/organization/model/OrganizationModel";
+import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
 import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

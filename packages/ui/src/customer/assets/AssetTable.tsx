@@ -1,7 +1,7 @@
 import useMediaQuery, { BREAKPOINTS } from "@/common_lib/hooks/useMediaQuery";
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { TableState, TableStateProps } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
 
 import { LayerService } from "@/common_lib/services/LayerService";
 import { Button } from "@/ui/shadcn/ui/button";

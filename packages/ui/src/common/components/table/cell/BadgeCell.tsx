@@ -13,7 +13,9 @@ export const BadgeCell = observer(
   <T extends object>(props: BadgeCellProps<T>) => {
     let value = "";
     if (props.column.displayField) {
-      value = (props.record[props.column.displayField] as string) || "";
+      value =
+        (getColumnValue(props.record, props.column.displayField) as string) ||
+        "";
     } else {
       value =
         (getColumnValue(props.record, props.column.field) as string) || "";

@@ -6,13 +6,16 @@ import {
   AccountFormModalId,
 } from "../components/AccountFormModal";
 
+import {
+  parseSearchParams,
+  queryToFilters,
+} from "@/common_lib/utils/query/builder";
 import { status } from "@/models/models/account/_constants/status";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "../columns";
 import { filters } from "../filters";
@@ -33,9 +36,16 @@ export const AccountIndex = observer(() => {
     setSearchParams(params);
   };
 
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Accounts" },
+    ]);
+  }, []);
+
+
   return (
     <>
-      <AdminTitleBar title="Accounts" />
       <StandardTableWrap<AccountModel>
         className="[&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {

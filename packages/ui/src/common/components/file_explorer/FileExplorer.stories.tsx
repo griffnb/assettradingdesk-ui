@@ -4,7 +4,12 @@ import {
   SidebarProvider,
 } from "@/ui/shadcn/ui/sidebar";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FileCode, FileJson, FileText, FolderOpen } from "lucide-react";
+import {
+  FileCodeIcon,
+  FileJsonIcon,
+  FileTextIcon,
+  FolderOpenIcon,
+} from "lucide-react";
 import React from "react";
 import { FileExplorer, FileNode } from "./FileExplorer";
 
@@ -48,25 +53,25 @@ const sampleFileTree: FileNode[] = [
             id: "1-1-1",
             label: "Button.tsx",
             type: "file",
-            icon: <FileCode className="size-4 text-blue-500" />,
+            icon: <FileCodeIcon className="size-4 text-blue-500" />,
           },
           {
             id: "1-1-2",
             label: "Input.tsx",
             type: "file",
-            icon: <FileCode className="size-4 text-blue-500" />,
+            icon: <FileCodeIcon className="size-4 text-blue-500" />,
           },
           {
             id: "1-1-3",
             label: "Form.tsx",
             type: "file",
-            icon: <FileCode className="size-4 text-blue-500" />,
+            icon: <FileCodeIcon className="size-4 text-blue-500" />,
           },
           {
             id: "1-1-4",
             label: "Button.test.tsx",
             type: "file",
-            icon: <FileCode className="size-4 text-green-500" />,
+            icon: <FileCodeIcon className="size-4 text-green-500" />,
           },
         ],
       },
@@ -79,19 +84,19 @@ const sampleFileTree: FileNode[] = [
             id: "1-2-1",
             label: "helpers.ts",
             type: "file",
-            icon: <FileCode className="size-4 text-amber-500" />,
+            icon: <FileCodeIcon className="size-4 text-amber-500" />,
           },
           {
             id: "1-2-2",
             label: "constants.ts",
             type: "file",
-            icon: <FileCode className="size-4 text-amber-500" />,
+            icon: <FileCodeIcon className="size-4 text-amber-500" />,
           },
           {
             id: "1-2-3",
             label: "helpers.test.ts",
             type: "file",
-            icon: <FileCode className="size-4 text-green-500" />,
+            icon: <FileCodeIcon className="size-4 text-green-500" />,
           },
         ],
       },
@@ -99,7 +104,7 @@ const sampleFileTree: FileNode[] = [
         id: "1-3",
         label: "index.ts",
         type: "file",
-        icon: <FileCode className="size-4 text-amber-500" />,
+        icon: <FileCodeIcon className="size-4 text-amber-500" />,
       },
     ],
   },
@@ -131,19 +136,19 @@ const sampleFileTree: FileNode[] = [
     id: "3",
     label: "package.json",
     type: "file",
-    icon: <FileJson className="size-4 text-green-500" />,
+    icon: <FileJsonIcon className="size-4 text-green-500" />,
   },
   {
     id: "4",
     label: "README.md",
     type: "file",
-    icon: <FileText className="size-4 text-slate-500" />,
+    icon: <FileTextIcon className="size-4 text-slate-500" />,
   },
   {
     id: "5",
     label: "tsconfig.json",
     type: "file",
-    icon: <FileJson className="size-4 text-green-500" />,
+    icon: <FileJsonIcon className="size-4 text-green-500" />,
   },
 ];
 
@@ -257,20 +262,20 @@ export const CustomIcons: Story = {
         id: "c1",
         label: "Open Folder",
         type: "folder",
-        icon: <FolderOpen className="size-4 text-purple-500" />,
+        icon: <FolderOpenIcon className="size-4 text-purple-500" />,
         defaultExpanded: true,
         children: [
           {
             id: "c1-1",
             label: "TypeScript File",
             type: "file",
-            icon: <FileCode className="size-4 text-blue-500" />,
+            icon: <FileCodeIcon className="size-4 text-blue-500" />,
           },
           {
             id: "c1-2",
             label: "JSON Config",
             type: "file",
-            icon: <FileJson className="size-4 text-yellow-500" />,
+            icon: <FileJsonIcon className="size-4 text-yellow-500" />,
           },
         ],
       },

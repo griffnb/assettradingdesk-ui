@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/ui/shadcn/ui/table";
-import { ArrowUpDown, ExternalLink } from "lucide-react";
+import { ArrowUpDownIcon, ExternalLinkIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 
@@ -114,7 +114,7 @@ export const RequestSuggestions = observer(function RequestSuggestions(
       className="flex h-8 items-center gap-1 px-2 hover:bg-muted"
     >
       {label}
-      <ArrowUpDown
+      <ArrowUpDownIcon
         className={`size-3 ${sortField === field ? "text-primary" : "text-muted-foreground"}`}
       />
     </Button>
@@ -280,7 +280,7 @@ export const RequestSuggestions = observer(function RequestSuggestions(
                           className="gap-1"
                         >
                           View
-                          <ExternalLink className="size-3" />
+                          <ExternalLinkIcon className="size-3" />
                         </Button>
                       </TableCell>
                     </TableRow>

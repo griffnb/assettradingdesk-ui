@@ -1,4 +1,4 @@
-import { getPublicEnvVar } from "@/utils/env";
+import { getPublicEnvVar } from "@/common_lib/utils/env";
 import { action, makeAutoObservable } from "mobx";
 
 import { ServerService } from "./ServerService";

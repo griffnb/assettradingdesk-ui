@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ChevronRight, Folder, Home, Settings, Users } from "lucide-react";
+import {
+  ChevronRightIcon,
+  FolderIcon,
+  HomeIcon,
+  SettingsIcon,
+  UsersIcon,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -54,13 +60,13 @@ const MenuContent = () => (
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton isActive>
-            <Home />
+            <HomeIcon />
             <span>Dashboard</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
         <SidebarMenuItem>
           <SidebarMenuButton>
-            <Users />
+            <UsersIcon />
             <span>Users</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -68,16 +74,16 @@ const MenuContent = () => (
           <SidebarGroupLabel>Project Management</SidebarGroupLabel>
           <SidebarMenuItem>
             <SidebarMenuButton>
-              <Folder />
+              <FolderIcon />
               <span>Projects</span>
             </SidebarMenuButton>
             <SidebarMenuAction>
-              <ChevronRight />
+              <ChevronRightIcon />
             </SidebarMenuAction>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton>
-              <Settings />
+              <SettingsIcon />
               <span>Settings</span>
             </SidebarMenuButton>
           </SidebarMenuItem>

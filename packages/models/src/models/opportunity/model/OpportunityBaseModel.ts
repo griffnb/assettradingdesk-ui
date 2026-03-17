@@ -23,6 +23,11 @@ export class OpportunityBaseModel extends BaseModel {
   @attr("number") quantity: number = 0;
 
   // Join fields
+
+  @attr("string", { readOnly: true }) request_manufacturer_name: string = "";
+  @attr("string", { readOnly: true }) request_category_name: string = "";
+  @attr("string", { readOnly: true }) request_model_name: string = "";
+
   @attr("string", { readOnly: true }) asset_model_name: string = "";
   @attr("string", { readOnly: true }) asset_manufacturer_name: string = "";
   @attr("string", { readOnly: true }) buyer_client_name: string = "";

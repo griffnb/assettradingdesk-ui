@@ -1,9 +1,9 @@
+import { cn } from "@/common_lib/utils/cn";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent } from "@/ui/shadcn/ui/card";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { CategoryBreadcrumb } from "./CategoryBreadcrumb";
 import { CategoryModelCard } from "./CategoryModelCard";

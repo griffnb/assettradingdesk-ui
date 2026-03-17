@@ -87,8 +87,7 @@ export const columns: IColumn<CompanyModel>[] = [
 
   {
     title: "Company Types",
-    field: "meta_data",
-    displayField: "meta_data",
+    field: "meta_data.company_types",
     queryField: "meta_data.company_types",
     noSort: true,
     render: (options: ColumnComponentOptions<CompanyModel>) => {
@@ -98,8 +97,7 @@ export const columns: IColumn<CompanyModel>[] = [
 
   {
     title: "Wafer Sizes",
-    field: "meta_data",
-    displayField: "meta_data",
+    field: "meta_data.wafer_sizes",
     queryField: "meta_data.wafer_sizes",
     noSort: true,
     render: (options: ColumnComponentOptions<CompanyModel>) => {

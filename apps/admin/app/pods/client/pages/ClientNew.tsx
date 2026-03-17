@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { ClientForm  } from "@/admin/pods/client/components/ClientForm";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
@@ -16,11 +16,17 @@ export const ClientNew = observer(function ClientNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Clients", href: "/clients" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Client" />
       <ClientForm record={record} />;
     </>
   );

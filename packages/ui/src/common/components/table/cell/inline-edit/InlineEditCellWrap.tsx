@@ -1,9 +1,11 @@
+import { DotPath } from "@/common_lib/utils/path";
 import { isObjectValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
 import { Link } from "react-router";
+import { getColumnValue } from "../helpers";
 type ChildrenProps = {
   append: ReactNode;
 };
@@ -11,8 +13,8 @@ type ChildrenProps = {
 interface InlineEditCellWrapProps<T extends ValidationType & StoreModel> {
   children: (props: ChildrenProps) => ReactNode;
   record: T;
-  field: keyof T;
-  displayField?: keyof T;
+  field: keyof T | DotPath<T>;
+  displayField?: keyof T | DotPath<T>;
   route?: string;
 }
 export const InlineEditCellWrap = observer(function InlineEditCellWrap<
@@ -69,11 +71,11 @@ export const InlineEditCellWrap = observer(function InlineEditCellWrap<
               to={props.route}
               className="mr-2 border-b-2 border-dotted border-blue-500 font-medium text-blue-600"
             >
-              {props.record[field] as string}
+              {getColumnValue(props.record, field) as string}
             </Link>
           ) : (
             <div className="mr-2 border-b-2 border-dotted border-gray-500">
-              {props.record[field] as string}
+              {getColumnValue(props.record, field) as string}
             </div>
           )}
           <button

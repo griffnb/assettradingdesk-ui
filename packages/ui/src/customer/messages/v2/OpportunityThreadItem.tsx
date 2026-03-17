@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { MessageModel } from "@/models/models/message/model/MessageModel";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { formatDateTime } from "./utils";
 

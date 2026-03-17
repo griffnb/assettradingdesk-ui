@@ -1,7 +1,13 @@
 "use client";
-import { ChevronDown, Search, Settings, Wand2, X } from "lucide-react";
+import {
+  ChevronDownIcon,
+  SearchIcon,
+  SettingsIcon,
+  Wand2Icon,
+  XIcon,
+} from "lucide-react";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { Badge } from "../../shadcn/ui/badge";
 import { Button } from "../../shadcn/ui/button";
@@ -31,7 +37,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
       {/* Sidebar - Mobile */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 transform bg-white transition-transform duration-300 ease-in-out md:hidden",
+          "fixed inset-y-0 left-0 z-50 w-64 bg-white transition-transform duration-300 ease-in-out md:hidden",
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
@@ -39,7 +45,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <div className="flex aspect-square size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-                <Wand2 className="size-5" />
+                <Wand2Icon className="size-5" />
               </div>
               <div>
                 <h2 className="font-semibold">Techboss</h2>
@@ -50,13 +56,13 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
               size="icon"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <X className="h-5 w-5" />
+              <XIcon className="size-5" />
             </Button>
           </div>
 
           <div className="px-3 py-2">
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <SearchIcon className="absolute left-3 top-3 size-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search..."
@@ -91,9 +97,9 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
                       </Badge>
                     )}
                     {item.items && (
-                      <ChevronDown
+                      <ChevronDownIcon
                         className={cn(
-                          "ml-2 h-4 w-4 transition-transform",
+                          "ml-2 size-4 transition-transform",
                           expandedItems[item.title] ? "rotate-180" : "",
                         )}
                       />
@@ -129,7 +135,7 @@ export const MobileMenu = observer(function MobileMenu(props: MobileMenuProps) {
           <div className="border-t p-3">
             <div className="space-y-1">
               <button className="flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">
-                <Settings className="h-5 w-5" />
+                <SettingsIcon className="size-5" />
                 <span>Settings</span>
               </button>
               <button className="flex w-full items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium hover:bg-gray-200">

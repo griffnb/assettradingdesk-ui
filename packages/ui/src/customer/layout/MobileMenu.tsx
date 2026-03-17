@@ -11,7 +11,7 @@ import {
   ViewSidebarMenuItem,
 } from "@/ui/shadcn/ui/sidebarview";
 
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation, useNavigate } from "react-router";
 import { assetItems, platformItems } from "../auth/nav/CustomerAuthLeftNav";
@@ -84,7 +84,7 @@ export const MobileMenu = observer(function MobileMenu() {
           className="ml-auto size-7 cursor-pointer group-data-[state=collapsed]:ml-0"
           onClick={() => LayerService.remove(MobileMenuID)}
         >
-          <X className="size-4" />
+          <XIcon className="size-4" />
           <span className="sr-only">Toggle Sidebar</span>
         </Button>
       </div>

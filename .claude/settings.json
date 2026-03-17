@@ -1,12 +1,11 @@
 {
-  "enabledMcpjsonServers": [
-    "ui_code_tools",
-    "shadcn",
-    "context7",
-    "playwright",
-    "figma"
-  ],
   "enableAllProjectMcpServers": true,
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true
+  },
   "permissions": {
     "allow": [
       "mcp__code_tools",

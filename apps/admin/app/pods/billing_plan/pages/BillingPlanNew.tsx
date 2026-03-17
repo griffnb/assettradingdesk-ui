@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { BillingPlanForm  } from "@/admin/pods/billing_plan/components/BillingPlanForm";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
@@ -16,11 +16,17 @@ export const BillingPlanNew = observer(function BillingPlanNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Billing Plans", href: "/billing_plans" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New BillingPlan" />
       <BillingPlanForm record={record} />
     </>
   );

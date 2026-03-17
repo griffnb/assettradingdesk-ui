@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -17,8 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/ui/shadcn/ui/table";
-import { cn } from "@/utils/cn";
-import { ArrowUpRight, PcCase } from "lucide-react";
+import { ArrowUpRightIcon, PcCaseIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -66,7 +66,7 @@ export const CustomerDashboardListingsTable = observer(
           </div>
           <Button variant="outline" size="sm" className="gap-2">
             <span>View All</span>
-            <ArrowUpRight className="size-4" />
+            <ArrowUpRightIcon className="size-4" />
           </Button>
         </div>
         <div className="flex w-full flex-col pb-6">
@@ -74,7 +74,7 @@ export const CustomerDashboardListingsTable = observer(
             <Empty>
               <EmptyHeader>
                 <EmptyMedia variant="icon">
-                  <PcCase />
+                  <PcCaseIcon />
                 </EmptyMedia>
                 <EmptyTitle>No Assets Yet</EmptyTitle>
                 <EmptyDescription>

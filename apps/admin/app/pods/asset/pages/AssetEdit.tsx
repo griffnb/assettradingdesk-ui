@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { AssetForm } from "@/admin/pods/asset/components/AssetForm";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface AssetEditProps {}
 
@@ -24,11 +24,21 @@ export const AssetEdit = observer(function AssetEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Assets", href: "/assets" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Asset" objectURN={record.urn} />
       <AssetForm record={record} />;
     </>
   );

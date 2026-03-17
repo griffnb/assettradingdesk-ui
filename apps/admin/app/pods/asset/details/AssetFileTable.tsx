@@ -30,20 +30,19 @@ export const AssetFileTable = observer(function AssetFileTable(
   );
 
   return (
-    <div className="p-10">
-      <StandardTableWrap<AssetFileModel>
-        title="Files"
-        modelType="asset_file"
-        columns={columns}
-        filters={filters}
-        statuses={constants.asset_file.status}
-        appliedFilters={appliedFilters}
-        applyFilters={applyFilters}
-        selectRows={false}
-        hideTotalRow={true}
-        tableSearch={false}
-        tableExport={false}
-      />
-    </div>
+    <StandardTableWrap<AssetFileModel>
+      className="rounded-xl border bg-white shadow [&_*[data-slot='table-wrap']]:h-96 [&_*[data-slot='table-wrap']]:overflow-x-auto"
+      title="Files"
+      modelType="asset_file"
+      columns={columns}
+      filters={filters}
+      statuses={constants.asset_file.status}
+      appliedFilters={appliedFilters}
+      applyFilters={applyFilters}
+      selectRows={false}
+      hideTotalRow={true}
+      tableSearch={false}
+      tableExport={false}
+    />
   );
 });

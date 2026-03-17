@@ -1,6 +1,6 @@
 import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -24,11 +24,20 @@ export const PipelineDetails = observer(function PipelineDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Pipelines", href: "/pipelines" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Pipeline" />
       <PipelineInfo pipeline={record} />
       <OpportunitiesTable pipeline={record} />
     </>

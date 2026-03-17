@@ -1,8 +1,8 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Button } from "@/ui/shadcn/ui/button";
-import { cn } from "@/utils/cn";
-import { Heart, Share2 } from "lucide-react";
+import { HeartIcon, Share2Icon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ProductActions } from "./ProductActions";
 import { ProductSpecs } from "./ProductSpecs";
@@ -62,7 +62,7 @@ export const ProductInfo = observer(function ProductInfo({
             onClick={onShare}
             className="size-8"
           >
-            <Share2 className="size-4" />
+            <Share2Icon className="size-4" />
           </Button>
           <Button
             variant="ghost"
@@ -70,7 +70,7 @@ export const ProductInfo = observer(function ProductInfo({
             onClick={onFavorite}
             className="size-8"
           >
-            <Heart className="size-4" />
+            <HeartIcon className="size-4" />
           </Button>
         </div>
       </div>

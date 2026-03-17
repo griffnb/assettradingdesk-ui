@@ -3,6 +3,7 @@ import {
   TextInputProps,
 } from "@/ui/common/components/fields/TextInput";
 import { observer } from "mobx-react-lite";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -15,7 +16,7 @@ export const DetailFieldReadOnly = observer(function DetailFieldReadOnly<
   T extends object,
 >(props: DetailFieldReadOnlyProps<T>) {
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : (props.record[props.field] as string);
 
   // ignore types cause this is read only

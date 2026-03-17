@@ -30,7 +30,8 @@ const styleVariants = cva(
     variants: {
       variant: {
         compact: "bg-white",
-        default: "bg-bg-neutral-quaternary",
+        default: "bg-bg-neutral-quaternary text-text-neutral-secondary",
+        admin: "bg-gradient-to-r from-gray-800 to-gray-700 text-white",
         custom: "",
       },
     },
@@ -128,7 +129,7 @@ export const TableNav = observer(
         <div
           data-slot="table-nav-left"
           className={clsx(
-            "mt-0 flex flex-1 flex-row items-center justify-start gap-x-2 text-sm font-medium text-gray-700",
+            "mt-0 flex flex-1 flex-row items-center justify-start gap-x-2 text-sm font-medium",
             {
               "mr-6": variant != "compact",
             },
@@ -137,7 +138,7 @@ export const TableNav = observer(
           {props.title && (
             <span
               data-section={props.title}
-              className="whitespace-nowrap border-l border-border-neutral-primary pl-2 text-lg font-semibold text-text-neutral-secondary"
+              className="whitespace-nowrap border-l border-border-neutral-primary pl-2 text-lg font-semibold"
             >
               {props.title}
             </span>

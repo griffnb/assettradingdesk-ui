@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { CompanyForm } from "@/admin/pods/company/components/CompanyForm";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface CompanyEditProps {}
 
@@ -24,11 +24,21 @@ export const CompanyEdit = observer(function CompanyEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Companies", href: "/companies" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Company" objectURN={record.urn} />
       <CompanyForm record={record} />;
     </>
   );

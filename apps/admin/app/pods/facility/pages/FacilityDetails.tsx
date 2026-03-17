@@ -1,6 +1,6 @@
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -26,11 +26,20 @@ export const FacilityDetails = observer(function FacilityDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Facilities", href: "/facilities" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Facility" />
       <FacilityInfo facility={record} />
       <FacilityClients facility={record} />
       <FacilityAssets facility={record} />

@@ -1,3 +1,4 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
@@ -8,7 +9,6 @@ import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/F
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

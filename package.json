@@ -2,7 +2,6 @@
   "name": "asset-trading-desk-monorepo",
   "packageManager": "bun@1.3.2",
   "private": true,
-  "type": "module",
   "workspaces": [
     "packages/*",
     "apps/*"

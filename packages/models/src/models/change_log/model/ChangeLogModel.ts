@@ -1,6 +1,6 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
 import { StoreKeys } from "@/models/types/store_keys";
-import { ValidationRules } from "@/utils/validations";
 import { ChangeLogBaseModel } from "./ChangeLogBaseModel";
 import { validationRules } from "./validation_rules";
 

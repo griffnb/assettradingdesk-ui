@@ -1,4 +1,4 @@
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type Signup } from "./Signup";
 
 export const signup_validation_rules: ValidationRulesType<Signup> = {

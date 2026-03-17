@@ -88,7 +88,7 @@ export const AssetGallery = observer(function AssetGallery(
   }
 
   return (
-    <div className="px-10">
+    <div className="rounded-xl border bg-white p-4 shadow">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {assetFiles.map((assetFile, assetIndex) => (
           <img

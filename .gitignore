@@ -49,3 +49,9 @@ tsconfig.tsbuildinfo
 /sites/techboss_ai/dist
 dist
 /.playwright-mcp
+.command-center/.secrets-env
+.command-center/local.env
+.command-center/sandbox.env
+.command-center/remote.env
+/.ckb
+/index.scip

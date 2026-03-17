@@ -1,6 +1,6 @@
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -27,11 +27,20 @@ export const CompanyDetails = observer(function CompanyDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Companies", href: "/companies" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Company" />
       <CompanyInfo company={record} />
       <CompanyClients company={record} />
       <CompanyFacilities company={record} />

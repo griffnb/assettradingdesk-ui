@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { AssetFileForm  } from "@/admin/pods/asset_file/components/AssetFileForm";
 import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
@@ -16,11 +16,17 @@ export const AssetFileNew = observer(function AssetFileNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Asset Files", href: "/asset_files" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New AssetFile" />
       <AssetFileForm record={record} />;
     </>
   );

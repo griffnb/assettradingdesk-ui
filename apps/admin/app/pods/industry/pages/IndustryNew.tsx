@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { IndustryForm  } from "@/admin/pods/industry/components/IndustryForm";
 import { IndustryModel } from "@/models/models/industry/model/IndustryModel";
@@ -16,11 +16,17 @@ export const IndustryNew = observer(function IndustryNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Industries", href: "/industries" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Industry" />
       <IndustryForm record={record} />;
     </>
   );

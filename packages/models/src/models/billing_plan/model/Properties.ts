@@ -1,4 +1,4 @@
-import { ValidationClass } from "@/utils/validations";
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { propertiesValidationRules } from "./validation_rules";
 
 export class Properties extends ValidationClass {

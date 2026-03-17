@@ -1,10 +1,10 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { findConstant } from "@/models/constants_helpers";
 import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { AssetFileTypes } from "../../asset_file/_constants/file_type";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 import { AssetBaseModel } from "./AssetBaseModel";

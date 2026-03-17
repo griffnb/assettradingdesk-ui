@@ -10,7 +10,10 @@ interface StatCellProps<T extends object> extends TableCellProps<T> {
 const StatCell = observer(<T extends object>(props: StatCellProps<T>) => {
   const getDisplayField = (record: T, column: IColumn<T>): string => {
     if ("displayField" in column && column.displayField) {
-      return getFormattedField(record[column.displayField] as string, column);
+      return getFormattedField(
+        getColumnValue(record, column.displayField) as string,
+        column,
+      );
     }
     if ("field" in column) {
       return getFormattedField(

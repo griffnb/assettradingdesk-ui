@@ -2,7 +2,7 @@ import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
 import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { DetailFieldText } from "@/ui/common/components/form/details/DetailFieldText";
@@ -28,14 +28,20 @@ export const BillingPlanDetails = observer(function BillingPlanDetails() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Billing Plans", href: "/billing_plans" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar
-        objectURN={record.urn}
-        title="Billing Plan" />
-
       <DetailFieldContainer>
         <DetailFieldText
           record={record}

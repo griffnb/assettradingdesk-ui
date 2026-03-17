@@ -6,12 +6,12 @@ import {
 } from "@/ui/common/components/table/cell/RowActions";
 
 import { ServerService } from "@/common_lib/services/ServerService";
+import { getPublicEnvVar } from "@/common_lib/utils/env";
+import { equals } from "@/common_lib/utils/numbers";
 import { AccountStatus } from "@/models/models/account/_constants/status";
 import { Status } from "@/models/types/constants";
 import { MenuOption } from "@/ui/common/components/menu/MenuOption";
 import { TableCellProps } from "@/ui/common/components/types/columns";
-import { getPublicEnvVar } from "@/utils/env";
-import { equals } from "@/utils/numbers";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";

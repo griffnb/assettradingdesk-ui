@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/ui/shadcn/ui/carousel";
-import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { ArrowUpRightIcon, BadgeCheckIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
 
@@ -40,7 +40,7 @@ export const CustomerDashboardSuggestedTools = observer(
       <div className="flex flex-col gap-4 self-stretch">
         <div className="flex items-start justify-between p-0">
           <div className="flex items-center gap-2">
-            <BadgeCheck className="size-8" />
+            <BadgeCheckIcon className="size-8" />
             <h2 className="text-2xl font-semibold leading-8 text-foreground">
               Suggested Tools
             </h2>
@@ -52,7 +52,7 @@ export const CustomerDashboardSuggestedTools = observer(
             onClick={() => {}}
           >
             <span>View All</span>
-            <ArrowUpRight className="size-4" />
+            <ArrowUpRightIcon className="size-4" />
           </Button>
         </div>
         <div className="flex flex-col items-center px-10">

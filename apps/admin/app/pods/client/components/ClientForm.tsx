@@ -1,13 +1,13 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
 import { CompanyModel } from "@/models/models/company/model/CompanyModel";
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
-import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { FormFieldCheckbox } from "@/ui/common/components/form/fields/FormFieldCheckbox";
 import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/FormFieldModelSearchSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

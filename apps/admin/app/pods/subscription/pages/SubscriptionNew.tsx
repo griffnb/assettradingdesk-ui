@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { SubscriptionForm  } from "@/admin/pods/subscription/components/SubscriptionForm";
 import { SubscriptionModel } from "@/models/models/subscription/model/SubscriptionModel";
@@ -16,11 +16,17 @@ export const SubscriptionNew = observer(function SubscriptionNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Subscriptions", href: "/subscriptions" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Subscription" />
       <SubscriptionForm record={record} />
     </>
   );

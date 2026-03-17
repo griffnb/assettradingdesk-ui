@@ -1,6 +1,6 @@
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { BaseModel } from "@/models/BaseModel";
 import { attr } from "@/models/decorators/attr";
-import { ValidationClass } from "@/utils/validations";
 import dayjs from "dayjs";
 
 class SignupProperties extends ValidationClass {

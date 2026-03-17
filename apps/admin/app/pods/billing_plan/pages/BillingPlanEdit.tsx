@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { BillingPlanForm } from "@/admin/pods/billing_plan/components/BillingPlanForm";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface BillingPlanEditProps {}
 
@@ -24,11 +24,21 @@ export const BillingPlanEdit = observer(function BillingPlanEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Billing Plans", href: "/billing_plans" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit BillingPlan" objectURN={record.urn} />
       <BillingPlanForm record={record} />
     </>
   );

@@ -1,3 +1,4 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { SafeBaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { BillingPlanModel } from "@/models/models/billing_plan/model/BillingPlanModel";
@@ -10,7 +11,6 @@ import { FormFieldModelSearchSelect } from "@/ui/common/components/form/fields/F
 import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
@@ -105,7 +105,9 @@ export const OrganizationForm = observer(function OrganizationForm(
           modelSearchFilters={{ disabled: "0" }}
         />
         <FormFieldText
-          record={props.record.properties as SafeBaseModel<OrganizationProperties>}
+          record={
+            props.record.properties as SafeBaseModel<OrganizationProperties>
+          }
           field="billing_email"
           type="email"
           label="Billing Email"

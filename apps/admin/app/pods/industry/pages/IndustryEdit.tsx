@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { IndustryForm } from "@/admin/pods/industry/components/IndustryForm";
 import { IndustryModel } from "@/models/models/industry/model/IndustryModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface IndustryEditProps {}
 
@@ -24,11 +24,21 @@ export const IndustryEdit = observer(function IndustryEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Industries", href: "/industries" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Industry" objectURN={record.urn} />
       <IndustryForm record={record} />;
     </>
   );

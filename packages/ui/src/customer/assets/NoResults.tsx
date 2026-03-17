@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/shadcn/ui/button";
 import {
   Empty,
@@ -7,9 +8,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/ui/shadcn/ui/empty";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { Search } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
 
@@ -48,7 +48,7 @@ export const NoResults = observer(function NoResults(
         <EmptyHeader className="max-w-md">
           <EmptyMedia variant="default">
             <Button variant={"outline"} className="size-10">
-              <Search />
+              <SearchIcon />
             </Button>
           </EmptyMedia>
           <EmptyTitle>No Results Found</EmptyTitle>

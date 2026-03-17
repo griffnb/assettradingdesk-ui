@@ -1,4 +1,4 @@
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type AdminModel } from "./AdminModel";
 
 export const validationRules: ValidationRulesType<AdminModel> = {

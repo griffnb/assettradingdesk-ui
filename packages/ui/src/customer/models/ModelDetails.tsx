@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { ModelAssetsList } from "./ModelAssetsList";

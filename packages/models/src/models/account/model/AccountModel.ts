@@ -1,8 +1,8 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { constants } from "@/models/constants";
 import { findConstant } from "@/models/constants_helpers";
 import { IStore } from "@/models/types/store";
 import { StoreKeys } from "@/models/types/store_keys";
-import { ValidationRules } from "@/utils/validations";
 import { AccountBaseModel } from "./AccountBaseModel";
 
 export class AccountModel extends AccountBaseModel {

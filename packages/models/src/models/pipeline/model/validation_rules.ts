@@ -1,6 +1,3 @@
-
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type PipelineBaseModel } from "./PipelineBaseModel";
-export const validationRules: ValidationRulesType<PipelineBaseModel> = {
- 
-};
+export const validationRules: ValidationRulesType<PipelineBaseModel> = {};

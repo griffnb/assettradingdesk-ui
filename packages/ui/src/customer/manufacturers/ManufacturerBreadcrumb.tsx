@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
 import {
   Breadcrumb,
@@ -7,7 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/ui/shadcn/ui/breadcrumb";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router";
 

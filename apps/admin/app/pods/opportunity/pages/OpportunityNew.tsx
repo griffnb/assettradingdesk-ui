@@ -1,7 +1,7 @@
 import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 import { OpportunityForm  } from "@/admin/pods/opportunity/components/OpportunityForm";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
@@ -16,11 +16,17 @@ export const OpportunityNew = observer(function OpportunityNew() {
     setRecord(rec);
   }, []);
 
-  if (!record) return null;
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Opportunities", href: "/opportunities" },
+      { label: "New" },
+    ]);
+  }, []);
 
+  if (!record) return null;
     return (
     <>
-      <AdminTitleBar title="New Opportunity" />
       <OpportunityForm record={record} />;
     </>
   );

@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
@@ -8,8 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
-import { Package } from "lucide-react";
+import { PackageIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router";
 
@@ -39,7 +39,7 @@ export const CategoryModelCard = observer(function CategoryModelCard({
         <CardHeader className="space-y-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors group-hover:bg-slate-200">
-              <Package className="size-6" />
+              <PackageIcon className="size-6" />
             </div>
             {model.asset_count > 0 && (
               <Badge variant="secondary" className="shrink-0">

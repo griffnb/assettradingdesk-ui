@@ -1,12 +1,15 @@
 import { LayerService } from "@/common_lib/services/LayerService";
+import {
+  parseSearchParams,
+  queryToFilters,
+} from "@/common_lib/utils/query/builder";
 import { status } from "@/models/models/client/_constants/status";
 import { ClientModel } from "@/models/models/client/model/ClientModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
 import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
 import { observer } from "mobx-react-lite";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import { columns } from "../columns";
 import {
@@ -30,9 +33,15 @@ export const ClientIndex = observer(function ClientIndex() {
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     setSearchParams(params);
   };
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Clients" },
+    ]);
+  }, []);
+
   return (
     <>
-      <AdminTitleBar title="Clients" />
       <StandardTableWrap<ClientModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
         newComponent={() => {

@@ -1,12 +1,13 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { IConstant } from "@/models/types/constants";
 import { MultiSelectInput } from "@/ui/common/components/fields/MultiSelectInput";
-import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
+import { getColumnValue } from "../../table/cell/helpers";
 
 interface DetailFieldMultiSelectProps<T extends StoreModel & ValidationType>
   extends DetailFieldProps<T> {
@@ -35,7 +36,7 @@ export const DetailFieldMultiSelect = observer(function DetailFieldMultiSelect<
   };
 
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : props.options
         .map((option) => {
           const key = props.field as keyof T;
