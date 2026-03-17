@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { ModelForm } from "@/admin/pods/model/components/ModelForm";
 import { ModelModel } from "@/models/models/model/model/ModelModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface ModelEditProps {}
 
@@ -24,11 +24,21 @@ export const ModelEdit = observer(function ModelEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Models", href: "/models" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Model" objectURN={record.urn} />
       <ModelForm record={record} />;
     </>
   );

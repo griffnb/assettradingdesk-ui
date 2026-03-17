@@ -1,9 +1,9 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { constants } from "@/models/models/asset_file/constants";
 import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
-import {FormFieldSelect} from "@/ui/common/components/form/fields/FormFieldSelect";
+import { FormFieldSelect } from "@/ui/common/components/form/fields/FormFieldSelect";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import {FormWrap} from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
+import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";

@@ -1,0 +1,273 @@
+{
+  "tools": [
+    {
+      "name": "storybook",
+      "description": "Launches storybook to view components",
+      "inputSchema": {},
+      "command": "make storybook"
+    },
+
+    {
+      "name": "docs",
+      "description": "Use For Paths / Props / Component Defs / Component Usage / Model Definitions - Gets the documentation and type definitions and props of a component or set of components or function using glob patterns. USE ME IF YOU KNOW WHAT YOU ARE LOOKING FOR",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "title": "Glob Pattern",
+            "type": "string",
+            "description": "Glob pattern to match files (e.g., 'packages/ui/**/*.tsx', '**/*BaseModel.ts', 'packages/ui/src/components/Button.tsx'). Use ** for recursive search, * for wildcards."
+          },
+          "component": {
+            "title": "Component Name",
+            "type": "string",
+            "description": "(Optional) The specific component or interface name to extract from matched files (e.g., Button, ButtonProps). If omitted, shows all exports in matched files."
+          }
+        },
+        "required": ["pattern"]
+      },
+      "command": "bun scripts/tsdoc.ts {{pattern}} {{component}}"
+    },
+
+    {
+      "name": "typecheck",
+      "description": "Type Checks the monorepo bun project properly.  ONLY USE ME FOR TYPE CHECKING",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "package": {
+            "title": "Package Name",
+            "type": "string",
+            "description": "the folder of the app or package to typecheck, i.e. models / ui / admin"
+          }
+        },
+        "required": ["package"]
+      },
+      "command": "bun -F {{package}} typecheck"
+    },
+    {
+      "name": "lint",
+      "description": "Lints the monorepo bun project properly. ONLY USE ME FOR LINTING",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "package": {
+            "title": "Package Name",
+            "type": "string",
+            "description": "the folder of the app or package to typecheck, i.e. models / ui / admin"
+          },
+          "file": {
+            "title": "File Name",
+            "type": "string",
+            "description": "(Optional) specific file to lint within the package"
+          }
+        },
+        "required": ["package"]
+      },
+      "command": "bun -F {{package}} lint {{file:=\"\"}}"
+    },
+
+    {
+      "name": "plop_form_modal",
+      "description": "Create a Form Modal component using Plop generator.\n\nGenerates a TypeScript React component for a form modal with proper templating.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the modal component will be created (e.g., apps/admin/src/components/modals)."
+          },
+          "name": {
+            "title": "Modal Name",
+            "type": "string",
+            "description": "The name of the modal component (will be converted to PascalCase)."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop form-modal -- --destpath=\"{{destpath}}\" --name=\"{{name}}\""
+    },
+
+    {
+      "name": "plop_simple_modal",
+      "description": "Create a Simple Modal component using Plop generator.\n\nGenerates a basic TypeScript React modal component with minimal functionality.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the modal component will be created (e.g., apps/admin/src/components/modals)."
+          },
+          "name": {
+            "title": "Modal Name",
+            "type": "string",
+            "description": "The name of the modal component (will be converted to PascalCase)."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop simple-modal -- --destpath=\"{{destpath}}\" --name=\"{{name}}\""
+    },
+
+    {
+      "name": "plop_simple_data_modal",
+      "description": "Create a Simple Data Modal component using Plop generator.\n\nGenerates a data-driven modal component with both modal and view components.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the modal components will be created (e.g., apps/admin/src/components/modals)."
+          },
+          "name": {
+            "title": "Modal Name",
+            "type": "string",
+            "description": "The name of the modal component (will be converted to PascalCase)."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop simple-data-modal -- --destpath=\"{{destpath}}\" --name=\"{{name}}\""
+    },
+
+    {
+      "name": "plop_data_component",
+      "description": "Create a Data Component using Plop generator.\n\nGenerates 2 components, an outer component for handling data loading and an inner view component for display.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the component will be created (e.g., apps/admin/src/components)."
+          },
+          "name": {
+            "title": "Component Name",
+            "type": "string",
+            "description": "The name of the component (will be converted to PascalCase)."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop data-component -- --destpath=\"{{destpath}}\" --name=\"{{name}}\" --observable=true"
+    },
+
+    {
+      "name": "plop_component",
+      "description": "Create a Standard Component using Plop generator.\n\nGenerates a standard react component with optional observable functionality.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the component will be created (e.g., apps/admin/src/components)."
+          },
+          "name": {
+            "title": "Component Name",
+            "type": "string",
+            "description": "The name of the component (will be converted to PascalCase)."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop view-component -- --destpath=\"{{destpath}}\" --name=\"{{name}}\" --observable=true"
+    },
+
+    {
+      "name": "plop_service",
+      "description": "Create a Service component using Plop generator.\n\nGenerates a TypeScript service class for handling business logic and API interactions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the service will be created (e.g., packages/common_lib/src/services)."
+          },
+          "name": {
+            "title": "Service Name",
+            "type": "string",
+            "description": "The name of the service (will be converted to PascalCase and suffixed with 'Service')."
+          }
+        },
+        "required": ["destpath", "name"]
+      },
+      "command": "plop service -- --destpath=\"{{destpath}}\" --name=\"{{name}}\""
+    },
+
+    {
+      "name": "plop_row_actions",
+      "description": "Create a Row Actions component using Plop generator.\n\nGenerates a React component for table row actions with model-specific functionality.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "destpath": {
+            "title": "Destination Path",
+            "type": "string",
+            "description": "The path where the row actions component will be created (e.g., apps/admin/src/components)."
+          },
+          "model": {
+            "title": "Model Name",
+            "type": "string",
+            "description": "The name of the model (will be converted to PascalCase)."
+          },
+          "modelPlural": {
+            "title": "Model Plural Name",
+            "type": "string",
+            "description": "The plural form of the model name."
+          }
+        },
+        "required": ["destpath", "model", "modelPlural"]
+      },
+      "command": "plop row-actions -- --destpath=\"{{destpath}}\" --model=\"{{model}}\" --modelPlural=\"{{modelPlural}}\""
+    },
+
+    {
+      "name": "plop_pod",
+      "description": "Create a complete Pod (model, services, components, and routes) using Plop generator.\n\nGenerates a full CRUD pod with model definitions, services, admin components, and routing. This is the most comprehensive generator that creates:\n- Model files with validation rules\n- Service classes\n- Admin CRUD pages (Index, New, Edit, Details)\n- Form components and modals\n- Next.js routing files",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Model Name",
+            "type": "string",
+            "description": "The name of the model in snake_case (e.g., cool_model)."
+          },
+          "pluralName": {
+            "title": "Model Plural Name",
+            "type": "string",
+            "description": "The plural form of the model name in snake_case (e.g., cool_models)."
+          }
+        },
+        "required": ["name", "pluralName"]
+      },
+      "command": "plop pod -- --name=\"{{name}}\" --pluralName=\"{{pluralName}}\""
+    },
+
+    {
+      "name": "plop_vite_pod",
+      "description": "Create a complete VITE Pod (model, services, components, and routes) using Plop generator.\n\nGenerates a full CRUD pod with model definitions, services, admin components, and routing. This is the most comprehensive generator that creates:\n- Model files with validation rules\n- Service classes\n- Admin CRUD pages (Index, New, Edit, Details)\n- Form components and modals\n- Next.js routing files",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Model Name",
+            "type": "string",
+            "description": "The name of the model in snake_case (e.g., cool_model)."
+          },
+          "pluralName": {
+            "title": "Model Plural Name",
+            "type": "string",
+            "description": "The plural form of the model name in snake_case (e.g., cool_models)."
+          }
+        },
+        "required": ["name", "pluralName"]
+      },
+      "command": "plop vite_pod -- --name=\"{{name}}\" --pluralName=\"{{pluralName}}\""
+    }
+  ]
+}

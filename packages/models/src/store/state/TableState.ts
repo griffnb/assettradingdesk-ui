@@ -12,12 +12,13 @@ import {
   getSortColumnDirection,
   getStatusFilters,
   getTableFilters,
-} from "@/utils/query/builder";
+} from "@/common_lib/utils/query/builder";
 
-import { getFilterForQueryParam } from "@/utils/filters/helpers";
+import { getFilterForQueryParam } from "@/common_lib/utils/filters/helpers";
+import dayjs from "dayjs";
 import { flow, makeAutoObservable } from "mobx";
-import { IColumn } from "../../../../ui/src/common/components/types/columns";
-import { IFilter } from "../../../../ui/src/common/components/types/filters";
+import { IColumn } from "@/ui/common/components/types/columns";
+import { IFilter } from "@/ui/common/components/types/filters";
 
 export interface TableStateProps<T extends object> {
   modelType?: StoreKeys; // The ember model name to query
@@ -64,8 +65,8 @@ export class TableState<T extends object> {
   applied_columns: IColumn<T>[] = [];
   virtualPages: VirtualPage<T>[] = [];
   isLoadingMore: boolean = false;
-  sortColumn: number = 0;
-  sortDirection: number = 0;
+  sortColumn: number | null = null;
+  sortDirection: number | null = null;
 
   globalFilter: string = "";
   filters: IFilter[] = [];
@@ -77,7 +78,6 @@ export class TableState<T extends object> {
   columnCacheKey: string = "";
 
   appliedFilters: URLParams = {};
-
   statusFilters: number[] = [];
   tableFilters: URLParams = {};
 
@@ -153,10 +153,28 @@ export class TableState<T extends object> {
   }
 
   applySort = (
-    sortColumn: number,
-    sortDirection: number,
+    sortColumn: number | null,
+    sortDirection: number | null,
     newTableFilters?: URLParams,
   ) => {
+    if (sortColumn === null) {
+      return;
+    }
+
+    if (sortDirection === null) {
+      this.order = "";
+      this.sortColumn = null;
+      this.sortDirection = null;
+      this.page = 1;
+      this.offset = 0;
+      if (newTableFilters) {
+        this.tableFilters = newTableFilters;
+      }
+
+      this.updateAppliedFilters();
+      return;
+    }
+
     // Update the query param
     const col = this.columns[sortColumn];
     if (!col) {
@@ -168,19 +186,18 @@ export class TableState<T extends object> {
     }
 
     let order = "";
-    if (sortDirection != Direction.NONE) {
-      let fieldName = "";
-      if (typeof col.queryField === "object") {
-        if (this.searchQuery !== "") {
-          fieldName = col.queryField.elasticsearchColumn;
-        } else {
-          fieldName = col.queryField.postgresColumn;
-        }
+
+    let fieldName = "";
+    if (typeof col.queryField === "object") {
+      if (this.searchQuery !== "") {
+        fieldName = col.queryField.elasticsearchColumn;
       } else {
-        fieldName = col.queryField;
+        fieldName = col.queryField.postgresColumn;
       }
-      order = `${fieldName} ${sortDirection == Direction.ASC ? "asc" : "desc"}`;
+    } else {
+      fieldName = col.queryField;
     }
+    order = `${fieldName} ${sortDirection == Direction.ASC ? "asc" : "desc"}`;
 
     this.order = order;
 
@@ -200,20 +217,20 @@ export class TableState<T extends object> {
       this.applySort(columnIndex, Direction.ASC);
       return;
     } else {
-      let sortDirection = this.sortDirection;
+      let sortDirection: number | null = this.sortDirection || 0;
       sortDirection++;
       if (sortDirection > Direction.DESC) {
-        sortDirection = Direction.NONE;
+        sortDirection = null;
       }
       this.applySort(columnIndex, sortDirection);
       return;
     }
   };
 
-  applyOrder = (order: string) => {
+  applyOrder(order: string) {
     this.order = order;
     this.updateAppliedFilters();
-  };
+  }
 
   unselectRow() {
     this.selected_row_id = null;
@@ -226,8 +243,7 @@ export class TableState<T extends object> {
   applyRouteFilters(params: URLParams) {
     // Check if the incoming params are different from current applied filters
     const noChange = deepEqual(this.appliedFilters, params);
-    if (!noChange || params["reload"]) {
-      delete params["reload"];
+    if (!noChange) {
       this.loadFilters(params);
       this.reloadData();
     }
@@ -399,8 +415,8 @@ export class TableState<T extends object> {
               query,
             );
 
-        if (countResponse.success && countResponse.data) {
-          this.totalCount = countResponse.data;
+        if (countResponse.success) {
+          this.totalCount = countResponse.data || 0;
         }
       }
     } catch (error) {
@@ -441,12 +457,11 @@ export class TableState<T extends object> {
   }
 
   reloadData = () => {
-    if (this.mode == "client") {
+    if (this.mode === "server" || (this.mode === "client" && this.modelType)) {
+      this.loadServerData();
+    } else {
       this.applyLocalFilters();
-      return;
     }
-
-    this.loadServerData();
   };
 
   applyColumns(columns: IColumn<T>[], clear?: boolean) {
@@ -456,6 +471,10 @@ export class TableState<T extends object> {
     } else {
       CacheService.set(`columns_${this.columnCacheKey}`, columns);
     }
+  }
+
+  get serverQuery() {
+    return buildQuery(this.appliedFilters, this.filters);
   }
 
   get columns() {
@@ -549,12 +568,15 @@ export class TableState<T extends object> {
     }
   }
 
+  get noneChecked() {
+    return Object.keys(this.checked_row_ids).length === 0;
+  }
+
   get allChecked() {
     return (
       this.rows.length > 0 &&
       this.rows.every(
-        (row) =>
-          this.checked_row_ids[(row["id" as keyof T] as number).toString()],
+        (row) => this.checked_row_ids[row["id" as keyof T] as string] === true,
       )
     );
   }
@@ -566,9 +588,7 @@ export class TableState<T extends object> {
   }
 
   uncheckAll() {
-    this.rows.forEach((row) => {
-      this.uncheckRow((row["id" as keyof T] as number).toString());
-    });
+    this.checked_row_ids = {};
   }
 
   expandRow(id: string) {
@@ -581,27 +601,35 @@ export class TableState<T extends object> {
 
   sortLocal(data: T[]): T[] {
     if (
-      this.sortDirection === Direction.NONE ||
-      !this.columns[this.sortColumn]
+      (this.sortDirection === null || this.sortColumn === null) &&
+      this.order === ""
     ) {
       return data;
     }
 
-    const col = this.columns[this.sortColumn];
-    if (!col || col.noSort) {
-      return data;
-    }
-
     let fieldName = "";
-    if (typeof col.queryField === "object") {
-      // For local sorting, we'll use the postgres column as the default
-      fieldName = col.queryField.postgresColumn;
-    } else if (col.queryField) {
-      fieldName = col.queryField;
-    } else if (col.field) {
-      fieldName = col.field as string;
+    if (this.sortColumn !== null && this.sortDirection !== null) {
+      const col = this.columns[this.sortColumn];
+      if (!col || col.noSort) {
+        return data;
+      }
+
+      if (typeof col.queryField === "object") {
+        // For local sorting, we'll use the postgres column as the default
+        fieldName = col.queryField.postgresColumn;
+      } else if (col.queryField) {
+        fieldName = col.queryField;
+      } else if (col.field) {
+        fieldName = col.field as string;
+      } else {
+        return data;
+      }
     } else {
-      return data;
+      // Fallback to order string parsing
+      const orderParts = this.order.split(` `);
+      fieldName = orderParts[0] || "";
+      this.sortDirection =
+        orderParts[1] === "desc" ? Direction.DESC : Direction.ASC;
     }
 
     return [...data].sort((a, b) => {
@@ -627,6 +655,16 @@ export class TableState<T extends object> {
         return this.sortDirection === Direction.ASC ? aVal - bVal : bVal - aVal;
       }
 
+      if (dayjs.isDayjs(aVal) && dayjs.isDayjs(bVal)) {
+        if (aVal.isBefore(bVal)) {
+          return this.sortDirection === Direction.ASC ? -1 : 1;
+        }
+        if (aVal.isAfter(bVal)) {
+          return this.sortDirection === Direction.ASC ? 1 : -1;
+        }
+        return 0;
+      }
+
       // For dates or other comparable types
       if (aVal < bVal) {
         return this.sortDirection === Direction.ASC ? -1 : 1;
@@ -634,6 +672,7 @@ export class TableState<T extends object> {
       if (aVal > bVal) {
         return this.sortDirection === Direction.ASC ? 1 : -1;
       }
+
       return 0;
     });
   }
@@ -791,7 +830,7 @@ export class TableState<T extends object> {
             return col.title;
           }
         })
-        .join(",") + "\r\n";
+        .join(",") + `\r\n`;
 
     for (let i = 0; i < exportData.length; i++) {
       const row = exportData[i];
@@ -818,7 +857,7 @@ export class TableState<T extends object> {
         return '"' + val.toString().replace(/"/g, '""') + '"';
       });
 
-      csvContent += rowData.join(",") + "\r\n";
+      csvContent += rowData.join(",") + `\r\n`;
     }
 
     // Create a Blob with the CSV content.
@@ -859,7 +898,10 @@ export class TableState<T extends object> {
       this.loadFilters(props.appliedFilters);
     }
 
-    if (this.mode === "server") {
+    if (
+      this.mode === "server" ||
+      (this.mode === "client" && this.modelType && this.data.length == 0)
+    ) {
       this.loadServerData();
     } else {
       // For client mode, apply local filters after data is loaded

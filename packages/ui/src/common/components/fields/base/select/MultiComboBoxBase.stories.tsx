@@ -1,5 +1,5 @@
 import { IConstant } from "@/models/types/constants";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiComboBoxBase, MultiComboBoxBaseProps } from "./MultiComboBoxBase";
 
 const meta = {
@@ -36,7 +36,7 @@ export const Default: Story = {
     handleChange: (value: IConstant[]) => {
       console.log("Selected option:", value);
     },
-    selected: options[0],
+    selected: [options[0]],
     idField: "id",
     optionField: "label",
   } as MultiComboBoxBaseProps<IConstant>,
@@ -53,7 +53,7 @@ export const WithPreFilledData: Story = {
     handleChange: (value: IConstant[]) => {
       console.log("Selected option:", value);
     },
-    selected: options[1],
+    selected: [options[1]],
     idField: "id",
     optionField: "label",
   } as MultiComboBoxBaseProps<IConstant>,
@@ -65,7 +65,7 @@ export const WithClear: Story = {
     handleChange: (value: IConstant[]) => {
       console.log("Selected option:", value);
     },
-    selected: options[1],
+    selected: [options[1]],
     idField: "id",
     optionField: "label",
     showClear: true,

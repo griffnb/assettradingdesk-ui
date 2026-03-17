@@ -1,12 +1,12 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ModelSearchMultiSelectInput } from "@/ui/common/components/fields/ModelSearchMultiSelectInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { IColumn, TableCellProps } from "../../../types/columns";
-import InlineEditCellWrap from "./InlineEditCellWrap";
+import { IFieldColumn, TableCellProps } from "../../../types/columns";
+import { InlineEditCellWrap } from "./InlineEditCellWrap";
 
 interface InlineEditCellModelSearchMultiSelectProps<
   T extends ValidationType & StoreModel,
@@ -16,16 +16,17 @@ interface InlineEditCellModelSearchMultiSelectProps<
 }
 
 export interface InlineEditCellModelSearchMultiSelectColumn<T extends object, V>
-  extends IColumn<T> {
+  extends IFieldColumn<T> {
   modelName: StoreKeys;
   modelDisplayField: keyof V;
   modelSearchParam: string;
   modelSearchFilters?: { [key: string]: string | string[] };
 }
-const InlineEditCellModelSearchMultiSelect = observer(
-  <T extends ValidationType & StoreModel, V extends StoreModel>(
-    props: InlineEditCellModelSearchMultiSelectProps<T, V>,
-  ) => {
+export const InlineEditCellModelSearchMultiSelect = observer(
+  function InlineEditCellModelSearchMultiSelect<
+    T extends ValidationType & StoreModel,
+    V extends StoreModel,
+  >(props: InlineEditCellModelSearchMultiSelectProps<T, V>) {
     const [validate, setValidate] = useState<boolean>(false);
     const [selected, setSelected] = useState<V[] | undefined>(undefined);
 

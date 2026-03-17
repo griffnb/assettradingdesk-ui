@@ -1,15 +1,17 @@
-import { constants, findConstant } from "@/models/constants";
+import { ValidationRules } from "@/common_lib/utils/validations";
+import { constants } from "@/models/constants";
+import { findConstant } from "@/models/constants_helpers";
 import { IConstant } from "@/models/types/constants";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { AssetFileTypes } from "../../asset_file/_constants/file_type";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 import { AssetBaseModel } from "./AssetBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class AssetModel extends AssetBaseModel {
-  _model_name = "asset";
+  _model_name: StoreKeys = "asset";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -23,8 +25,8 @@ export class AssetModel extends AssetBaseModel {
     return "fa fa-cog";
   }
 
-  get link(): string {
-    return `/assets/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/assets/${target}/${this.id}`;
   }
 
   get publicLink(): string {
@@ -33,6 +35,16 @@ export class AssetModel extends AssetBaseModel {
 
   get installStatus(): IConstant {
     return findConstant(constants.asset.install_status, this.install_status);
+  }
+
+  get install_statusFmt(): string {
+    const status = this.installStatus;
+    return status ? status.label : "Unknown";
+  }
+
+  get operational_statusFmt(): string {
+    const status = this.operationalStatus;
+    return status ? status.label : "Unknown";
   }
 
   get operationalStatus(): IConstant {
@@ -98,6 +110,24 @@ export class AssetModel extends AssetBaseModel {
       }
       return img
         ? img.meta_data.medium_image.replaceAll("_mw.", "_m.")
+        : "/img/placeholder.png";
+    }
+    return "/img/placeholder.png";
+  }
+
+  get thumbnail(): string {
+    if (this.asset_files && this.asset_files.length > 0) {
+      const img = this.asset_files.find(
+        (file) =>
+          file.file_type == AssetFileTypes.Image &&
+          file.meta_data.small_image &&
+          file.meta_data.small_image != "",
+      );
+      if (!img) {
+        return "/img/placeholder.png";
+      }
+      return img
+        ? img.meta_data.small_image.replaceAll("_sw.", "_s.")
         : "/img/placeholder.png";
     }
     return "/img/placeholder.png";

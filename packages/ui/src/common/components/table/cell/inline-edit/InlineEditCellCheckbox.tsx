@@ -1,11 +1,11 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { IColumn, TableCellProps } from "../../../types/columns";
-import InlineEditCellWrap from "./InlineEditCellWrap";
+import { IFieldColumn, TableCellProps } from "../../../types/columns";
+import { InlineEditCellWrap } from "./InlineEditCellWrap";
 
 interface InlineEditCellCheckboxProps<T extends ValidationType & StoreModel>
   extends TableCellProps<T> {
@@ -13,7 +13,7 @@ interface InlineEditCellCheckboxProps<T extends ValidationType & StoreModel>
 }
 
 export interface InlineEditCellCheckboxColumn<T extends object>
-  extends IColumn<T> {}
+  extends IFieldColumn<T> {}
 
 // Define the component with correct generic syntax
 export const InlineEditCellCheckbox = observer(

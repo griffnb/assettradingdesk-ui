@@ -1,10 +1,11 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
-import { ValidationRules } from "@/utils/validations";
+import { StoreKeys } from "@/models/types/store_keys";
 import { GlobalConfigBaseModel } from "./GlobalConfigBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class GlobalConfigModel extends GlobalConfigBaseModel {
-  _model_name = "global_config";
+  _model_name: StoreKeys = "global_config";
   get validationRules(): ValidationRules {
     return validationRules;
   }

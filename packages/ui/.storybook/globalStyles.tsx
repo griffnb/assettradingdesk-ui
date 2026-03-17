@@ -1,5 +1,6 @@
+// @ts-expect-error ignore this
 export const withGlobalStyles = (Story) => (
-  <div className="font-titillium">
+  <div>
     <Story />
   </div>
 );

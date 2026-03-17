@@ -1,0 +1,24 @@
+import { observer } from "mobx-react";
+import {FormModal} from "@/ui/common/components/modal/FormModal";
+
+
+export const {{pascalCase name}}Id = "{{pascalCase name}}";
+
+interface {{pascalCase name}}Props {
+
+}
+export const {{pascalCase name}} = observer(function {{pascalCase name}}(props: {{pascalCase name}}Props) {
+  return (
+    <FormModal
+      id={ {{pascalCase name}}Id }
+      title="{{pascalCase name}}"
+      saveLabel="Save"
+      cancelLabel="close"
+      showCancel={false}
+      showSave={true}
+      saveHandler={() => console.log("Save Called")}
+    >
+      Im a sample modal
+    </FormModal>
+  );
+});

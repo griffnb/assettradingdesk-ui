@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 
 import { IConstant } from "@/models/types/constants";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
 import { ErrorMessages } from "./base/ErrorMessages";

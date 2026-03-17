@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
 import { CategoryModel } from "@/models/models/category/model/CategoryModel";
 import { Button } from "@/ui/shadcn/ui/button";
 import { NavigationMenuLink } from "@/ui/shadcn/ui/navigation-menu";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes } from "react";
@@ -67,7 +67,7 @@ export const CategoryFlyout = observer(function CategoryFlyout(
             className="ml-0 pl-2 text-sm font-medium text-primary"
             asChild
           >
-            <Link to="/assets">See All Categories</Link>
+            <Link to="/categories">See All Categories</Link>
           </Button>
         </div>
       </div>

@@ -1,7 +1,9 @@
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { DetailFieldContainer } from "@/ui/common/components/form/details/DetailFieldContainer";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
+import { FormFieldTextArea } from "@/ui/common/components/form/fields/FormFieldTextArea";
 import { FormWrap } from "@/ui/common/components/form/wrap/FormWrap";
-import { isObjectValid } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
@@ -61,13 +63,50 @@ export const ManufacturerForm = observer(function ManufacturerForm(
       cancelLabel="Cancel"
       cancelAction={cancelAction}
     >
-      <FormFieldText
-        record={props.record}
-        field="name"
-        type="text"
-        label="Name"
-        placeholder="Name"
-      />
+      <DetailFieldContainer>
+        <FormFieldText
+          record={props.record}
+          field="name"
+          type="text"
+          label="Name"
+          placeholder="Manufacturer Name"
+        />
+
+        <FormFieldText
+          record={props.record}
+          field="slug"
+          type="text"
+          label="Slug"
+          placeholder="manufacturer-slug"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldTextArea
+          record={props.record}
+          field="description"
+          label="Description"
+          placeholder="Manufacturer description"
+        />
+      </DetailFieldContainer>
+
+      <DetailFieldContainer>
+        <FormFieldText
+          record={props.record.meta_data}
+          field="legacy_id"
+          type="number"
+          label="Legacy ID"
+          placeholder="Legacy ID"
+        />
+
+        <FormFieldText
+          record={props.record.meta_data}
+          field="legacy_key"
+          type="text"
+          label="Legacy Key"
+          placeholder="Legacy Key"
+        />
+      </DetailFieldContainer>
     </FormWrap>
   );
 });

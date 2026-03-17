@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
+import { Direction } from "@/common_lib/utils/query/builder";
 import { TableState } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
-import { Direction } from "@/utils/query/builder";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { Fragment } from "react";
@@ -13,6 +13,8 @@ const styleVariants = cva("", {
         "whitespace-nowrap bg-gray-50 text-sm tracking-wide border-b border-gray-300 sticky top-0 z-10",
       compact:
         "whitespace-nowrap bg-white text-sm tracking-wide border-y border-gray-300 sticky top-0 z-10",
+      admin:
+        "whitespace-nowrap bg-gray-50 text-sm tracking-wide border-b border-gray-300 sticky top-0 z-10",
       custom: "",
     },
   },
@@ -25,6 +27,7 @@ const headerVariants = cva("", {
   variants: {
     variant: {
       default: "p-3 font-semibold text-xs text-text-neutral-tertiary",
+      admin: "p-3 font-semibold text-xs text-text-neutral-tertiary",
       compact: "p-2 font-semibold text-xs text-text-neutral-tertiary",
       custom: "",
     },

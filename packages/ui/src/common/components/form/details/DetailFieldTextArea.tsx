@@ -1,9 +1,10 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { TextAreaInput } from "../../fields/TextAreaInput";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -38,7 +39,7 @@ export const DetailFieldTextArea = observer(function DetailFieldTextArea<
   };
 
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : (props.record[props.field] as string);
 
   return (

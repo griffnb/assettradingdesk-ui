@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
+import { formatNumber, formatPercent } from "@/common_lib/utils/numbers";
 import { TableState } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
-import { formatNumber, formatPercent } from "@/utils/numbers";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { useMemo } from "react";

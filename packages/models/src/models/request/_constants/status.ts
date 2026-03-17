@@ -8,8 +8,13 @@ export const status: Status[] = [
   },
   {
     id: 200,
-    label: "Archived",
+    label: "Disabled",
     class: "fa fa-circle-pause text-yellow-500",
+  },
+  {
+    id: 201,
+    label: "Fulfilled",
+    class: "fa fa-circle-check text-blue-500",
   },
   {
     id: 300,

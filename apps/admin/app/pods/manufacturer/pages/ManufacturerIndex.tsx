@@ -1,25 +1,25 @@
-import {StandardTableWrap} from "@/ui/common/components/table/StandardTableWrap";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
 import { LayerService } from "@/common_lib/services/LayerService";
+import {
+  parseSearchParams,
+  queryToFilters,
+} from "@/common_lib/utils/query/builder";
+import { status } from "@/models/models/manufacturer/_constants/status";
+import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
+import { DefaultMassActions } from "@/ui/common/components/table/nav/DefaultMassActions";
+import { StandardTableWrap } from "@/ui/common/components/table/StandardTableWrap";
+import { observer } from "mobx-react-lite";
+import { useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router";
+import { columns } from "../columns";
 import {
   ManufacturerFormModal,
   ManufacturerFormModalId,
 } from "../components/ManufacturerFormModal";
-import { useSearchParams } from "react-router";
-import DefaultMassActions from "@/ui/common/components/table/nav/DefaultMassActions";
-import { MassActionProps } from "@/ui/common/components/types/mass-actions";
-import { ManufacturerModel } from "@/models/models/manufacturer/model/ManufacturerModel";
-import { parseSearchParams, queryToFilters } from "@/utils/query/builder";
-import { observer } from "mobx-react-lite";
-import { status } from "@/models/models/manufacturer/_constants/status";
-import { columns } from "../columns";
 import { filters } from "../filters";
-import { useMemo } from "react";
-
-
 
 export const ManufacturerIndex = observer(function ManufacturerIndex() {
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const appliedFilters = useMemo(
     () =>
@@ -29,23 +29,25 @@ export const ManufacturerIndex = observer(function ManufacturerIndex() {
       }),
     [searchParams],
   );
- 
 
   const applyFilters = (params: { [key: string]: string | string[] }) => {
     setSearchParams(params);
   };
+  useEffect(() => {
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Manufacturers" },
+    ]);
+  }, []);
+
   return (
     <>
-      <AdminTitleBar title="Manufacturers" />
       <StandardTableWrap<ManufacturerModel>
         className="[&_*[data-slot='table-wrap']]:h-[calc(100svh-var(--warning-bar,0px)-var(--title-bar,175px))] [&_*[data-slot='table-wrap']]:overflow-x-auto"
-
         newComponent={() => {
-          LayerService.add(
-            ManufacturerFormModalId,
-            ManufacturerFormModal,
-            {onSave: () => applyFilters({...appliedFilters})},
-          );
+          LayerService.add(ManufacturerFormModalId, ManufacturerFormModal, {
+            onSave: () => applyFilters({ ...appliedFilters }),
+          });
         }}
         columns={columns}
         statuses={status}
@@ -56,13 +58,10 @@ export const ManufacturerIndex = observer(function ManufacturerIndex() {
         selectRows={true}
         tableSearch={true}
         tableExport={true}
- hideTotalRow={true}
-infiniteScroll={true}
-        massActions={[
-          (props) => <DefaultMassActions {...props} />,
-        ]}
+        hideTotalRow={true}
+        infiniteScroll={true}
+        massActions={[(props) => <DefaultMassActions {...props} />]}
       />
     </>
   );
 });
-

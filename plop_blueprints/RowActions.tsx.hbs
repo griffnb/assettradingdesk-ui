@@ -1,0 +1,38 @@
+import { RowActions, RowActionsPreActions, RowActionsActions, RowActionsPostActions,
+  RowActionColumn,
+} from "@/ui/common/components/table/cell/RowActions";
+import { TableCellProps } from "@/ui/common/components/types/columns";
+import { Status } from "@/models/types/constants";
+import { equals } from "@/common_lib/utils/numbers";
+import { runInAction } from "mobx";
+import { observer } from "mobx-react";
+import Link from "next/link";
+import {ReactNode} from "react";
+import { {{pascalCase model}}Model }  from "@/models/models/{{lowerCase model}}/model/{{pascalCase model}}Model";
+interface {{pascalCase model}}RowActionsProps extends TableCellProps<{{pascalCase model}}Model> {
+  children?: ReactNode;
+  column: RowActionColumn<{{pascalCase model}}Model>;
+}
+export const {{pascalCase model}}RowActions = observer(function {{pascalCase model}}RowActions(props: {{pascalCase model}}RowActionsProps) {
+
+  return (
+    <RowActions {...props}>
+      {/* Actions before the standard */}
+     <RowActionsPreActions>
+
+     </RowActionsPreActions>
+
+     {/* Replaces standard actions */}
+     <RowActionsActions>
+
+     </RowActionsActions>
+
+      {/* Actions after the standard */}
+     <RowActionsPostActions>
+
+     </RowActionsPostActions>
+
+      
+    </RowActions>
+  );
+});

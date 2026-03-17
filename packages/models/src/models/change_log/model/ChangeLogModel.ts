@@ -1,10 +1,11 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
-import { ValidationRules } from "@/utils/validations";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ChangeLogBaseModel } from "./ChangeLogBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ChangeLogModel extends ChangeLogBaseModel {
-  _model_name = "change_log";
+  _model_name: StoreKeys = "change_log";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -18,8 +19,8 @@ export class ChangeLogModel extends ChangeLogBaseModel {
     return "fa fa-user";
   }
 
-  get link(): string {
-    return `/change_logs/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/change_logs/${target}/${this.id}`;
   }
 
   get timestampFmt(): string {

@@ -1,7 +1,7 @@
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 
 import { ImageHolder } from "@/ui/common/components/fields/files/types";
-import SectionHead from "@/ui/common/components/form/SectionHead";
+import { SectionHead } from "@/ui/common/components/form/SectionHead";
 
 import { AssetFileTypes } from "@/models/models/asset_file/_constants/file_type";
 import { Store } from "@/models/store/Store";
@@ -34,7 +34,7 @@ export const AssetUpload = observer(function AssetUpload(
   };
 
   return (
-    <div className="p-10">
+    <div className="rounded-xl border bg-white p-4 shadow">
       <SectionHead label="Upload Assets" />
 
       <S3BulkFileUpload

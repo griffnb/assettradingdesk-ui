@@ -1,8 +1,10 @@
+import { getPublicEnvVar } from "@/common_lib/utils/env";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AdminModel } from "@/models/models/admin/model/AdminModel";
 import { Store } from "@/models/store/Store";
-import { getPublicEnvVar } from "@/utils/env";
 import { action, flow, makeAutoObservable } from "mobx";
+import { $yieldAwait } from "../mobx/helpers";
+import { ServerService } from "./ServerService";
 
 const IS_SERVER_SIDE = typeof window === "undefined";
 
@@ -26,6 +28,10 @@ class SessionServiceClass {
     if (!IS_SERVER_SIDE) {
       this.sessionToken = this.storedToken;
     }
+  }
+
+  setRedirectLocation(location: string | null) {
+    this.redirectLocation = location;
   }
 
   setSessionToken(token: string) {
@@ -113,20 +119,38 @@ class SessionServiceClass {
     return this.loadAccount(true);
   }
 
-  async fetchAccount(): Promise<AccountModel | null> {
-    const loadedAccount = this.account;
-    if (loadedAccount) {
-      return loadedAccount;
+  async fetchAccount(force?: boolean): Promise<AccountModel | null> {
+    if (!force) {
+      const loadedAccount = this.account;
+      if (loadedAccount) {
+        console.log("Fetched account from memory cache");
+        return loadedAccount;
+      }
     }
 
-    return this.loadAccount();
+    return this.loadAccount(force);
   }
 
+  logout = flow(function* (this: SessionServiceClass, customRedirect?: string) {
+    const resp = yield* $yieldAwait(
+      ServerService.postRaw("/logout", {
+        token: SessionService.sessionToken,
+      }),
+    );
+    if (resp.success) {
+      this.account = null;
+      this.admin = null;
+      this.clearSessionToken(customRedirect);
+    }
+  });
+
   loadAdmin = flow(function* (this: SessionServiceClass, skipCache?: boolean) {
-    const response = yield Store.admin.queryRecord(
-      "me",
-      {},
-      { skipCache: skipCache, silentError: true }
+    const response = yield* $yieldAwait(
+      Store.admin.queryRecord(
+        "me",
+        {},
+        { skipCache: skipCache, silentError: true },
+      ),
     );
     if (response.success && response.data) {
       this.admin = response.data as AdminModel;
@@ -136,26 +160,31 @@ class SessionServiceClass {
     return null;
   });
 
-  async fetchAdmin(): Promise<AdminModel | null> {
-    const loadedAdmin = this.admin;
-    if (loadedAdmin) {
-      return loadedAdmin;
+  async fetchAdmin(force?: boolean): Promise<AdminModel | null> {
+    if (!force) {
+      const loadedAdmin = this.admin;
+      if (loadedAdmin) {
+        return loadedAdmin;
+      }
     }
 
-    return this.loadAdmin();
+    return this.loadAdmin(force);
   }
 
   loadAccount = flow(function* (
     this: SessionServiceClass,
-    skipCache?: boolean
+    skipCache?: boolean,
   ) {
-    const response = yield Store.account.queryRecord(
-      "me",
-      {},
-      {
-        skipCache: skipCache,
-        silentError: true,
-      }
+    const response = yield* $yieldAwait(
+      Store.account.queryRecord(
+        "me",
+        {},
+        {
+          skipCache: skipCache,
+          silentError: true,
+          customTTL: 1000 * 60 * 1, // 1 minutes
+        },
+      ),
     );
     if (response.success && response.data) {
       this.account = response.data as AccountModel;

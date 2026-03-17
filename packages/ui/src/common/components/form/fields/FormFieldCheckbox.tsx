@@ -1,5 +1,5 @@
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";

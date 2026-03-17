@@ -10,28 +10,81 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/ui/shadcn/ui/sidebar";
-import { BookOpen, Bot, PanelLeft, Plus, SquareTerminal } from "lucide-react";
+import {
+  BookOpenIcon,
+  BotIcon,
+  Building2Icon,
+  MessageSquareIcon,
+  PanelLeftIcon,
+  PcCaseIcon,
+  PlusIcon,
+  SettingsIcon,
+  SquareTerminalIcon,
+} from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CustomerAuthLeftNavProps {}
 
-const platformItems = [
+export const platformItems = [
   {
     title: "Dashboard",
-    url: "/dashboard",
-    icon: SquareTerminal,
+    url: "/manage/dashboard",
+    icon: SquareTerminalIcon,
   },
   {
-    title: "Suggested Tools",
-    url: "/suggested-tools",
-    icon: Bot,
+    title: "Messages",
+    url: "/manage/messages",
+    icon: MessageSquareIcon,
   },
+  {
+    title: "Suggested Assets",
+    url: "/manage/opportunities",
+    icon: BotIcon,
+  },
+  {
+    title: "Manage Requests",
+    url: "/manage/requests",
+    icon: BookOpenIcon,
+  },
+  /*
   {
     title: "Offers",
-    url: "/offers",
+    url: "/manage/offers",
     icon: BookOpen,
+  },
+  */
+];
+
+export const assetItems = [
+  {
+    title: "Assets",
+    url: "/manage/assets",
+    icon: PcCaseIcon,
+  },
+  {
+    title: "New Asset",
+    url: "/manage/assets/new",
+    icon: PlusIcon,
+  },
+];
+
+export const managementItems = [
+  {
+    title: "Organization",
+    url: "/manage/organization",
+    icon: SettingsIcon,
+  },
+  {
+    title: "Facilities",
+    url: "/manage/facilities",
+    icon: Building2Icon,
+  },
+  {
+    title: "My Account",
+    url: "/manage/my-account",
+    icon: SettingsIcon,
   },
 ];
 
@@ -49,7 +102,10 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
       <SidebarContent>
         <SidebarGroup className="!py-0 pb-2">
           <SidebarMenu>
-            <SidebarMenuItem>
+            <SidebarMenuItem className="flex flex-row items-center">
+              <span className="group-data-[state='collapsed']:hidden">
+                Manage
+              </span>
               <SidebarMenuButton asChild>
                 <Button
                   variant="ghost"
@@ -57,7 +113,7 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
                   className="ml-auto size-7"
                   onClick={toggleSidebar}
                 >
-                  <PanelLeft className="size-4" />
+                  <PanelLeftIcon className="size-4" />
                   <span className="sr-only">Toggle Sidebar</span>
                 </Button>
               </SidebarMenuButton>
@@ -66,10 +122,6 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
         </SidebarGroup>
         <SidebarGroup className="flex-1 p-2">
           <SidebarMenu>
-            <SidebarGroupLabel className="px-2 opacity-70">
-              Platform
-            </SidebarGroupLabel>
-
             {platformItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild isActive={currentPath === item.url}>
@@ -84,22 +136,32 @@ export const CustomerAuthLeftNav = observer(function CustomerAuthLeftNav() {
           <Separator className="my-2" />
 
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link to="/listings">
-                  <SquareTerminal className="size-4" />
-                  <span>Assets</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link to="/listings">
-                  <Plus className="size-4" />
-                  Create New Asset
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            <SidebarGroupLabel>Asset Management</SidebarGroupLabel>
+            {assetItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild isActive={currentPath === item.url}>
+                  <Link to={item.url}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+          <Separator className="my-2" />
+
+          <SidebarMenu>
+            <SidebarGroupLabel>Account Management</SidebarGroupLabel>
+            {managementItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild isActive={currentPath === item.url}>
+                  <Link to={item.url}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

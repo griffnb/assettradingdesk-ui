@@ -1,12 +1,15 @@
 import { makeAutoObservable } from "mobx";
 import type { ComponentType } from "react";
 
-export type Layer<TProps = unknown> = {
-  component: ComponentType<TProps>;
-  id: string;
-  history?: boolean;
-  props?: TProps;
-};
+export type Layer<TComponent extends ComponentType<any> = ComponentType<any>> =
+  TComponent extends ComponentType<infer TProps>
+    ? {
+        component: TComponent;
+        id: string;
+        history?: boolean;
+        props?: TProps;
+      }
+    : never;
 
 // type error, alert, saving, success
 class LayerServiceClass {
@@ -28,18 +31,20 @@ class LayerServiceClass {
   }
 
   // ---------- replace ----------
-  replace(layer: Layer<any>): void;
-  replace<TProps>(
-    id: string,
-    component: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+  replace<TComponent extends ComponentType<any>>(
+    layer: Layer<TComponent>,
   ): void;
-  replace<TProps>(
-    idOrLayer: string | Layer<TProps>,
-    component?: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+  replace<TComponent extends ComponentType<any>>(
+    id: string,
+    component: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
+  ): void;
+  replace<TComponent extends ComponentType<any>>(
+    idOrLayer: string | Layer<TComponent>,
+    component?: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
   ): void {
     const layer: Layer<any> =
       typeof idOrLayer === "object"
@@ -52,18 +57,18 @@ class LayerServiceClass {
   }
 
   // ---------- add ----------
-  add(layer: Layer<any>): void;
-  add<TProps>(
+  add<TComponent extends ComponentType<any>>(layer: Layer<TComponent>): void;
+  add<TComponent extends ComponentType<any>>(
     id: string,
-    component: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+    component: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
   ): void;
-  add<TProps>(
-    idOrLayer: string | Layer<TProps>,
-    component?: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+  add<TComponent extends ComponentType<any>>(
+    idOrLayer: string | Layer<TComponent>,
+    component?: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
   ): void {
     const layer: Layer<any> =
       typeof idOrLayer === "object"
@@ -79,18 +84,20 @@ class LayerServiceClass {
   }
 
   // ---------- addOnly ----------
-  addOnly(layer: Layer<any>): void;
-  addOnly<TProps>(
-    id: string,
-    component: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+  addOnly<TComponent extends ComponentType<any>>(
+    layer: Layer<TComponent>,
   ): void;
-  addOnly<TProps>(
-    idOrLayer: string | Layer<TProps>,
-    component?: ComponentType<TProps>,
-    props?: TProps,
-    history?: boolean
+  addOnly<TComponent extends ComponentType<any>>(
+    id: string,
+    component: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
+  ): void;
+  addOnly<TComponent extends ComponentType<any>>(
+    idOrLayer: string | Layer<TComponent>,
+    component?: TComponent,
+    props?: TComponent extends ComponentType<infer TProps> ? TProps : never,
+    history?: boolean,
   ): void {
     this.layers = [];
     const layer: Layer<any> =

@@ -1,10 +1,12 @@
-import { replaceURLValues } from "@/utils/strings";
+import { cn } from "@/common_lib/utils/cn";
+import { replaceURLValues } from "@/common_lib/utils/strings";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { IColumn, TableCellProps } from "../../types/columns";
 
 interface LinkCellProps<T extends object> extends TableCellProps<T> {
   column: LinkCellColumn<T>;
+  className?: string;
 }
 
 export interface LinkCellColumn<T extends object> extends IColumn<T> {
@@ -71,7 +73,10 @@ export const LinkCell = observer(
     return (
       <a
         href={finalURL}
-        className="text-xs font-semibold text-blue-500 hover:underline"
+        className={cn(
+          "text-xs font-semibold text-blue-500 hover:underline",
+          props.className,
+        )}
         target={props.column.target}
         onClick={(e) => e.stopPropagation()}
       >
@@ -80,5 +85,5 @@ export const LinkCell = observer(
           : (props.record[lookupField as keyof T] as string)}
       </a>
     );
-  }
+  },
 );

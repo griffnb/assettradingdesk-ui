@@ -6,7 +6,10 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 import tz from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+import { constants } from "./constants";
 import { StoreModel } from "./store/StoreModel";
+import { Status } from "./types/constants";
+
 // Globally Extends dayjs
 dayjs.extend(utc);
 dayjs.extend(tz);
@@ -32,6 +35,19 @@ export class BaseModel extends StoreModel {
 
   @attr("string") created_by_name: string = "";
   @attr("string") updated_by_name: string = "";
+
+  get statusEnum(): Status {
+    if (this._model_name === "") {
+      return { id: -1, label: "", class: "" };
+    }
+    return (
+      constants[this._model_name].status.find((s) => s.id === this.status) || {
+        id: -1,
+        label: "",
+        class: "",
+      }
+    );
+  }
 
   get createdAtFmt() {
     if (!this.created_at) {

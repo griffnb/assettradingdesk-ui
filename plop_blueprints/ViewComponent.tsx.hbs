@@ -1,0 +1,36 @@
+import { cn } from "@/common_lib/utils/cn";
+import { cva, VariantProps } from "class-variance-authority";
+import { HTMLAttributes } from "react";
+
+const styleVariants = cva("", {
+  variants: {
+    variant: {
+      default: "",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+/**
+ * A Sample Component
+ *
+ * @example
+ * [&_*[data-slot='my-slot']]:mx-auto
+ *
+ * @slot {"my-slot"} data-slot="my-slot"
+ */
+
+export interface {{pascalCase name}}{{pascalCase view}}Props  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof styleVariants> {
+         } 
+export const {{pascalCase name}}{{pascalCase view}} = (fullProps:{{pascalCase name}}{{pascalCase view}}Props) => { 
+  const { className, variant, ...props } = fullProps;
+    return (
+      <div className={cn(styleVariants({ variant, className }))}>
+          {{pascalCase name}}
+      </div>
+    )
+        
+}; 

@@ -1,12 +1,12 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { IConstant } from "@/models/types/constants";
 import { MultiSelectInput } from "@/ui/common/components/fields/MultiSelectInput";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { IColumn, TableCellProps } from "../../../types/columns";
-import InlineEditCellWrap from "./InlineEditCellWrap";
+import { IFieldColumn, TableCellProps } from "../../../types/columns";
+import { InlineEditCellWrap } from "./InlineEditCellWrap";
 
 interface InlineEditCellMultiSelectProps<T extends ValidationType & StoreModel>
   extends TableCellProps<T> {
@@ -14,13 +14,13 @@ interface InlineEditCellMultiSelectProps<T extends ValidationType & StoreModel>
 }
 
 export interface InlineEditCellMultiSelectColumn<T extends object>
-  extends IColumn<T> {
+  extends IFieldColumn<T> {
   options: IConstant[];
 }
-const InlineEditCellMultiSelect = observer(
-  <T extends ValidationType & StoreModel>(
+export const InlineEditCellMultiSelect = observer(
+  function InlineEditCellMultiSelect<T extends ValidationType & StoreModel>(
     props: InlineEditCellMultiSelectProps<T>,
-  ) => {
+  ) {
     const [validate, setValidate] = useState<boolean>(false);
 
     let errorMessages: string[] = [];

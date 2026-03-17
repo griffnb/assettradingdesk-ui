@@ -1,11 +1,12 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { CategoryBaseModel } from "./CategoryBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class CategoryModel extends CategoryBaseModel {
-  _model_name = "category";
+  _model_name: StoreKeys = "category";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -19,8 +20,8 @@ export class CategoryModel extends CategoryBaseModel {
     return "fa fa-tag";
   }
 
-  get link(): string {
-    return `/categories/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/categories/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

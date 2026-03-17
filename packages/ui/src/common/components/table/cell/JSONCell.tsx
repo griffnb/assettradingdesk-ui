@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import {
   Description,
   Dialog,
@@ -7,8 +7,9 @@ import {
 } from "@headlessui/react";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
-import CodeEdit from "../../form/CodeEdit";
+import { CodeEdit } from "../../form/CodeEdit";
 import { IColumn, TableCellProps } from "../../types/columns";
+import { getColumnValue } from "./helpers";
 
 export interface JSONCellColumn<T extends object> extends IColumn<T> {
   className?: string;
@@ -27,7 +28,11 @@ export const JSONCell = observer(
 
     const value = props.jsonData
       ? JSON.stringify(props.jsonData, null, 2)
-      : JSON.stringify(props.record[props.column.field], null, 2);
+      : JSON.stringify(
+          getColumnValue(props.record, props.column.field),
+          null,
+          2,
+        );
 
     return (
       <div className="flex flex-row items-center gap-x-3">
@@ -36,7 +41,7 @@ export const JSONCell = observer(
           onClick={() => setIsOpen(true)}
           className={cn(
             `flex flex-row items-center gap-x-3 rounded-lg border border-gray-300 bg-gray-100 px-3 py-2 text-sm`,
-            props.column.className
+            props.column.className,
           )}
         >
           {props.buttonContents
@@ -64,5 +69,5 @@ export const JSONCell = observer(
         </Dialog>
       </div>
     );
-  }
+  },
 );

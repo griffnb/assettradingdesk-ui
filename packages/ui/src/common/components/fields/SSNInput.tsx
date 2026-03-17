@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { format, unformat, useMask } from "@react-input/mask";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";

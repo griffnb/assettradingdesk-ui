@@ -1,6 +1,6 @@
 import { IConstant } from "@/models/types/constants";
-import { cn } from "@/utils/cn";
-import { equals } from "@/utils/numbers";
+import { cn } from "@/common_lib/utils/cn";
+import { equals } from "@/common_lib/utils/numbers";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 

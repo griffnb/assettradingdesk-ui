@@ -1,6 +1,6 @@
+import { equals } from "@/common_lib/utils/numbers";
 import { Store } from "@/models/store/Store";
 import { IConstant } from "@/models/types/constants";
-import { equals } from "@/utils/numbers";
 import { observer } from "mobx-react-lite";
 import { useEffect, useMemo, useState } from "react";
 import { ComboBoxBase } from "./base/select/ComboBoxBase";
@@ -18,12 +18,13 @@ interface ModelSelectProps<T>
   value: string | undefined;
   as?: "select" | "combobox";
   additionalOptions?: IConstant[];
+  defaultIfSingleOption?: boolean;
 }
 export const ModelSelectInput = observer(
   <T extends object>(props: ModelSelectProps<T>) => {
     const memoizedFilters = useMemo(
       () => props.modelSearchFilters,
-      [JSON.stringify(props.modelSearchFilters)]
+      [JSON.stringify(props.modelSearchFilters)],
     );
     const [options, setOptions] = useState<T[]>([]);
     const [optionsLoaded, setOptionsLoaded] = useState(false);
@@ -41,14 +42,27 @@ export const ModelSelectInput = observer(
                     id: option.id as string,
                     [props.modelDisplayField]: option.label,
                   } as unknown as T;
-                }
+                },
               );
               setOptions([
                 ...(resp.data as unknown as T[]),
                 ...formattedAdditionalOptions,
               ]);
+
+              if (
+                props.defaultIfSingleOption &&
+                formattedAdditionalOptions.length === 1
+              ) {
+                props.handleChange(formattedAdditionalOptions[0]);
+              }
             } else {
               setOptions(resp.data as unknown as T[]);
+              if (
+                props.defaultIfSingleOption &&
+                (resp.data as unknown as T[]).length === 1
+              ) {
+                props.handleChange((resp.data as unknown as T[])[0]);
+              }
             }
           }
           setOptionsLoaded(true);
@@ -59,13 +73,13 @@ export const ModelSelectInput = observer(
       options.find((option) => {
         return equals(
           option[idField as keyof T] as string,
-          props.value as string
+          props.value as string,
         );
       }) ?? undefined;
 
     const search = async (
       q: string,
-      setDisplayedOptions: (options: T[]) => void
+      setDisplayedOptions: (options: T[]) => void,
     ) => {
       if (q == "") {
         setDisplayedOptions(options);
@@ -132,5 +146,5 @@ export const ModelSelectInput = observer(
         searchFunction={search}
       />
     );
-  }
+  },
 );

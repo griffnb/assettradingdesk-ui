@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { RequestForm } from "@/admin/pods/request/components/RequestForm";
 import { RequestModel } from "@/models/models/request/model/RequestModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface RequestEditProps {}
 
@@ -24,11 +24,21 @@ export const RequestEdit = observer(function RequestEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Requests", href: "/requests" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Request" objectURN={record.urn} />
       <RequestForm record={record} />;
     </>
   );

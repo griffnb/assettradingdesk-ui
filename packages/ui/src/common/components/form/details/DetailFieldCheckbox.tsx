@@ -1,10 +1,11 @@
+import { isNumeric } from "@/common_lib/utils/numbers";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
 import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
-import { isNumeric } from "@/utils/numbers";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -36,7 +37,7 @@ export const DetailFieldCheckbox = observer(function DetailFieldCheckbox<
   };
 
   let value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : props.record[props.field];
 
   if (isNumeric(value)) {

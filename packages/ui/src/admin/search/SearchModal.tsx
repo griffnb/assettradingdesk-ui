@@ -1,11 +1,11 @@
 import { Store } from "@/models/store/Store";
 import { StoreKeys } from "@/models/types/store_keys";
-import { detectOS } from "@/utils/os";
+import { detectOS } from "@/common_lib/utils/os";
 
 import { LayerService } from "@/common_lib/services/LayerService";
 import { Button } from "@/ui/common/components/buttons/Button";
 import { ModalWrap } from "@/ui/common/components/modal/ModalWrap";
-import { isUUID } from "@/utils/strings";
+import { isUUID } from "@/common_lib/utils/strings";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { SearchInput } from "./SearchInput";

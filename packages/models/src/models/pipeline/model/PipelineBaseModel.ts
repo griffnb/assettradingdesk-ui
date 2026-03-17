@@ -12,13 +12,21 @@ export class PipelineBaseModel extends BaseModel {
 
   // Join fields
   @attr("string", { readOnly: true }) buyer_client_name: string = "";
-  @attr("uuid", { readOnly: true }) buyer_facility_id: string = "";
+  @attr("uuid", { readOnly: true, nullable: true }) buyer_facility_id:
+    | string
+    | null = null;
   @attr("string", { readOnly: true }) buyer_facility_name: string = "";
-  @attr("uuid", { readOnly: true }) buyer_company_id: string | null = null;
+  @attr("uuid", { readOnly: true, nullable: true }) buyer_company_id:
+    | string
+    | null = null;
   @attr("string", { readOnly: true }) buyer_company_name: string = "";
   @attr("string", { readOnly: true }) seller_client_name: string = "";
-  @attr("uuid", { readOnly: true }) seller_facility_id: string | null = null;
+  @attr("uuid", { readOnly: true, nullable: true }) seller_facility_id:
+    | string
+    | null = null;
   @attr("string", { readOnly: true }) seller_facility_name: string = "";
-  @attr("uuid", { readOnly: true }) seller_company_id: string | null = null;
+  @attr("uuid", { readOnly: true, nullable: true }) seller_company_id:
+    | string
+    | null = null;
   @attr("string", { readOnly: true }) seller_company_name: string = "";
 }

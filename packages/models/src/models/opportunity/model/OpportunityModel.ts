@@ -1,11 +1,12 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { OpportunityBaseModel } from "./OpportunityBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class OpportunityModel extends OpportunityBaseModel {
-  _model_name = "opportunity";
+  _model_name: StoreKeys = "opportunity";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -19,8 +20,35 @@ export class OpportunityModel extends OpportunityBaseModel {
     return "fa fa-handshake";
   }
 
-  get link(): string {
-    return `/opportunities/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/opportunities/${target}/${this.id}`;
+  }
+
+  get assetLabel(): string {
+    return `${this.asset_manufacturer_name} ${this.asset_model_name}`;
+  }
+
+  get requestLabel(): string {
+    if (this.request_model_name && this.request_model_name.length > 0) {
+      return `${this.request_manufacturer_name} ${this.request_model_name}`;
+    }
+
+    const nameParts = [];
+
+    if (this.request_category_name && this.request_category_name.length > 0) {
+      nameParts.push(this.request_category_name);
+    }
+    if (
+      this.request_manufacturer_name &&
+      this.request_manufacturer_name.length > 0
+    ) {
+      nameParts.push(this.request_manufacturer_name);
+    }
+    if (nameParts.length > 0) {
+      return nameParts.join(" ");
+    }
+
+    return "";
   }
 
   getParent(): ParentInfo | null {

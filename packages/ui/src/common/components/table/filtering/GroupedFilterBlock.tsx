@@ -1,7 +1,7 @@
 import { TableState } from "@/models/store/state/TableState";
 import { Input } from "@/ui/shadcn/ui/input";
 import { ScrollArea } from "@/ui/shadcn/ui/scroll-area";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useCallback, useMemo, useState } from "react";
 import { FilterCheckbox } from "./FilterCheckbox";

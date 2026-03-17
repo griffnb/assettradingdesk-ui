@@ -1,5 +1,5 @@
 import { ServerService } from "@/common_lib/services/ServerService";
-import { debugLog } from "@/utils/debug";
+import { debugLog } from "@/common_lib/utils/debug";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import ImageUploading, {

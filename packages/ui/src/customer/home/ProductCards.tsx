@@ -1,3 +1,4 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { Button } from "@/ui/shadcn/ui/button";
@@ -8,7 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/ui/shadcn/ui/carousel";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useEffect, useState } from "react";
@@ -87,12 +87,9 @@ export const ProductCards = observer(function ProductCards(
           {/* Product Cards Grid */}
           <div className="relative flex w-full shrink-0 flex-wrap content-center items-center gap-6">
             <Carousel className="mx-auto w-full">
-              <CarouselContent>
+              <CarouselContent className="last:mr-3">
                 {assets.map((asset) => (
-                  <CarouselItem
-                    className="basis-full overflow-hidden md:basis-1/4"
-                    key={asset.id}
-                  >
+                  <CarouselItem className="min-w-fit max-w-fit" key={asset.id}>
                     <AssetCard key={asset.id} asset={asset} variant={"full"} />
                   </CarouselItem>
                 ))}

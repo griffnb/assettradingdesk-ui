@@ -1,9 +1,9 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Input } from "@/ui/shadcn/ui/input";
 import { Separator } from "@/ui/shadcn/ui/separator";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { Search } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { HTMLAttributes, useState } from "react";
 import { useNavigate } from "react-router";
@@ -77,7 +77,7 @@ export const HeroSection = observer(function HeroSection(
               {/* Search Bar */}
               <div className="relative box-border hidden w-full content-stretch items-center gap-1 rounded-lg border-black bg-white p-1 shadow-lg md:flex md:max-w-3xl md:border-2 md:p-3">
                 <div className="relative flex min-h-px min-w-px flex-1 shrink-0 content-stretch items-center gap-2">
-                  <Search className="size-5 text-neutral-500" />
+                  <SearchIcon className="size-5 text-neutral-500" />
                   <Input
                     placeholder="Search equipment, manufacturers, models..."
                     className="flex-1 border-0 bg-transparent text-lg shadow-none placeholder:text-neutral-500 focus-visible:ring-0"

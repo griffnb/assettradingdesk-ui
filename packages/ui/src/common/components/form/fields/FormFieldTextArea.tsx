@@ -1,7 +1,7 @@
 import TextAreaInput, {
   TextAreaInputProps,
 } from "@/ui/common/components/fields/TextAreaInput";
-import { ValidationType, isFieldValid } from "@/utils/validations";
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { FocusEvent, useState } from "react";
@@ -21,7 +21,7 @@ interface FormFieldTextAreaProps<T extends ValidationType>
 }
 
 // Define the component with correct generic syntax
-const FormFieldTextArea = observer(
+export const FormFieldTextArea = observer(
   <T extends ValidationType>(props: FormFieldTextAreaProps<T>) => {
     const [validate, setValidate] = useState<boolean>(false);
 
@@ -69,5 +69,3 @@ const FormFieldTextArea = observer(
     );
   },
 );
-
-export default FormFieldTextArea;

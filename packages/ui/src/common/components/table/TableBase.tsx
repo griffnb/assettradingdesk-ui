@@ -1,5 +1,5 @@
+import { cn } from "@/common_lib/utils/cn";
 import { TableState } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect } from "react";
@@ -18,6 +18,7 @@ const styleVariants = cva(
         compact: "",
         default: "",
         custom: "",
+        admin: "",
       },
     },
     defaultVariants: {
@@ -32,6 +33,7 @@ const wrapVariants = cva("relative flex flex-col min-h-0", {
       compact: "px-4 bg-white",
       default: "",
       custom: "",
+      admin: "",
     },
   },
   defaultVariants: {
@@ -157,6 +159,7 @@ export const TableBase = observer(function TableBase<T extends object>(
           pageSizes={props.pageSizes}
           infiniteScroll={infiniteScroll}
           tableState={tableState}
+          variant={variant}
         />
       ) : tableState.totalCount > 0 ? (
         <div className="flex w-full flex-row items-center border-t border-gray-200 bg-white p-3 text-sm">

@@ -2,21 +2,15 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "script": "build",
-      "problemMatcher": ["$tsc"],
-      "group": "build",
-      "label": "npm: build",
-      "detail": "tsc"
-    },
-    {
-      "type": "npm",
-      "script": "watch",
+      "label": "watch-ts-bun",
+      "type": "shell",
+      //"script": "watch",
+      "command": "bun run watch",
       "problemMatcher": "$tsc-watch",
       "isBackground": true,
       "presentation": {
-        "reveal": "always",
-        "revealProblems": "onProblem"
+        //"reveal": "always",
+        //"revealProblems": "onProblem"
       },
       "runOptions": {
         "runOn": "folderOpen"

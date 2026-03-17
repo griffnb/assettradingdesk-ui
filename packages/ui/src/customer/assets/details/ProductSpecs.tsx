@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { AssetFileTypes } from "@/models/models/asset_file/_constants/file_type";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 
 export interface ProductSpecsProps {

@@ -1,23 +1,39 @@
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { BaseModel } from "@/models/BaseModel";
+import { constants } from "@/models/constants";
 import { attr } from "@/models/decorators/attr";
+import { WithEnumGetters } from "@/models/types/enum_attrs";
 import dayjs from "dayjs";
 import { AssetFileModel } from "../../asset_file/model/AssetFileModel";
 
-export class AssetMetaData {
+export class AssetMetaData extends ValidationClass {
   legacy_id: number = 0;
   legacy_key: string = "";
   wafer_size: number = 0;
+
+  constructor() {
+    super();
+  }
 }
 
 export class AssetBaseModel extends BaseModel {
-  @attr("uuid", { nullable: true }) organization_id: string | null = null;
-  @attr("uuid", { nullable: true }) company_id: string | null = null;
-  @attr("uuid", { nullable: true }) client_id: string | null = null;
-  @attr("uuid", { nullable: true }) model_id: string | null = null;
+  // Self Made
+  @attr("uuid") organization_id: string | null = null;
+  @attr("uuid") facility_id: string | null = null;
+  @attr("uuid") account_id: string | null = null;
+  // CRM Made
+  @attr("uuid") company_id: string | null = null;
+  @attr("uuid") client_id: string | null = null;
+  // Common Fields
+  @attr("uuid") model_id: string | null = null;
   @attr("string") description: string = "";
+  @attr("string") location: string = "";
   @attr("string") configuration_notes: string = "";
-  @attr("number") install_status: number = 0;
-  @attr("number") operational_status: number = 0;
+  @attr("number", { enum: constants.asset.install_status })
+  install_status: number = 0;
+  @attr("number") visibility: number = 0;
+  @attr("number", { enum: constants.asset.operational_status })
+  operational_status: number = 0;
   @attr("number") year: number = 0;
   @attr("number") quantity: number = 0;
   @attr("decimal") price: number = 0;
@@ -51,7 +67,15 @@ export class AssetBaseModel extends BaseModel {
   @attr("json", { readOnly: true }) company_types: number[] | null = null;
 
   @attr("string", { readOnly: true }) facility_name: string | null = null;
-  @attr("uuid", { readOnly: true }) facility_id: string | null = null;
+
   @attr("json", { readOnly: true }) pipeline_ids: string[] | null = null;
   @attr("number", { readOnly: true }) picture_count: number | null = null;
+  @attr("number", { readOnly: true }) match_count: number | null = null;
 }
+
+/**
+ * Declare which fields have enum decorators for type safety.
+ * This tells TypeScript that these enum getter properties exist at runtime.
+ */
+export interface AssetBaseModel
+  extends WithEnumGetters<"install_status" | "operational_status"> {}

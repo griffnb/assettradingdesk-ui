@@ -1,7 +1,7 @@
 import { LayerService } from "@/common_lib/services/LayerService";
 import { ServerService } from "@/common_lib/services/ServerService";
 import { StoreKeys } from "@/models/types/store_keys";
-import { debugLog } from "@/utils/debug";
+import { debugLog } from "@/common_lib/utils/debug";
 import { observer } from "mobx-react-lite";
 import { ReactNode, useState } from "react";
 import ImageUploading, {

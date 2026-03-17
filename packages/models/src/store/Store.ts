@@ -2,6 +2,7 @@ import { AccountModel } from "../models/account/model/AccountModel";
 import { AdminModel } from "../models/admin/model/AdminModel";
 import { AssetModel } from "../models/asset/model/AssetModel";
 import { AssetFileModel } from "../models/asset_file/model/AssetFileModel";
+import { BillingPlanModel } from "../models/billing_plan/model/BillingPlanModel";
 import { CategoryModel } from "../models/category/model/CategoryModel";
 import { ChangeLogModel } from "../models/change_log/model/ChangeLogModel";
 import { ClientModel } from "../models/client/model/ClientModel";
@@ -10,11 +11,13 @@ import { FacilityModel } from "../models/facility/model/FacilityModel";
 import { GlobalConfigModel } from "../models/global_config/model/GlobalConfigModel";
 import { IndustryModel } from "../models/industry/model/IndustryModel";
 import { ManufacturerModel } from "../models/manufacturer/model/ManufacturerModel";
+import { MessageModel } from "../models/message/model/MessageModel";
 import { ModelModel } from "../models/model/model/ModelModel";
 import { OpportunityModel } from "../models/opportunity/model/OpportunityModel";
 import { OrganizationModel } from "../models/organization/model/OrganizationModel";
 import { PipelineModel } from "../models/pipeline/model/PipelineModel";
 import { RequestModel } from "../models/request/model/RequestModel";
+import { SubscriptionModel } from "../models/subscription/model/SubscriptionModel";
 
 import { APIStore } from "./api/APIStore";
 
@@ -39,6 +42,10 @@ export const Store = {
   asset_file: new APIStore({
     _class: AssetFileModel,
     modelName: "asset_file",
+  }),
+  billing_plan: new APIStore({
+    _class: BillingPlanModel,
+    modelName: "billing_plan",
   }),
   category: new APIStore({
     _class: CategoryModel,
@@ -68,6 +75,10 @@ export const Store = {
     _class: ManufacturerModel,
     modelName: "manufacturer",
   }),
+  message: new APIStore({
+    _class: MessageModel,
+    modelName: "message",
+  }),
   model: new APIStore({
     _class: ModelModel,
     modelName: "model",
@@ -87,5 +98,9 @@ export const Store = {
   request: new APIStore({
     _class: RequestModel,
     modelName: "request",
+  }),
+  subscription: new APIStore({
+    _class:SubscriptionModel,
+    modelName: "subscription",
   }),
 };

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { PipelineForm } from "@/admin/pods/pipeline/components/PipelineForm";
 import { PipelineModel } from "@/models/models/pipeline/model/PipelineModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface PipelineEditProps {}
 
@@ -24,11 +24,21 @@ export const PipelineEdit = observer(function PipelineEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Pipelines", href: "/pipelines" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Pipeline" objectURN={record.urn} />
       <PipelineForm record={record} />;
     </>
   );

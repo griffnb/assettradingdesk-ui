@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": false,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/ui/shadcn/components",
+    "utils": "@/ui/shadcn/utils",
+    "ui": "@/ui/shadcn/ui",
+    "lib": "@/ui/shadcn/lib",
+    "hooks": "@/ui/shadcn/hooks"
+  },
+  "iconLibrary": "lucide",
+
+  "registries": {
+    "@core": {
+      "url": "https://raw.githubusercontent.com/griffnb/core/refs/heads/main/frontend/packages/utils/registry.json",
+      "headers": {
+        "Authorization": "token ${GITHUB_TOKEN}"
+      }
+    }
+  }
+}

@@ -1,6 +1,9 @@
-import isEmpty from "@/utils/empty";
+import isEmpty from "@/common_lib/utils/empty";
 
-const getMergedValues = <T extends Record<string, any>>(cvars: T, defaultCvars: T): T => {
+const getMergedValues = <T extends Record<string, any>>(
+  cvars: T,
+  defaultCvars: T,
+): T => {
   const mergedValues: T = { ...defaultCvars };
   for (const key in defaultCvars) {
     if (defaultCvars.hasOwnProperty(key)) {
@@ -16,6 +19,6 @@ const getMergedValues = <T extends Record<string, any>>(cvars: T, defaultCvars: 
   }
 
   return mergedValues;
-}
+};
 
 export default getMergedValues;

@@ -18,6 +18,7 @@ export class AssetFileBaseModel extends BaseModel {
   @attr("json", { classType: MetaData }) meta_data: MetaData = new MetaData();
 
   // Join fields (readonly)
+  @attr("string", { readOnly: true }) asset_name: string = "";
   @attr("string", { readOnly: true }) created_by_name: string = "";
   @attr("string", { readOnly: true }) updated_by_name: string = "";
 }

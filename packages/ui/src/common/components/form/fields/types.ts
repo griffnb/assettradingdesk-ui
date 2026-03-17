@@ -1,4 +1,4 @@
-import { ValidationRule } from "@/utils/validations";
+import { ValidationRule } from "@/common_lib/utils/validations";
 import { ReactNode } from "react";
 import { WrapVariantKeys } from "./FormFieldWrap";
 
@@ -21,4 +21,5 @@ export interface FormFieldProps<T> extends BaseFormFieldProps {
   field: string & keyof T;
   label: string;
   onRecordUpdate?: (record: T) => void;
+  labelButton?: ReactNode;
 }

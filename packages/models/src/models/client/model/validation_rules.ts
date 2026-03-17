@@ -1,6 +1,3 @@
-
-import { ValidationRulesType } from "@/utils/validations";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { type ClientBaseModel } from "./ClientBaseModel";
-export const validationRules: ValidationRulesType<ClientBaseModel> = {
- 
-};
+export const validationRules: ValidationRulesType<ClientBaseModel> = {};

@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "ui_code_tools": {
+      "type": "stdio",
+      "command": "./scripts/make_mcp.sh",
+      "args": []
+    },
+
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "storybook-mcp": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
+    },
+    "ckb": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@tastehub/ckb", "mcp", "--watch", "--watch-interval", "15s"]
+    }
+  }
+}

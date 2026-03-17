@@ -2,7 +2,8 @@
   "name": "utils",
   "scripts": {
     "tsc": "tsc --noEmit",
-    "watch": "tsc --watch --noEmit --project './tsconfig.json'"
+    "watch": "tsc --watch --noEmit --project './tsconfig.json'",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@aws-sdk/client-cloudwatch-logs": "^3.675.0",
@@ -11,7 +12,8 @@
     "dayjs": "^1.11.18",
     "mustache": "^4.2.0",
     "tailwind-merge": "^3.3.1",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "react-router": "^7.9.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
@@ -28,7 +30,6 @@
     "eslint": "^9.35.0",
     "eslint-plugin-import": "^2.32.0",
     "plop": "^4.0.2",
-    "prettier": "^3.6.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4",

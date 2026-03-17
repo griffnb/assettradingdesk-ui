@@ -1,11 +1,12 @@
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
-import { isFieldValid, ValidationType } from "@/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { CSSProperties, useState } from "react";
 import { ColorInput } from "../../fields/ColorInput";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
+import { getColumnValue } from "../../table/cell/helpers";
 
 interface CustomCSSProperties extends CSSProperties {
   "--custom-color"?: string;
@@ -38,7 +39,7 @@ export const DetailFieldColor = observer(function DetailFieldColor<
   };
 
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : (props.record[props.field] as string);
   const bg = `bg-gradient-to-r from-white from-10% to-30% to-[var(--custom-color)]`; //[${props.record[props.field] as string | undefined}]`;
 

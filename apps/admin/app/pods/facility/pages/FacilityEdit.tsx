@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { FacilityForm } from "@/admin/pods/facility/components/FacilityForm";
 import { FacilityModel } from "@/models/models/facility/model/FacilityModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface FacilityEditProps {}
 
@@ -24,11 +24,21 @@ export const FacilityEdit = observer(function FacilityEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Facilities", href: "/facilities" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit Facility" objectURN={record.urn} />
       <FacilityForm record={record} />;
     </>
   );

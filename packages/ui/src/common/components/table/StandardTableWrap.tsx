@@ -1,7 +1,7 @@
 import { TableState, TableStateProps } from "@/models/store/state/TableState";
-import { cn } from "@/utils/cn";
+import { cn } from "@/common_lib/utils/cn";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useEffect, useImperativeHandle, useState } from "react";
 import { SelectAllNav } from "./nav/SelectAllNav";
 import { TableNav } from "./nav/TableNav";
 import { TableBase, TableBaseVariants } from "./TableBase";
@@ -12,6 +12,7 @@ export interface StandardTableWrapProps<T extends object>
     TableStateProps<T>,
     TableBaseVariants {
   className?: string;
+  ref?: React.Ref<TableState<T>>;
 }
 
 /**
@@ -76,11 +77,16 @@ export const StandardTableWrap = observer(
       variant,
       className,
       pageSizes = [100, 500, 1000],
+      ref,
       ...props
     } = rawProps;
     const [tableState] = useState<TableState<T>>(
       () => new TableState<T>(props),
     );
+
+    if (ref) {
+      useImperativeHandle(ref, () => tableState, [tableState]);
+    }
 
     useEffect(() => {
       if (props.appliedFilters) {

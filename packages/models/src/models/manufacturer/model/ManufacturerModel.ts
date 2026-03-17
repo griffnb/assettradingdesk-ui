@@ -1,11 +1,12 @@
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { ManufacturerBaseModel } from "./ManufacturerBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ManufacturerModel extends ManufacturerBaseModel {
-  _model_name = "manufacturer";
+  _model_name: StoreKeys = "manufacturer";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -19,8 +20,8 @@ export class ManufacturerModel extends ManufacturerBaseModel {
     return "fa fa-industry";
   }
 
-  get link(): string {
-    return `/manufacturers/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/manufacturers/${target}/${this.id}`;
   }
 
   getParent(): ParentInfo | null {

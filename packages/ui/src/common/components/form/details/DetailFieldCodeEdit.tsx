@@ -1,17 +1,17 @@
 import { StoreModel } from "@/models/store/StoreModel";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
-import CodeEdit, { CodeEditProps } from "../CodeEdit";
+import { CodeEdit, CodeEditProps } from "../CodeEdit";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
 interface DetailFieldCodeEditProps<T extends StoreModel & ValidationType>
-  extends DetailFieldProps<T>,
-    Omit<CodeEditProps, "value" | "onChange"> {
+  extends DetailFieldProps<T>, Omit<CodeEditProps, "value" | "onChange"> {
   prependVal?: string;
+  isJson?: boolean;
 }
 
 // Define the component with correct generic syntax
@@ -32,14 +32,25 @@ export const DetailFieldCodeEdit = observer(function DetailFieldCodeEdit<
   const handleChange = (value: string) => {
     runInAction(() => {
       const key = props.field as keyof T;
-      props.record[key] = value as T[keyof T];
+
+      if (props.isJson) {
+        try {
+          props.record[key] = JSON.parse(value) as T[keyof T];
+        } catch {
+          props.record[key] = value as T[keyof T];
+        }
+      } else {
+        props.record[key] = value as T[keyof T];
+      }
+
       setValidate(true);
     });
   };
 
-  const value = props.displayField
-    ? (props.record[props.displayField] as string)
-    : (props.record[props.field] as string);
+  const value =
+    typeof props.record[props.field] === "string"
+      ? (props.record[props.field] as string)
+      : JSON.stringify(props.record[props.field], null, 2);
 
   return (
     <DetailFieldWrap
@@ -49,7 +60,7 @@ export const DetailFieldCodeEdit = observer(function DetailFieldCodeEdit<
         <>
           <CodeEdit
             {...props}
-            value={props.record[props.field] as string}
+            value={value}
             onChange={handleChange}
             readOnly={true}
             append={
@@ -74,7 +85,7 @@ export const DetailFieldCodeEdit = observer(function DetailFieldCodeEdit<
         <>
           <CodeEdit
             {...props}
-            value={props.record[props.field] as string}
+            value={value}
             onChange={handleChange}
             append={append}
           />

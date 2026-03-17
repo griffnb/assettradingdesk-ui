@@ -1,26 +1,28 @@
+import { cn } from "@/common_lib/utils/cn";
+import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Button } from "@/ui/shadcn/ui/button";
-import { cn } from "@/utils/cn";
-import { Heart, Share2 } from "lucide-react";
+import { HeartIcon, Share2Icon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ProductActions } from "./ProductActions";
 import { ProductSpecs } from "./ProductSpecs";
 
 export interface ProductInfoProps {
   asset: AssetModel;
+  isAuthenticated: boolean;
   onShare?: () => void;
   onFavorite?: () => void;
   onPrimaryAction?: () => void;
   onSecondaryAction?: () => void;
   className?: string;
+  account: AccountModel | null;
 }
 
 export const ProductInfo = observer(function ProductInfo({
   asset,
+  account,
   onShare,
   onFavorite,
-  onPrimaryAction,
-  onSecondaryAction,
   className,
 }: ProductInfoProps) {
   const formatPrice = (amount: number) => {
@@ -38,9 +40,9 @@ export const ProductInfo = observer(function ProductInfo({
           <p className="w-full min-w-full whitespace-pre-wrap text-sm font-semibold leading-5 text-gray-500">
             {asset.category_name}
           </p>
-          <p className="w-full min-w-full whitespace-pre-wrap text-[30px] font-bold leading-9 text-gray-700">
-            {asset.model_name}
-          </p>
+          <h1 className="w-full min-w-full whitespace-pre-wrap text-[30px] font-bold leading-9 text-gray-700">
+            {asset.manufacturer_name} {asset.model_name}
+          </h1>
           <div className="flex items-start gap-2">
             {/*
             {badges.map((badge, index) => (
@@ -60,7 +62,7 @@ export const ProductInfo = observer(function ProductInfo({
             onClick={onShare}
             className="size-8"
           >
-            <Share2 className="size-4" />
+            <Share2Icon className="size-4" />
           </Button>
           <Button
             variant="ghost"
@@ -68,7 +70,7 @@ export const ProductInfo = observer(function ProductInfo({
             onClick={onFavorite}
             className="size-8"
           >
-            <Heart className="size-4" />
+            <HeartIcon className="size-4" />
           </Button>
         </div>
       </div>
@@ -80,10 +82,11 @@ export const ProductInfo = observer(function ProductInfo({
             ? formatPrice(asset.price)
             : "Contact for Price"}
         </p>
-
+        {/*}
         <p className="w-full whitespace-pre-wrap text-lg font-medium leading-7 text-gray-500">
           {asset.model_description}
         </p>
+        */}
       </div>
       <div className="flex w-full flex-col items-start gap-2">
         <div className="grid w-full grid-cols-[200px,_1fr] gap-2">
@@ -101,10 +104,7 @@ export const ProductInfo = observer(function ProductInfo({
       </div>
 
       {/* Action buttons */}
-      <ProductActions
-        onPrimaryAction={onPrimaryAction}
-        onSecondaryAction={onSecondaryAction}
-      />
+      <ProductActions asset={asset} account={account} />
       <ProductSpecs asset={asset} />
     </div>
   );

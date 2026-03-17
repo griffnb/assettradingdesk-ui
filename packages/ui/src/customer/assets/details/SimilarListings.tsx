@@ -1,9 +1,9 @@
 import { ServerService } from "@/common_lib/services/ServerService";
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Store } from "@/models/store/Store";
 import { AssetCard } from "@/ui/customer/assets/AssetCard";
 import { Button } from "@/ui/shadcn/ui/button";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -50,12 +50,12 @@ export const SimilarListings = observer(function SimilarListings({
     <div className={cn("flex w-full flex-col items-start gap-5", className)}>
       {/* Header with results count and sort dropdown */}
       <div className="flex w-full items-center justify-between">
-        <p className="whitespace-pre-wrap text-lg font-semibold leading-7 text-gray-700">
+        <h2 className="whitespace-pre-wrap text-lg font-semibold leading-7 text-gray-700">
           <span>
             Showing {Math.min(assets.length, 4)} of {resultCount} similar{" "}
           </span>
           <span className="font-normal">results for {asset.model_name}</span>
-        </p>
+        </h2>
         <Button
           variant="outline"
           className="h-9 rounded-lg border-neutral-200 bg-white px-4 py-2 shadow-sm"

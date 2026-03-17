@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import CodeEdit from "./CodeEdit";
+import { CodeEdit } from "./CodeEdit";
 
 const meta = {
   title: "Common/Form/CodeEdit",

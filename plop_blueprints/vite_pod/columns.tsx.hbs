@@ -1,0 +1,26 @@
+import { RowActions, 
+  RowActionColumn,
+} from "@/ui/common/components/table/cell/RowActions";
+import { ColumnComponentOptions, IColumn } from "@/ui/common/components/types/columns";
+import { status } from "@/models/models/{{name}}/_constants/status";
+import { {{pascalCase name}}Model } from "@/models/models/{{name}}/model/{{pascalCase name}}Model";
+export const columns: IColumn<{{pascalCase name}}Model>[] = [
+  {
+    title: "Status",
+    field: "status",
+    fixed:true,
+     render: (options: ColumnComponentOptions<{{pascalCase name}}Model>) => {
+      return <RowActions {...options} column={options.column as RowActionColumn<{{pascalCase name}}Model>} />;
+    },
+    queryField: "status",
+    statuses: status,
+    headerClass: "action-header",
+    edit: "/{{lowerCase pluralName}}/edit",
+  } as RowActionColumn<{{pascalCase name}}Model>,
+
+  {
+    title: "Name",
+    field: "name",
+    queryField: "name",
+  },
+];

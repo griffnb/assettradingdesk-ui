@@ -1,7 +1,7 @@
+import { cn } from "@/common_lib/utils/cn";
+import { formatNumber } from "@/common_lib/utils/numbers";
 import { TableState } from "@/models/store/state/TableState";
 import { useMeasureVariable } from "@/ui/hooks/useMeasureVariable";
-import { cn } from "@/utils/cn";
-import { formatNumber } from "@/utils/numbers";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { Button } from "../buttons/Button";
@@ -9,7 +9,12 @@ import { Button } from "../buttons/Button";
 const styleVariants = cva("", {
   variants: {
     variant: {
-      default: "w-full border-t border-gray-200 text-sm bg-white",
+      default:
+        "w-full border-t border-gray-200 text-sm bg-white text-gray-400 [&_*[data-slot='table-pagination-total-label']]:text-text-neutral-primary",
+      admin: "w-full bg-gradient-to-r from-gray-800 to-gray-700 text-white",
+      compact:
+        "w-full border-t border-gray-200 text-sm bg-white text-gray-400 [&_*[data-slot='table-pagination-total-label']]:text-text-neutral-primary",
+      custom: "",
     },
   },
   defaultVariants: {
@@ -36,7 +41,6 @@ export const TablePagination = observer(
   <T extends object>(fullProps: TablePaginationProps<T>) => {
     const { className, variant, tableState, ...props } = fullProps;
     const { ref } = useMeasureVariable("table-footer", "height");
-
     return (
       <div
         data-slot="table-pagination"
@@ -47,9 +51,11 @@ export const TablePagination = observer(
           {props.infiniteScroll ? (
             <div
               data-slot="table-pagination-total"
-              className="flex h-10 flex-row items-center gap-2 overflow-hidden text-gray-400"
+              className="flex h-10 flex-row items-center gap-2 overflow-hidden"
             >
-              <span className="text-text-neutral-primary">Total Records:</span>
+              <span data-slot="table-pagination-total-label">
+                Total Records:
+              </span>
               <span>{formatNumber(tableState.totalCount)}</span>
             </div>
           ) : (
@@ -73,10 +79,7 @@ export const TablePagination = observer(
                 ))}
               </select>
 
-              <div
-                data-slot="table-pagination-start-end"
-                className="text-gray-400"
-              >
+              <div data-slot="table-pagination-start-end">
                 {tableState.start} - {tableState.end}
                 <span className="px-1">of</span>
                 {tableState.totalCount}

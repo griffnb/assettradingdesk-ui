@@ -1,9 +1,11 @@
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { Store } from "@/models/store/Store";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { AccountInfo } from "../components/details/AccountInfo";
+
 //interface AccountDetailProps {}
 export const AccountDetails = observer(function AccountDetails() {
   const [record, setRecord] = useState<AccountModel | null>(null);
@@ -16,11 +18,21 @@ export const AccountDetails = observer(function AccountDetails() {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Accounts", href: "/accounts" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar objectURN={record.urn} title="Account" />
+      <AccountInfo account={record} />
     </>
   );
 });

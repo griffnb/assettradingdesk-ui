@@ -1,6 +1,6 @@
+import { cn } from "@/common_lib/utils/cn";
 import { Button } from "@/ui/shadcn/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/ui/shadcn/ui/dialog";
-import { cn } from "@/utils/cn";
 import { DialogClose } from "@radix-ui/react-dialog";
 
 import { DetailedHTMLProps, ImgHTMLAttributes } from "react";

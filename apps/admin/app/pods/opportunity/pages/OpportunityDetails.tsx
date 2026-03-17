@@ -2,8 +2,9 @@ import { Store } from "@/models/store/Store";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 import { OpportunityModel } from "@/models/models/opportunity/model/OpportunityModel";
+import { OpportunityInfo } from "../components/details/OpportunityInfo";
 
 //interface OpportunityDetailProps {}
 
@@ -24,13 +25,21 @@ export const OpportunityDetails = observer(function OpportunityDetails() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Opportunities", href: "/opportunities" },
+      { label: record.label },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar
-        objectURN={record.urn}
-        title="Opportunity" />
+      <OpportunityInfo opportunity={record} />
     </>
   );
 });

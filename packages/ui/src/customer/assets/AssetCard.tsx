@@ -1,16 +1,16 @@
+import { cn } from "@/common_lib/utils/cn";
 import { AssetModel } from "@/models/models/asset/model/AssetModel";
 import { Badge } from "@/ui/shadcn/ui/badge";
 import { Card, CardContent, CardFooter } from "@/ui/shadcn/ui/card";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import dayjs from "dayjs";
-import { Image } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 const styleVariants = cva(
-  "gap-2 overflow-hidden shadow-sm hover:bg-gray-50 cursor-pointer",
+  "group gap-2 overflow-hidden shadow-sm hover:bg-gray-50 cursor-pointer",
   {
     variants: {
       variant: {
@@ -39,7 +39,7 @@ const imageVariant = cva("relative h-52 w-full overflow-auto", {
     },
     size: {
       default: "",
-      skinny: " max-h-[40%]",
+      skinny: "max-h-[40%]",
     },
   },
   defaultVariants: {
@@ -71,6 +71,8 @@ export const AssetCard = observer(function AssetCard(
     <Card
       className={cn(styleVariants({ variant, size, className }))}
       onClick={onClickHandler}
+      data-variant={variant}
+      data-size={size}
     >
       <CardContent className={cn(imageVariant({ variant, size }))}>
         <div className="relative size-full">
@@ -86,13 +88,13 @@ export const AssetCard = observer(function AssetCard(
             loading="lazy"
             decoding="async"
             data-nimg="1"
-            className="size-full rounded border object-cover shadow-md"
+            className="size-full rounded border object-cover object-center shadow-md"
             src={asset.mediumImage}
           />
-          {asset.picture_count && asset.picture_count > 0 && (
+          {(asset.picture_count || 0) > 0 && (
             <div className="absolute bottom-1 right-1">
               <Badge className="bg-primary">
-                <Image /> {asset.picture_count}
+                <ImageIcon /> {asset.picture_count}
               </Badge>
             </div>
           )}
@@ -101,14 +103,14 @@ export const AssetCard = observer(function AssetCard(
       <CardFooter>
         <div className="flex w-full flex-col items-start justify-start gap-2 self-stretch">
           <div className="flex flex-col items-start justify-start self-stretch">
-            <div className="justify-start self-stretch text-sm font-normal leading-tight text-muted-foreground">
-              {asset.manufacturer_name}
+            <div className="justify-start self-stretch truncate text-sm font-normal leading-tight text-muted-foreground">
+              {asset.manufacturer_name || "Unknown"}
             </div>
-            <div className="justify-start self-stretch text-lg font-semibold leading-7 text-foreground">
-              {asset.model_name}
+            <div className="justify-start self-stretch truncate text-lg font-semibold leading-7 text-foreground">
+              {asset.model_name || "Unknown"}
             </div>
-            <div className="justify-start self-stretch text-sm font-normal leading-tight text-muted-foreground">
-              {asset.category_name}
+            <div className="justify-start self-stretch truncate text-sm font-normal leading-tight text-muted-foreground group-data-[size='skinny']:hidden">
+              {asset.category_name || "Unknown"}
             </div>
           </div>
           {asset.price > 0 && (
@@ -116,7 +118,7 @@ export const AssetCard = observer(function AssetCard(
               ${(asset.price / 100).toFixed(2)}
             </div>
           )}
-          <div className="flex flex-row justify-between self-stretch text-sm font-normal leading-tight text-muted-foreground">
+          <div className="flex flex-row justify-between gap-2 self-stretch text-sm font-normal leading-tight text-muted-foreground group-data-[size='skinny']:flex-col">
             <div className="flex flex-col self-stretch">
               <span className="font-semibold">Vintage</span>
               <span>{asset.year > 0 ? asset.year : "Unknown"}</span>

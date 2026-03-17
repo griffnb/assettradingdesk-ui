@@ -3,8 +3,8 @@ import { observer } from "mobx-react-lite";
 import { HTMLInputTypeAttribute, useEffect, useState } from "react";
 
 import { IConstant } from "@/models/types/constants";
-import { isNumeric } from "@/utils/numbers";
-import { isFieldValid, ValidationType } from "@/utils/validations";
+import { isNumeric } from "@/common_lib/utils/numbers";
+import { isFieldValid, ValidationType } from "@/common_lib/utils/validations";
 import { ErrorMessages } from "../../fields/base/ErrorMessages";
 import { HelpText } from "../../fields/base/HelpText";
 import { FormFieldWrap } from "./FormFieldWrap";

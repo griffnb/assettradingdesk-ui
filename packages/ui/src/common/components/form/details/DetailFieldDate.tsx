@@ -3,12 +3,13 @@ import {
   DateInputProps,
 } from "@/ui/common/components/fields/DateInput";
 
+import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
 import { StoreModel } from "@/models/store/StoreModel";
-import { ValidationType, isFieldValid } from "@/utils/validations";
 import dayjs from "dayjs";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import { getColumnValue } from "../../table/cell/helpers";
 import { DetailFieldWrap } from "./DetailFieldWrap";
 import { DetailFieldProps } from "./types";
 
@@ -44,7 +45,7 @@ export const DetailFieldDate = observer(function DetailFieldDate<
     });
   };
   const value = props.displayField
-    ? (props.record[props.displayField] as string)
+    ? (getColumnValue(props.record, props.displayField) as string)
     : (props.record[props.field] as string);
 
   return (

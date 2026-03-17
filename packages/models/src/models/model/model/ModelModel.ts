@@ -1,13 +1,14 @@
-import { findConstant } from "@/models/constants";
+import { ValidationRules } from "@/common_lib/utils/validations";
+import { findConstant } from "@/models/constants_helpers";
 import { IStore } from "@/models/types/store";
+import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { ValidationRules } from "@/utils/validations";
 import { constants } from "../constants";
 import { ModelBaseModel } from "./ModelBaseModel";
 import { validationRules } from "./validation_rules";
 
 export class ModelModel extends ModelBaseModel {
-  _model_name = "model";
+  _model_name: StoreKeys = "model";
   get validationRules(): ValidationRules {
     return validationRules;
   }
@@ -21,8 +22,8 @@ export class ModelModel extends ModelBaseModel {
     return "fa fa-cube";
   }
 
-  get link(): string {
-    return `/models/details/${this.id}`;
+  link(target: "edit" | "details" = "details"): string {
+    return `/models/${target}/${this.id}`;
   }
 
   // Computed property for status label using constants

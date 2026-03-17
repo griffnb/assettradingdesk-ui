@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { AssetFileForm } from "@/admin/pods/asset_file/components/AssetFileForm";
 import { AssetFileModel } from "@/models/models/asset_file/model/AssetFileModel";
-import { AdminTitleBar } from "@/ui/admin/nav/AdminTitleBar";
+import { BreadcrumbService } from "@/ui/admin/nav/BreadcrumbService";
 
 //interface AssetFileEditProps {}
 
@@ -24,11 +24,21 @@ export const AssetFileEdit = observer(function AssetFileEdit() {
     );
   }, [id]);
 
+  useEffect(() => {
+    if (!record) return;
+    BreadcrumbService.setSegments([
+      { label: "Home", href: "/" },
+      { label: "Asset Files", href: "/asset_files" },
+      { label: record.label, href: record.link("details") },
+      { label: "Edit" },
+    ]);
+  }, [record]);
+
   if (!record) return null;
+
 
   return (
     <>
-      <AdminTitleBar title="Edit AssetFile" objectURN={record.urn} />
       <AssetFileForm record={record} />;
     </>
   );
