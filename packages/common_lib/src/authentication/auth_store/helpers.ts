@@ -1,5 +1,5 @@
 import { IJSONAPIType } from "@/common_lib/services/ServerService";
-import { debugLog } from "@/utils/debug";
+import { debugLog } from "@/common_lib/utils/debug";
 
 export const authError = <T>(message: string) => {
   debugLog("Auth Error:", message);

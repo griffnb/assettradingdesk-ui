@@ -1,6 +1,6 @@
 import { AuthStore } from "@/common_lib/authentication/auth_store/AuthStore";
+import { cn } from "@/common_lib/utils/cn";
 import { AuthenticationType } from "@/models/models/authentication_method/_constants/type";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { AuthSelectButton } from "./AuthSelectButton";

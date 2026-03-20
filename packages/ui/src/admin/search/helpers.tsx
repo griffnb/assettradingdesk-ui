@@ -1,4 +1,4 @@
-import { plural, titleCase } from "@/utils/strings";
+import { plural, titleCase } from "@/common_lib/utils/strings";
 import { LinkableRecord } from "./types";
 
 export const getRecordLabel = (record: LinkableRecord) => {

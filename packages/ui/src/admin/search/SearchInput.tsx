@@ -1,6 +1,6 @@
-import { cn } from "@/utils/cn";
-import { debounce } from "@/utils/debounce";
-import { detectOS } from "@/utils/os";
+import { cn } from "@/common_lib/utils/cn";
+import { debounce } from "@/common_lib/utils/debounce";
+import { detectOS } from "@/common_lib/utils/os";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
 import { useEffect, useMemo, useRef, useState } from "react";

@@ -1,9 +1,9 @@
+import { cn } from "@/common_lib/utils/cn";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/ui/shadcn/ui/input-otp";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { observer } from "mobx-react-lite";

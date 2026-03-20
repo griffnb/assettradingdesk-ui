@@ -1,7 +1,7 @@
 import { isMobileDevice } from "@/common_lib/hooks/useMediaQuery";
 import { NotificationService } from "@/common_lib/services/NotificationService";
+import { cn } from "@/common_lib/utils/cn";
 import { AuthenticationType } from "@/models/models/authentication_method/_constants/type";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

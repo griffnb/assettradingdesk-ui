@@ -1,11 +1,11 @@
 import { AuthStore } from "@/common_lib/authentication/auth_store/AuthStore";
+import { cn } from "@/common_lib/utils/cn";
+import { isObjectValid } from "@/common_lib/utils/validations";
 import { AuthenticationType } from "@/models/models/authentication_method/_constants/type";
 import { BusyButton } from "@/ui/common/components/buttons/BusyButton";
 import { Button } from "@/ui/common/components/buttons/Button";
 import { FormFieldCheckbox } from "@/ui/common/components/form/fields/FormFieldCheckbox";
 import { FormFieldText } from "@/ui/common/components/form/fields/FormFieldText";
-import { cn } from "@/utils/cn";
-import { isObjectValid } from "@/utils/validations";
 import { useAuth0 } from "@auth0/auth0-react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";

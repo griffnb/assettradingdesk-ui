@@ -1,12 +1,12 @@
+import { detectOS } from "@/common_lib/utils/os";
 import { Store } from "@/models/store/Store";
 import { StoreKeys } from "@/models/types/store_keys";
-import { detectOS } from "@/utils/os";
 
 import { LayerService } from "@/common_lib/services/LayerService";
+import { cn } from "@/common_lib/utils/cn";
+import { isUUID } from "@/common_lib/utils/strings";
 import { Button } from "@/ui/common/components/buttons/Button";
 import { ModalWrap } from "@/ui/common/components/modal/ModalWrap";
-import { cn } from "@/utils/cn";
-import { isUUID } from "@/utils/strings";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
 import { SearchBookmarks } from "./SearchBookmarks";

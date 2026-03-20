@@ -1,9 +1,9 @@
 import { AuthStore } from "@/common_lib/authentication/auth_store/AuthStore";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { cn } from "@/common_lib/utils/cn";
 import { AuthenticationType } from "@/models/models/authentication_method/_constants/type";
 import { Badge } from "@/ui/common/components/badge/Badge";
 import { SimpleModal } from "@/ui/common/components/modal/SimpleModal";
-import { cn } from "@/utils/cn";
 import { observer } from "mobx-react-lite";
 import { OtpInputWrap } from "./OtpInputWrap";
 

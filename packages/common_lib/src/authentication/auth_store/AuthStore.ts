@@ -3,12 +3,12 @@ import {
   IJSONAPIType,
   ServerService,
 } from "@/common_lib/services/ServerService";
+import { toE164 } from "@/common_lib/utils/phone/en_US";
+import { formatPhoneNumber } from "@/common_lib/utils/strings";
+import { ValidationRulesType } from "@/common_lib/utils/validations";
 import { AccountModel } from "@/models/models/account/model/AccountModel";
 import { AuthenticationType } from "@/models/models/authentication_method/_constants/type";
 import { AuthenticationMethodModel } from "@/models/models/authentication_method/model/AuthenticationMethodModel";
-import { toE164 } from "@/utils/phone/en_US";
-import { formatPhoneNumber } from "@/utils/strings";
-import { ValidationRulesType } from "@/utils/validations";
 import dayjs from "dayjs";
 import { flow, makeAutoObservable } from "mobx";
 import { authError } from "./helpers";

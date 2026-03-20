@@ -12,7 +12,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/utils/*": ["packages/utils/src/*"],
       "@/models/*": ["packages/models/src/*"],
       "@/astro_ui/*": ["packages/astro_ui/src/*"],
       "@/ui/*": ["packages/ui/src/*"],

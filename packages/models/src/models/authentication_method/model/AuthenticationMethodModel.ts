@@ -1,8 +1,8 @@
+import { formatPhoneNumber } from "@/common_lib/utils/strings";
+import { ValidationRules } from "@/common_lib/utils/validations";
 import { IStore } from "@/models/types/store";
 import { StoreKeys } from "@/models/types/store_keys";
 import { ParentInfo } from "@/ui/common/components/types/bread-crumb";
-import { formatPhoneNumber } from "@/utils/strings";
-import { ValidationRules } from "@/utils/validations";
 import { AuthenticationMethodBaseModel } from "./AuthenticationMethodBaseModel";
 import { validationRules } from "./validation_rules";
 

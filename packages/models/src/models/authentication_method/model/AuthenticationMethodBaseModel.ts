@@ -1,8 +1,8 @@
+import { ValidationClass } from "@/common_lib/utils/validations";
 import { BaseModel } from "@/models/BaseModel";
 import { constants } from "@/models/constants";
 import { attr } from "@/models/decorators/attr";
 import { WithEnumGetters } from "@/models/types/enum_attrs";
-import { ValidationClass } from "@/utils/validations";
 import dayjs from "dayjs";
 class Settings extends ValidationClass {
   backup_codes: string[] | null = null;

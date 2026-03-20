@@ -1,10 +1,10 @@
 import { CacheService } from "@/common_lib/services/CacheService";
 import { LayerService } from "@/common_lib/services/LayerService";
+import { titleCase } from "@/common_lib/utils/strings";
 import {
   ViewRecordModal,
   ViewRecordModalId,
 } from "@/ui/admin/modal/ViewRecordModal";
-import { titleCase } from "@/utils/strings";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router";
 import { getRecordLabel } from "./helpers";
