@@ -7,6 +7,7 @@ import { constants as account } from "./models/account/constants";
 import { constants as admin } from "./models/admin/constants";
 import { constants as asset } from "./models/asset/constants";
 import { constants as asset_file } from "./models/asset_file/constants";
+import { constants as authentication_method } from "./models/authentication_method/constants";
 import { constants as billing_plan } from "./models/billing_plan/constants";
 import { constants as category } from "./models/category/constants";
 import { constants as change_log } from "./models/change_log/constants";
@@ -45,6 +46,7 @@ export const model_constants = {
   billing_plan,
   global_config,
   change_log,
+  authentication_method,
 };
 
 export const constants = {

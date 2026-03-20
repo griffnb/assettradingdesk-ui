@@ -1,9 +1,9 @@
-import { cn } from "@/common_lib/utils/cn";
-import { debounce } from "@/common_lib/utils/debounce";
-import { detectOS } from "@/common_lib/utils/os";
+import { cn } from "@/utils/cn";
+import { debounce } from "@/utils/debounce";
+import { detectOS } from "@/utils/os";
 import { cva, VariantProps } from "class-variance-authority";
 import { observer } from "mobx-react-lite";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const styleVariants = cva("relative", {
   variants: {
@@ -18,13 +18,13 @@ const styleVariants = cva("relative", {
 });
 
 const inputVariant = cva(
-  "pr-12 block  [focus-visible:outline-none focus-visible:ring-0 w-full rounded-lg pe-4 ps-10 text-sm disabled:pointer-events-none disabled:opacity-50",
+  "block w-full rounded-lg pe-4 ps-10 pr-12 text-sm focus-visible:outline-none focus-visible:ring-0 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         light:
           "bg-bg-neutral-secondary text-text-neutral-primary placeholder-text-neutral-primary border-border-neutral-tertiary",
-        dark: "focus:text-white bg-text-neutral-secondary-hover placeholder-text-neutral-quinary-disabled border border-gray-modern-700",
+        dark: "focus:text-white bg-text-neutral-secondary-hover placeholder-text-neutral-quinary-disabled border border-gray-700",
       },
       size: {
         xs: "h-8",
@@ -40,12 +40,12 @@ const inputVariant = cva(
 );
 
 const iconVariants = cva(
-  " rounded-lg absolute pointer-events-none inset-y-0 start-0 z-20 flex items-center ps-3.5",
+  "rounded-lg absolute pointer-events-none inset-y-0 start-0 z-20 flex items-center ps-3.5",
   {
     variants: {
       variant: {
-        light: "text-decoration-none",
-        dark: "text-icon-neutral-quaternary text-decoration-none",
+        light: "no-underline",
+        dark: "text-icon-neutral-quaternary no-underline",
       },
     },
     defaultVariants: {
@@ -55,13 +55,13 @@ const iconVariants = cva(
 );
 
 const commandVariants = cva(
-  "pointer-events-none mx-1 my-1 rounded-md border px-1 text-sm bg-transparent",
+  "pointer-events-none m-1 rounded-md border px-1 text-sm bg-transparent",
   {
     variants: {
       variant: {
         light:
           "border-border-neutral-secondary text-text-neutral-quaternary bg-transparent",
-        dark: "border-gray-modern-700 text-text-neutral-quinary-disabled",
+        dark: "border-gray-700 text-text-neutral-quinary-disabled",
       },
     },
     defaultVariants: {
@@ -80,20 +80,19 @@ interface SearchInputProps
   onClick?: () => void;
   readOnly?: boolean;
 }
+
 export const SearchInput = observer((props: SearchInputProps) => {
+  const os = typeof navigator !== "undefined" ? detectOS() : "";
   const [queryValue, setQueryValue] = useState(props.searchQuery);
-  const [os, setOS] = useState<string>("");
+  const callbackRef = useRef(props.applySearchQuery);
 
+  // Keep the ref current so the debounced fn always calls the latest callback
   useEffect(() => {
-    const os = detectOS();
-    setOS(os);
-  }, []);
+    callbackRef.current = props.applySearchQuery;
+  }, [props.applySearchQuery]);
 
-  // Debounce the callback. The search will be triggered after 500ms of inactivity.
-  const debouncedSearch = useCallback(
-    debounce((query: string) => {
-      props.applySearchQuery(query);
-    }, 500),
+  const debouncedSearch = useMemo(
+    () => debounce((query: string) => callbackRef.current(query), 500),
     [],
   );
 
@@ -130,9 +129,9 @@ export const SearchInput = observer((props: SearchInputProps) => {
           value={queryValue}
           autoFocus={true}
           onClick={props.onClick}
-          onChange={(e) => {
-            setQueryValue(e.target.value);
-            debouncedSearch(e.target.value);
+          onChange={(event) => {
+            setQueryValue(event.target.value);
+            debouncedSearch(event.target.value);
           }}
           readOnly={props.readOnly}
         />

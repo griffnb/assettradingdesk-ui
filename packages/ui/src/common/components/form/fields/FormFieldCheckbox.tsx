@@ -1,5 +1,5 @@
-import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
 import { ValidationType, isFieldValid } from "@/common_lib/utils/validations";
+import { CheckboxInput } from "@/ui/common/components/fields/CheckboxInput";
 import { runInAction } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
@@ -7,8 +7,8 @@ import { FormFieldWrap } from "./FormFieldWrap";
 import { FormFieldProps } from "./types";
 
 interface FormFieldCheckboxProps<T> extends FormFieldProps<T> {
-  checkedValue?: string | number;
-  uncheckedValue?: string | number;
+  checkedValue?: string | number | boolean;
+  uncheckedValue?: string | number | boolean;
 }
 // Define the component with correct generic syntax
 export const FormFieldCheckbox = observer(function FormFieldCheckbox<

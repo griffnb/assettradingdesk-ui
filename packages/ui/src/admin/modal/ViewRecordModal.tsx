@@ -21,8 +21,8 @@ interface ViewRecordModalProps {
 }
 export const ViewRecordModal = observer((props: ViewRecordModalProps) => {
   const attributes =
-    typeof (props.record as any).getAttributes === "function"
-      ? (props.record as any).getAttributes()
+    typeof (props.record as StoreModel).getAttributes === "function"
+      ? (props.record as StoreModel).getAttributes()
       : props.record;
 
   const editable = getPublicEnvVar("PUBLIC_ENVIRONMENT") !== "production";

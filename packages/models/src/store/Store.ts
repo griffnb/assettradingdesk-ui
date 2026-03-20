@@ -2,6 +2,7 @@ import { AccountModel } from "../models/account/model/AccountModel";
 import { AdminModel } from "../models/admin/model/AdminModel";
 import { AssetModel } from "../models/asset/model/AssetModel";
 import { AssetFileModel } from "../models/asset_file/model/AssetFileModel";
+import { AuthenticationMethodModel } from "../models/authentication_method/model/AuthenticationMethodModel";
 import { BillingPlanModel } from "../models/billing_plan/model/BillingPlanModel";
 import { CategoryModel } from "../models/category/model/CategoryModel";
 import { ChangeLogModel } from "../models/change_log/model/ChangeLogModel";
@@ -100,7 +101,11 @@ export const Store = {
     modelName: "request",
   }),
   subscription: new APIStore({
-    _class:SubscriptionModel,
+    _class: SubscriptionModel,
     modelName: "subscription",
+  }),
+  authentication_method: new APIStore({
+    _class: AuthenticationMethodModel,
+    modelName: "authentication_method",
   }),
 };

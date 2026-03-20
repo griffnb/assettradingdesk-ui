@@ -11,7 +11,7 @@ export default function ZoomableImage({
   alt,
   className,
 }: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
-  largeSrc?: string;
+  largeSrc?: string | Blob;
 }) {
   if (!src) return null;
   return (

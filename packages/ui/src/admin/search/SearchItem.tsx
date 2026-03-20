@@ -4,8 +4,9 @@ import {
   ViewRecordModal,
   ViewRecordModalId,
 } from "@/ui/admin/modal/ViewRecordModal";
-import { titleCase } from "@/common_lib/utils/strings";
+import { titleCase } from "@/utils/strings";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router";
 import { getRecordLabel } from "./helpers";
 import { LinkableRecord } from "./types";
 
@@ -35,11 +36,13 @@ export const SearchItem = observer((props: SearchItemProps) => {
     props.close();
   };
 
-  const viewRecord = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    LayerService.add(ViewRecordModalId, ViewRecordModal, {
-      record: props.record,
+  const viewRecord = (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    LayerService.add({
+      id: ViewRecordModalId,
+      component: ViewRecordModal,
+      props: { record: props.record },
     });
   };
 
@@ -48,9 +51,9 @@ export const SearchItem = observer((props: SearchItemProps) => {
       <i
         className={`w-3.5 text-icon-neutral-quaternary ${props.record.icon || "fa fa-file"} group-hover:text-icon-brand-secondary`}
       />
-      <a
+      <Link
         className="flex w-11/12 flex-row items-center self-stretch"
-        href={props.record.link || ""}
+        to={props.record.link() || ""}
         onClick={saveRecent}
       >
         <span className="text-sm text-text-neutral-tertiary group-hover:text-text-brand-tertiary">
@@ -59,10 +62,14 @@ export const SearchItem = observer((props: SearchItemProps) => {
         <span className="mr-2 ms-auto border-r border-border-neutral-primary pr-2 text-xs capitalize text-text-neutral-quaternary">
           {titleCase(props.record._model_name)}
         </span>
-        <div className="size-7 rounded-lg border border-border-neutral-secondary text-icon-neutral-quaternary shadow-sm hover:border-icon-brand-secondary hover:text-icon-brand-secondary">
-          <i className="fa fa-eye text-xs" onClick={viewRecord} />
-        </div>
-      </a>
+        <button
+          type="button"
+          className="flex size-7 items-center justify-center rounded-lg border border-border-neutral-secondary text-icon-neutral-quaternary shadow-sm hover:border-icon-brand-secondary hover:text-icon-brand-secondary"
+          onClick={viewRecord}
+        >
+          <i className="fa fa-eye text-xs" />
+        </button>
+      </Link>
     </div>
   );
 });

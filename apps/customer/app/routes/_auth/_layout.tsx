@@ -1,6 +1,6 @@
 import { useAccount } from "@/common_lib/authentication/useAccount";
-import { CustomerAuthLeftNav } from "@/ui/customer/auth/nav/CustomerAuthLeftNav";
 import { InAppLayout } from "@/ui/customer/layout/InAppLayout";
+import { CustomerAuthLeftNav } from "@/ui/customer/nav/CustomerAuthLeftNav";
 import { SidebarInset, SidebarProvider } from "@/ui/shadcn/ui/sidebar";
 import { Skeleton } from "@/ui/shadcn/ui/skeleton";
 import { Outlet } from "react-router";

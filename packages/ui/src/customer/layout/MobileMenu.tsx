@@ -14,7 +14,7 @@ import {
 import { XIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation, useNavigate } from "react-router";
-import { assetItems, platformItems } from "../auth/nav/CustomerAuthLeftNav";
+import { assetItems, platformItems } from "../nav/CustomerAuthLeftNav";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MobileMenuProps {}

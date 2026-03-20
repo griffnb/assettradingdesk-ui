@@ -28,6 +28,8 @@ const styleVariants = cva(
         pillOutline: "!bg-white border-2 rounded-full",
         badgeColor: "rounded-md border",
         badgeOutline: "!bg-white border rounded-md",
+        iconGradient:
+          "flex-col rounded-full border bg-gradient-to-b justify-center",
       },
       color: colorVariants,
       size: {
@@ -37,6 +39,7 @@ const styleVariants = cva(
         md_round: "text-sm size-7 items-center justify-center flex-none",
         lg: "text-sm h-7 px-3 py-1",
         lg_round: "text-base size-12 items-center justify-center flex-none",
+        custom: "",
       },
     },
     defaultVariants: {

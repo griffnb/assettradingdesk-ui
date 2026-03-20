@@ -1,8 +1,8 @@
 import { LayerService } from "@/common_lib/services/LayerService";
-import { detectOS } from "@/common_lib/utils/os";
+import { detectOS } from "@/utils/os";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import SearchModal, { SearchModalId } from "./SearchModal";
+import { SearchModal, SearchModalId } from "./SearchModal";
 
 export const SearchModalActivator = observer(() => {
   useEffect(() => {
@@ -17,7 +17,7 @@ export const SearchModalActivator = observer(() => {
         (isMac && event.metaKey && event.key === "/") ||
         (isWindows && event.ctrlKey && event.key === "/")
       ) {
-        LayerService.add(SearchModalId, SearchModal);
+        LayerService.add({ id: SearchModalId, component: SearchModal });
       }
     };
 

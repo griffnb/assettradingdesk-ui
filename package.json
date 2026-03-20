@@ -15,10 +15,12 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "build": "bun run --filter '*' build"
+    "build": "bun run --filter '*' build",
+    "generate-services": "bash -lc 'set -a && source ./.swagger.env && set +a && bunx openapi-ts && bun run scripts/generate-services.ts -i ${GO_SWAGGER_PATH:-/swagger.json} -o ./packages/models/src/services'"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@hey-api/openapi-ts": "0.89.0",
     "@headlessui/tailwindcss": "^0.2.2",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/forms": "^0.5.10",

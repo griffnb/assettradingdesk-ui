@@ -18,4 +18,5 @@ export type StoreKeys =
   | "global_config"
   | "change_log"
   | "billing_plan"
+  | "authentication_method"
   | "subscription";

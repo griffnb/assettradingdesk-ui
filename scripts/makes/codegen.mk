@@ -1,13 +1,13 @@
 # Code generation
 .PHONY: code-generate-services
 code-generate-services: ## Generate services
-	@if [ ! -f $(CURDIR)/.env ]; then \
-		echo "❌ Error: .env file not found in $(CURDIR)"; \
+	@if [ ! -f $(CURDIR)/.swagger.env ]; then \
+		echo "❌ Error: .swagger.env file not found in $(CURDIR)"; \
 		exit 1; \
 	fi; \
-	GO_PATH=$$(grep '^GO_PATH=' $(CURDIR)/.env | cut -d '=' -f2 | tr -d '"' | tr -d "'"); \
+	GO_PATH=$$(grep '^GO_PATH=' $(CURDIR)/.swagger.env | cut -d '=' -f2 | tr -d '"' | tr -d "'"); \
 	if [ -z "$$GO_PATH" ]; then \
-		echo "❌ Error: GO_PATH not found in .env"; \
+		echo "❌ Error: GO_PATH not found in .swagger.env"; \
 		exit 1; \
 	fi; \
 	echo "🔨 Running make swagger-docs in $$GO_PATH"; \
@@ -19,6 +19,7 @@ code-generate-services: ## Generate services
 		echo "❌ Error: make swagger-docs failed"; \
 		exit 1; \
 	fi
+
 
 
 # Capture arguments after target for claude/ralph commands

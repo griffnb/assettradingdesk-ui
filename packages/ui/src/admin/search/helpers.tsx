@@ -1,4 +1,4 @@
-import { plural, titleCase } from "@/common_lib/utils/strings";
+import { plural, titleCase } from "@/utils/strings";
 import { LinkableRecord } from "./types";
 
 export const getRecordLabel = (record: LinkableRecord) => {
@@ -14,7 +14,7 @@ export const getRecordLabel = (record: LinkableRecord) => {
 
 export const buildRecordLink = (record: LinkableRecord) => {
   if (record.link) {
-    return record.link;
+    return record.link();
   }
 
   // Fallback to a generic link if no specific link is provided
